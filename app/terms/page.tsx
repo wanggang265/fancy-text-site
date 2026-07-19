@@ -3,8 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use',
-  description: 'Terms of use for Remove PDF Pages.',
+  title: 'Terms of Service',
+  description: 'Terms of service for Remove PDF Pages.',
 };
 
 export default function TermsPage() {
@@ -12,7 +12,7 @@ export default function TermsPage() {
     <div className="flex min-h-full flex-col bg-slate-50 text-slate-900">
       <Header />
       <main className="mx-auto flex-1 max-w-3xl px-4 py-12 sm:px-6">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-950">Terms of Use</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-950">Terms of Service</h1>
         <p className="mt-4 text-sm text-slate-500">Last updated: {new Date().toISOString().split('T')[0]}</p>
 
         <div className="mt-8 space-y-6 text-slate-700">

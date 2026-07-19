@@ -19,35 +19,35 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-semibold text-slate-950">1. Information We Do Not Collect</h2>
             <p className="mt-2">
-              Remove PDF Pages is designed to keep the workflow lightweight. We do not require account information for basic use.
+              Remove PDF Pages does not ask you to create an account, sign in, or provide any personal information. You can use the tool anonymously. We do not collect your name, email address, payment information, or any other identifying details.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-slate-950">2. File Handling</h2>
             <p className="mt-2">
-              Uploaded files are only used to perform the page-removal workflow and are not shown in this policy as retained assets.
+              When you upload a PDF, it is used only to remove the pages you select and generate the output file. We do not review, share, or retain your files. After processing, uploaded files and generated outputs are automatically deleted from our servers, typically within 60 minutes.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-slate-950">3. Analytics</h2>
             <p className="mt-2">
-              If analytics are enabled in the future, they should stay limited and privacy-conscious.
+              We do not use third-party analytics or tracking tools. If we ever decide to enable analytics in the future, we will only do so after clearly updating this policy and choosing a privacy-conscious provider.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-slate-950">4. Cookies</h2>
             <p className="mt-2">
-              Cookies may be used for basic product functionality or preference handling, depending on deployment settings.
+              We do not use non-essential cookies. Any cookies used are limited to what is strictly necessary to keep the product working, such as maintaining basic session or preference state while you use the tool.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-slate-950">5. Changes to This Policy</h2>
             <p className="mt-2">
-              We may update this Privacy Policy from time to time. Any changes will be posted on this page.
+              We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.
             </p>
           </section>
         </div>

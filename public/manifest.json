@@ -1,0 +1,16 @@
+{
+  "name": "Remove PDF Pages",
+  "short_name": "RemovePDFPages",
+  "description": "Fast, secure, and simple page removal for PDFs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

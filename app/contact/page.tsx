@@ -1,5 +1,11 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact - Remove PDF Pages',
+  description: 'Contact Remove PDF Pages for support, billing, privacy requests, and partnership inquiries.',
+};
 
 const supportEmail = 'support@removepdfpages.net';
 const billingEmail = 'billing@removepdfpages.net';

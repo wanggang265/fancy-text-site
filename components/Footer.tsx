@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="mt-auto border-t border-slate-200 bg-white/80">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           <div>
             <h3 className="text-sm font-semibold text-slate-950">Remove PDF Pages</h3>
             <p className="mt-2 max-w-sm text-sm leading-6 text-slate-600">
