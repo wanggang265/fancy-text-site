@@ -61,7 +61,7 @@ export default function HomePage() {
                 <Link href="#how-it-works" className="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700">
                   Remove pages
                 </Link>
-                <Link href="#how-it-works" className="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-blue-200 hover:text-blue-700">
+                <Link href="/pricing" className="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-blue-200 hover:text-blue-700">
                   Learn more
                 </Link>
               </div>
