@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "stitch:prompt": "node scripts/stitch-prompt.mjs",
+    "stitch:check": "set -a && [ -f .env.local ] && . ./.env.local; set +a; python3 /home/ubuntu/.hermes/profiles/moyun/skills/site-design-student/scripts/check_setup.py"
   },
   "dependencies": {
     "next": "16.2.9",
