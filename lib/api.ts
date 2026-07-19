@@ -47,22 +47,22 @@ export type UsageStats = {
 
 // Auth
 export async function getMe(): Promise<{ user: User }> {
-  return api<{ user: User }>('/api/auth/me');
+  return api<{ user: User }>('/auth/me');
 }
 
 export async function logout(): Promise<{ message: string }> {
-  return api<{ message: string }>('/api/auth/logout', { method: 'POST' });
+  return api<{ message: string }>('/auth/logout', { method: 'POST' });
 }
 
 export async function sendMagicLink(email: string): Promise<{ message: string }> {
-  return api<{ message: string }>('/api/auth/magic-link', {
+  return api<{ message: string }>('/auth/magic-link', {
     method: 'POST',
     body: JSON.stringify({ email }),
   });
 }
 
 export async function loginWithGoogle(idToken: string): Promise<{ user: User }> {
-  return api<{ user: User }>('/api/auth/google', {
+  return api<{ user: User }>('/auth/google', {
     method: 'POST',
     body: JSON.stringify({ id_token: idToken }),
   });
@@ -70,7 +70,7 @@ export async function loginWithGoogle(idToken: string): Promise<{ user: User }> 
 
 // Usage
 export async function getUsage(anonId?: string): Promise<UsageStats> {
-  const url = anonId ? `/api/usage?anon_id=${encodeURIComponent(anonId)}` : '/api/usage';
+  const url = anonId ? `/usage?anon_id=${encodeURIComponent(anonId)}` : '/usage';
   return api<UsageStats>(url);
 }
 
@@ -79,7 +79,7 @@ export async function recordUsage(
   fileSize: number,
   anonId?: string
 ): Promise<{ message: string; pages: number; size: number }> {
-  return api<{ message: string; pages: number; size: number }>('/api/usage', {
+  return api<{ message: string; pages: number; size: number }>('/usage', {
     method: 'POST',
     body: JSON.stringify({
       pages_processed: pagesProcessed,
