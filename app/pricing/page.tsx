@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Pricing - Remove PDF Pages',
-  description: 'Simple, one-time pricing for Remove PDF Pages. Free tools stay free. Unlock advanced PDF tools with a single payment.',
+  description: 'Simple, one-time pricing for Remove PDF Pages. Remove pages for free within generous limits, or unlock larger files and batches with a single payment.',
 };
 
 const plans = [
@@ -12,48 +12,48 @@ const plans = [
     name: 'Free',
     price: '$0',
     period: 'forever',
-    description: 'For quick, one-off PDF tasks.',
-    features: ['Remove pages', 'Basic merge', 'Basic compress'],
+    description: 'For occasional PDF page cleanup.',
+    features: ['Remove pages', 'Up to 20 MB / 200 pages', 'Standard processing'],
     cta: 'Start free',
     highlighted: false,
   },
   {
-    name: 'Full Editor',
-    price: '$29',
+    name: 'Plus',
+    price: '$9',
     period: 'one-time',
-    description: 'Unlock every tool. No subscription.',
-    features: ['Full text editing', 'Image replacement', 'Word/Excel conversion', 'All future PDF tools'],
-    cta: 'Get full editor',
+    description: 'For larger documents and faster turnaround.',
+    features: ['Everything in Free', 'Up to 100 MB / 500 pages', 'Priority processing', 'No recurring fees'],
+    cta: 'Get Plus',
     highlighted: true,
   },
   {
-    name: 'Launch Special',
+    name: 'Pro',
     price: '$19',
     period: 'one-time',
-    description: 'Full editor at launch-week pricing.',
-    features: ['All Full Editor features', 'Limited time offer'],
-    cta: 'Claim launch price',
+    description: 'Best for frequent or heavy PDF cleanup.',
+    features: ['Everything in Plus', 'Up to 500 MB / 2,000 pages', 'Batch-friendly limits', 'All future page-removal updates'],
+    cta: 'Get Pro',
     highlighted: false,
   },
 ];
 
 const comparison = [
-  { feature: 'Delete pages', free: true, full: true },
-  { feature: 'Merge & compress', free: true, full: true },
-  { feature: 'Basic signatures', free: true, full: true },
-  { feature: 'Full text editing', free: false, full: true },
-  { feature: 'Image replacement', free: false, full: true },
-  { feature: 'Word/Excel conversion', free: false, full: true },
+  { feature: 'Remove pages', free: true, full: true },
+  { feature: 'Max file size', free: '20 MB', full: '500 MB' },
+  { feature: 'Max page count', free: '200', full: '2,000' },
+  { feature: 'Priority processing', free: false, full: true },
+  { feature: 'Batch-friendly limits', free: false, full: true },
+  { feature: 'One-time payment', free: '—', full: '✓' },
 ];
 
 const faq = [
   {
     q: 'Is it really a one-time payment?',
-    a: 'Yes. You pay once and keep access to the current major version forever, with no recurring subscription fees.',
+    a: 'Yes. Pay once and keep access to the current tier forever. No subscriptions, no surprise charges.',
   },
   {
-    q: 'Can I use it on multiple devices?',
-    a: 'Your license covers up to 5 personal devices (Mac, Windows, or Linux) used by you.',
+    q: 'What happens if my file is over the limit?',
+    a: 'Free users see a clear upgrade prompt. Plus or Pro users can process files up to their tier limit.',
   },
   {
     q: 'How do refunds work?',
@@ -72,7 +72,7 @@ export default function PricingPage() {
               Simple, one-time pricing
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-7 text-slate-600">
-              Free tools stay free. Unlock advanced tools with a single payment.
+              Remove PDF pages for free within generous limits. Unlock larger files and batches with a single payment.
             </p>
           </div>
 
@@ -115,14 +115,14 @@ export default function PricingPage() {
         </section>
 
         <section className="mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
-          <h2 className="text-center text-2xl font-semibold tracking-tight text-slate-950">Compare features</h2>
+          <h2 className="text-center text-2xl font-semibold tracking-tight text-slate-950">Compare plans</h2>
           <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50">
                   <th className="p-4 font-semibold text-slate-950 sm:p-6">Feature</th>
                   <th className="p-4 text-center font-semibold text-slate-950 sm:p-6">Free</th>
-                  <th className="p-4 text-center font-semibold text-blue-700 sm:p-6">Full Editor</th>
+                  <th className="p-4 text-center font-semibold text-blue-700 sm:p-6">Plus / Pro</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -130,10 +130,10 @@ export default function PricingPage() {
                   <tr key={row.feature}>
                     <td className="p-4 font-medium text-slate-700 sm:p-6">{row.feature}</td>
                     <td className="p-4 text-center sm:p-6">
-                      {row.free ? <span className="text-emerald-600">&#10003;</span> : <span className="text-slate-300">-</span>}
+                      {row.free === true ? <span className="text-emerald-600">&#10003;</span> : <span className="text-slate-600">{row.free}</span>}
                     </td>
                     <td className="p-4 text-center sm:p-6">
-                      {row.full ? <span className="text-blue-600">&#10003;</span> : <span className="text-slate-300">-</span>}
+                      {row.full === true ? <span className="text-blue-600">&#10003;</span> : <span className="text-slate-600">{row.full}</span>}
                     </td>
                   </tr>
                 ))}
