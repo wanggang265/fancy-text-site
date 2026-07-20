@@ -13,7 +13,7 @@ export default function PrivacyPage() {
       <Header />
       <main className="mx-auto flex-1 max-w-3xl px-4 py-12 sm:px-6">
         <h1 className="text-3xl font-bold tracking-tight text-slate-950">Privacy Policy</h1>
-        <p className="mt-4 text-sm text-slate-500">Last updated: {new Date().toISOString().split('T')[0]}</p>
+        <p className="mt-4 text-sm text-slate-500">Last updated: 2026-07-20</p>
 
         <div className="mt-8 space-y-6 text-slate-700">
           <section>
