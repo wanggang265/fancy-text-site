@@ -13,7 +13,34 @@ export default function Page() {
 <header className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
 <a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="/">RemovePDFPages</a>
 <nav className="hidden md:flex gap-space-6 items-center">
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/remove-pages">Tools</a>
+<div className="relative group">
+<button className="flex items-center gap-1 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md">
+Tools
+<span className="material-symbols-outlined transition-transform group-hover:rotate-180" style={{fontSize: 18}}>expand_more</span>
+</button>
+<div className="absolute top-full left-0 mt-2 w-80 bg-paper border border-ink-200 rounded-lg shadow-lg p-2 hidden group-hover:block">
+<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/remove-pages">
+<span className="material-symbols-outlined text-accent-olive-700">delete</span>
+<span className="text-on-surface font-body-md text-body-md">Remove Pages</span>
+</a>
+<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/merge">
+<span className="material-symbols-outlined text-accent-olive-700">merge_type</span>
+<span className="text-on-surface font-body-md text-body-md">Merge PDF</span>
+</a>
+<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/compress">
+<span className="material-symbols-outlined text-accent-olive-700">compress</span>
+<span className="text-on-surface font-body-md text-body-md">Compress PDF</span>
+</a>
+<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/sign">
+<span className="material-symbols-outlined text-accent-olive-700">signature</span>
+<span className="text-on-surface font-body-md text-body-md">Sign PDF</span>
+</a>
+<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/convert-to-word">
+<span className="material-symbols-outlined text-accent-olive-700">description</span>
+<span className="text-on-surface font-body-md text-body-md">Convert to Word</span>
+</a>
+</div>
+</div>
 <a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/pricing">Pricing</a>
 <a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/faq">FAQ</a>
 </nav>
@@ -66,6 +93,7 @@ export default function Page() {
 <li className="flex items-center gap-2"><span className="material-symbols-outlined text-accent-olive-700" style={{fontSize: 16}}>check</span> Merge & Compress</li>
 <li className="flex items-center gap-2"><span className="material-symbols-outlined text-accent-olive-700" style={{fontSize: 16}}>check</span> Basic Signatures</li>
 </ul>
+<a className="mt-space-6 block w-full text-center bg-paper text-primary border border-primary font-mono-data text-mono-data px-4 py-3 rounded shadow-sm hover:shadow-md transition-all" href="/remove-pages">Remove Pages</a>
 </div>
 </div>
 
@@ -102,9 +130,11 @@ export default function Page() {
 </div>
 <div className="col-span-1 flex flex-col gap-space-3">
 <h4 className="font-heading-sm text-heading-sm text-white mb-2">Free Tools</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/remove-pages">Split PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/remove-pages">Remove Pages</a>
 <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/merge">Merge PDF</a>
 <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/compress">Compress PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/sign">Sign PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/convert-to-word">Convert to Word</a>
 </div>
 <div className="col-span-1 flex flex-col gap-space-3">
 <h4 className="font-heading-sm text-heading-sm text-white mb-2">Legal</h4>
