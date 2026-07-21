@@ -43,6 +43,11 @@ jobs:
         working-directory: fancy-text-site
         run: npm run build
 
+      - name: Copy frontend build to workers
+        run: |
+          rm -rf precision-pdf-pages/out
+          cp -r fancy-text-site/dist precision-pdf-pages/out
+
       - name: Deploy to Cloudflare
         working-directory: precision-pdf-pages
         run: npx wrangler deploy
