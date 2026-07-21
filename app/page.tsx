@@ -23,7 +23,7 @@ export default function Page() {
 
 <section className="py-space-20 grid grid-cols-1 lg:grid-cols-2 gap-gutter-desktop items-center">
 <div className="flex flex-col gap-space-6">
-<h1 className="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-on-surface tracking-tight">
+<h1 className="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-on-surface tracking-tight text-balance break-words">
                     Free PDF Tools. Full Editor for One Price.
                 </h1>
 <p className="font-body-lead text-body-lead text-on-surface-variant max-w-xl">
