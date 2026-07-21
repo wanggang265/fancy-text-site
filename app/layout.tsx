@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Remove PDF Pages — Remove PDF pages in seconds",
+  title: "RemovePDFPages - Free PDF Tools. Full Editor for One Price.",
   description:
-    "Fast, secure, and simple page removal for PDFs. Upload your PDF, select pages to remove, and download the cleaned file.",
+    "Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word.",
   openGraph: {
-    title: "Remove PDF Pages — Remove PDF pages in seconds",
+    title: "RemovePDFPages - Free PDF Tools. Full Editor for One Price.",
     description:
-      "Fast, secure, and simple page removal for PDFs. Upload your PDF, select pages to remove, and download the cleaned file.",
+      "Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Remove PDF Pages — Remove PDF pages in seconds",
+    title: "RemovePDFPages - Free PDF Tools. Full Editor for One Price.",
     description:
-      "Fast, secure, and simple page removal for PDFs. Upload your PDF, select pages to remove, and download the cleaned file.",
+      "Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word.",
   },
   alternates: {
     canonical: "https://removepdfpages.net/",
@@ -31,9 +31,18 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-gray-900">
+      <body className="min-h-full flex flex-col bg-background text-on-background font-body-md">
         {children}
       </body>
     </html>
