@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'RemovePDFPages - Success',
+  description: 'Thank you for purchasing the RemovePDFPages full editor license.',
 };
 
 export default function Page() {

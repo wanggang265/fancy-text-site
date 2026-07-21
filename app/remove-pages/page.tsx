@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Remove PDF Pages',
+  description: 'Delete pages from any PDF online for free. No upload, no watermark, and no signup required.',
 };
 
 export default function Page() {

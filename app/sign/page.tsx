@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Sign PDF Online - RemovePDFPages',
+  description: 'Sign PDFs online for free. No upload, no watermark, and no signup required.',
 };
 
 export default function Page() {

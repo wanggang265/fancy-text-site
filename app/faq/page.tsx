@@ -3,6 +3,7 @@ import { FaqAccordion } from '@/components/FaqAccordion';
 
 export const metadata: Metadata = {
   title: 'FAQ - RemovePDFPages',
+  description: 'Find answers to common questions about RemovePDFPages free tools and full editor license.',
 };
 
 export default function Page() {

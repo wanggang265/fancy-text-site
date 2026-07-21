@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'RemovePDFPages - Free PDF Tools. Full Editor for One Price.',
+  description: 'Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word. $29 lifetime, no subscription.',
 };
 
 export default function Page() {

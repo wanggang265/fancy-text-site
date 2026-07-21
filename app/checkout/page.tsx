@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Checkout - RemovePDFPages',
+  description: 'Complete your purchase of the RemovePDFPages lifetime full editor license for $29. One-time payment, no subscription.',
 };
 
 export default function Page() {

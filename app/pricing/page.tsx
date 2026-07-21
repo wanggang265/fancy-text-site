@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Pricing - RemovePDFPages',
+  description: 'RemovePDFPages pricing: free PDF tools and a one-time $29 full editor license.',
 };
 
 export default function Page() {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Convert PDF to Word - RemovePDFPages',
+  description: 'Convert PDF to editable Word documents with the RemovePDFPages full editor. One-time $29 unlock.',
 };
 
 export default function Page() {

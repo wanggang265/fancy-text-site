@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact & Refund - RemovePDFPages',
+  description: 'Get in touch with RemovePDFPages for support, questions, or refund requests.',
 };
 
 export default function Page() {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Merge PDFs Online - RemovePDFPages',
+  description: 'Combine multiple PDFs into one online for free. No upload, no watermark, no signup.',
 };
 
 export default function Page() {
