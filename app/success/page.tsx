@@ -1,4 +1,6 @@
+import Header from '@/components/Header';
 import type { Metadata } from 'next';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'RemovePDFPages - Success',
@@ -8,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<Header />
       
 
 <main className="flex-grow flex flex-col items-center justify-center py-space-20 px-margin-desktop relative overflow-hidden">
@@ -90,28 +93,8 @@ export default function Page() {
 </div>
 </main>
 
-<footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface">
-<div className="md:col-span-1 mb-6 md:mb-0">
-<span className="text-heading-sm font-heading-sm text-white block mb-4">RemovePDFPages</span>
-<p className="font-body-sm text-body-sm text-inverse-on-surface dark:text-surface-bright">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>
-</div>
-<div className="md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
-<div className="flex flex-col space-y-3">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a>
-</div>
-<div className="flex flex-col space-y-3">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a>
-</div>
-<div className="flex flex-col space-y-3">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a>
-</div>
-</div>
-</footer>
 
-
-    </div>
+<Footer />
+</div>
   );
 }

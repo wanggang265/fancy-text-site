@@ -1,4 +1,6 @@
+import Header from '@/components/Header';
 import type { Metadata } from 'next';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Remove PDF Pages',
@@ -8,17 +10,8 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col pt-space-20 md:pt-space-20">
+<Header />
       
-
-<nav className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
-<a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="/">RemovePDFPages</a>
-<div className="hidden md:flex gap-space-6 items-center">
-<a className="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary font-body-md text-body-md hover:text-primary transition-colors" href="/remove-pages">Tools</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="/pricing">Pricing</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="/faq">FAQ</a>
-</div>
-<button className="bg-primary text-on-primary font-mono-data text-mono-data px-4 py-2 rounded-sm hover:opacity-90 transition-opacity">Buy License — $29</button>
-</nav>
 
 <header className="px-margin-desktop max-w-container-max mx-auto w-full pt-space-20 pb-space-10">
 <div className="max-w-2xl">
@@ -87,21 +80,8 @@ export default function Page() {
 </div>
 </main>
 
-<footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface">
-<div className="md:col-span-1">
-<span className="text-heading-sm font-heading-sm text-white mb-4 block tracking-tight">RemovePDFPages</span>
-<p className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>
-</div>
-<div className="md:col-span-3 flex flex-wrap gap-x-8 gap-y-4">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a>
-</div>
-</footer>
 
-    </div>
+<Footer />
+</div>
   );
 }

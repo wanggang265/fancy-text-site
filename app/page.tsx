@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'RemovePDFPages - Free PDF Tools. Full Editor for One Price.',
@@ -8,44 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col relative bg-dot-grid">
-      
-
-<header className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
-<a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="/">RemovePDFPages</a>
-<nav className="hidden md:flex gap-space-6 items-center">
-<div className="relative group">
-<button className="flex items-center gap-1 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md">
-Tools
-<span className="material-symbols-outlined transition-transform group-hover:rotate-180" style={{fontSize: 18}}>expand_more</span>
-</button>
-<div className="absolute top-full left-0 mt-2 w-80 bg-paper border border-ink-200 rounded-lg shadow-lg p-2 hidden group-hover:block">
-<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/remove-pages">
-<span className="material-symbols-outlined text-accent-olive-700">delete</span>
-<span className="text-on-surface font-body-md text-body-md">Remove Pages</span>
-</a>
-<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/merge">
-<span className="material-symbols-outlined text-accent-olive-700">merge_type</span>
-<span className="text-on-surface font-body-md text-body-md">Merge PDF</span>
-</a>
-<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/compress">
-<span className="material-symbols-outlined text-accent-olive-700">compress</span>
-<span className="text-on-surface font-body-md text-body-md">Compress PDF</span>
-</a>
-<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/sign">
-<span className="material-symbols-outlined text-accent-olive-700">signature</span>
-<span className="text-on-surface font-body-md text-body-md">Sign PDF</span>
-</a>
-<a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/convert-to-word">
-<span className="material-symbols-outlined text-accent-olive-700">description</span>
-<span className="text-on-surface font-body-md text-body-md">Convert to Word</span>
-</a>
-</div>
-</div>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/pricing">Pricing</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/faq">FAQ</a>
-</nav>
-<a className="hidden md:inline-flex items-center justify-center bg-primary text-on-primary font-mono-data text-mono-data px-4 py-2 rounded shadow-sm hover:shadow-md transition-all" href="/checkout">Buy License — $29</a>
-</header>
+      <Header />
 <main className="flex-grow pt-space-20 max-w-container-max mx-auto w-full px-margin-desktop">
 
 <section className="py-space-20 grid grid-cols-1 lg:grid-cols-2 gap-gutter-desktop items-center">
@@ -123,26 +88,7 @@ Tools
 </section>
 </main>
 
-<footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface text-inverse-on-surface dark:text-surface-bright font-body-sm text-body-sm mt-auto">
-<div className="col-span-1 md:col-span-1 flex flex-col gap-space-3">
-<span className="text-heading-sm font-heading-sm text-white">RemovePDFPages</span>
-<p className="text-ink-300 dark:text-ink-300 mt-2">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>
-</div>
-<div className="col-span-1 flex flex-col gap-space-3">
-<h4 className="font-heading-sm text-heading-sm text-white mb-2">Free Tools</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/remove-pages">Remove Pages</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/merge">Merge PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/compress">Compress PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/sign">Sign PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/convert-to-word">Convert to Word</a>
-</div>
-<div className="col-span-1 flex flex-col gap-space-3">
-<h4 className="font-heading-sm text-heading-sm text-white mb-2">Legal</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Terms of Service</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Privacy Policy</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Contact Us</a>
-</div>
-</footer>
+<Footer />
 
     </div>
   );

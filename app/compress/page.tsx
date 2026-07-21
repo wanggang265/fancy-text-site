@@ -1,4 +1,6 @@
+import Header from '@/components/Header';
 import type { Metadata } from 'next';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Compress PDF Online | RemovePDFPages',
@@ -8,17 +10,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col relative">
+<Header />
       
 
-<header className="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto flat no shadows border-none h-16">
-<div className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary font-bold">RemovePDFPages</div>
-<nav className="hidden md:flex gap-6 items-center">
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="/remove-pages">Tools</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="/pricing">Pricing</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="/faq">FAQ</a>
-</nav>
-<button className="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-body-md text-sm hidden md:block">Buy License — $29</button>
-</header>
 <main className="flex-grow pt-24 pb-space-20">
 
 <section className="max-w-container-max mx-auto px-margin-desktop text-center py-space-10">
@@ -92,6 +86,8 @@ export default function Page() {
 </section>
 </main>
 
-    </div>
+    
+<Footer />
+</div>
   );
 }

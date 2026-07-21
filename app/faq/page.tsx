@@ -1,5 +1,7 @@
+import Header from '@/components/Header';
 import type { Metadata } from 'next';
 import { FaqAccordion } from '@/components/FaqAccordion';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'FAQ - RemovePDFPages',
@@ -9,21 +11,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col relative dot-grid">
+<Header />
       
 
-<header className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-none font-body-md text-body-md">
-<div className="flex items-center gap-4">
-<span className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight">RemovePDFPages</span>
-</div>
-<nav className="hidden md:flex gap-8">
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/remove-pages">Tools</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/pricing">Pricing</a>
-<a className="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/faq">FAQ</a>
-</nav>
-<div>
-<button className="bg-primary hover:bg-primary-container text-on-primary font-mono-data text-mono-data py-2 px-4 rounded transition-colors shadow-sm hover:shadow-md">Buy License — $29</button>
-</div>
-</header>
 <main className="flex-grow pt-32 pb-space-20 max-w-container-max mx-auto w-full px-margin-desktop md:px-margin-desktop px-4">
 
 <section className="mb-space-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-ink-200 pb-12">
@@ -106,28 +96,8 @@ export default function Page() {
 </div>
 </main>
 
-<footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface font-body-sm text-body-sm text-inverse-on-surface dark:text-surface-bright mt-auto">
-<div className="md:col-span-1">
-<span className="text-heading-sm font-heading-sm text-white mb-4 block">RemovePDFPages</span>
-<p className="text-ink-300 mb-4">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>
-</div>
-<div className="flex flex-col gap-2">
-<h4 className="font-semibold text-white mb-2">Tools</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a>
-</div>
-<div className="flex flex-col gap-2">
-<h4 className="font-semibold text-white mb-2">Legal</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a>
-</div>
-<div className="flex flex-col gap-2">
-<h4 className="font-semibold text-white mb-2">Support</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a>
-</div>
-</footer>
 
-    </div>
+<Footer />
+</div>
   );
 }

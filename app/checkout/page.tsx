@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Checkout - RemovePDFPages',
@@ -164,19 +165,8 @@ export default function Page() {
 </div>
 </main>
 
-<footer className="bg-inverse-surface dark:bg-on-surface w-full px-margin-desktop py-space-10 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop mt-auto relative z-10">
-<div className="col-span-1 md:col-span-4 flex justify-between items-center text-inverse-on-surface dark:text-surface-bright font-body-sm text-body-sm border-t border-ink-600/30 pt-space-6">
-<div>
-<span className="text-heading-sm font-heading-sm text-white block mb-2">RemovePDFPages</span>
-<span className="text-ink-300 dark:text-ink-300">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</span>
-</div>
-<div className="flex gap-space-6">
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Terms of Service</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Privacy Policy</a>
-</div>
-</div>
-</footer>
 
-    </div>
+<Footer />
+</div>
   );
 }

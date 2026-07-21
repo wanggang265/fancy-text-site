@@ -1,4 +1,6 @@
+import Header from '@/components/Header';
 import type { Metadata } from 'next';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Sign PDF Online - RemovePDFPages',
@@ -8,21 +10,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="bg-background text-on-background font-body-md antialiased pt-24 min-h-screen flex flex-col relative dot-grid">
+<Header />
       
 
-<header className="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto shadow-none">
-<div className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary">
-            RemovePDFPages
-        </div>
-<nav className="hidden md:flex space-x-8">
-<a className="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary" href="/remove-pages">Tools</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/pricing">Pricing</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/faq">FAQ</a>
-</nav>
-<button className="bg-custom-indigo text-white px-4 py-2 rounded-none font-label-caps uppercase tracking-wider hover:bg-brand-indigo-900 transition-colors hidden md:block">
-            Buy License — $29
-        </button>
-</header>
 <main className="flex-grow w-full max-w-container-max mx-auto px-margin-desktop py-space-10">
 
 <section className="text-center mb-space-10">
@@ -119,25 +109,8 @@ export default function Page() {
 </section>
 </main>
 
-<footer className="bg-inverse-surface dark:bg-on-surface w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop mt-auto">
-<div className="col-span-1 md:col-span-4 mb-8">
-<span className="text-heading-sm font-heading-sm text-white">RemovePDFPages</span>
-</div>
-<div className="flex flex-col space-y-2">
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/remove-pages">Split PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/merge">Merge PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/compress">Compress PDF</a>
-</div>
-<div className="flex flex-col space-y-2">
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/contact">Terms of Service</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/contact">Privacy Policy</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/contact">Contact Us</a>
-</div>
-<div className="col-span-1 md:col-span-4 mt-8 pt-8 border-t border-ink-600/30">
-<p className="text-inverse-on-surface dark:text-surface-bright font-body-sm text-body-sm opacity-60">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>
-</div>
-</footer>
 
-    </div>
+<Footer />
+</div>
   );
 }

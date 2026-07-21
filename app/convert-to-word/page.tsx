@@ -1,4 +1,6 @@
+import Header from '@/components/Header';
 import type { Metadata } from 'next';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Convert PDF to Word - RemovePDFPages',
@@ -8,21 +10,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="font-body-md text-on-surface antialiased bg-workspace min-h-screen flex flex-col">
+<Header />
       
 
-<nav className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
-<div className="flex items-center gap-6">
-<span className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary font-bold">RemovePDFPages</span>
-<div className="hidden md:flex gap-6 items-center">
-<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-bold border-b-2 border-primary hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/remove-pages">Tools</a>
-<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/pricing">Pricing</a>
-<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/faq">FAQ</a>
-</div>
-</div>
-<div>
-<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-semibold hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/checkout">Buy License — $29</a>
-</div>
-</nav>
 <main className="flex-grow pt-[100px] pb-space-20">
 <div className="max-w-container-max mx-auto px-margin-desktop md:px-margin-desktop px-4">
 
@@ -119,25 +109,8 @@ export default function Page() {
 </div>
 </main>
 
-<footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface text-inverse-on-surface dark:text-surface-bright mt-auto">
-<div className="col-span-1 md:col-span-4 mb-8">
-<span className="text-heading-sm font-heading-sm text-white">RemovePDFPages</span>
-</div>
-<div className="flex flex-col gap-4">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a>
-</div>
-<div className="flex flex-col gap-4">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a>
-</div>
-<div className="col-span-1 md:col-span-4 mt-8 pt-8 border-t border-ink-600">
-<p className="font-body-sm text-body-sm text-ink-300">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>
-</div>
-</footer>
 
-    </div>
+<Footer />
+</div>
   );
 }

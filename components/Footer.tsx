@@ -1,45 +1,25 @@
-import Link from 'next/link';
-
-const supportEmail = 'support@removepdfpages.net';
-
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-slate-200 bg-white/80">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          <div>
-            <h3 className="text-sm font-semibold text-slate-950">Remove PDF Pages</h3>
-            <p className="mt-2 max-w-sm text-sm leading-6 text-slate-600">
-              Remove pages from PDFs in seconds.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-slate-950">Product</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              <li><Link href="/#how-it-works" className="hover:text-blue-700">How it works</Link></li>
-              <li><Link href="/pricing" className="hover:text-blue-700">Pricing</Link></li>
-              <li><Link href="/#faq" className="hover:text-blue-700">FAQ</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-slate-950">Support</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              <li><Link href="/contact" className="hover:text-blue-700">Contact</Link></li>
-              <li><Link href="/refund" className="hover:text-blue-700">Refund</Link></li>
-              <li><a href={`mailto:${supportEmail}`} className="hover:text-blue-700">{supportEmail}</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-slate-950">Legal</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              <li><Link href="/privacy/" className="hover:text-blue-700">Privacy Policy</Link></li>
-              <li><Link href="/terms/" className="hover:text-blue-700">Terms of Service</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-8 border-t border-slate-200 pt-6 text-sm text-slate-500">
-          © 2026 Remove PDF Pages. All rights reserved.
-        </div>
+    <footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface text-inverse-on-surface dark:text-surface-bright font-body-sm text-body-sm mt-auto">
+      <div className="col-span-1 md:col-span-1 flex flex-col gap-space-3">
+        <span className="text-heading-sm font-heading-sm text-white">RemovePDFPages</span>
+        <p className="text-ink-300 dark:text-ink-300 mt-2">
+          © 2024 RemovePDFPages. Precision Drafting for PDF Documents.
+        </p>
+      </div>
+      <div className="col-span-1 flex flex-col gap-space-3">
+        <h4 className="font-heading-sm text-heading-sm text-white mb-2">Free Tools</h4>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/remove-pages">Remove Pages</a>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/merge">Merge PDF</a>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/compress">Compress PDF</a>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/sign">Sign PDF</a>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/convert-to-word">Convert to Word</a>
+      </div>
+      <div className="col-span-1 flex flex-col gap-space-3">
+        <h4 className="font-heading-sm text-heading-sm text-white mb-2">Legal</h4>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Terms of Service</a>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Privacy Policy</a>
+        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Contact Us</a>
       </div>
     </footer>
   );
