@@ -29,11 +29,11 @@ export default function Page() {
 <p className="font-body-lead text-body-lead text-on-surface-variant max-w-xl">
                     Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word. $29 lifetime, no subscription.
                 </p>
-<div className="flex flex-wrap gap-4 mt-space-3">
+<div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-space-3">
 <a className="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/checkout">Get Full Editor — $29</a>
 <a className="inline-flex items-center justify-center bg-paper text-primary border border-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/remove-pages">Try Free Tools</a>
 </div>
-<div className="flex flex-wrap gap-x-6 gap-y-2 mt-space-6 font-mono-data text-mono-data text-ink-600">
+<div className="flex flex-wrap gap-x-6 gap-y-2 mt-space-6 font-mono-data text-mono-data text-ink-600 break-words">
 <span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> Free tools: no signup</span>
 <span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> Full editor: one-time</span>
 <span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> No subscription, ever</span>
