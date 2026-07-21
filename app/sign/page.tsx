@@ -14,9 +14,9 @@ export default function Page() {
             RemovePDFPages
         </div>
 <nav className="hidden md:flex space-x-8">
-<a className="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary" href="#">Tools</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Pricing</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">FAQ</a>
+<a className="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary" href="/remove-pages">Tools</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/pricing">Pricing</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/faq">FAQ</a>
 </nav>
 <button className="bg-custom-indigo text-white px-4 py-2 rounded-none font-label-caps uppercase tracking-wider hover:bg-brand-indigo-900 transition-colors hidden md:block">
             Buy License — $29
@@ -123,14 +123,14 @@ export default function Page() {
 <span className="text-heading-sm font-heading-sm text-white">RemovePDFPages</span>
 </div>
 <div className="flex flex-col space-y-2">
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="#">Split PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="#">Merge PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="#">Compress PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/remove-pages">Split PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/merge">Merge PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/compress">Compress PDF</a>
 </div>
 <div className="flex flex-col space-y-2">
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="#">Terms of Service</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="#">Privacy Policy</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="#">Contact Us</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/contact">Terms of Service</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/contact">Privacy Policy</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline font-body-sm text-body-sm" href="/contact">Contact Us</a>
 </div>
 <div className="col-span-1 md:col-span-4 mt-8 pt-8 border-t border-ink-600/30">
 <p className="text-inverse-on-surface dark:text-surface-bright font-body-sm text-body-sm opacity-60">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>

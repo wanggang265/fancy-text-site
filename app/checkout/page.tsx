@@ -170,8 +170,8 @@ export default function Page() {
 <span className="text-ink-300 dark:text-ink-300">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</span>
 </div>
 <div className="flex gap-space-6">
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Terms of Service</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Terms of Service</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Privacy Policy</a>
 </div>
 </div>
 </footer>

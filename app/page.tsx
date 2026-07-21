@@ -10,13 +10,13 @@ export default function Page() {
       
 
 <header className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
-<a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="#">RemovePDFPages</a>
+<a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="/">RemovePDFPages</a>
 <nav className="hidden md:flex gap-space-6 items-center">
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="#">Tools</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="#">Pricing</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="#">FAQ</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/remove-pages">Tools</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/pricing">Pricing</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/faq">FAQ</a>
 </nav>
-<a className="hidden md:inline-flex items-center justify-center bg-primary text-on-primary font-mono-data text-mono-data px-4 py-2 rounded shadow-sm hover:shadow-md transition-all" href="#">Buy License — $29</a>
+<a className="hidden md:inline-flex items-center justify-center bg-primary text-on-primary font-mono-data text-mono-data px-4 py-2 rounded shadow-sm hover:shadow-md transition-all" href="/checkout">Buy License — $29</a>
 </header>
 <main className="flex-grow pt-space-20 max-w-container-max mx-auto w-full px-margin-desktop">
 
@@ -29,12 +29,8 @@ export default function Page() {
                     Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word. $29 lifetime, no subscription.
                 </p>
 <div className="flex flex-wrap gap-4 mt-space-3">
-<a className="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="#">
-                        Get Full Editor — $29
-                    </a>
-<a className="inline-flex items-center justify-center bg-paper text-primary border border-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="#">
-                        Try Free Tools
-                    </a>
+<a className="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/checkout">Get Full Editor — $29</a>
+<a className="inline-flex items-center justify-center bg-paper text-primary border border-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/remove-pages">Try Free Tools</a>
 </div>
 <div className="flex flex-wrap gap-x-6 gap-y-2 mt-space-6 font-mono-data text-mono-data text-ink-600">
 <span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> Free tools: no signup</span>
@@ -91,7 +87,7 @@ export default function Page() {
 </ul>
 </div>
 <div className="mt-space-10">
-<a className="block w-full text-center bg-primary text-on-primary font-mono-data text-mono-data px-4 py-3 rounded shadow-sm hover:shadow-md transition-all" href="#">Buy for $29</a>
+<a className="block w-full text-center bg-primary text-on-primary font-mono-data text-mono-data px-4 py-3 rounded shadow-sm hover:shadow-md transition-all" href="/checkout">Buy for $29</a>
 </div>
 </div>
 </div>
@@ -105,15 +101,15 @@ export default function Page() {
 </div>
 <div className="col-span-1 flex flex-col gap-space-3">
 <h4 className="font-heading-sm text-heading-sm text-white mb-2">Free Tools</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Split PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Merge PDF</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Compress PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/remove-pages">Split PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/merge">Merge PDF</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/compress">Compress PDF</a>
 </div>
 <div className="col-span-1 flex flex-col gap-space-3">
 <h4 className="font-heading-sm text-heading-sm text-white mb-2">Legal</h4>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Terms of Service</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Privacy Policy</a>
-<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="#">Contact Us</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Terms of Service</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Privacy Policy</a>
+<a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Contact Us</a>
 </div>
 </footer>
 

@@ -66,25 +66,23 @@ export default function Page() {
 </div>
 <h3 className="font-heading-sm text-heading-sm mb-2 text-on-background">Explore paid tools</h3>
 <ul className="font-body-sm text-body-sm text-on-surface-variant space-y-1 list-disc list-inside">
-<li><a className="text-primary hover:underline" href="#">Convert PDF to Word</a></li>
-<li><a className="text-primary hover:underline" href="#">Edit text directly</a></li>
-<li><a className="text-primary hover:underline" href="#">Replace images</a></li>
+<li><a className="text-primary hover:underline" href="/convert-to-word">Convert PDF to Word</a></li>
+<li><a className="text-primary hover:underline" href="/">Edit text directly</a></li>
+<li><a className="text-primary hover:underline" href="/">Replace images</a></li>
 </ul>
 </div>
 </div>
 
 <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-space-6 border-t border-ink-200">
-<a className="bg-primary hover:bg-primary-container text-on-primary font-body-md py-3 px-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-center w-full sm:w-auto" href="#" style={{borderRadius: 4}}>
+<a className="bg-primary hover:bg-primary-container text-on-primary font-body-md py-3 px-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-center w-full sm:w-auto" href="/remove-pages" style={{borderRadius: 4}}>
                         Go to Dashboard
                     </a>
-<a className="bg-transparent border-2 border-primary text-primary hover:bg-brand-indigo-50 font-body-md py-3 px-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-center w-full sm:w-auto" href="#" style={{borderRadius: 4}}>
-                        Convert PDF to Word
-                    </a>
+<a className="bg-transparent border-2 border-primary text-primary hover:bg-brand-indigo-50 font-body-md py-3 px-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-center w-full sm:w-auto" href="/convert-to-word" style={{borderRadius: 4}}>Convert PDF to Word</a>
 </div>
 
 <div className="text-center pt-space-3">
 <p className="font-body-sm text-body-sm text-ink-600">
-                        Need help? <a className="text-primary hover:underline" href="#">Contact support</a>. Refund available within 14 days.
+                        Need help? <a className="text-primary hover:underline" href="/contact">Contact support</a>. Refund available within 14 days.
                     </p>
 </div>
 </div>
@@ -98,16 +96,16 @@ export default function Page() {
 </div>
 <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
 <div className="flex flex-col space-y-3">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Split PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Merge PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a>
 </div>
 <div className="flex flex-col space-y-3">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Compress PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a>
 </div>
 <div className="flex flex-col space-y-3">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Terms of Service</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Privacy Policy</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Contact Us</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a>
 </div>
 </div>
 </footer>

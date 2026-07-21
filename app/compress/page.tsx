@@ -12,9 +12,9 @@ export default function Page() {
 <header className="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto flat no shadows border-none h-16">
 <div className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary font-bold">RemovePDFPages</div>
 <nav className="hidden md:flex gap-6 items-center">
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="#">Tools</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="#">Pricing</a>
-<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="#">FAQ</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="/remove-pages">Tools</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="/pricing">Pricing</a>
+<a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors text-body-md font-body-md" href="/faq">FAQ</a>
 </nav>
 <button className="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-body-md text-sm hidden md:block">Buy License — $29</button>
 </header>

@@ -12,9 +12,9 @@ export default function Page() {
 <header className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
 <div className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary font-bold">RemovePDFPages</div>
 <nav className="hidden md:flex space-x-8 items-center">
-<a className="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Tools</a>
-<a className="text-primary font-bold border-b-2 border-primary text-body-md font-body-md pb-1" href="#">Pricing</a>
-<a className="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">FAQ</a>
+<a className="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="/remove-pages">Tools</a>
+<a className="text-primary font-bold border-b-2 border-primary text-body-md font-body-md pb-1" href="/pricing">Pricing</a>
+<a className="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="/faq">FAQ</a>
 </nav>
 <button className="hidden md:block bg-primary text-on-primary px-6 py-2 rounded font-body-sm text-body-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm hover:shadow-md">
             Buy License — $29
@@ -198,22 +198,22 @@ export default function Page() {
 <div>
 <h4 className="text-white font-semibold mb-4">Tools</h4>
 <ul className="space-y-2">
-<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Split PDF</a></li>
-<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Merge PDF</a></li>
-<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Compress PDF</a></li>
+<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a></li>
+<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a></li>
+<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a></li>
 </ul>
 </div>
 <div>
 <h4 className="text-white font-semibold mb-4">Legal</h4>
 <ul className="space-y-2">
-<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Terms of Service</a></li>
-<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Privacy Policy</a></li>
+<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a></li>
+<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a></li>
 </ul>
 </div>
 <div>
 <h4 className="text-white font-semibold mb-4">Support</h4>
 <ul className="space-y-2">
-<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Contact Us</a></li>
+<li><a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a></li>
 </ul>
 </div>
 </div>

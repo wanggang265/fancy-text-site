@@ -13,13 +13,13 @@ export default function Page() {
 <div className="flex items-center gap-6">
 <span className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary font-bold">RemovePDFPages</span>
 <div className="hidden md:flex gap-6 items-center">
-<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-bold border-b-2 border-primary hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="#">Tools</a>
-<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="#">Pricing</a>
-<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="#">FAQ</a>
+<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-bold border-b-2 border-primary hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/remove-pages">Tools</a>
+<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/pricing">Pricing</a>
+<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/faq">FAQ</a>
 </div>
 </div>
 <div>
-<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-semibold hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="#">Buy License — $29</a>
+<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-semibold hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-95 transition-transform" href="/checkout">Buy License — $29</a>
 </div>
 </nav>
 <main className="flex-grow pt-[100px] pb-space-20">
@@ -123,14 +123,14 @@ export default function Page() {
 <span className="text-heading-sm font-heading-sm text-white">RemovePDFPages</span>
 </div>
 <div className="flex flex-col gap-4">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Split PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Merge PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Compress PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a>
 </div>
 <div className="flex flex-col gap-4">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Terms of Service</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Privacy Policy</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Contact Us</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a>
 </div>
 <div className="col-span-1 md:col-span-4 mt-8 pt-8 border-t border-ink-600">
 <p className="font-body-sm text-body-sm text-ink-300">© 2024 RemovePDFPages. Precision Drafting for PDF Documents.</p>

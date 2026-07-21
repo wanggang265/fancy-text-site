@@ -11,13 +11,11 @@ export default function Page() {
 
 <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
 <div className="flex items-center gap-space-6">
-<a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="#">
-                RemovePDFPages
-            </a>
+<a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="/">RemovePDFPages</a>
 <div className="hidden md:flex gap-space-6 items-center">
-<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1" href="#">Tools</a>
-<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors pb-1 border-b-2 border-transparent" href="#">Pricing</a>
-<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors pb-1 border-b-2 border-transparent" href="#">FAQ</a>
+<a className="font-body-md text-body-md text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1" href="/remove-pages">Tools</a>
+<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors pb-1 border-b-2 border-transparent" href="/pricing">Pricing</a>
+<a className="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors pb-1 border-b-2 border-transparent" href="/faq">FAQ</a>
 </div>
 </div>
 <div className="flex items-center">
@@ -149,26 +147,24 @@ export default function Page() {
 
 <footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface mt-auto">
 <div className="col-span-1 md:col-span-1 flex flex-col gap-4">
-<a className="text-heading-sm font-heading-sm text-white tracking-tight" href="#">
-                RemovePDFPages
-            </a>
+<a className="text-heading-sm font-heading-sm text-white tracking-tight" href="/">RemovePDFPages</a>
 <p className="font-body-sm text-body-sm text-inverse-on-surface dark:text-surface-bright opacity-80">
                 Precision Drafting for PDF Documents.
             </p>
 </div>
 <div className="col-span-1 flex flex-col gap-3">
 <h4 className="font-heading-sm text-heading-sm text-white text-lg">Tools</h4>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Split PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Merge PDF</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Compress PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/remove-pages">Split PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/merge">Merge PDF</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/compress">Compress PDF</a>
 </div>
 <div className="col-span-1 flex flex-col gap-3">
 <h4 className="font-heading-sm text-heading-sm text-white text-lg">Legal</h4>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Terms of Service</a>
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Privacy Policy</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Terms of Service</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Privacy Policy</a>
 </div>
 <div className="col-span-1 flex flex-col gap-3 justify-end items-start md:items-end">
-<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="#">Contact Us</a>
+<a className="font-body-sm text-body-sm text-ink-300 dark:text-ink-300 hover:text-white transition-colors focus:underline" href="/contact">Contact Us</a>
 <p className="font-body-sm text-body-sm text-inverse-on-surface dark:text-surface-bright mt-4 opacity-60">
                 © 2024 RemovePDFPages. All rights reserved.
             </p>
