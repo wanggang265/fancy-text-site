@@ -45,3 +45,8 @@ next-env.d.ts
 
 # static export output
 dist/
+
+# local screenshots and temp design extraction
+screenshots/
+_tmp-*.png
+design-handoff-extract/

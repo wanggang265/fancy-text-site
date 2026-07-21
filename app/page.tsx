@@ -33,11 +33,11 @@ export default function Page() {
 <a className="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/checkout">Get Full Editor — $29</a>
 <a className="inline-flex items-center justify-center bg-paper text-primary border border-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/remove-pages">Try Free Tools</a>
 </div>
-<div className="flex flex-wrap gap-x-6 gap-y-2 mt-space-6 font-mono-data text-mono-data text-ink-600 break-words">
-<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Free tools: no signup</span></span>
-<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Full editor: one-time</span></span>
-<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">No subscription, ever</span></span>
-<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Works on all devices</span></span>
+<div className="flex flex-col md:flex-row md:flex-wrap gap-x-6 gap-y-2 mt-space-6 font-mono-data text-mono-data text-ink-600 break-words">
+<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Free tools: no signup</span></span>
+<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Full editor: one-time</span></span>
+<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">No subscription, ever</span></span>
+<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Works on all devices</span></span>
 </div>
 </div>
 <div className="relative w-full h-[400px] lg:h-[600px] bg-paper rounded-[28px] border border-ink-200 shadow-sm overflow-hidden flex items-center justify-center">

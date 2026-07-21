@@ -64,37 +64,37 @@ export default function Page() {
 <p className="font-body-sm text-body-sm text-outline-variant font-medium">Drag to reorder files.</p>
 <div className="flex flex-col gap-2">
 
-<div className="flex items-center justify-between p-3 border border-ink-200 rounded-DEFAULT bg-surface-container-lowest hover:shadow-sm transition-shadow group">
-<div className="flex items-center gap-3">
+<div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border border-ink-200 rounded-DEFAULT bg-surface-container-lowest hover:shadow-sm transition-shadow group gap-2">
+<div className="flex items-center gap-3 min-w-0">
 <span className="material-symbols-outlined text-outline cursor-grab active:cursor-grabbing hover:text-on-surface">drag_indicator</span>
 <span className="material-symbols-outlined text-error">picture_as_pdf</span>
-<span className="font-mono-data text-mono-data text-on-surface">Financial_Report_Q1.pdf</span>
+<span className="font-mono-data text-mono-data text-on-surface break-words min-w-0">Financial_Report_Q1.pdf</span>
 </div>
-<div className="flex items-center gap-4">
+<div className="flex items-center gap-4 justify-end">
 <span className="font-mono-data text-mono-data text-outline">2.4 MB</span>
 <button className="text-outline hover:text-error transition-colors"><span className="material-symbols-outlined">delete</span></button>
 </div>
 </div>
 
-<div className="flex items-center justify-between p-3 border border-ink-200 rounded-DEFAULT bg-surface-container-lowest hover:shadow-sm transition-shadow group">
-<div className="flex items-center gap-3">
+<div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border border-ink-200 rounded-DEFAULT bg-surface-container-lowest hover:shadow-sm transition-shadow group gap-2">
+<div className="flex items-center gap-3 min-w-0">
 <span className="material-symbols-outlined text-outline cursor-grab active:cursor-grabbing hover:text-on-surface">drag_indicator</span>
 <span className="material-symbols-outlined text-error">picture_as_pdf</span>
-<span className="font-mono-data text-mono-data text-on-surface">Appendix_Charts.pdf</span>
+<span className="font-mono-data text-mono-data text-on-surface break-words min-w-0">Appendix_Charts.pdf</span>
 </div>
-<div className="flex items-center gap-4">
+<div className="flex items-center gap-4 justify-end">
 <span className="font-mono-data text-mono-data text-outline">800 KB</span>
 <button className="text-outline hover:text-error transition-colors"><span className="material-symbols-outlined">delete</span></button>
 </div>
 </div>
 
-<div className="flex items-center justify-between p-3 border border-ink-200 rounded-DEFAULT bg-surface-container-lowest hover:shadow-sm transition-shadow group">
-<div className="flex items-center gap-3">
+<div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border border-ink-200 rounded-DEFAULT bg-surface-container-lowest hover:shadow-sm transition-shadow group gap-2">
+<div className="flex items-center gap-3 min-w-0">
 <span className="material-symbols-outlined text-outline cursor-grab active:cursor-grabbing hover:text-on-surface">drag_indicator</span>
 <span className="material-symbols-outlined text-error">picture_as_pdf</span>
-<span className="font-mono-data text-mono-data text-on-surface">Summary_Notes.pdf</span>
+<span className="font-mono-data text-mono-data text-on-surface break-words min-w-0">Summary_Notes.pdf</span>
 </div>
-<div className="flex items-center gap-4">
+<div className="flex items-center gap-4 justify-end">
 <span className="font-mono-data text-mono-data text-outline">1.1 MB</span>
 <button className="text-outline hover:text-error transition-colors"><span className="material-symbols-outlined">delete</span></button>
 </div>

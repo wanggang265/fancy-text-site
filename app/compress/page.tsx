@@ -64,12 +64,12 @@ export default function Page() {
 </div>
 </div>
 
-<div className="w-full max-w-3xl flex items-center justify-between p-4 bg-surface-container-lowest border border-ink-200 rounded-lg mb-8">
-<div className="flex items-center gap-4">
+<div className="w-full max-w-3xl flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-surface-container-lowest border border-ink-200 rounded-lg mb-8 gap-3">
+<div className="flex items-center gap-4 min-w-0">
 <span className="material-symbols-outlined text-outline" data-icon="description">description</span>
-<span className="font-body-md text-body-md text-on-surface">document_final_v2.pdf</span>
+<span className="font-body-md text-body-md text-on-surface break-words min-w-0">document_final_v2.pdf</span>
 </div>
-<div className="flex items-center gap-3">
+<div className="flex items-center gap-3 justify-end">
 <span className="font-mono-data text-label-caps text-on-surface-variant line-through decoration-error">2.4 MB</span>
 <span className="material-symbols-outlined text-sm text-outline" data-icon="arrow_right_alt">arrow_right_alt</span>
 <span className="font-mono-data text-mono-data text-on-surface font-semibold">0.8 MB</span>
