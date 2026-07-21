@@ -34,10 +34,10 @@ export default function Page() {
 <a className="inline-flex items-center justify-center bg-paper text-primary border border-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/remove-pages">Try Free Tools</a>
 </div>
 <div className="flex flex-wrap gap-x-6 gap-y-2 mt-space-6 font-mono-data text-mono-data text-ink-600 break-words">
-<span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> Free tools: no signup</span>
-<span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> Full editor: one-time</span>
-<span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> No subscription, ever</span>
-<span className="flex items-center gap-1"><span className="material-symbols-outlined text-secondary" style={{fontSize: 18}}>check</span> Works on all devices</span>
+<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words">Free tools: no signup</span></span>
+<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words">Full editor: one-time</span></span>
+<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words">No subscription, ever</span></span>
+<span className="flex items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words">Works on all devices</span></span>
 </div>
 </div>
 <div className="relative w-full h-[400px] lg:h-[600px] bg-paper rounded-[28px] border border-ink-200 shadow-sm overflow-hidden flex items-center justify-center">
@@ -46,7 +46,7 @@ export default function Page() {
 </section>
 
 <section className="py-space-20">
-<h2 className="font-heading-lg text-heading-lg text-center mb-space-10 text-on-surface">Choose what you need.</h2>
+<h2 className="font-heading-lg text-heading-lg text-center mb-space-10 text-on-surface break-words text-balance">Choose what you need.</h2>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
 
 <div className="bg-paper p-space-10 rounded-[28px] border border-ink-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
