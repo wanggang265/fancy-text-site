@@ -40,7 +40,7 @@ export default function Page() {
 </div>
 </div>
 <div className="relative w-full h-[400px] lg:h-[600px] bg-paper rounded-[28px] border border-ink-200 shadow-sm overflow-hidden flex items-center justify-center">
-<img alt="Illustration" className="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoNw_5TGJI6BjFXTXoNDixAubKLXLuTnugFw1q1lRZPsGirZOjZwA2vsASLuFFMjoUmFcdCwXoAWcOg8aY-ByuXRAnqte0rmZF567U2t-82UV13VjBTEeBlXV1NzwktkCl075SWEIFal4y6bqubVaxaIgIzt2vP9I-ybHwBmb69ylGbxAFEDBqneoHA-ftssT7BFQXfxnhK50obvkvo2SyF8ymoKEL65qc1rhE_fZWZlhut2Fw0amM46huzC3RArbaLDCzaf7PkKpl" />
+<img alt="Illustration" className="object-cover w-full h-full" src="/hero-illustration.png" />
 </div>
 </section>
 

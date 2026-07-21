@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://removepdfpages.net"),
   title: "RemovePDFPages - Free PDF Tools. Full Editor for One Price.",
   description:
     "Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word.",
@@ -10,15 +11,21 @@ export const metadata: Metadata = {
     description:
       "Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word.",
     type: "website",
+    images: ["/og-home.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "RemovePDFPages - Free PDF Tools. Full Editor for One Price.",
     description:
       "Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word.",
+    images: ["/og-home.png"],
   },
   alternates: {
     canonical: "https://removepdfpages.net/",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -30,7 +37,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
