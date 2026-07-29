@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Page-specific styles for: convert-pdf-to-word-removepdfpages
+   Generated from the original <style> block(s) in code.html.
+   Keep this file in the same directory as code.html and do not edit
+   unless the design itself changes.
+   ========================================================================== */
+
+body { background-color: #faf8ff; }
+        .bg-workspace {
+            background-image: radial-gradient(circle, #E2E8F0 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+        }

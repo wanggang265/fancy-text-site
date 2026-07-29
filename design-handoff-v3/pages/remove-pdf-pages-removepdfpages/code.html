@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Remove PDF Pages | RemovePDFPages</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "accent-olive-100": "#ECFCCB",
+                      "surface": "#faf8ff",
+                      "surface-bright": "#faf8ff",
+                      "on-tertiary-fixed-variant": "#3e3c8f",
+                      "on-primary": "#ffffff",
+                      "ink-300": "#CBD5E1",
+                      "tertiary-container": "#5856aa",
+                      "surface-container-high": "#e2e7ff",
+                      "primary-fixed": "#e2dfff",
+                      "inverse-surface": "#283044",
+                      "accent-olive-700": "#4D7C0F",
+                      "brand-indigo-50": "#EEF2FF",
+                      "secondary-fixed": "#b1f661",
+                      "on-surface": "#131b2e",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "surface-tint": "#4d44e3",
+                      "surface-container-highest": "#dae2fd",
+                      "on-secondary-container": "#426e00",
+                      "inverse-primary": "#c3c0ff",
+                      "on-secondary-fixed-variant": "#2e4f00",
+                      "on-background": "#131b2e",
+                      "primary": "#3525cd",
+                      "ink-600": "#475569",
+                      "on-surface-variant": "#464555",
+                      "cream": "#FDFCF8",
+                      "error": "#ba1a1a",
+                      "outline": "#777587",
+                      "tertiary-fixed": "#e2dfff",
+                      "brand-indigo-100": "#E0E7FF",
+                      "surface-container": "#eaedff",
+                      "background": "#faf8ff",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#dad7ff",
+                      "brand-indigo-900": "#1E1B4B",
+                      "on-tertiary-container": "#dad7ff",
+                      "on-error": "#ffffff",
+                      "paper": "#FFFFFF",
+                      "on-tertiary-fixed": "#100563",
+                      "secondary-container": "#aef35e",
+                      "surface-variant": "#dae2fd",
+                      "secondary": "#3f6a00",
+                      "on-secondary-fixed": "#0f2000",
+                      "on-primary-fixed": "#0f0069",
+                      "outline-variant": "#c7c4d8",
+                      "accent-amber-500": "#F59E0B",
+                      "tertiary-fixed-dim": "#c3c0ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d2d9f4",
+                      "surface-container-low": "#f2f3ff",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "on-secondary": "#ffffff",
+                      "ink-200": "#E2E8F0",
+                      "inverse-on-surface": "#eef0ff",
+                      "secondary-fixed-dim": "#96d947",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#4f46e5",
+                      "tertiary": "#403d90"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter-desktop": "24px",
+                      "space-10": "40px",
+                      "container-max": "1200px",
+                      "base": "4px",
+                      "space-6": "24px",
+                      "space-3": "12px",
+                      "margin-desktop": "40px",
+                      "space-20": "80px",
+                      "space-1": "4px"
+              },
+              "fontFamily": {
+                      "heading-lg": [
+                              "Space Grotesk"
+                      ],
+                      "display-xl": [
+                              "Space Grotesk"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "display-xl-mobile": [
+                              "Space Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "heading-sm": [
+                              "Space Grotesk"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "mono-data": [
+                              "JetBrains Mono"
+                      ],
+                      "heading-md": [
+                              "Space Grotesk"
+                      ],
+                      "body-lead": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "heading-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.15",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-xl": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.05",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-xl-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.65",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "heading-sm": [
+                              "22px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "mono-data": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "heading-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lead": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.55",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+
+    <link href="../../shared.css" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col pt-space-20 md:pt-space-20">
+<!-- Top Navigation from JSON -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
+<a class="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="/">RemovePDFPages</a>
+<div class="hidden md:flex gap-space-6 items-center">
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary font-body-md text-body-md hover:text-primary transition-colors" href="#">Tools</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">FAQ</a>
+</div>
+<button class="bg-primary text-on-primary font-mono-data text-mono-data px-4 py-2 rounded-sm hover:opacity-90 transition-opacity">Buy License — $29</button>
+</nav>
+<!-- Hero Section -->
+<header class="px-margin-desktop max-w-container-max mx-auto w-full pt-space-20 pb-space-10">
+<div class="max-w-2xl">
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-accent-olive-100 text-accent-olive-700 px-3 py-1 font-label-caps text-label-caps rounded-none uppercase">FREE</span>
+<span class="bg-brand-indigo-50 text-brand-indigo-900 px-3 py-1 font-label-caps text-label-caps rounded-none uppercase">No server upload</span>
+<span class="bg-accent-olive-100 text-accent-olive-700 px-3 py-1 font-label-caps text-label-caps rounded-none uppercase">No watermark</span>
+</div>
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-brand-indigo-900 mb-6">Remove PDF Pages Online</h1>
+<div class="mt-3"><span class="inline-flex items-center gap-1 bg-accent-olive-100 text-accent-olive-700 text-xs font-semibold px-2 py-1 rounded-none border border-accent-olive-700"><span class="material-symbols-outlined text-[14px]">check</span>Currently free</span></div>
+<p class="font-body-lead text-body-lead text-on-surface-variant mb-8">Free, secure, and no signup. Delete pages from any PDF in your browser.</p>
+</div>
+</header>
+<!-- Tool Workspace -->
+<main class="flex-grow px-margin-desktop max-w-container-max mx-auto w-full mb-space-20">
+<div class="bg-paper rounded-[28px] shadow-lg border border-ink-200 overflow-hidden relative">
+<div class="absolute inset-0 dot-grid opacity-50 z-0"></div>
+<div class="relative z-10 p-8 md:p-12">
+<!-- Upload Zone -->
+<div class="border-2 border-dashed border-ink-300 rounded-[20px] p-10 flex flex-col items-center justify-center text-center bg-surface-container-lowest/80 backdrop-blur-sm cursor-pointer hover:border-primary transition-colors mb-8">
+<span class="material-symbols-outlined text-4xl text-primary mb-4" style="font-variation-settings: 'FILL' 0;">cloud_upload</span>
+<h3 class="font-heading-md text-heading-md text-on-surface mb-2">Drop your PDF here or click to browse</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Max 50 MB. Your file stays in your browser.</p>
+</div>
+<!-- Page Preview Grid (Mock Data) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+<!-- Page 1 (Selected/Removed) -->
+<div class="flex flex-col items-center">
+<div class="w-full page-thumb-ratio bg-white border-2 border-accent-olive-700 rounded-sm relative overflow-hidden mb-2 group cursor-pointer shadow-sm">
+<img class="w-full h-full object-cover opacity-50 grayscale" data-alt="A macro shot of a crisp white drafting paper document with technical geometric lines drawn in light blue ink. The lighting is bright studio lighting highlighting the texture of the thick paper. The aesthetic is modern, clean, and technical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbRSTZKrm8kBlhn_lAJfXTjZ6J-5ucH9tQGFHrzbeE2P2L9olRwwD2XlZ7k8RmVEQ7hoiRsAX_kEdpwBhg89ABta5Rdk3PhGCEZoWvKFLHCxKNoNlkcL2rNLXZLwXNVyHKI-Wzwk7-fOjq9W1P8db0sTz5g_7PGh0gTyP-gSN1kyxFYqmTO0AgMCAv68PAherS56qFMWgotKOJVsNTjX23sXTGFOH4EsqMIFgEcO8UYGozPkMkhlEz1LxEko3OqCqD6IRkeiKe0XiW"/>
+<div class="absolute inset-0 bg-accent-olive-700/20 flex items-center justify-center">
+<div class="bg-accent-olive-700 text-white rounded-full p-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">close</span>
+</div>
+</div>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant">1</span>
+</div>
+<!-- Page 2 -->
+<div class="flex flex-col items-center">
+<div class="w-full page-thumb-ratio bg-white border border-ink-200 rounded-sm relative overflow-hidden mb-2 group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist layout of a technical manual page on bright white paper. Black crisp typography and simple diagrams. High key lighting, very sharp and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvFsc-vFbUVTuRhyz3IyqHtZua7sC_hIAHBtiwmXrbm_W3HXaxsNvQtxu5StZ2j0mT7eJNi2loODJ_3W56UTyzpa7LbGB58Xu5yeQq8n-viHVOul8Dfs0nMyqt2lx6v9cqGM-xtWoOMI48TVzxvfB1gnqmFF0nrTHmi4mY_SbMrbPLQd1aUzzp1TeXOGPJuJ96FSR4_YvuoI-x4mPzbOzTzbfIIggayxCGsIJQXb033J0DF7dIRxFq_f2Yee2iR0Y4RqGkmo3gIBPf"/>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant">2</span>
+</div>
+<!-- Page 3 -->
+<div class="flex flex-col items-center">
+<div class="w-full page-thumb-ratio bg-white border border-ink-200 rounded-sm relative overflow-hidden mb-2 group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover" data-alt="A section of an architectural blueprint rendered in stark black and white on premium drafting paper. Minimalist, analog-modern style with exact geometric precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrzM60GLGqDCl3Rd_fRpYkLu6-eZvPJGwjoEdRQjytTD4GIwbQQAl-gTFKtyP0RRFFM1Y9GlYDucil7y30PH-fR3MQNS-b6OQdVV7GkXcNZSVIiSy_q9Pu7VzHl2950i6SrV43Ch5vlKUuoMBmIE3GqeSB4GgwMPDrSIs0LxR3zSeiPZ821t8kjqoMC1xjLO9EQFG1yPTeZNECWzoH14vHoT8jOlvEm5a7S5sbR5b8jijEbe4OAnzjPMTNPAOzXw3Lx4nG-uu9AiDn"/>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant">3</span>
+</div>
+<!-- Page 4 -->
+<div class="flex flex-col items-center">
+<div class="w-full page-thumb-ratio bg-white border border-ink-200 rounded-sm relative overflow-hidden mb-2 group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover" data-alt="A close up view of a sophisticated data visualization chart on white paper. Deep indigo and slate gray lines. Clean, sparse, and highly technical design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOnDXhzHui5I3Ny6PEF-3lPHpwxWYyopoegLfWrjcBEM7fE0hteKLtnMV5w5YBleqdaNkFb0uF1X786_v-zDkvBVafy3z0Ehc6vr9Zu9FLNeenJDZSf5DuYv330xSc-a9kfvlBGzTOwHHad1Lcgu-4keSQmQDbO3rpj6JxuuML5G1c1kRVju0FJq20B5n_1pIO8FacPPAyonKvYwMTn1N2WBkYD3yjYQVgIW9kbhB9rDNW-JnOPYETDUL9FCXH50n2Hssw-v1Dk-g6"/>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant">4</span>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-col sm:flex-row gap-4 justify-end border-t border-ink-200 pt-6">
+<button class="bg-surface text-primary border border-primary px-6 py-3 rounded-lg font-mono-data text-mono-data hover:bg-brand-indigo-50 transition-colors">Download remaining PDF</button>
+<button class="bg-[#65A30D] text-white px-6 py-3 rounded-lg font-mono-data text-mono-data hover:bg-accent-olive-700 transition-colors shadow-sm">Remove selected pages</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer from JSON -->
+<footer class="w-full px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-brand-indigo-900 text-white mt-auto">
+  <div>
+    <div class="text-xl font-bold font-heading mb-4">RemovePDFPages</div>
+    <p class="text-sm text-ink-300">Precision PDF tools for quick edits. No subscription required.</p>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Legal</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+      <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+      <li><a href="/refund" class="hover:text-white transition-colors">Refund Policy</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Tools</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/remove-pages" class="hover:text-white transition-colors">Remove Pages</a></li>
+      <li><a href="/merge" class="hover:text-white transition-colors">Merge PDFs</a></li>
+      <li><a href="/compress" class="hover:text-white transition-colors">Compress PDF</a></li>
+      <li><a href="/sign" class="hover:text-white transition-colors">Sign PDF</a></li>
+      <li><a href="/convert-to-word" class="hover:text-white transition-colors">Convert to Word</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Support</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/pricing" class="hover:text-white transition-colors">Pricing</a></li>
+      <li><a href="/faq" class="hover:text-white transition-colors">FAQ</a></li>
+      <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+      <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
+    </ul>
+  </div>
+  <div class="md:col-span-4 border-t border-ink-300/30 pt-6 text-sm text-ink-300">
+    © 2026 RemovePDFPages. All rights reserved.
+  </div>
+</footer>
+</body></html>

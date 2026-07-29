@@ -1,118 +1,107 @@
 #!/usr/bin/env node
 const mode = process.argv.includes('--tool') ? 'tool' : 'home';
 
-const homePrompt = `Design a premium, conversion-focused landing page for Fancy Text Generator — a Unicode text transformer for social media bios, captions, usernames, and posts.
+const homePrompt = `Design a premium, conversion-focused landing page for RemovePDFPages — a browser-based PDF toolkit with free tools (Remove Pages, Merge, Compress, Sign) and a one-time Full Editor license that adds PDF to Word conversion.
 
 Goal:
 - Make the product feel polished, fast, and trustworthy.
-- Highlight the core action: type text, transform it, copy it instantly.
+- Highlight the core action: pick a free PDF tool, upload, and download.
 - Keep the interface simple enough for mobile users.
 
 Audience:
-- Social media users
-- Creators and meme users
-- Anyone who wants stylish Unicode text for Instagram, TikTok, Twitter/X, Discord
+- Office workers and students who need quick PDF edits
+- People who want to avoid subscription PDF software
+- Users who occasionally need to convert PDF to Word
 
 Content structure (top to bottom):
 1. Sticky header
-   - Left: product logo/name
-   - Right: simple nav to key generators
+   - Left: product logo/name "RemovePDFPages"
+   - Right: simple nav to Tools, Pricing, FAQ, Contact
+   - CTA: "Get Full Editor — $19 Launch Special" → /checkout
    - Keep it lightweight and readable
 
 2. Hero section
-   - Strong headline about turning plain text into stylish Unicode text instantly
-   - Short supporting paragraph about copy/paste use cases
-   - Primary CTA should lead into the text transformer
-   - Include a subtle visual cue that the product is about text styles, not generic AI
+   - H1: "Free PDF Tools. Full Editor for One Price."
+   - Short supporting paragraph about Remove Pages, Merge, Compress, Sign in the browser; upgrade once for Convert to Word.
+   - Primary CTA: "Try Free Tools" → /remove-pages
+   - Secondary CTA: "Get Full Editor — $19 Launch Special" → /checkout
+   - Trust strip: "No signup required", "No watermark on free tools", "Files stay in your browser by default", "One-time payment, no subscription"
 
-3. Interactive transformer section
-   - Large text input
-   - Style category pills
-   - Grid of transformed outputs
-   - Copy buttons on each result
-   - Show character count and platform limit warnings
-   - Make the transform interaction the star of the page
+3. Tools grid
+   - 5 tool cards: Remove Pages, Merge PDFs, Compress PDF, Sign PDF, Convert to Word
+   - Each card shows title, short description, and "Currently free" or "Full Editor" badge
+   - Convert to Word card is marked "Full Editor" and links to /pricing
 
 4. How it works
-   - 3 simple steps: type, choose style, copy & paste
+   - 3 simple steps: Upload your file, make your changes, download the result
 
-5. Popular styles
-   - Feature the most useful text styles as cards or links
-   - Keep emphasis on clarity and selection speed
+5. Bottom upgrade section
+   - H2: "Get the Full Editor for $19"
+   - Body: "One purchase. All current features. Use on up to 5 personal devices. 14-day refund policy."
+   - CTA: "Get Full Editor — $19 Launch Special"
+   - Show "$29" only as a strikethrough original price anchor next to "$19 Launch Special"
 
-6. FAQ
-   - Address free usage, compatibility, privacy, and mobile support
-
-7. Footer
-   - Product summary
-   - Tool links
-   - Privacy and terms links
+6. Footer
+   - Product summary: "Free PDF tools in your browser. One-time Full Editor license. No subscription."
+   - Legal links: Privacy Policy (/privacy), Terms of Service (/terms), Refund Policy (/refund)
+   - Tool links and Support links
+   - Copyright note: not affiliated with Adobe/Foxit
 
 Visual direction:
 - Premium editorial utility, not a generic SaaS template
 - Clean but distinctive
-- Asymmetric where helpful
 - Avoid overused purple-gradient AI startup styling
-- Use a controlled violet accent, but not as the only visual note
+- Indigo + olive accent; light background; dark text
 - Use high-contrast typography and generous spacing
-- Use SVG/material-style icons, not emoji icons
-
-Color direction:
-- Light background
-- Dark text
-- Violet accent for interactive elements
-- Soft neutral borders and subtle surface contrast
-
-Typography:
-- Distinctive headline face
-- Highly legible body text
-- Strong hierarchy for mobile scanning
+- Use Material Symbols icons, not emoji
 
 Constraints:
-- Preserve the product’s browser-only, no-signup positioning
-- Do not remove the legal pages
+- Preserve browser-only, no-signup positioning for free tools
 - Keep the page fast and easy to scan
 - Make the CTA obvious without making the page feel loud
+- Do not use "unlimited", "free forever", "perfect", "guaranteed", "AI-powered", "official"
 
 Deliverable:
 - Desktop homepage concept
 - Mobile companion concept
 - Clean, production-ready layout that can be handed off to frontend`;
 
-const toolPrompt = `Design a focused generator tool page for Fancy Text Generator — a Unicode text transformer that converts input into copyable stylish text.
+const toolPrompt = `Design a focused PDF tool page for RemovePDFPages — a browser-based utility page where users upload a PDF and perform a single action (remove pages, merge, compress, sign, or convert to Word).
 
 Goal:
-- Make the transformation workflow immediate and obvious.
-- Emphasize the input → results → copy loop.
+- Make the upload → action → download workflow immediate and obvious.
 - Keep the page usable on small screens.
+- Include an upgrade prompt for the Full Editor where appropriate.
 
 Content structure (top to bottom):
-1. Header with product name and a small link back to home
-2. Tool hero with one-line explanation and a brief trust statement
-3. Main transformer area
-   - Text input
-   - Category filter pills
-   - Results grid of transformed text
-   - Copy buttons
-   - Platform limit notice
-4. Trust strip
-   - Works on iPhone / Android / Desktop
-   - Fast loading
-   - Browser-only privacy claim
-5. Related tools or generator links
-6. Footer links
+1. Header with product name "RemovePDFPages" and a small link back to home
+2. Tool hero with H1 matching the tool name and a brief trust statement
+3. Main workspace area
+   - Upload dropzone / button
+   - Tool-specific controls (page thumbnails for remove-pages, file list for merge, compression slider for compress, signature canvas for sign, format options for convert-to-word)
+   - Download button
+4. Step-by-step instructions (3 steps)
+5. Feature/benefit bullets
+6. Compliance notice (required):
+   - Remove/Merge/Compress/Sign: "Processed in your browser by default. Files stay on your device."
+   - Convert to Word: "Files are temporarily uploaded for conversion and deleted within 1 hour."
+   - Sign: "This tool creates a visual signature image on the PDF. It is not a digital certificate signature and is not legally binding for regulated electronic-signing requirements."
+7. Upgrade CTA for Convert to Word / Sign where appropriate: "Get Full Editor — $19 Launch Special"
+8. Footer with legal links (/privacy, /terms, /refund), tool links, support links
 
 Visual direction:
 - Clean utility UI with a premium finish
 - Strong spacing and crisp cards
 - Avoid overly decorative effects that reduce readability
 - Use subtle surfaces and one strong accent color
+- Workspace-first: the upload/interaction area should dominate the page
 
 Constraints:
-- Keep the transformation results very readable
-- Make copy actions visually obvious
+- Keep interaction areas very readable
+- Make upload and download actions visually obvious
 - Prioritize mobile usability and tap targets
-- Keep it fast, lightweight, and production-ready`;
+- Keep it fast, lightweight, and production-ready
+- Do not use "unlimited", "free forever", "perfect", "guaranteed", "AI-powered", "official"`;
 
 const prompt = mode === 'tool' ? toolPrompt : homePrompt;
 

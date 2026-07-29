@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Page-specific styles for: contact-refund-removepdfpages
+   Generated from the original <style> block(s) in code.html.
+   Keep this file in the same directory as code.html and do not edit
+   unless the design itself changes.
+   ========================================================================== */
+
+.dot-grid {
+            background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .bg-indigo-600 { background-color: #4F46E5; }
+        .text-indigo-600 { color: #4F46E5; }
+        .bg-indigo-50 { background-color: #EEF2FF; }
+        .text-indigo-700 { color: #4338CA; }
+        .text-olive-600 { color: #65A30D; }
+        .border-ink-300 { border-color: #CBD5E1; }
+        .border-ink-200 { border-color: #E2E8F0; }
+        .rounded-20px { border-radius: 20px; }
+        .rounded-28px { border-radius: 28px; }

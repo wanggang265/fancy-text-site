@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pricing | RemovePDFPages</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "accent-olive-100": "#ECFCCB",
+          "accent-olive-700": "#4D7C0F",
+          "accent-amber-500": "#F59E0B",
+          "accent-amber-100": "#FEF3C7",
+          "brand-indigo-100": "#E0E7FF",
+          "brand-indigo-50": "#EEF2FF",
+          "brand-indigo-900": "#1E1B4B",
+          "primary": "#3525cd",
+          "primary-container": "#4f46e5",
+          "on-primary": "#ffffff",
+          "on-primary-container": "#dad7ff",
+          "surface": "#faf8ff",
+          "surface-bright": "#faf8ff",
+          "surface-container": "#eaedff",
+          "surface-container-low": "#f2f3ff",
+          "surface-container-high": "#e2e7ff",
+          "surface-dim": "#d2d9f4",
+          "on-surface": "#131b2e",
+          "on-surface-variant": "#464555",
+          "ink-200": "#E2E8F0",
+          "ink-300": "#CBD5E1",
+          "ink-600": "#475569",
+          "paper": "#FFFFFF",
+          "cream": "#FDFCF8",
+          "error": "#ba1a1a",
+          "error-container": "#ffdad6",
+        },
+        borderRadius: {
+          DEFAULT: "0.25rem",
+          lg: "0.5rem",
+          xl: "0.75rem",
+          full: "9999px"
+        },
+        spacing: {
+          "base": "4px",
+          "space-1": "4px",
+          "space-3": "12px",
+          "space-6": "24px",
+          "space-10": "40px",
+          "space-20": "80px",
+          "gutter-desktop": "24px",
+          "margin-desktop": "40px",
+          "container-max": "1200px"
+        },
+        fontFamily: {
+          "display": ["Space Grotesk"],
+          "heading": ["Space Grotesk"],
+          "body": ["Inter"],
+          "mono": ["JetBrains Mono"]
+        }
+      }
+    }
+  }
+</script>
+<link href="../../shared.css" rel="stylesheet"/>
+
+<style>
+.dot-grid { background-image: radial-gradient(circle, #E2E8F0 1px, transparent 1px); background-size: 24px 24px; opacity: 0.6; }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col relative">
+<header class="fixed top-0 w-full z-50 border-b border-ink-200 bg-surface/95 backdrop-blur-md">
+  <div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-between items-center">
+    <a href="/" class="text-2xl font-bold text-primary font-heading tracking-tight">RemovePDFPages</a>
+    <nav class="hidden md:flex items-center gap-8">
+      <div class="relative group">
+        <button class="text-on-surface hover:text-primary font-body transition-colors flex items-center gap-1">Tools <span class="material-symbols-outlined text-sm">expand_more</span></button>
+        <div class="absolute top-full left-0 mt-2 w-56 bg-paper border border-ink-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity p-2">
+          <a href="/remove-pages" class="block px-3 py-2 rounded hover:bg-brand-indigo-50 text-on-surface text-sm">Remove PDF Pages</a>
+          <a href="/merge" class="block px-3 py-2 rounded hover:bg-brand-indigo-50 text-on-surface text-sm">Merge PDFs</a>
+          <a href="/compress" class="block px-3 py-2 rounded hover:bg-brand-indigo-50 text-on-surface text-sm">Compress PDF</a>
+          <a href="/sign" class="block px-3 py-2 rounded hover:bg-brand-indigo-50 text-on-surface text-sm">Sign PDF</a>
+          <a href="/convert-to-word" class="block px-3 py-2 rounded hover:bg-brand-indigo-50 text-on-surface text-sm">Convert to Word</a>
+        </div>
+      </div>
+      <a href="/pricing" class="text-on-surface hover:text-primary font-body transition-colors">Pricing</a>
+      <a href="/faq" class="text-on-surface hover:text-primary font-body transition-colors">FAQ</a>
+      <a href="/blog" class="text-on-surface hover:text-primary font-body transition-colors">Blog</a>
+      <a href="/checkout" class="bg-primary text-on-primary px-4 py-2 rounded font-body text-sm font-medium hover:bg-primary-container transition-colors shadow-sm">Get Full Editor — $19</a>
+    </nav>
+    <button class="md:hidden text-primary material-symbols-outlined">menu</button>
+  </div>
+</header>
+<main class="flex-grow pt-32 pb-20">
+  <section class="max-w-container-max mx-auto px-margin-desktop mb-16 text-center">
+    <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-primary font-bold mb-4 tracking-tight">Simple, one-time pricing</h1>
+    <p class="text-lg text-on-surface-variant max-w-2xl mx-auto">Free tools stay free. Unlock the Full Editor with a single payment.</p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-margin-desktop mb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <!-- Free -->
+      <div class="bg-paper border border-ink-200 rounded-[24px] p-8 shadow-sm flex flex-col h-full">
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-2">
+            <h3 class="text-2xl font-bold text-on-surface font-heading">Free</h3>
+            <span class="inline-flex items-center gap-1 bg-accent-olive-100 text-accent-olive-700 text-xs font-semibold px-2 py-1 rounded-none border border-accent-olive-700"><span class="material-symbols-outlined text-[14px]">check</span>Currently free</span>
+          </div>
+          <div class="text-4xl font-bold text-primary font-heading mb-1">$0</div>
+          <p class="text-sm text-ink-600">No account needed</p>
+        </div>
+        <ul class="space-y-3 text-sm text-on-surface-variant mb-8 flex-grow">
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent-olive-700 text-[18px]">check</span>Remove PDF pages</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent-olive-700 text-[18px]">check</span>Merge PDFs</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent-olive-700 text-[18px]">check</span>Compress PDFs</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent-olive-700 text-[18px]">check</span>Sign PDFs</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent-olive-700 text-[18px]">check</span>No watermark</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent-olive-700 text-[18px]">check</span>Files stay in your browser by default</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-accent-olive-700 text-[18px]">check</span>Fair-use limits: 50 MB / 200 pages / 10–20 tasks per hour</li>
+        </ul>
+        <a href="/remove-pages" class="block w-full text-center bg-brand-indigo-50 text-primary border border-brand-indigo-100 py-3 rounded-lg font-medium hover:bg-brand-indigo-100 transition-colors">Start free</a>
+      </div>
+      <!-- Full Editor -->
+      <div class="bg-paper border-2 border-primary rounded-[28px] p-8 shadow-lg relative flex flex-col h-full">
+        <div class="absolute -top-3 left-8"><span class="inline-flex items-center bg-accent-olive-100 text-accent-olive-700 text-xs font-semibold px-3 py-1 rounded-none border border-accent-olive-700 uppercase tracking-wider">Most popular</span></div>
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-on-surface font-heading mb-2">Full Editor</h3>
+          <div class="flex items-baseline gap-3">
+            <span class="text-5xl font-bold text-primary font-heading">$19</span>
+            <span class="text-xl text-ink-500 line-through">$29</span>
+          </div>
+          <p class="text-sm text-ink-600 mt-1">One-time payment. No subscription.</p>
+        </div>
+        <ul class="space-y-3 text-sm text-on-surface-variant mb-8 flex-grow">
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span>Everything in Free</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span>Convert PDF to Word</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span>Use on up to 5 personal devices</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span>Updates for the current major version</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span>14-day refund policy</li>
+        </ul>
+        <a href="/checkout" class="block w-full text-center bg-primary text-on-primary py-3 rounded-lg font-medium hover:bg-primary-container transition-colors shadow-sm">Get Full Editor — $19 Launch Special</a>
+        <p class="text-xs text-center text-ink-600 mt-3">Launch price for a limited time. Standard price is $29.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="max-w-container-max mx-auto px-margin-desktop mb-20">
+    <h2 class="text-2xl md:text-3xl font-bold text-on-surface mb-8 text-center font-heading">Compare Features</h2>
+    <div class="bg-paper border border-ink-200 rounded-[20px] overflow-hidden shadow-sm">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-surface-container-low border-b border-ink-200">
+            <th class="p-5 font-semibold text-on-surface w-2/5">Feature</th>
+            <th class="p-5 font-semibold text-on-surface text-center">Free</th>
+            <th class="p-5 font-semibold text-primary text-center bg-brand-indigo-50/50">Full Editor</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm text-on-surface-variant">
+          <tr class="border-b border-ink-200"><td class="p-5 font-medium">Remove / Merge / Compress / Sign</td><td class="p-5 text-center"><span class="material-symbols-outlined text-accent-olive-700">check</span></td><td class="p-5 text-center bg-brand-indigo-50/20"><span class="material-symbols-outlined text-primary">check</span></td></tr>
+          <tr class="border-b border-ink-200"><td class="p-5 font-medium">Convert PDF to Word</td><td class="p-5 text-center text-ink-300">—</td><td class="p-5 text-center bg-brand-indigo-50/20"><span class="material-symbols-outlined text-primary">check</span></td></tr>
+          <tr class="border-b border-ink-200"><td class="p-5 font-medium">Max file size</td><td class="p-5 text-center">50 MB</td><td class="p-5 text-center bg-brand-indigo-50/20">50 MB</td></tr>
+          <tr class="border-b border-ink-200"><td class="p-5 font-medium">Max pages per file</td><td class="p-5 text-center">200</td><td class="p-5 text-center bg-brand-indigo-50/20">200</td></tr>
+          <tr class="border-b border-ink-200"><td class="p-5 font-medium">Devices</td><td class="p-5 text-center">Browser only</td><td class="p-5 text-center bg-brand-indigo-50/20">Up to 5 devices</td></tr>
+          <tr><td class="p-5 font-medium">Price</td><td class="p-5 text-center font-semibold text-accent-olive-700">$0</td><td class="p-5 text-center bg-brand-indigo-50/20 font-semibold text-primary">$19 <span class="text-ink-400 line-through font-normal">$29</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-3xl mx-auto px-margin-desktop mb-20">
+    <h2 class="text-2xl md:text-3xl font-bold text-on-surface mb-8 text-center font-heading">Pricing FAQ</h2>
+    <div class="space-y-4">
+      <div class="bg-paper border border-ink-200 rounded-xl p-6 shadow-sm">
+        <h4 class="font-semibold text-on-surface mb-2 font-heading">Is the $19 price really a one-time payment?</h4>
+        <p class="text-sm text-on-surface-variant">Yes. The $19 Launch Special is a one-time purchase. There is no monthly subscription. The standard price is $29, so the launch price saves you $10.</p>
+      </div>
+      <div class="bg-paper border border-ink-200 rounded-xl p-6 shadow-sm">
+        <h4 class="font-semibold text-on-surface mb-2 font-heading">What happens when the launch period ends?</h4>
+        <p class="text-sm text-on-surface-variant">We will return to the standard price of $29. If you buy during the launch period, your license stays valid for the current major version at no extra cost.</p>
+      </div>
+      <div class="bg-paper border border-ink-200 rounded-xl p-6 shadow-sm">
+        <h4 class="font-semibold text-on-surface mb-2 font-heading">Can I get a refund?</h4>
+        <p class="text-sm text-on-surface-variant">Yes. We offer a 14-day refund policy. Contact us through the refund page or support email with your order information.</p>
+      </div>
+      <div class="bg-paper border border-ink-200 rounded-xl p-6 shadow-sm">
+        <h4 class="font-semibold text-on-surface mb-2 font-heading">What does “lifetime” mean?</h4>
+        <p class="text-sm text-on-surface-variant">Lifetime means the current major version of RemovePDFPages Full Editor (v1.x). It includes updates within that version. A future new product or platform may require a separate license.</p>
+      </div>
+      <div class="bg-paper border border-ink-200 rounded-xl p-6 shadow-sm">
+        <h4 class="font-semibold text-on-surface mb-2 font-heading">Why does Convert to Word need a server?</h4>
+        <p class="text-sm text-on-surface-variant">PDF to Word conversion is complex and currently runs on our backend. Your file is uploaded temporarily and deleted automatically within 1 hour.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="w-full px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-brand-indigo-900 text-white mt-auto">
+  <div>
+    <div class="text-xl font-bold font-heading mb-4">RemovePDFPages</div>
+    <p class="text-sm text-ink-300">Precision PDF tools for quick edits. No subscription required.</p>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Legal</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+      <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+      <li><a href="/refund" class="hover:text-white transition-colors">Refund Policy</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Tools</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/remove-pages" class="hover:text-white transition-colors">Remove Pages</a></li>
+      <li><a href="/merge" class="hover:text-white transition-colors">Merge PDFs</a></li>
+      <li><a href="/compress" class="hover:text-white transition-colors">Compress PDF</a></li>
+      <li><a href="/sign" class="hover:text-white transition-colors">Sign PDF</a></li>
+      <li><a href="/convert-to-word" class="hover:text-white transition-colors">Convert to Word</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Support</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/pricing" class="hover:text-white transition-colors">Pricing</a></li>
+      <li><a href="/faq" class="hover:text-white transition-colors">FAQ</a></li>
+      <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+      <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
+    </ul>
+  </div>
+  <div class="md:col-span-4 border-t border-ink-300/30 pt-6 text-sm text-ink-300">
+    © 2026 RemovePDFPages. All rights reserved.
+  </div>
+</footer>
+</body>
+</html>

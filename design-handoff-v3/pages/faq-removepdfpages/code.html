@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAQ | RemovePDFPages</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#403d90",
+                      "secondary": "#3f6a00",
+                      "on-secondary-container": "#426e00",
+                      "on-error-container": "#93000a",
+                      "surface": "#faf8ff",
+                      "inverse-on-surface": "#eef0ff",
+                      "on-secondary-fixed": "#0f2000",
+                      "accent-olive-700": "#4D7C0F",
+                      "tertiary-fixed-dim": "#c3c0ff",
+                      "tertiary-fixed": "#e2dfff",
+                      "surface-container-high": "#e2e7ff",
+                      "inverse-surface": "#283044",
+                      "brand-indigo-50": "#EEF2FF",
+                      "secondary-fixed-dim": "#96d947",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "on-error": "#ffffff",
+                      "surface-container-highest": "#dae2fd",
+                      "outline": "#777587",
+                      "primary": "#3525cd",
+                      "on-tertiary-container": "#dad7ff",
+                      "on-primary-fixed": "#0f0069",
+                      "surface-tint": "#4d44e3",
+                      "ink-200": "#E2E8F0",
+                      "ink-300": "#CBD5E1",
+                      "primary-fixed": "#e2dfff",
+                      "tertiary-container": "#5856aa",
+                      "on-primary": "#ffffff",
+                      "ink-600": "#475569",
+                      "outline-variant": "#c7c4d8",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#100563",
+                      "on-surface-variant": "#464555",
+                      "brand-indigo-100": "#E0E7FF",
+                      "accent-olive-100": "#ECFCCB",
+                      "primary-container": "#4f46e5",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#c3c0ff",
+                      "secondary-fixed": "#b1f661",
+                      "error": "#ba1a1a",
+                      "on-primary-container": "#dad7ff",
+                      "error-container": "#ffdad6",
+                      "cream": "#FDFCF8",
+                      "surface-container": "#eaedff",
+                      "surface-bright": "#faf8ff",
+                      "secondary-container": "#aef35e",
+                      "on-secondary-fixed-variant": "#2e4f00",
+                      "on-tertiary-fixed-variant": "#3e3c8f",
+                      "surface-container-low": "#f2f3ff",
+                      "on-background": "#131b2e",
+                      "brand-indigo-900": "#1E1B4B",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "surface-dim": "#d2d9f4",
+                      "paper": "#FFFFFF",
+                      "on-surface": "#131b2e",
+                      "accent-amber-500": "#F59E0B",
+                      "surface-variant": "#dae2fd",
+                      "background": "#faf8ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "space-1": "4px",
+                      "base": "4px",
+                      "space-20": "80px",
+                      "space-10": "40px",
+                      "margin-desktop": "40px",
+                      "container-max": "1200px",
+                      "space-6": "24px",
+                      "space-3": "12px",
+                      "gutter-desktop": "24px"
+              },
+              "fontFamily": {
+                      "heading-sm": [
+                              "Space Grotesk"
+                      ],
+                      "heading-md": [
+                              "Space Grotesk"
+                      ],
+                      "body-lead": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "display-xl-mobile": [
+                              "Space Grotesk"
+                      ],
+                      "heading-lg": [
+                              "Space Grotesk"
+                      ],
+                      "display-xl": [
+                              "Space Grotesk"
+                      ],
+                      "mono-data": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "heading-sm": [
+                              "22px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "heading-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lead": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.55",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-xl-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "heading-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.15",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-xl": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.05",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "mono-data": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.65",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+
+    <link href="../../shared.css" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col relative dot-grid">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-none font-body-md text-body-md">
+<div class="flex items-center gap-4">
+<span class="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight">RemovePDFPages</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Tools</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">Pricing</a>
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">FAQ</a>
+</nav>
+<div>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-mono-data text-mono-data py-2 px-4 rounded transition-colors shadow-sm hover:shadow-md">Buy License — $29</button>
+</div>
+</header>
+<main class="flex-grow pt-32 pb-space-20 max-w-container-max mx-auto w-full px-margin-desktop md:px-margin-desktop px-4">
+<!-- Hero Section -->
+<section class="mb-space-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-ink-200 pb-12">
+<div class="md:w-1/2">
+<h1 class="font-heading-lg text-heading-lg text-[#3730A3] mb-4">Help &amp; FAQs</h1>
+<p class="font-body-lead text-body-lead text-on-surface-variant">Quick answers to common questions about RemovePDFPages.</p>
+</div>
+<div class="md:w-1/2 relative w-full max-w-md ml-auto">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-ink-600">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-paper border border-ink-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md shadow-sm" placeholder="Search the help center..." type="text"/>
+</div>
+</section>
+<!-- Main Layout -->
+<div class="flex flex-col md:flex-row gap-gutter-desktop">
+<!-- Sidebar -->
+<aside class="md:w-[30%] hidden md:block">
+<div class="sticky top-32 space-y-2">
+<a class="block py-2 px-4 rounded-md bg-brand-indigo-50 text-primary font-medium border-l-2 border-primary transition-colors" href="#using-tool">Using the tool</a>
+<a class="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#privacy">Privacy &amp; security</a>
+<a class="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#pricing">Pricing &amp; license</a>
+<a class="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#refunds">Refunds</a>
+<a class="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#contact">Contact support</a>
+</div>
+</aside>
+<!-- Content Area -->
+<div class="md:w-[70%] space-y-16">
+<!-- Section 1 -->
+<section id="using-tool">
+<h2 class="font-heading-md text-heading-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">build</span> Using the tool
+                    </h2>
+<div class="space-y-4">
+<div class="faq-accordion border border-ink-200 rounded-lg bg-paper shadow-sm overflow-hidden">
+<button class="w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-on-surface hover:bg-brand-indigo-50/50 transition-colors" onclick="this.parentElement.classList.toggle('active')">
+                                How do I remove pages?
+                                <span class="material-symbols-outlined faq-icon transition-transform text-ink-600">expand_more</span>
+</button>
+<div class="faq-accordion-content px-6 text-on-surface-variant">
+                                Simply drag and drop your PDF into the upload zone. Once loaded, hover over any page thumbnail and click the 'Trash' icon to mark it for removal. Click 'Export PDF' when you're done.
+                            </div>
+</div>
+<div class="faq-accordion border border-ink-200 rounded-lg bg-paper shadow-sm overflow-hidden">
+<button class="w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-on-surface hover:bg-brand-indigo-50/50 transition-colors" onclick="this.parentElement.classList.toggle('active')">
+                                Can I reorder pages?
+                                <span class="material-symbols-outlined faq-icon transition-transform text-ink-600">expand_more</span>
+</button>
+<div class="faq-accordion-content px-6 text-on-surface-variant">
+                                Currently, RemovePDFPages is strictly designed for removing pages efficiently. We plan to introduce reordering in a future update.
+                            </div>
+</div>
+</div>
+</section>
+<!-- Section 2 -->
+<section id="privacy">
+<h2 class="font-heading-md text-heading-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span> Privacy &amp; security
+                    </h2>
+<div class="space-y-4">
+<div class="faq-accordion border border-ink-200 rounded-lg bg-paper shadow-sm overflow-hidden">
+<button class="w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-on-surface hover:bg-brand-indigo-50/50 transition-colors" onclick="this.parentElement.classList.toggle('active')">
+                                Are my files stored on your server?
+                                <span class="material-symbols-outlined faq-icon transition-transform text-ink-600">expand_more</span>
+</button>
+<div class="faq-accordion-content px-6 text-on-surface-variant">
+                                No. All processing happens locally in your browser. Your files never leave your computer, ensuring complete privacy.
+                            </div>
+</div>
+</div>
+</section>
+<!-- Section 3 -->
+<section id="pricing">
+<h2 class="font-heading-md text-heading-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">payments</span> Pricing &amp; license
+                    </h2>
+<div class="space-y-4">
+<div class="faq-accordion border border-ink-200 rounded-lg bg-paper shadow-sm overflow-hidden">
+<button class="w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-on-surface hover:bg-brand-indigo-50/50 transition-colors" onclick="this.parentElement.classList.toggle('active')">
+                                Is it really a one-time payment?
+                                <span class="material-symbols-outlined faq-icon transition-transform text-ink-600">expand_more</span>
+</button>
+<div class="faq-accordion-content px-6 text-on-surface-variant">
+                                Yes. We believe in owning your tools. You pay once and get access to the current version forever, including minor updates.
+                            </div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="mt-space-20 bg-brand-indigo-50 border border-primary/20 rounded-[28px] p-8 md:p-12 text-center shadow-sm relative overflow-hidden">
+<div class="absolute inset-0 dot-grid opacity-30 pointer-events-none"></div>
+<div class="relative z-10">
+<h3 class="font-heading-md text-heading-md text-[#3730A3] mb-4">Still need help?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md mx-auto">If you couldn't find the answer to your question, our support team is ready to assist you.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-primary hover:bg-primary-container text-on-primary font-mono-data text-mono-data py-3 px-6 rounded transition-colors shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">mail</span> Contact us
+                            </button>
+<button class="bg-white hover:bg-ink-200 text-primary font-mono-data text-mono-data py-3 px-6 rounded border border-ink-300 transition-colors shadow-sm flex items-center justify-center gap-2">
+                                Request a refund
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-brand-indigo-900 text-white mt-auto">
+  <div>
+    <div class="text-xl font-bold font-heading mb-4">RemovePDFPages</div>
+    <p class="text-sm text-ink-300">Precision PDF tools for quick edits. No subscription required.</p>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Legal</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+      <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+      <li><a href="/refund" class="hover:text-white transition-colors">Refund Policy</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Tools</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/remove-pages" class="hover:text-white transition-colors">Remove Pages</a></li>
+      <li><a href="/merge" class="hover:text-white transition-colors">Merge PDFs</a></li>
+      <li><a href="/compress" class="hover:text-white transition-colors">Compress PDF</a></li>
+      <li><a href="/sign" class="hover:text-white transition-colors">Sign PDF</a></li>
+      <li><a href="/convert-to-word" class="hover:text-white transition-colors">Convert to Word</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4">Support</h4>
+    <ul class="space-y-2 text-sm text-ink-300">
+      <li><a href="/pricing" class="hover:text-white transition-colors">Pricing</a></li>
+      <li><a href="/faq" class="hover:text-white transition-colors">FAQ</a></li>
+      <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+      <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
+    </ul>
+  </div>
+  <div class="md:col-span-4 border-t border-ink-300/30 pt-6 text-sm text-ink-300">
+    © 2026 RemovePDFPages. All rights reserved.
+  </div>
+</footer>
+</body></html>
