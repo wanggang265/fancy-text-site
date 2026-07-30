@@ -36,7 +36,7 @@ export default function Page() {
       <main id="main">
         <section className="rpp-section rpp-section-hero">
           <div className="rpp-container rpp-text-center">
-            <h1 className="rpp-display">Convert PDF to Word Online</h1>
+            <h1 className="rpp-display">Convert PDF to Word</h1>
             <p
               className="rpp-lead"
               style={{ maxWidth: "640px", margin: "var(--rpp-space-4) auto 0" }}
