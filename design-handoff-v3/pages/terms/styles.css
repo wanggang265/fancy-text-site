@@ -1,0 +1,6 @@
+.rpp-legal-list { display: grid; gap: var(--rpp-space-6); max-width: 760px; margin: 0 auto; }
+.rpp-legal-section h2 { font: 700 var(--rpp-scale-4)/1.15 var(--rpp-font-sans); color: var(--rpp-ink-900); margin-bottom: var(--rpp-space-3); }
+.rpp-legal-section p, .rpp-legal-section li { color: var(--rpp-ink-700); margin-top: var(--rpp-space-2); }
+.rpp-legal-section ul { list-style: disc; padding-left: var(--rpp-space-6); }
+.rpp-legal-section ul li { margin-top: var(--rpp-space-1); }
+.rpp-legal-updated { font-size: var(--rpp-scale-0); color: var(--rpp-ink-500); margin-top: var(--rpp-space-2); display: block; }

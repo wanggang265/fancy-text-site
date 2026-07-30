@@ -1,103 +1,20 @@
-import Header from '@/components/Header';
 import type { Metadata } from 'next';
-import { FaqAccordion } from '@/components/FaqAccordion';
-import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'FAQ - RemovePDFPages',
-  description: 'Find answers to common questions about RemovePDFPages free tools and full editor license.',
+  title: 'FAQ | RemovePDFPages',
+  description: 'Find answers to common questions about using RemovePDFPages free PDF tools, Full Editor subscriptions, one-time license, pricing, privacy, and refunds.',
+  alternates: {
+    canonical: 'https://removepdfpages.net/faq',
+  },
 };
 
 export default function Page() {
   return (
-    <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col relative dot-grid">
-<Header />
-      
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I need to create an account?", "acceptedAnswer": {"@type": "Answer", "text": "No. The free tools work without signup. The Full Editor is tied to a license key sent to your email."}}, {"@type": "Question", "name": "Are my files uploaded to your server?", "acceptedAnswer": {"@type": "Answer", "text": "Remove Pages, Merge, Compress, and Sign run in your browser by default, so your files stay on your device. Convert to Word uses a backend server; files are uploaded temporarily and deleted within 1 hour."}}, {"@type": "Question", "name": "Is the Full Editor a subscription?", "acceptedAnswer": {"@type": "Answer", "text": "We offer both subscription plans and a one-time license. The $19/month Launch Special and the $99/year plan are subscriptions. The $59 one-time license is a single payment with no recurring billing."}}, {"@type": "Question", "name": "Can I get a refund?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We offer a 14-day refund policy for the Full Editor and unused top-up credits within 14 days of purchase. Contact us through the refund page or support email with your order information. Used credits are not refundable."}}]}'}} />
 
-<main className="flex-grow pt-32 pb-space-20 max-w-container-max mx-auto w-full px-margin-desktop md:px-margin-desktop px-4">
+<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><section className="rpp-section rpp-section-hero"><div className="rpp-container rpp-text-center"><h1 className="rpp-display">Help & FAQs</h1><p className="rpp-lead" style={{maxWidth: '640px', margin: 'var(--rpp-space-4) auto 0'}}>Find answers to common questions about using RemovePDFPages free PDF tools, Full Editor subscriptions, one-time license, pricing, privacy, and refunds.</p></div></section><section className="rpp-section rpp-section-soft"><div className="rpp-container"><h2 className="rpp-heading-2 rpp-text-center" id="using-tools">Using tools</h2><dl className="rpp-faq-list" style={{marginTop: 'var(--rpp-space-6)'}}><div className="rpp-faq-item"><dt className="rpp-faq-question">Do I need to create an account?</dt><dd className="rpp-faq-answer">No. The free tools work without signup. The Full Editor is tied to a license key sent to your email.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Do the free tools add a watermark?</dt><dd className="rpp-faq-answer">No. The free PDF tools do not add watermarks to your files.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Are my files uploaded to your server?</dt><dd className="rpp-faq-answer">Remove Pages, Merge, Compress, and Sign run in your browser by default, so your files stay on your device. Convert to Word uses a backend server; files are uploaded temporarily and deleted within 1 hour.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Why does Convert to Word need a server?</dt><dd className="rpp-faq-answer">PDF to Word conversion is too complex to run reliably in a browser. We upload the file temporarily, convert it, and delete it within 1 hour.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">What are the file limits?</dt><dd className="rpp-faq-answer">Each file can be up to 50 MB and 200 pages. Free tools have a fair-use limit of 10–20 tasks per hour from the same IP. Merge supports up to 10 files at once.</dd></div></dl></div></section><section className="rpp-section"><div className="rpp-container"><h2 className="rpp-heading-2 rpp-text-center" id="privacy">Privacy & security</h2><dl className="rpp-faq-list" style={{marginTop: 'var(--rpp-space-6)'}}><div className="rpp-faq-item"><dt className="rpp-faq-question">Do you store my PDFs?</dt><dd className="rpp-faq-answer">We do not store PDFs for the free tools. For Convert to Word and backend fallback, files are kept only for the time needed to process them and deleted automatically within 1 hour.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Do you share my data with third parties?</dt><dd className="rpp-faq-answer">We do not sell or share your PDFs. We use Creem for payments (Merchant of Record), Resend for license emails, and Cloudflare for hosting. See our <a href="/privacy">Privacy Policy</a> for full details.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Do you use analytics or cookies?</dt><dd className="rpp-faq-answer">We may use analytics to improve the site. The specific tool and cookie use will be disclosed in our Privacy Policy once selected.</dd></div></dl></div></section><section className="rpp-section rpp-section-soft"><div className="rpp-container"><h2 className="rpp-heading-2 rpp-text-center" id="pricing">Pricing & license</h2><dl className="rpp-faq-list" style={{marginTop: 'var(--rpp-space-6)'}}><div className="rpp-faq-item"><dt className="rpp-faq-question">Is the Full Editor a subscription?</dt><dd className="rpp-faq-answer">We offer both subscription plans and a one-time license. The $19/month Launch Special and the $99/year plan are subscriptions. The $59 one-time license is a single payment with no recurring billing.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">What does “one-time license” mean?</dt><dd className="rpp-faq-answer">It means you pay once for the current major version of RemovePDFPages Full Editor (v1.x). It includes updates within that version, but a future new platform may require a separate license.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Can I buy at $19 later?</dt><dd className="rpp-faq-answer">The $19/month Launch Special is available for a limited time and may end without notice. Once it ends, the standard monthly price will be $29 and the standard yearly price will be $149.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">How many devices can I use?</dt><dd className="rpp-faq-answer">One license or subscription can be activated on up to 5 personal devices. We record a device fingerprint during activation to enforce this limit.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">How many Convert to Word conversions do I get?</dt><dd className="rpp-faq-answer">Free users can try 3 conversions per 30-day period. Paid plans include 10 conversions per calendar month. Additional conversions are $0.50 each or $5 for 10.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">What happens when the launch period ends?</dt><dd className="rpp-faq-answer">We will return to the standard price of $29/month and $149/year. The $19/month Launch Special is limited time and may end without notice.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Can I cancel my subscription?</dt><dd className="rpp-faq-answer">Yes. Monthly and yearly subscriptions can be canceled anytime. Your access continues until the end of the current billing period. Yearly plans are also eligible for a 14-day refund.</dd></div></dl></div></section><section className="rpp-section"><div className="rpp-container"><h2 className="rpp-heading-2 rpp-text-center" id="credits">Top-up credits</h2><dl className="rpp-faq-list" style={{marginTop: 'var(--rpp-space-6)'}}><div className="rpp-faq-item"><dt className="rpp-faq-question">How do top-up credits work?</dt><dd className="rpp-faq-answer">After you use your 10 included Convert to Word conversions each month, you can buy extra credits at $0.50 each or $5 for 10. Unused credits are refundable within 14 days; used credits are not.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Can I refund top-up credits?</dt><dd className="rpp-faq-answer">Unused credits are refundable within 14 days of purchase. Once a credit has been used for a conversion, it is not refundable.</dd></div></dl></div></section><section className="rpp-section rpp-section-soft"><div className="rpp-container"><h2 className="rpp-heading-2 rpp-text-center" id="refunds">Refunds</h2><dl className="rpp-faq-list" style={{marginTop: 'var(--rpp-space-6)'}}><div className="rpp-faq-item"><dt className="rpp-faq-question">Can I get a refund?</dt><dd className="rpp-faq-answer">Yes. We offer a 14-day refund policy for the Full Editor and unused top-up credits within 14 days of purchase. Contact us through the refund page or support email with your order information. Used credits are not refundable.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Are there any refund fees?</dt><dd className="rpp-faq-answer">Payment processing fees are not refunded by Creem when a refund is issued. We absorb this cost per refund.</dd></div><div className="rpp-faq-item"><dt className="rpp-faq-question">Can I refund after using the license?</dt><dd className="rpp-faq-answer">We reserve the right to refuse refunds in cases of abuse, license key redistribution, or fraudulent purchases.</dd></div></dl></div></section><section className="rpp-section"><div className="rpp-container"><h2 className="rpp-heading-2 rpp-text-center" id="tax-jurisdiction">Sales tax & jurisdiction</h2><dl className="rpp-faq-list" style={{marginTop: 'var(--rpp-space-6)'}}><div className="rpp-faq-item"><dt className="rpp-faq-question">Will I be charged sales tax or VAT?</dt><dd className="rpp-faq-answer">For purchases in the United States, applicable state and local sales tax will be calculated and collected automatically by Creem at checkout based on your billing address. International purchases may be subject to VAT or other local taxes; the buyer is responsible for compliance with local laws.</dd></div></dl></div></section><section className="rpp-section rpp-section-soft"><div className="rpp-container rpp-text-center"><h2 className="rpp-heading-2">Still have questions?</h2><p className="rpp-body" style={{maxWidth: '520px', margin: 'var(--rpp-space-3) auto 0', color: 'var(--rpp-ink-700)'}}>We’re happy to help. Reach out and we’ll get back to you as soon as possible.</p><a href="/contact" className="rpp-btn rpp-btn-primary" style={{marginTop: 'var(--rpp-space-5)'}}>Contact Support</a></div></section></main>
 
-<section className="mb-space-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-ink-200 pb-12">
-<div className="md:w-1/2">
-<h1 className="font-heading-lg text-heading-lg text-[#3730A3] mb-4">Help & FAQs</h1>
-<p className="font-body-lead text-body-lead text-on-surface-variant">Quick answers to common questions about RemovePDFPages.</p>
-</div>
-<div className="md:w-1/2 relative w-full max-w-md ml-auto">
-<span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-ink-600">search</span>
-<input className="w-full pl-10 pr-4 py-3 bg-paper border border-ink-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md shadow-sm" placeholder="Search the help center..." type="text" />
-</div>
-</section>
-
-<div className="flex flex-col md:flex-row gap-gutter-desktop">
-
-<aside className="md:w-[30%] hidden md:block">
-<div className="sticky top-32 space-y-2">
-<a className="block py-2 px-4 rounded-md bg-brand-indigo-50 text-primary font-medium border-l-2 border-primary transition-colors" href="#using-tool">Using the tool</a>
-<a className="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#privacy">Privacy & security</a>
-<a className="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#pricing">Pricing & license</a>
-<a className="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#refunds">Refunds</a>
-<a className="block py-2 px-4 rounded-md text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface transition-colors" href="#contact">Contact support</a>
-</div>
-</aside>
-
-<div className="md:w-[70%] space-y-16">
-
-<section id="using-tool">
-<h2 className="font-heading-md text-heading-md text-on-surface mb-6 flex items-center gap-2">
-<span className="material-symbols-outlined text-primary">build</span> Using the tool
-                    </h2>
-<div className="space-y-4">
-<FaqAccordion question="How do I remove pages?">
-                            Simply drag and drop your PDF into the upload zone. Once loaded, hover over any page thumbnail and click the 'Trash' icon to mark it for removal. Click 'Export PDF' when you're done.
-                        </FaqAccordion>
-<FaqAccordion question="Can I reorder pages?">
-                            Currently, RemovePDFPages is strictly designed for removing pages efficiently. We plan to introduce reordering in a future update.
-                        </FaqAccordion>
-</div>
-</section>
-
-<section id="privacy">
-<h2 className="font-heading-md text-heading-md text-on-surface mb-6 flex items-center gap-2">
-<span className="material-symbols-outlined text-primary">security</span> Privacy & security
-                    </h2>
-<div className="space-y-4">
-<FaqAccordion question="Are my files stored on your server?">
-                            No. All processing happens locally in your browser. Your files never leave your computer, ensuring complete privacy.
-                        </FaqAccordion>
-</div>
-</section>
-
-<section id="pricing">
-<h2 className="font-heading-md text-heading-md text-on-surface mb-6 flex items-center gap-2">
-<span className="material-symbols-outlined text-primary">payments</span> Pricing & license
-                    </h2>
-<div className="space-y-4">
-<FaqAccordion question="Is it really a one-time payment?">
-                            Yes. We believe in owning your tools. You pay once and get access to the current version forever, including minor updates.
-                        </FaqAccordion>
-</div>
-</section>
-
-<section className="mt-space-20 bg-brand-indigo-50 border border-primary/20 rounded-[28px] p-8 md:p-12 text-center shadow-sm relative overflow-hidden">
-<div className="absolute inset-0 dot-grid opacity-30 pointer-events-none"></div>
-<div className="relative z-10">
-<h3 className="font-heading-md text-heading-md text-[#3730A3] mb-4">Still need help?</h3>
-<p className="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md mx-auto">If you couldn't find the answer to your question, our support team is ready to assist you.</p>
-<div className="flex flex-col sm:flex-row justify-center gap-4">
-<button className="bg-primary hover:bg-primary-container text-on-primary font-mono-data text-mono-data py-3 px-6 rounded transition-colors shadow-sm hover:shadow-md flex items-center justify-center gap-2">
-<span className="material-symbols-outlined text-sm">mail</span> Contact us
-                            </button>
-<button className="bg-white hover:bg-ink-200 text-primary font-mono-data text-mono-data py-3 px-6 rounded border border-ink-300 transition-colors shadow-sm flex items-center justify-center gap-2">
-                                Request a refund
-                            </button>
-</div>
-</div>
-</section>
-</div>
-</div>
-</main>
-
-
-<Footer />
-</div>
+    </>
   );
 }

@@ -101,9 +101,9 @@
 
 - **5 工具边界**：`project-control.md` 已确认决策、`design-handoff-extract/route-mapping.json` 对应 5 个工具页面。
 - **不做 6+ 工具**：避免首版失焦，保持站点与品牌一致性。
-- **不做订阅**：定价页与支付流已明确为 `$29` lifetime（待定价 agent 审核）。
+- **商业模式**：订阅制为主（月 $19/年 $99），$59 One-time License 作为隐藏选项，Top-up credits 为按量一次性购买。
 - **不做云存储**：页面文案与 FAQ 声称文件不上传，必须与后端架构一致；若后端 fallback 则需更新隐私声明。
-- **不做账户系统**：计费与购买流程以 license key 为主轴，符合当前页面设计。
+- **不做账户系统**：计费与购买流程以 license key / subscription 为主轴，符合当前页面设计。
 
 ## 5. 验收标准
 

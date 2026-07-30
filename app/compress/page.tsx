@@ -1,93 +1,56 @@
-import Header from '@/components/Header';
-import type { Metadata } from 'next';
-import Footer from '@/components/Footer';
+import CompressTool from "@/components/CompressTool";
+import StructuredData from "@/components/StructuredData";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Compress PDF Online | RemovePDFPages',
-  description: 'Reduce PDF file size online for free. No upload, no watermark, and no signup required.',
+  title: "Compress PDF Online | RemovePDFPages",
+  description:
+    "Reduce PDF file size online. Choose a compression level and download a smaller PDF. No signup required.",
+  alternates: {
+    canonical: "https://removepdfpages.net/compress",
+  },
 };
 
-export default function Page() {
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "RemovePDFPages Compress PDF",
+  applicationCategory: "BrowserApplication",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+
+export default function CompressPage() {
   return (
-    <div className="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col relative">
-<Header />
-      
-
-<main className="flex-grow pt-24 pb-space-20">
-
-<section className="max-w-container-max mx-auto px-margin-desktop text-center py-space-10">
-<h1 className="text-[#3730A3] font-display-xl md:font-display-xl text-display-xl-mobile md:text-display-xl mb-4">Compress PDF Online</h1>
-<p className="text-on-surface-variant font-body-lead text-body-lead max-w-2xl mx-auto mb-6">Reduce PDF file size without losing quality. Free, no signup.</p>
-<div className="flex flex-wrap justify-center gap-3">
-<span className="bg-accent-olive-100 text-accent-olive-700 px-3 py-1 font-label-caps text-label-caps rounded-none border border-accent-olive-700/20">FREE</span>
-<span className="bg-brand-indigo-50 text-brand-indigo-900 px-3 py-1 font-label-caps text-label-caps rounded-none border border-brand-indigo-900/20">No upload</span>
-<span className="bg-accent-olive-100 text-accent-olive-700 px-3 py-1 font-label-caps text-label-caps rounded-none border border-accent-olive-700/20">No watermark</span>
-</div>
-</section>
-
-<section className="max-w-[1080px] mx-auto px-margin-desktop mb-space-20 relative">
-<div className="bg-paper shadow-lg rounded-[28px] border border-ink-200 overflow-hidden relative z-10">
-<div className="absolute inset-0 dot-grid opacity-50 z-0"></div>
-<div className="relative z-10 p-8 md:p-12 flex flex-col items-center">
-
-<div className="w-full max-w-3xl border-2 border-dashed border-ink-300 rounded-[20px] bg-white/80 backdrop-blur-sm p-12 text-center hover:bg-surface-container-low transition-colors cursor-pointer group mb-8">
-<span className="material-symbols-outlined text-4xl text-primary mb-4 group-hover:-translate-y-1 transition-transform" data-icon="cloud_upload">cloud_upload</span>
-<h3 className="font-heading-sm text-heading-sm text-on-surface mb-2">Drop your PDF here or click to browse</h3>
-<p className="font-body-sm text-body-sm text-on-surface-variant">Max 50 MB. Your file stays in your browser.</p>
-</div>
-
-<div className="w-full max-w-3xl mb-8">
-<h4 className="font-heading-md text-body-lead mb-4 text-on-surface">Compression level</h4>
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-<div className="border-[2px] border-[#65A30D] rounded-lg p-4 bg-accent-olive-100/20 cursor-pointer flex items-start gap-3">
-<input checked className="mt-1 rounded-sm text-[#65A30D] focus:ring-[#65A30D]" id="comp-rec" name="compression" type="radio" />
-<div>
-<label className="font-mono-data text-mono-data block cursor-pointer" htmlFor="comp-rec">Recommended compression</label>
-<span className="font-body-sm text-body-sm text-on-surface-variant">Smaller file, good quality</span>
-</div>
-</div>
-
-<div className="border border-ink-300 rounded-lg p-4 hover:border-primary transition-colors cursor-pointer flex items-start gap-3 bg-white">
-<input className="mt-1 rounded-sm text-primary focus:ring-primary" id="comp-max" name="compression" type="radio" />
-<div>
-<label className="font-mono-data text-mono-data block cursor-pointer" htmlFor="comp-max">Maximum compression</label>
-<span className="font-body-sm text-body-sm text-on-surface-variant">Smallest file, acceptable quality</span>
-</div>
-</div>
-</div>
-</div>
-
-<div className="w-full max-w-3xl flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-surface-container-lowest border border-ink-200 rounded-lg mb-8 gap-3">
-<div className="flex items-center gap-4 min-w-0">
-<span className="material-symbols-outlined text-outline" data-icon="description">description</span>
-<span className="font-body-md text-body-md text-on-surface break-words min-w-0">document_final_v2.pdf</span>
-</div>
-<div className="flex items-center gap-3 justify-end">
-<span className="font-mono-data text-label-caps text-on-surface-variant line-through decoration-error">2.4 MB</span>
-<span className="material-symbols-outlined text-sm text-outline" data-icon="arrow_right_alt">arrow_right_alt</span>
-<span className="font-mono-data text-mono-data text-on-surface font-semibold">0.8 MB</span>
-<span className="bg-accent-olive-100 text-accent-olive-700 px-2 py-0.5 rounded-none font-label-caps text-[10px]">-67%</span>
-</div>
-</div>
-
-<div className="w-full max-w-3xl flex flex-col sm:flex-row gap-4 justify-center">
-<button className="bg-[#65A30D] hover:bg-accent-olive-700 text-white font-body-md text-body-md py-3 px-8 rounded-lg shadow-sm transition-all flex items-center justify-center gap-2">
-<span className="material-symbols-outlined text-sm" data-icon="compress">compress</span>
-                            Compress PDF
-                        </button>
-<button className="bg-white border-2 border-primary text-primary hover:bg-brand-indigo-50 font-body-md text-body-md py-3 px-8 rounded-lg transition-all flex items-center justify-center gap-2">
-<span className="material-symbols-outlined text-sm" data-icon="download">download</span>
-                            Download compressed PDF
-                        </button>
-</div>
-</div>
-</div>
-</section>
-</main>
-
-    
-<Footer />
-</div>
+    <>
+      <StructuredData schema={schema} />
+      <a href="#main" className="rpp-sr-only">
+        Skip to content
+      </a>
+      <main id="main">
+        <section className="rpp-section" style={{ paddingBottom: 0 }}>
+          <div className="rpp-workspace rpp-text-center">
+            <span className="rpp-badge rpp-badge-free">Currently free</span>
+            <h1 className="rpp-display" style={{ marginTop: "var(--rpp-space-3)" }}>
+              Compress PDF Online
+            </h1>
+            <p
+              className="rpp-lead"
+              style={{ marginTop: "var(--rpp-space-3)", maxWidth: "640px", marginInline: "auto" }}
+            >
+              Make your PDF smaller while keeping it readable. Choose a compression level and download.
+            </p>
+          </div>
+        </section>
+        <section className="rpp-section-sm">
+          <div className="rpp-workspace">
+            <CompressTool />
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

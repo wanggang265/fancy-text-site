@@ -1,158 +1,22 @@
-{
-  "project_id": "removepdfpages-v3",
-  "total_screens": 19,
-  "screens": [
-    {
-      "title": "RemovePDFPages Homepage",
-      "name": "removepdfpages-homepage",
-      "route": "/",
-      "dir": "pages/removepdfpages-homepage",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Remove PDF Pages | RemovePDFPages",
-      "name": "remove-pdf-pages-removepdfpages",
-      "route": "/remove-pages",
-      "dir": "pages/remove-pdf-pages-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Merge PDFs Online | RemovePDFPages",
-      "name": "merge-pdf-removepdfpages",
-      "route": "/merge",
-      "dir": "pages/merge-pdf-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Compress PDF Online | RemovePDFPages",
-      "name": "compress-pdf-removepdfpages",
-      "route": "/compress",
-      "dir": "pages/compress-pdf-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Sign PDF Online | RemovePDFPages",
-      "name": "sign-pdf-removepdfpages",
-      "route": "/sign",
-      "dir": "pages/sign-pdf-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Convert PDF to Word Online | RemovePDFPages",
-      "name": "convert-pdf-to-word-removepdfpages",
-      "route": "/convert-to-word",
-      "dir": "pages/convert-pdf-to-word-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Pricing | RemovePDFPages",
-      "name": "pricing-removepdfpages",
-      "route": "/pricing",
-      "dir": "pages/pricing-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Checkout | RemovePDFPages",
-      "name": "checkout-removepdfpages",
-      "route": "/checkout",
-      "dir": "pages/checkout-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Thank You | RemovePDFPages",
-      "name": "purchase-success-removepdfpages",
-      "route": "/success",
-      "dir": "pages/purchase-success-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "FAQ | RemovePDFPages",
-      "name": "faq-removepdfpages",
-      "route": "/faq",
-      "dir": "pages/faq-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Contact & Refund | RemovePDFPages",
-      "name": "contact-refund-removepdfpages",
-      "route": "/contact",
-      "dir": "pages/contact-refund-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Privacy Policy - RemovePDFPages",
-      "name": "privacy-removepdfpages",
-      "route": "/privacy",
-      "dir": "pages/privacy-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Terms of Service - RemovePDFPages",
-      "name": "terms-removepdfpages",
-      "route": "/terms",
-      "dir": "pages/terms-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Refund Policy - RemovePDFPages",
-      "name": "refund-removepdfpages",
-      "route": "/refund",
-      "dir": "pages/refund-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "PDF Tools & Editing Tips | RemovePDFPages Blog",
-      "name": "blog-index-removepdfpages",
-      "route": "/blog",
-      "dir": "pages/blog-index-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "Foxit Alternatives to Consider in 2026 | RemovePDFPages",
-      "name": "blog-foxit-alternative-removepdfpages",
-      "route": "/blog/foxit-alternative",
-      "dir": "pages/blog-foxit-alternative-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "How to Replace an Image in a PDF Without Adobe Acrobat | RemovePDFPages",
-      "name": "blog-replace-image-in-pdf-removepdfpages",
-      "route": "/blog/replace-image-in-pdf",
-      "dir": "pages/blog-replace-image-in-pdf-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "One-Time Payment PDF Editors Compared | RemovePDFPages",
-      "name": "blog-one-time-payment-pdf-editor-removepdfpages",
-      "route": "/blog/one-time-payment-pdf-editor",
-      "dir": "pages/blog-one-time-payment-pdf-editor-removepdfpages",
-      "html": true,
-      "png": true
-    },
-    {
-      "title": "No-Subscription PDF Editors: Free and One-Time-Pay Options | RemovePDFPages",
-      "name": "blog-no-subscription-pdf-editor-removepdfpages",
-      "route": "/blog/no-subscription-pdf-editor",
-      "dir": "pages/blog-no-subscription-pdf-editor-removepdfpages",
-      "html": true,
-      "png": true
-    }
-  ]
-}
+[
+  { "route": "/", "file": "pages/home/code.html", "type": "home", "indexable": true, "title": "RemovePDFPages — Free PDF Tools & Full Editor" },
+  { "route": "/remove-pages", "file": "pages/remove-pages/code.html", "type": "tool-free", "indexable": true, "title": "Remove PDF Pages Online | RemovePDFPages" },
+  { "route": "/merge", "file": "pages/merge/code.html", "type": "tool-free", "indexable": true, "title": "Merge PDFs Online | RemovePDFPages" },
+  { "route": "/compress", "file": "pages/compress/code.html", "type": "tool-free", "indexable": true, "title": "Compress PDF Online | RemovePDFPages" },
+  { "route": "/sign", "file": "pages/sign/code.html", "type": "tool-free", "indexable": true, "title": "Sign PDF Online | RemovePDFPages" },
+  { "route": "/convert-to-word", "file": "pages/convert-to-word/code.html", "type": "tool-paid", "indexable": true, "title": "Convert PDF to Word Online | RemovePDFPages" },
+  { "route": "/pricing", "file": "pages/pricing/code.html", "type": "conversion", "indexable": true, "title": "Pricing | RemovePDFPages" },
+  { "route": "/checkout", "file": "pages/checkout/code.html", "type": "transaction", "indexable": false, "title": "Checkout | RemovePDFPages" },
+  { "route": "/success", "file": "pages/success/code.html", "type": "transaction", "indexable": false, "title": "Thank You | RemovePDFPages" },
+  { "route": "/faq", "file": "pages/faq/code.html", "type": "support", "indexable": true, "title": "FAQ | RemovePDFPages" },
+  { "route": "/contact", "file": "pages/contact/code.html", "type": "support", "indexable": true, "title": "Contact & Refund | RemovePDFPages" },
+  { "route": "/privacy", "file": "pages/privacy/code.html", "type": "legal", "indexable": true, "title": "Privacy Policy - RemovePDFPages" },
+  { "route": "/terms", "file": "pages/terms/code.html", "type": "legal", "indexable": true, "title": "Terms of Service - RemovePDFPages" },
+  { "route": "/refund", "file": "pages/refund/code.html", "type": "legal", "indexable": true, "title": "Refund Policy - RemovePDFPages" },
+  { "route": "/cookie-policy", "file": "pages/cookie-policy/code.html", "type": "legal", "indexable": true, "title": "Cookie Policy - RemovePDFPages" },
+  { "route": "/blog", "file": "pages/blog/code.html", "type": "content", "indexable": true, "title": "PDF Tools & Editing Tips | RemovePDFPages Blog" },
+  { "route": "/blog/foxit-alternative", "file": "pages/blog-foxit-alternative/code.html", "type": "content", "indexable": true, "title": "Foxit Alternatives to Consider in 2026 | RemovePDFPages" },
+  { "route": "/blog/replace-image-in-pdf", "file": "pages/blog-replace-image-in-pdf/code.html", "type": "content", "indexable": true, "title": "How to Replace an Image in a PDF Without Adobe Acrobat | RemovePDFPages" },
+  { "route": "/blog/one-time-payment-pdf-editor", "file": "pages/blog-one-time-payment-pdf-editor/code.html", "type": "content", "indexable": true, "title": "One-Time Payment PDF Editors Compared | RemovePDFPages" },
+  { "route": "/blog/no-subscription-pdf-editor", "file": "pages/blog-no-subscription-pdf-editor/code.html", "type": "content", "indexable": true, "title": "No-Subscription PDF Editors: Free, Budget, and One-Time-Pay Options | RemovePDFPages" }
+]

@@ -1,53 +1,20 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'No-Subscription PDF Editors: Free and One-Time-Pay Options | RemovePDFPages',
-  description: "Published on the RemovePDFPages blog.",
+  title: 'No-Subscription PDF Editors: Free, Budget, and One-Time-Pay Options | RemovePDFPages',
+  description: 'Discover no-subscription PDF editors — free browser tools and low-cost or one-time payment options. Compare features before you choose a monthly plan.',
   alternates: {
     canonical: 'https://removepdfpages.net/blog/no-subscription-pdf-editor',
-  },
-  openGraph: {
-    title: 'No-Subscription PDF Editors: Free and One-Time-Pay Options | RemovePDFPages',
-    description: "Published on the RemovePDFPages blog.",
-    url: 'https://removepdfpages.net/blog/no-subscription-pdf-editor',
-    siteName: 'RemovePDFPages',
-    images: [{ url: 'https://removepdfpages.net/og-home.png', width: 1200, height: 630 }],
-    type: 'website',
   },
 };
 
 export default function Page() {
   return (
-    <div className="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col relative">
-    
-    <main className="flex-grow pt-32 pb-20">
-    <article className="max-w-3xl mx-auto px-margin-desktop">
-    <header className="mb-10">
-    <h1 className="font-display text-3xl md:text-4xl text-primary font-bold mb-4 tracking-tight">No-Subscription PDF Editors: Free and One-Time-Pay Options</h1>
-    <p className="text-sm text-ink-600">Published on the RemovePDFPages blog.</p>
-    </header>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">Free tools for quick tasks</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">Remove pages, merge, compress, and sign PDFs in your browser. No signup and no watermark on the free tools.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">One-time full editors</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">If you need PDF to Word conversion or image replacement, a one-time purchase can cover those features.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">What to watch out for</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">Free tools may have fair-use limits. Paid tools may define “lifetime” narrowly. Read the refund policy before buying.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">Pick the right tool for the job</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">Use free tools for simple edits. Upgrade to a Full Editor when you need conversion or advanced editing.</p>
-    </section>
-    <div className="mt-12 pt-8 border-t border-ink-200">
-    <a className="inline-flex items-center bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary-container transition-colors shadow-sm" href="/pricing">See pricing</a>
-    </div>
-    </article>
-    </main>
-    
-    </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "No-Subscription PDF Editors: Free, Budget, and One-Time-Pay Options", "url": "https://removepdfpages.net/blog/no-subscription-pdf-editor"}'}} />
+
+<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><article className="rpp-section rpp-section-hero"><div className="rpp-container rpp-text-center"><h1 className="rpp-display">No-Subscription PDF Editors: Free, Budget, and One-Time-Pay Options</h1><p className="rpp-article-meta">Published July 29, 2026</p></div></article><section className="rpp-section"><div className="rpp-container"><div className="rpp-article-body"><p>Not everyone wants another subscription. If you only edit PDFs once in a while, a free browser tool, a low monthly plan, or a one-time payment editor may be all you need.</p><h2>Free browser tools</h2><p>Free tools can handle common tasks like removing pages, merging, compressing, and signing. They usually run in your browser, so your files stay on your device.</p><h2>Low monthly plans and one-time payment editors</h2><p>For features like PDF to Word conversion, look for a cancel-anytime monthly plan or a one-time payment license.</p><h2>What to watch out for</h2><ul><li>File size limits and watermarks</li><li>Privacy policies and where files are processed</li><li>Cancellation terms and refund policies</li><li>Whether “one-time” or “lifetime” really means the current version</li><li>Number of devices allowed</li></ul><h2>Conclusion</h2><p>Start with a free tool for simple tasks. If you need more, look for a clear monthly plan or a one-time payment option with a refund policy.</p><div className="rpp-flex" style={{marginTop: 'var(--rpp-space-6)', gap: 'var(--rpp-space-3)', flexWrap: 'wrap'}}><a href="/pricing" className="rpp-btn rpp-btn-primary">Get Full Editor — $19/month Launch Special</a><a href="/remove-pages" className="rpp-btn rpp-btn-secondary">Try Remove Pages</a></div></div></div></section></main>
+
+    </>
   );
 }

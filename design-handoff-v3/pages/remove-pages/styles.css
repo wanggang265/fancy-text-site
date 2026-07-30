@@ -1,0 +1,10 @@
+/* Remove pages specific */
+.rpp-tool-card { min-height: 360px; }
+.rpp-state-section + .rpp-state-section { margin-top: var(--rpp-space-8); }
+
+@media (max-width: 768px) {
+  .rpp-page-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .rpp-page-grid { grid-template-columns: 1fr; }
+}

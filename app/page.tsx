@@ -1,95 +1,20 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'RemovePDFPages - Free PDF Tools. Full Editor for One Price.',
-  description: 'Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word. $29 lifetime, no subscription.',
+  title: 'RemovePDFPages — Free PDF Tools & Full Editor',
+  description: 'Delete pages, merge, compress, and sign PDFs in your browser. Subscribe to the Full Editor from $19/month or buy a one-time license for $59 and convert PDF to Word.',
+  alternates: {
+    canonical: 'https://removepdfpages.net/',
+  },
 };
 
 export default function Page() {
   return (
-    <div className="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col relative bg-dot-grid">
-      <Header />
-<main className="flex-grow pt-space-20 max-w-container-max mx-auto w-full px-margin-desktop">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "WebSite", "name": "RemovePDFPages", "url": "https://removepdfpages.net/", "potentialAction": {"@type": "SearchAction", "target": "https://removepdfpages.net/search?q={search_term_string}", "query-input": "required name=search_term_string"}}'}} />
 
-<section className="py-space-20 grid grid-cols-1 lg:grid-cols-2 gap-gutter-desktop items-center">
-<div className="flex flex-col gap-space-6">
-<h1 className="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-on-surface tracking-tight text-balance break-words">
-                    Free PDF Tools. Full Editor for One Price.
-                </h1>
-<p className="font-body-lead text-body-lead text-on-surface-variant max-w-xl">
-                    Delete pages, merge, compress, and sign PDFs for free. Upgrade once to edit text, replace images, and convert PDF to Word. $29 lifetime, no subscription.
-                </p>
-<div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-space-3">
-<a className="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/checkout">Get Full Editor — $29</a>
-<a className="inline-flex items-center justify-center bg-paper text-primary border border-primary px-6 py-3 rounded shadow-sm hover:shadow-md transition-all font-mono-data text-mono-data" href="/remove-pages">Try Free Tools</a>
-</div>
-<div className="flex flex-col md:flex-row md:flex-wrap gap-x-6 gap-y-2 mt-space-6 font-mono-data text-mono-data text-ink-600 break-words">
-<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Free tools: no signup</span></span>
-<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Full editor: one-time</span></span>
-<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">No subscription, ever</span></span>
-<span className="flex flex-wrap items-center gap-1 min-w-0"><span className="material-symbols-outlined text-secondary flex-shrink-0" style={{fontSize: 18}}>check</span> <span className="break-words min-w-0">Works on all devices</span></span>
-</div>
-</div>
-<div className="relative w-full h-[400px] lg:h-[600px] bg-paper rounded-[28px] border border-ink-200 shadow-sm overflow-hidden flex items-center justify-center">
-<img alt="Illustration" className="object-cover w-full h-full" src="/hero-illustration.png" />
-</div>
-</section>
+<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><section className="rpp-section rpp-section-hero"><div className="rpp-container"><div className="rpp-hero-grid"><div className="rpp-hero-copy"><span className="rpp-badge rpp-badge-free">Free PDF tools in your browser</span><h1 className="rpp-display" style={{marginTop: 'var(--rpp-space-5)'}}>Free PDF Tools in Your Browser</h1><p className="rpp-lead" style={{marginTop: 'var(--rpp-space-4)'}}>Remove pages, merge, compress, and sign PDFs — right in your browser, no signup or watermark. Upgrade to the Full Editor when you need to convert PDF to Word.</p><div className="rpp-hero-actions" style={{marginTop: 'var(--rpp-space-6)'}}><a href="/remove-pages" className="rpp-btn rpp-btn-primary" style={{padding: 'var(--rpp-space-4) var(--rpp-space-6)', fontSize: 'var(--rpp-scale-2)'}}>Try Remove Pages — free</a><a href="/merge" className="rpp-btn rpp-btn-secondary" style={{padding: 'var(--rpp-space-4) var(--rpp-space-6)', fontSize: 'var(--rpp-scale-2)'}}>Try Merge PDFs</a></div><p className="rpp-body-sm" style={{marginTop: 'var(--rpp-space-4)', color: 'var(--rpp-ink-600)'}}>No signup required. Fair-use limits apply.</p></div><div className="rpp-hero-visual"><div className="rpp-hero-card-stack"><div className="rpp-hero-card rpp-hero-card-back"></div><div className="rpp-hero-card rpp-hero-card-front"><div className="rpp-hero-card-top"><div className="rpp-hero-card-dot"></div><div className="rpp-hero-card-dot"></div><div className="rpp-hero-card-dot"></div></div><div className="rpp-hero-card-body"><div className="rpp-hero-card-line w-80"></div><div className="rpp-hero-card-line"></div><div className="rpp-hero-card-line w-60"></div><div className="rpp-hero-card-line w-90"></div></div><div className="rpp-hero-card-badge">-2 pages</div></div></div></div></div><div className="rpp-trust-bar"><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>No signup required</div><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>No watermark on free tools</div><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>Files stay in your browser by default</div><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>Monthly, yearly, or one-time license options</div></div></div></section><section className="rpp-section rpp-section-soft"><div className="rpp-container"><div className="rpp-section-head"><span className="rpp-badge rpp-badge-subtle">Tools</span><h2 className="rpp-heading-2" style={{marginTop: 'var(--rpp-space-3)'}}>Five PDF tools, one simple workflow</h2></div><div className="rpp-tools-grid" style={{marginTop: 'var(--rpp-space-8)'}}><a href="/remove-pages" className="rpp-tool-tile"><div className="rpp-tool-tile-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></div><h3 className="rpp-tool-tile-title">Remove Pages</h3><p className="rpp-tool-tile-desc">Delete pages you don’t need from any PDF.</p><span className="rpp-tool-tile-cta">Use free →</span></a><a href="/merge" className="rpp-tool-tile"><div className="rpp-tool-tile-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 17l5-5-5-5M8 7l-5 5 5 5M13 12H3"></path></svg></div><h3 className="rpp-tool-tile-title">Merge PDFs</h3><p className="rpp-tool-tile-desc">Combine multiple PDFs into one file.</p><span className="rpp-tool-tile-cta">Use free →</span></a><a href="/compress" className="rpp-tool-tile"><div className="rpp-tool-tile-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path><path d="M12 4v12m-4-4l4 4 4-4"></path></svg></div><h3 className="rpp-tool-tile-title">Compress PDF</h3><p className="rpp-tool-tile-desc">Reduce file size while keeping quality acceptable.</p><span className="rpp-tool-tile-cta">Use free →</span></a><a href="/sign" className="rpp-tool-tile"><div className="rpp-tool-tile-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><h3 className="rpp-tool-tile-title">Sign PDF</h3><p className="rpp-tool-tile-desc">Add a handwritten signature to any PDF.</p><span className="rpp-tool-tile-cta">Use free →</span></a><a href="/convert-to-word" className="rpp-tool-tile rpp-tool-tile-highlight"><div className="rpp-tool-tile-badge">Full Editor</div><div className="rpp-tool-tile-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M16 13H8m0 4h8"></path></svg></div><h3 className="rpp-tool-tile-title">Convert to Word</h3><p className="rpp-tool-tile-desc">Turn PDFs into editable Word documents.</p><span className="rpp-tool-tile-cta">Convert with Full Editor →</span></a></div></div></section><section className="rpp-section"><div className="rpp-container"><div className="rpp-feature-block"><div className="rpp-feature-block-copy"><span className="rpp-badge rpp-badge-pro">Upgrade when you need more</span><h2 className="rpp-heading-2" style={{marginTop: 'var(--rpp-space-3)'}}>Get the Full Editor from $19/month</h2><p className="rpp-lead" style={{marginTop: 'var(--rpp-space-3)'}}>Subscribe monthly or yearly, or choose a one-time license. Use on up to 5 personal devices. 14-day refund policy if it’s not right for you.</p><ul className="rpp-feature-list" style={{marginTop: 'var(--rpp-space-5)'}}><li className="rpp-feature-item"><div className="rpp-feature-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg></div><div><div className="rpp-feature-title">Priority processing</div><div className="rpp-feature-desc">Skip the queue for large or complex PDFs.</div></div></li><li className="rpp-feature-item"><div className="rpp-feature-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div><div><div className="rpp-feature-title">Use on up to 5 personal devices</div><div className="rpp-feature-desc">One license or subscription across your devices.</div></div></li><li className="rpp-feature-item"><div className="rpp-feature-icon"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div><div><div className="rpp-feature-title">Convert PDF to Word</div><div className="rpp-feature-desc">10 conversions per month included, with top-ups available.</div></div></li></ul><a href="/pricing" className="rpp-btn rpp-btn-primary" style={{marginTop: 'var(--rpp-space-6)', padding: 'var(--rpp-space-4) var(--rpp-space-6)', fontSize: 'var(--rpp-scale-2)'}}>Get Full Editor — $19/month Launch Special</a></div><div className="rpp-feature-block-card"><div className="rpp-card rpp-text-center" style={{border: '2px solid var(--rpp-indigo)', boxShadow: 'var(--rpp-shadow-lg)'}}><h3 className="rpp-heading-3">Launch Special</h3><div className="rpp-pricing-card-price" style={{justifyContent: 'center', marginTop: 'var(--rpp-space-3)'}}><span className="rpp-pricing-card-old">$29</span><span>$19</span><span className="rpp-pricing-card-unit">/month</span></div><p className="rpp-body-sm" style={{marginTop: 'var(--rpp-space-2)', color: 'var(--rpp-ink-600)'}}>Limited time. May end without notice.</p><a href="/pricing" className="rpp-btn rpp-btn-primary rpp-btn-full" style={{marginTop: 'var(--rpp-space-5)'}}>See all plans</a><p className="rpp-caption" style={{marginTop: 'var(--rpp-space-3)'}}>Yearly plan also available at $99/year.</p></div></div></div></div></section><section className="rpp-section rpp-section-soft"><div className="rpp-container rpp-text-center"><h2 className="rpp-heading-2">Simple, honest pricing</h2><p className="rpp-lead" style={{maxWidth: '560px', margin: 'var(--rpp-space-4) auto 0'}}>Start free. Upgrade only when you need larger files or more conversions. No hidden fees.</p><div className="rpp-flex" style={{justifyContent: 'center', gap: 'var(--rpp-space-4)', marginTop: 'var(--rpp-space-6)', flexWrap: 'wrap'}}><a href="/remove-pages" className="rpp-btn rpp-btn-secondary">Try free</a><a href="/pricing" className="rpp-btn rpp-btn-primary">View pricing</a></div></div></section></main>
 
-<section className="py-space-20">
-<h2 className="font-heading-lg text-heading-lg text-center mb-space-10 text-on-surface break-words text-balance">Choose what you need.</h2>
-<div className="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
-
-<div className="bg-paper p-space-10 rounded-[28px] border border-ink-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-<div className="absolute top-0 right-0 p-space-6">
-<span className="inline-block bg-accent-olive-100 text-accent-olive-700 font-label-caps text-label-caps px-3 py-1 uppercase tracking-wider rounded-none">Free</span>
-</div>
-<div className="w-12 h-12 bg-accent-olive-100 rounded-none flex items-center justify-center mb-space-6">
-<span className="material-symbols-outlined text-accent-olive-700">delete</span>
-</div>
-<h3 className="font-heading-md text-heading-md mb-space-3 text-on-surface">Essential Tools</h3>
-<p className="font-body-md text-body-md text-on-surface-variant">
-                        No signup, no watermark. Delete pages, merge, compress, and sign PDFs directly in your browser.
-                    </p>
-<div className="mt-space-6 border-t border-ink-200 pt-space-6 group-hover:border-accent-olive-100 transition-colors">
-<ul className="space-y-2 font-mono-data text-mono-data text-ink-600">
-<li className="flex items-center gap-2"><span className="material-symbols-outlined text-accent-olive-700" style={{fontSize: 16}}>check</span> Delete Pages</li>
-<li className="flex items-center gap-2"><span className="material-symbols-outlined text-accent-olive-700" style={{fontSize: 16}}>check</span> Merge & Compress</li>
-<li className="flex items-center gap-2"><span className="material-symbols-outlined text-accent-olive-700" style={{fontSize: 16}}>check</span> Basic Signatures</li>
-</ul>
-<a className="mt-space-6 block w-full text-center bg-paper text-primary border border-primary font-mono-data text-mono-data px-4 py-3 rounded shadow-sm hover:shadow-md transition-all" href="/remove-pages">Remove Pages</a>
-</div>
-</div>
-
-<div className="bg-paper p-space-10 rounded-[28px] border border-brand-indigo-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden ring-1 ring-brand-indigo-50 group">
-<div className="absolute top-0 right-0 p-space-6">
-<span className="inline-block bg-brand-indigo-100 text-brand-indigo-900 font-label-caps text-label-caps px-3 py-1 uppercase tracking-wider rounded-none">Pro</span>
-</div>
-<div className="w-12 h-12 bg-brand-indigo-50 rounded-none flex items-center justify-center mb-space-6">
-<span className="material-symbols-outlined text-primary">edit_document</span>
-</div>
-<h3 className="font-heading-md text-heading-md mb-space-3 text-on-surface">Full Editor</h3>
-<p className="font-body-md text-body-md text-on-surface-variant">
-                        One-time unlock. Edit text, replace images, convert to Word, and use on up to 5 devices.
-                    </p>
-<div className="mt-space-6 border-t border-ink-200 pt-space-6 group-hover:border-brand-indigo-100 transition-colors">
-<ul className="space-y-2 font-mono-data text-mono-data text-ink-600">
-<li className="flex items-center gap-2"><span className="material-symbols-outlined text-primary" style={{fontSize: 16}}>check</span> Direct Text Editing</li>
-<li className="flex items-center gap-2"><span className="material-symbols-outlined text-primary" style={{fontSize: 16}}>check</span> Image Replacement</li>
-<li className="flex items-center gap-2"><span className="material-symbols-outlined text-primary" style={{fontSize: 16}}>check</span> PDF to Word/Excel</li>
-</ul>
-</div>
-<div className="mt-space-10">
-<a className="block w-full text-center bg-primary text-on-primary font-mono-data text-mono-data px-4 py-3 rounded shadow-sm hover:shadow-md transition-all" href="/checkout">Buy for $29</a>
-</div>
-</div>
-</div>
-</section>
-</main>
-
-<Footer />
-
-    </div>
+    </>
   );
 }

@@ -5,7 +5,7 @@
 > **目标市场**：US / English  
 > **生效日期**：2026-07-29  
 > **状态**：COPY FREEZE v3 — 设计 / 前端 / 07 实现前必须按本文档执行，不得现场重写价格、CTA 或合规声明  
-> **依据**：`docs/PRD-v3.md` + `docs/pricing-calibration-v3.md` + `docs/compliance-report.md` v2 + `docs/data-contract.md` + `docs/MVP-NOT-DO.md` + `docs/page-matrix.md`  
+> **依据**：`docs/PRD-v3.md` + `docs/pricing-calibration-v3.md` + `docs/compliance-report.md` v3 + `docs/data-contract.md` + `docs/MVP-NOT-DO.md` + `docs/page-matrix.md`  
 > **审查结论**：[GO with NEEDS_REVIEW]
 
 ---
@@ -14,7 +14,7 @@
 
 **[GO with NEEDS_REVIEW]**
 
-本版将 `docs/copy-freeze.md` 从 v2（买断制为主）全面更新为 v3（订阅制为主 + 隐藏买断）。所有付费入口已统一主推 `$19/month Launch Special` / `$99/year` / `$59 one-time license`，$29 仅作为月度 strikethrough 原价，$149 仅作为年度 strikethrough 原价。Stripe 已替换为 Creem 并补充 Merchant of Record / 销售税披露，`/pricing` 与 `/convert-to-word` 已明确额度与 Top-up 文案，`/privacy` / `/terms` / `/refund` 已给出 07 前端落地所需的完整文案段落。
+本版为 05 copy-freeze v3 重跑，基于 `docs/PRD-v3.md` + `docs/pricing-calibration-v3.md` + `docs/compliance-report.md` v3。主要修正：首页 `/` 首屏 Hero Primary CTA 从 `/pricing` 改为 `/remove-pages` 等免费工具入口，首屏不再以付费价格为主导；所有付费入口仍统一主推 `$19/month Launch Special` / `$99/year` / `$59 one-time license`，`$29` 仅作为月度 strikethrough 原价，`$149` 仅作为年度 strikethrough 原价。Stripe 已替换为 Creem 并补充 Merchant of Record / 销售税披露，`/pricing` 与 `/convert-to-word` 已明确额度与 Top-up 文案，`/privacy` / `/terms` / `/refund` / `/cookie-policy` 已给出 07 前端落地所需的完整文案段落。
 
 **仍保留 [待确认] 占位的原因**：
 - Creem 商户账户配置、webhook 状态、目标销售地理范围尚未最终确认；
@@ -56,17 +56,17 @@
 ### 3.1 首页 `/`
 
 #### Title & Meta
-- **Title**：`RemovePDFPages — Free PDF Tools. Full Editor from $19/month.`
+- **Title**：`RemovePDFPages — Free PDF Tools & Full Editor`
 - **Meta Description**：`Delete pages, merge, compress, and sign PDFs in your browser. Subscribe to the Full Editor from $19/month or buy a one-time license for $59 and convert PDF to Word.`
 - **Canonical**：`https://removepdfpages.net/`
 - **Schema**：`WebSite` + `Organization`
 
 #### Hero 文案
-- **H1**：`Free PDF Tools. Full Editor from $19/month.`
-- **Subheadline**：`Remove pages, merge, compress, and sign PDFs — right in your browser. Subscribe from $19/month or $99/year, or choose a one-time license for $59.`
-- **Primary CTA**：`Get Full Editor — $19/month Launch Special`
-- **Secondary CTA**：`Try Free Tools`
-- **CTA 指向**：Primary → `/pricing`；Secondary → `/remove-pages`
+- **H1**：`Free PDF Tools in Your Browser`
+- **Subheadline**：`Remove pages, merge, compress, and sign PDFs — right in your browser, no signup or watermark. Upgrade to the Full Editor when you need to convert PDF to Word.`
+- **Primary CTA**：`Try Remove Pages — free`
+- **Secondary CTA**：`Try Merge PDFs`
+- **CTA 指向**：Primary → `/remove-pages`；Secondary → `/merge`
 
 #### 工具入口文案
 | 工具 | 入口标题 | 入口描述 | 标签 |
@@ -685,6 +685,7 @@
   - `Privacy Policy` → `/privacy`
   - `Terms of Service` → `/terms`
   - `Refund Policy` → `/refund`
+  - `Cookie Policy` → `/cookie-policy`
 
 #### 3.10.4 列 3：Tools
 - **标题**：`Tools`
@@ -711,7 +712,7 @@
 
 ## 4. 法律页文案要求（供 07 前端落地）
 
-> 以下段落基于 `docs/compliance-report.md` v2 第 3 节要求，必须替换当前 `app/privacy/page.tsx`、`app/terms/page.tsx`、`app/refund/page.tsx` 中的对应内容。不得编造具体日期或法律结论；未确认项使用 `[待确认]` 占位。
+> 以下段落基于 `docs/compliance-report.md` v3 第 7 节要求，必须替换当前 `app/privacy/page.tsx`、`app/terms/page.tsx`、`app/refund/page.tsx` 中的对应内容。不得编造具体日期或法律结论；未确认项使用 `[待确认]` 占位。
 
 ### 4.1 `/privacy` — Privacy Policy
 
@@ -842,7 +843,7 @@
 
 | 页面 | 全站禁词 | 页面特定禁词 | 状态 | 备注 |
 |---|---|---|---|---|
-| `/` | 通过 | — | ✅ | H1 明确 `from $19/month`；CTA 统一为 `$19/month Launch Special` |
+| `/` | 通过 | — | ✅ | H1 为 `Free PDF Tools in Your Browser`；Hero Primary CTA 指向 `/remove-pages` 免费工具入口；付费转化 CTA `$19/month Launch Special` 仅出现在首页底部 |
 | `/remove-pages` | 通过 | — | ✅ | 使用 “currently free”，无 unlimited/perfect |
 | `/merge` | 通过 | — | ✅ | 使用 “currently free”，无 unlimited/perfect |
 | `/compress` | 通过 | 通过 | ✅ | 已避免 “compress any file” / “unlimited compression” |
@@ -864,9 +865,9 @@
 
 | 位置 | 问题 | 风险 | 修改建议 |
 |---|---|---|---|
-| `app/page.tsx` | `description` 仍写 `$29 lifetime` / 买断制 | 价格口径不一致 | 按第 3.1 节更新为 `$19/month Launch Special` / 指向 `/pricing` |
+| `app/page.tsx` | `description` 仍写 `$29 lifetime` / 买断制 | 价格口径不一致 | 按第 3.1 节更新为 `$19/month Launch Special` / 免费工具入口 |
 | `app/page.tsx` | 信任条 `One-time payment, no subscription` | 与订阅制主推矛盾 | 改为 `Monthly, yearly, or one-time license options` |
-| `app/page.tsx` | Hero CTA 指向 `/checkout` | 与 pricing 三列 + 隐藏买断结构不符 | 改为指向 `/pricing` |
+| `app/page.tsx` | Hero Primary CTA 指向 `/pricing` 或 `/checkout` | 与首页入口页定位冲突；首屏不得主导付费 | 改为指向 `/remove-pages` 等免费工具入口；付费 CTA 仅保留首页底部 |
 | `app/pricing/page.tsx` | 两列卡片（Free / $19） | 未展示年费和隐藏买断 | 改为三列 + 隐藏买断入口；按第 3.3 节更新 |
 | `app/pricing/page.tsx` | $29 作为独立购买卡片 | 误导性折扣 | 改为 $29 仅作为 Monthly 卡片 strikethrough，$149 作为 Yearly 卡片 strikethrough |
 | `app/checkout/page.tsx` | 仅 $19 / $29 买断选项 | 与订阅制模式不符 | 改为 Monthly / Yearly / One-time 三个选项；默认 Monthly |
@@ -905,17 +906,20 @@
 3. **Convert to Word 额度提示**：免费试用显示 `You have X free conversions left this 30-day period.`；额度用完后显示 Top-up CTA `Buy 10 more conversions for $5` / `$0.50 each`。
 4. **Sign 免责声明**：Hero 区或签名画布上方必须显示 “not a digital certificate signature” 提示。
 5. **Free 工具标签**：使用 “Currently free” badge，不使用 “Free forever”。
-6. **Footer 法律链接**：确保 Legal 列指向 `/privacy` / `/terms` / `/refund`。
+6. **Footer 法律链接**：确保 Legal 列指向 `/privacy` / `/terms` / `/refund` / `/cookie-policy`。
 7. **Footer / 首页 Tagline**：改为 `Free PDF tools in your browser. Subscribe or buy once.`。
-8. **首页 Hero CTA**：改为 `Get Full Editor — $19/month Launch Special`，指向 `/pricing`。
+8. **首页 Hero CTA**：Primary CTA 改为 `Try Remove Pages — free`（或 `/merge` / `/compress` / `/sign` 等免费工具入口），指向 `/remove-pages`；付费转化文案（`Get Full Editor — $19/month Launch Special`）仅允许出现在首页底部转化区。
 
 ### 7.2 前端阶段（07）必须处理
-1. **`Footer.tsx`**：修正法律链接，从 `/contact` 改为 `/privacy` / `/terms` / `/refund`；Tagline 改为订阅/买断口径。
+1. **`Footer.tsx`**：修正法律链接，从 `/contact` 改为 `/privacy` / `/terms` / `/refund` / `/cookie-policy`；Tagline 改为订阅/买断口径。
 2. **`Header.tsx`**：CTA 改为 `Get Full Editor — $19/month Launch Special`。
 3. **`app/page.tsx`**：
-   - Title 改为 `RemovePDFPages — Free PDF Tools. Full Editor from $19/month.`
+   - Title 改为 `RemovePDFPages — Free PDF Tools & Full Editor`（meta description 可保留 `$19/month` / `$99/year` / `$59 one-time` 价格，但首屏文案不主导付费）。
    - Meta description 改为 `$19/month` / `$99/year` / `$59 one-time` 版本。
-   - Hero CTA 改为 `Get Full Editor — $19/month Launch Special`，指向 `/pricing`。
+   - Hero H1 改为 `Free PDF Tools in Your Browser`。
+   - Hero Primary CTA 改为 `Try Remove Pages — free`，指向 `/remove-pages`（或 `/merge` / `/compress` / `/sign` 等免费工具入口）。
+   - Hero Secondary CTA 改为 `Try Merge PDFs`，指向 `/merge`。
+   - 付费 CTA `Get Full Editor — $19/month Launch Special` 仅保留在首页底部转化区，指向 `/pricing`。
    - 信任条调整：改为 `Monthly, yearly, or one-time license options`。
 4. **`app/pricing/page.tsx`**：
    - 改为三列卡片：Free / Monthly $19 / Yearly $99；
@@ -954,7 +958,7 @@
   - `/convert-to-word` 是否出现免费试用提示、Top-up CTA、1 小时 TTL 数据流提示；CTA 是否指向 `/pricing`。
   - `/checkout` 是否出现 Monthly / Yearly / One-time 三个选项、Creem MOR、tax note、14-day refund、10 conversions/month、cancel anytime。
   - `/faq` 是否新增 subscription vs one-time、credits 退款、销售税、Launch Special 边界、One-time license 定义。
-  - Footer 是否指向 `/privacy` / `/terms` / `/refund`；Tagline 是否改为订阅/买断口径。
+  - Footer 是否指向 `/privacy` / `/terms` / `/refund` / `/cookie-policy`；Tagline 是否改为订阅/买断口径。
   - 全站是否仍有 Stripe、$19 one-time、$29 独立购买卡片、unlimited、free forever、perfect、100% accurate、lifetime updates 等。
 - 任何 gap > 0 则 [BLOCKED] 返回 05 Copy Freeze 修正。
 
@@ -965,6 +969,7 @@
 05 Copy Freeze v3 通过前必须满足：
 
 - [x] 主推套餐明确为订阅制（月 $19 / 年 $99）。
+- [x] 首页 `/` Hero Primary CTA 指向免费工具入口（如 `/remove-pages` / `/merge` / `/compress` / `/sign`），首屏不出现付费价格主导。
 - [x] 隐藏买断/lifetime 价格明确（$59），展示位置明确（`/pricing` 卡片下方 + `/checkout` 第三选项）。
 - [x] 免费版功能与付费版功能边界清晰：免费 4 工具；Convert to Word 3 次/30 天；付费计划 10 次/月。
 - [x] Convert to Word 额度策略清晰：3 次/30 天免费 → 10 次/月包含 → Top-up $5/10 或 $0.50/次。
@@ -972,7 +977,7 @@
 - [x] `/sign` 保留 “not a digital certificate signature” 免责声明。
 - [x] 工具页文案与数据流一致：免费工具默认本地处理；Convert to Word 后端临时上传并 1 小时删除。
 - [x] FAQ 中新增关于 subscription vs one-time、credits 退款、销售税、`$19 Launch Special` 边界、One-time license 定义的回答。
-- [x] Footer 法律链接指向 `/privacy` / `/terms` / `/refund`。
+- [x] Footer 法律链接指向 `/privacy` / `/terms` / `/refund` / `/cookie-policy`
 - [x] 博客标题不宣称 `best` / `top`；CTA 统一为 `$19/month Launch Special`。
 - [x] 未确认的项在 Copy Freeze 中保留 `[待确认]` 占位或保守披露。
 - [x] 全站 Stripe 已替换为 Creem，并新增 MOR / tax 披露。
@@ -996,4 +1001,15 @@
 
 ---
 
-**[DONE] docs/copy-freeze.md v3 已更新。状态：[GO with NEEDS_REVIEW]。**
+**[DONE] docs/copy-freeze.md v3 已重跑并更新。**
+- 首页 Hero Primary CTA 已从 `/pricing` 改为 `/remove-pages` 等免费工具入口，首屏不再以付费价格为主导。
+- 全站 CTA 价格口径统一为 `$19/month Launch Special` / `$99/year` / `$59 one-time license`。
+- 合规披露语句（MOR、销售税、设备限制、退款、签名免责、后端数据流、Top-up 等）已落地到各页面文案。
+- 禁用词（`unlimited` / `free forever` / `no limits` / `lifetime updates` / `perfect` / `100% accurate` 等）已清理。
+- 未确认项保留 `[NEEDS_SOURCE_CHECK]` / `[待确认]` 占位，未编造价格或承诺。
+
+**状态：[GO with NEEDS_REVIEW]**
+- 原因：文案框架已满足 05 copy-freeze 验收要求，但上游仍有未确认项（第三方分析工具选型、`$19 Launch Special` 截止日期 / 数量限制、最终后端方案与真实单次成本、订阅到期后状态、Creem 商户配置与 webhooks 等），需 06/07 阶段回填并再次审计。
+- 下游 06 design / 07 frontend 必须按本文档执行首页 Hero CTA、底部转化区、定价口径与合规披露。
+
+**定价数字来源：已由用户 2026-07-29 竞品价格快照覆盖；本报告不构成法律意见。**

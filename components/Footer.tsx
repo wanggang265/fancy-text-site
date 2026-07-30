@@ -1,25 +1,73 @@
 export default function Footer() {
   return (
-    <footer className="w-full px-margin-desktop py-space-20 grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop bg-inverse-surface dark:bg-on-surface text-inverse-on-surface dark:text-surface-bright font-body-sm text-body-sm mt-auto">
-      <div className="col-span-1 md:col-span-1 flex flex-col gap-space-3">
-        <span className="text-heading-sm font-heading-sm text-white">RemovePDFPages</span>
-        <p className="text-ink-300 dark:text-ink-300 mt-2">
-          © 2024 RemovePDFPages. Precision Drafting for PDF Documents.
-        </p>
-      </div>
-      <div className="col-span-1 flex flex-col gap-space-3">
-        <h4 className="font-heading-sm text-heading-sm text-white mb-2">Free Tools</h4>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/remove-pages">Remove Pages</a>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/merge">Merge PDF</a>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/compress">Compress PDF</a>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/sign">Sign PDF</a>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/convert-to-word">Convert to Word</a>
-      </div>
-      <div className="col-span-1 flex flex-col gap-space-3">
-        <h4 className="font-heading-sm text-heading-sm text-white mb-2">Legal</h4>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Terms of Service</a>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Privacy Policy</a>
-        <a className="text-ink-300 dark:text-ink-300 hover:text-white transition-colors" href="/contact">Contact Us</a>
+    <footer className="rpp-footer">
+      <div className="rpp-container">
+        <div className="rpp-footer-grid">
+          <div>
+            <div className="rpp-footer-brand">
+              <span className="rpp-nav-logo-mark">R</span>
+              RemovePDFPages
+            </div>
+            <p className="rpp-footer-tagline">
+              Free PDF tools in your browser. Subscribe or buy once.
+            </p>
+          </div>
+          <div>
+            <h3 className="rpp-footer-col-title">Legal</h3>
+            <a href="/privacy" className="rpp-footer-link">
+              Privacy Policy
+            </a>
+            <a href="/terms" className="rpp-footer-link">
+              Terms of Service
+            </a>
+            <a href="/refund" className="rpp-footer-link">
+              Refund Policy
+            </a>
+            <a href="/cookie-policy" className="rpp-footer-link">
+              Cookie Policy
+            </a>
+          </div>
+          <div>
+            <h3 className="rpp-footer-col-title">Tools</h3>
+            <a href="/remove-pages" className="rpp-footer-link">
+              Remove Pages
+            </a>
+            <a href="/merge" className="rpp-footer-link">
+              Merge PDFs
+            </a>
+            <a href="/compress" className="rpp-footer-link">
+              Compress PDF
+            </a>
+            <a href="/sign" className="rpp-footer-link">
+              Sign PDF
+            </a>
+            <a href="/convert-to-word" className="rpp-footer-link">
+              Convert to Word
+            </a>
+          </div>
+          <div>
+            <h3 className="rpp-footer-col-title">Support</h3>
+            <a href="/pricing" className="rpp-footer-link">
+              Pricing
+            </a>
+            <a href="/faq" className="rpp-footer-link">
+              FAQ
+            </a>
+            <a href="/contact" className="rpp-footer-link">
+              Contact
+            </a>
+            <a href="/blog" className="rpp-footer-link">
+              Blog
+            </a>
+          </div>
+        </div>
+        <div className="rpp-footer-bottom">
+          <p>© 2026 RemovePDFPages. All rights reserved.</p>
+          <p>
+            RemovePDFPages is a standalone tool and is not affiliated with Adobe,
+            Foxit, or any other PDF software company.
+          </p>
+        </div>
       </div>
     </footer>
   );

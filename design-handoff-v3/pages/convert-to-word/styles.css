@@ -1,0 +1,20 @@
+.rpp-quota-bar { margin-bottom: var(--rpp-space-6); }
+.rpp-quota-track { height: 8px; background: var(--rpp-ink-200); border-radius: 999px; overflow: hidden; }
+.rpp-quota-fill { height: 100%; background: var(--rpp-indigo); border-radius: 999px; }
+.rpp-quota-label { margin-top: var(--rpp-space-2); font-size: var(--rpp-scale-0); color: var(--rpp-ink-700); }
+
+.rpp-upsell-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--rpp-space-5);
+}
+.rpp-upsell-card {
+  background: var(--rpp-surface-0);
+  border: 1px solid var(--rpp-ink-200);
+  border-radius: var(--rpp-radius-md);
+  padding: var(--rpp-space-6);
+}
+
+@media (max-width: 768px) {
+  .rpp-upsell-grid { grid-template-columns: 1fr; }
+}

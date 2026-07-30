@@ -13,15 +13,31 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FRONTEND_DIR="${SCRIPT_DIR}"
 WORKERS_DIR="${WORKERS_DIR:-/home/ubuntu/precision-pdf-pages-clone}"
-DESIGN_ZIP="${FRONTEND_DIR}/design-handoff-removepdfpages.zip"
+DESIGN_ZIP="${FRONTEND_DIR}/design-handoff-v3.zip"
+DOMAIN="https://removepdfpages.net"
+
+cd "${FRONTEND_DIR}"
+
+# --- Gate 0: commit SHA ---
+COMMIT_SHA="$(git rev-parse --short HEAD)"
+echo "🔍 Gate 0: commit SHA: ${COMMIT_SHA}"
+
+if [[ "$CHECK_ONLY" != true ]]; then
+  if [[ -n "$(git status --short)" ]]; then
+    echo "❌ Working tree is not clean. Commit or stash changes before deploying."
+    git status --short
+    exit 1
+  fi
+  echo "✅ Working tree clean."
+fi
 
 # Fallback to cache if not present in repo
 if [[ ! -f "${DESIGN_ZIP}" ]]; then
-  DESIGN_ZIP="/home/ubuntu/.hermes/profiles/wangduoyu/cache/documents/doc_709b53ace910_design-handoff-removepdfpages.zip"
+  DESIGN_ZIP="/home/ubuntu/.hermes/profiles/wangduoyu/cache/documents/doc_709b53ace910_design-handoff-v3.zip"
 fi
 
 if [[ ! -f "${DESIGN_ZIP}" ]]; then
-  echo "❌ design handoff ZIP not found. Expected at ${FRONTEND_DIR}/design-handoff-removepdfpages.zip or the cache path."
+  echo "❌ design handoff ZIP not found. Expected at ${FRONTEND_DIR}/design-handoff-v3.zip or the cache path."
   exit 1
 fi
 
@@ -38,11 +54,27 @@ app_dir = os.path.join(frontend_dir, 'app')
 with tempfile.TemporaryDirectory() as tmp:
     with zipfile.ZipFile(zip_path, 'r') as z:
         z.extractall(tmp)
-    mapping_path = os.path.join(tmp, 'route-mapping.json')
+    # find route-mapping.json inside the extracted tree
+    mapping_path = None
+    for root, dirs, files in os.walk(tmp):
+        if 'route-mapping.json' in files:
+            mapping_path = os.path.join(root, 'route-mapping.json')
+            break
+    if not mapping_path:
+        print("❌ route-mapping.json not found in design ZIP")
+        sys.exit(1)
     with open(mapping_path) as f:
         data = json.load(f)
 
-    expected_routes = {s['route'] for s in data['screens']}
+    if isinstance(data, dict) and 'screens' in data:
+        screens = data['screens']
+    elif isinstance(data, list):
+        screens = data
+    else:
+        print("❌ route-mapping.json has unexpected structure")
+        sys.exit(1)
+
+    expected_routes = {s['route'] for s in screens}
 
     # Collect current routes from app/ directory (Next.js app router)
     actual_routes = set()
@@ -66,7 +98,7 @@ with tempfile.TemporaryDirectory() as tmp:
     if missing:
         print('❌ Missing routes (design has them, code does not):')
         for r in missing:
-            title = next((s['title'] for s in data['screens'] if s['route'] == r), '')
+            title = next((s['title'] for s in screens if s['route'] == r), '')
             print(f'   {r}  — {title}')
         print()
 
@@ -85,7 +117,7 @@ with tempfile.TemporaryDirectory() as tmp:
 PY
 
 if [[ "$CHECK_ONLY" == true ]]; then
-  echo "✅ Design handoff gate passed. Check-only mode: skipping build and deploy."
+  echo "✅ Design handoff gate passed. Commit SHA: ${COMMIT_SHA}. Check-only mode: skipping build and deploy."
   exit 0
 fi
 
@@ -100,4 +132,28 @@ if [[ -f /home/ubuntu/.cloudflare/load-cf-token.sh ]]; then
 fi
 npx wrangler deploy
 
-echo "✅ Deployed successfully."
+echo "🌐 Gate N: verifying live URLs..."
+LIVE_URLS=(
+  "${DOMAIN}/"
+  "${DOMAIN}/pricing"
+  "${DOMAIN}/checkout"
+  "${DOMAIN}/remove-pages"
+  "${DOMAIN}/convert-to-word"
+)
+VERIFY_FAILED=false
+for url in "${LIVE_URLS[@]}"; do
+  status=$(curl -s -o /dev/null -w "%{http_code}" "${url}" || true)
+  if [[ "$status" == "200" ]]; then
+    echo "   ✅ ${url} → ${status}"
+  else
+    echo "   ❌ ${url} → ${status}"
+    VERIFY_FAILED=true
+  fi
+done
+
+if [[ "$VERIFY_FAILED" == true ]]; then
+  echo "❌ Live URL verification failed. Deploy may be incomplete or CDN cache stale."
+  exit 1
+fi
+
+echo "✅ Deployed successfully. Commit SHA: ${COMMIT_SHA}"

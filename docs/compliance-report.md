@@ -1,400 +1,441 @@
-     1|# RemovePDFPages — Compliance Report v2
-     2|
-     3|> 项目：removepdfpages.net  
-     4|> 当前阶段：04-compliance（基于 PRD v3 + pricing-calibration-v2.md 方案 A，支付服务商切换为 Creem）  
-     5|> 输入：PRD-v3.md / pricing-calibration-v2.md / data-contract.md / MVP-NOT-DO.md / compliance-report.md（v1） / copy-freeze.md / app/privacy/page.tsx / app/terms/page.tsx / app/refund/page.tsx  
-     6|> 状态：[GO with NEEDS_REVIEW]  
-     7|> 更新日期：2026-07-23（v2.1，Creem MOR 更新）  
-     8|> 执行人：合规审查官（jiancha）
-     9|
-    10|---
-    11|
-    12|## 1. 审查结论
-    13|
-    14|**结论：[GO with NEEDS_REVIEW]**
-    15|
-    16|方案 A（Freemium + lifetime 买断 + 按量 Top-up credits）在商业模式上**不违反** `MVP-NOT-DO.md` 中「不做订阅/月费模式」的条款；核心数据流（免费 4 工具客户端处理、Convert to Word / 后端 fallback 临时上传 TTL 1 小时）与现有 Privacy 披露一致；Lifetime 边界（v1.x）和设备限制（5 台）已在 Terms 中披露。
-    17|
-    18|**但存在 4 个 P0/P1 级待确认/待修改项，必须在 05 Copy Freeze v2 和 07 前端实现前完成：**
-    19|
-    20|1. **Terms 必须新增套餐、额度、销售税、销售地理范围、credits 退款、device_id 等披露**（当前 Terms 未覆盖 PRD v3 方案 A 的关键商业条款）。
-    21|2. **Refund 必须新增 Top-up credits 退款政策**（当前 Refund 只覆盖 Full Editor 14 天退款）。
-    22|3. **Privacy 必须新增 device_id / browser fingerprint + IP hash 及 KV 配额存储的披露**（当前 Privacy 只提到 IP，未提 device_id 或 KV）。
-    23|4. **Creem 配置、目标销售地理范围、$19 Launch Special 截止日期/数量限制、分析工具选型** 仍为 [待确认]，需产品/运营在上线前回填。
-    24|
-    25|在以上法律页修改完成并再次复核前，结论保持 `[GO with NEEDS_REVIEW]`。
-    26|
-    27|> **免责声明**：本报告为合规审查辅助文档，不是法律意见。上线前建议由持有执业资格的律师最终审阅 Terms / Privacy / Refund 内容。
-    28|
-    29|---
-    30|
-    31|## 2. 确认项清单
-    32|
-    33|| 优先级 | 确认项 | 当前状态 | 期望结论 / 建议披露 | 阻塞影响 |
-    34||---|---|---|---|---|
-    35|| P0 | Top-up credits 退款政策 | ⚠️ [待确认] | **推荐方案**：未使用的 credits 可在购买后 14 天内申请退款；已使用的 credits 不可退款；Creem 手续费不退，由用户承担。必须在 Refund 和 Terms 中新增独立条款。 | 若不上线前确定，05/07 无法正确实现 credits 购买/退款逻辑，存在消费者保护争议。 |
-    36|| P0 | Terms / Refund 额度披露 | ❌ 未充分披露 | Terms 必须写明：Full Editor 包含 10 次/月 Convert to Word；免费试用为 3 次/30 天；超出额度按 $0.50/次或 $5/10 次计费。Refund 必须明确 credits 退款政策。 | 未披露额度限制会导致“买断后无限制”的误导性期望，违反 FTC 消费者保护规则。 |
-    37|| P0 | Creem 配置 | ⚠️ [待确认] | Terms 必须披露：美国销售税由 Creem 在购买时自动计算并收取；国际用户可能需自行承担 VAT。需确认 Creem 已开启并配置正确。 | 若未配置税务却收费，可能被各州税务机关追责；若未披露，用户投诉风险高。 |
-    38|| P1 | `device_id` 隐私披露 | ❌ 未披露 | Privacy 必须新增：为限制免费试用额度和设备数量，系统会生成基于浏览器指纹 + IP hash 的 `device_id`，并存储在 KV 中，关联免费试用次数/月度额度/已购 credits。保留期：license 有效期内或免费试用期结束后 30 天。 | 未披露 device_id 采集和存储可能违反 GDPR / CCPA 的透明度要求。 |
-    39|| P1 | 销售地理范围 | ⚠️ [待确认] | **推荐**：Terms 限制服务面向美国用户首发；国际用户自行承担适用法律和税务义务。若开放国际销售，需补充 VAT 和管辖地条款。 | 影响管辖地条款、Creem 配置、Privacy 中 Cookie 同意模态是否必要。 |
-    40|| P1 | $19 Launch Special 边界 | ⚠️ [待确认] | Terms 和 Pricing 必须披露：$19 是限时首发价（Launch Special），可能在无通知的情况下结束并恢复 $29 标准价。具体截止日期或数量限制需产品确认。 | 若宣传“限时”却无边界，可能构成误导性 scarcity claim。 |
-    41|| P2 | 分析工具最终选型 | ⚠️ [待确认] | Privacy 已预留披露位置；选型确定后必须立即更新 Privacy 与 Terms 的第三方服务列表。若使用 Google Analytics，需加入 Cookie 披露和（面向欧盟用户的）同意模态。 | 上线后切换分析工具未更新 Privacy，可能触发隐私合规风险。 |
-    42|
-    43|**维度判定表**
-    44|
-    45|| 维度 | 判定 | 说明 |
-    46||---|---|---|
-    47|| 方案 A 商业模式 | ✅ | 不违反 `MVP-NOT-DO.md`「不做订阅」条款；Top-up 为一次性 credits 购买。 |
-    48|| 数据流一致性 | ✅ | 免费 4 工具客户端处理、Convert to Word 后端 TTL 1 小时与 Privacy 披露一致。 |
-    49|| 定价/额度披露 | ⚠️ | Terms / Privacy 尚未充分披露额度、device_id、销售税等关键信息。 |
-    50|| 退款政策 | ⚠️ | Full Editor 14 天退款已披露；Top-up credits 退款政策待定。 |
-    51|| 第三方服务披露 | ⚠️ | Creem / Resend / Cloudflare 已披露；分析工具、Creem 状态待确认。 |
-    52|
-    53|---
-    54|
-    55|## 3. 必须修改的法律页面段落
-    56|
-    57|### 3.1 `app/privacy/page.tsx`（必须新增/修改）
-    58|
-    59|当前 Privacy 页面缺少 `device_id`、KV 存储、数据保留期、分析工具选型后更新等披露。建议按以下结构新增/修改：
-    60|
-    61|#### 新增第 3.5 节：Device Identifier & Quota Storage
-    62|
-    63|```text
-    64|To enforce free trial limits and license device limits without requiring user accounts, we generate a device identifier (`device_id`) based on a combination of browser characteristics and a one-way hash of your IP address. This identifier is stored in our key-value (KV) database along with your free trial usage count, monthly Convert to Word quota, and any purchased top-up credits. The device_id is not tied to your name, email, or PDF content. We retain this quota data for the duration of your active license, or for 30 days after the free trial period ends if you do not purchase.
-    65|```
-    66|
-    67|#### 修改第 3 节“Data we collect”
-    68|
-    69|增加：
-    70|
-    71|```text
-    72|- Device identifier (browser fingerprint + IP hash) for free trial and device-limit enforcement.
-    73|- Convert to Word usage counts and credit balances stored in our KV database.
-    74|- Email address at checkout and in contact/refund forms.
-    75|- IP address for rate limiting and abuse prevention (retained up to 7 days).
-    76|```
-    77|
-    78|#### 新增第 4.5 节：Data Retention
-    79|
-    80|```text
-    81|- Free-tool PDFs: never uploaded.
-    82|- Backend-processed PDFs (Convert to Word / fallback): deleted within 1 hour.
-    83|- Checkout email and order data: retained for customer service and tax record purposes for at least 6 years or as required by law. Order data is shared with Creem, our Merchant of Record, for tax and compliance purposes.
-    84|- Device identifier and quota data: retained while license is active, or 30 days after free trial ends.
-    85|- Contact form submissions: retained for at least 6 months.
-    86|- Analytics data: retention depends on the selected analytics provider (to be disclosed once finalized).
-    87|```
-    88|
-    89|#### 修改第 4 节“Third parties”
-    90|
-    91|增加 Creem 披露：
-    92|
-    93|```text
-    94|We use Creem (Armitage Labs OÜ, Estonia) as our Merchant of Record (MOR). Creem processes payments, automatically calculates and remits applicable sales tax/VAT/GST based on the buyer's billing address, and handles fraud prevention. We do not store full card numbers. Creem shares order details with us so we can deliver the license key and provide support.
-    95|```
-    96|
-    97|#### 新增第 6 节：Analytics / Cookie Disclosure（待选型后更新）
-    98|
-    99|```text
-   100|We may use analytics to understand how the site is used. The specific provider, whether it uses cookies, and how to opt out will be disclosed here once the provider is selected. Until then, no third-party analytics cookies are placed without this notice being updated.
-   101|```
-   102|
-   103|#### 修改第 5 节“Your rights”
-   104|
-   105|增加：
-   106|
-   107|```text
-   108|Because we do not require accounts, you can request deletion of your checkout email and contact records by emailing support@removepdfpages.com. Device identifiers and quota data are automatically deleted after license expiration or free trial expiry.
-   109|```
-   110|
-   111|---
-   112|
-   113|### 3.2 `app/terms/page.tsx`（必须新增/修改）
-   114|
-   115|当前 Terms 未覆盖方案 A 的套餐、额度、销售税、销售范围、credits、责任限制等。建议新增以下章节：
-   116|
-   117|#### 修改第 2 节“Description of the Service”
-   118|
-   119|```text
-   120|RemovePDFPages provides browser-based PDF tools. The free tools (Remove Pages, Merge, Compress, Sign) are processed locally in your browser by default. Convert PDF to Word and optional backend fallback processing require temporary server-side upload and are deleted within 1 hour. The Full Editor is a one-time license for the current major version (v1.x) and includes 10 Convert to Word conversions per calendar month. Additional conversions may be purchased as top-up credits at $0.50 each or $5 for 10 conversions. Free users may try Convert to Word up to 3 times per 30-day period.
-   121|```
-   122|
-   123|#### 修改第 3 节“Full Editor License”
-   124|
-   125|```text
-   126|The Full Editor license is a one-time purchase for the current major version of RemovePDFPages (v1.x). It includes updates within v1.x but does not guarantee updates for a future major version or new platform. The license may be activated on up to 5 personal devices; we record a device fingerprint at activation to enforce this limit. You may not share, resell, or redistribute your license key. The license is non-transferable except where required by law.
-   127|```
-   128|
-   129|#### 新增第 3.5 节：Top-Up Credits
-   130|
-   131|```text
-   132|Top-up credits are sold in packs of 1 conversion ($0.50) or 10 conversions ($5). Credits are non-transferable and expire only upon use or license revocation. Unused credits may be refunded within 14 days of purchase if requested; used credits are not refundable. Creem processing fees are not refunded on any refund.
-   133|```
-   134|
-   135|#### 新增第 3.6 节：Pricing Changes
-   136|
-   137|```text
-   138|The $19 Launch Special is a limited-time introductory price. We may end the launch period at any time and return to the standard price of $29 without prior notice. Prices displayed at checkout at the time of purchase are the prices that apply to that purchase.
-   139|```
-   140|
-   141|#### 新增第 4.5 节：Sales Tax & Geographic Scope
-   142|
-   143|```text
-   144|All prices are shown in USD. For purchases in the United States, applicable state and local sales tax will be calculated and collected automatically by Creem at checkout. International purchases may be subject to VAT or other local taxes; the buyer is responsible for compliance with local laws. The service is primarily offered to users in the United States; access from other jurisdictions does not create a local presence or obligation beyond these Terms.
-   145|```
-   146|
-   147|#### 修改第 5 节“Refunds”
-   148|
-   149|```text
-   150|Full Editor purchases are eligible for a full refund within 14 days of purchase, no questions asked, by contacting support@removepdfpages.com or through the refund form. Creem processing fees are not refundable. We reserve the right to refuse refunds in cases of abuse, fraud, license redistribution, or after the 14-day window. Top-up credits are refundable only if unused and requested within 14 days of purchase; used credits are not refundable.
-   151|```
-   152|
-   153|#### 新增第 6 节：Acceptable Use & Prohibited Content（保持原有内容并扩展）
-   154|
-   155|```text
-   156|You agree not to use the service to process unlawful, harmful, infringing, or otherwise objectionable content. You may not attempt to circumvent free trial limits, device limits, or rate limits. We may suspend or revoke a license for violations.
-   157|```
-   158|
-   159|#### 新增第 7 节：Governing Law / Dispute Resolution
-   160|
-   161|```text
-   162|These Terms are governed by the laws of the State of Delaware, United States, without regard to conflict of law principles. Any dispute shall be resolved in the state or federal courts located in Delaware.
-   163|```
-   164|
-   165|#### 新增第 8 节：Disclaimer & Limitation of Liability
-   166|
-   167|```text
-   168|The service is provided “as is” and “as available” without warranties of any kind. PDF conversion, compression, and signing results depend on the input file; we do not guarantee perfect output. In no event shall our liability exceed the amount you paid for the service in the 12 months preceding the claim. We are not liable for indirect, incidental, or consequential damages.
-   169|```
-   170|
-   171|---
-   172|
-   173|### 3.3 `app/refund/page.tsx`（必须新增/修改）
-   174|
-   175|当前 Refund 页面只覆盖 Full Editor 14 天退款。需要新增 Top-up credits 退款条款：
-   176|
-   177|#### 新增第 1.5 节：Top-Up Credits Refund
-   178|
-   179|```text
-   180|Top-up credits ("10 conversions for $5" or "$0.50 per conversion") are refundable only if they have not been used and the refund is requested within 14 days of purchase. Once a credit has been consumed for a conversion, it is not refundable. Refunds for unused credits are processed through Creem and may take 5–10 business days to appear on your statement. Creem processing fees are not refunded.
-   181|```
-   182|
-   183|#### 修改第 4 节“Exceptions”
-   184|
-   185|```text
-   186|We reserve the right to deny refunds in cases of abuse, fraud, license key redistribution, or after the 14-day window. Refunds of Full Editor licenses will revoke the associated license key and any unused top-up credits. Creem payment processing fees (3.9% + $0.40 per transaction) are not returned by Creem; we absorb this cost on every refund.
-   187|```
-   188|
-   189|---
-   190|
-   191|## 4. 风险清单更新（与 PRD v3 §11.7 对齐）
-   192|
-   193|| 风险等级 | 类型 | 位置 | 问题描述 | 引用标准 | 修复建议 | 状态 |
-   194||---|---|---|---|---|---|---|
-   195|| 🔴 高 | 买断后成本不可控 | 后端 Convert to Word | 若用户高频使用，10 次/月额度可能无法覆盖成本 | 成本模型 | 严格按 Top-up 计费；上线后监控实际后端成本与使用频次；定价低于成本时触发重审 | 需 07 监控 |
-   196|| 🔴 高 | 文案误导 / 未披露额度 | `/pricing` / `/convert-to-word` / Terms | 若未明确说明“10 次/月”限制，用户可能误解为买断后无限制 | FTC Act §5 | 所有文案必须写明“10 conversions/month included”；Terms 必须披露额度 | 待 05/07 落地 |
-   197|| 🔴 高 | 免费试用滥用 | `/convert-to-word` | 无账户系统，脚本可换 IP 刷免费额度 | 成本控制 | 使用 fingerprint + IP + rate limit；监控异常 device_id；Privacy 披露 device_id 采集 | 待 07 实现 |
-   198|| 🔴 高 | 销售税披露不足 | Terms / Checkout | Creem 配置状态未确认，Terms 未披露销售税 | 各州销售税法规 | 确认 Creem 开启；Terms 新增“自动计算销售税”披露；Checkout 显示预估税费 | 待确认 |
-   199|| 🟡 中 | 价格欺诈 / 误导性折扣 | `/pricing` | $29 与 $19 同时作为独立卡片售卖 | FTC Act §5 | 保持 `$29` 仅作为 strikethrough 原价，`$19` 作为当前价；copy-freeze 已合规 | 05/07 已要求 |
-   200|| 🟡 中 | 退款成本 | `/checkout` / Refund | 14 天无理由退款，每退一单损失 $0.40 Creem 手续费 | Creem 政策 | 在 FAQ / refund 页明确退款条件；监控退款率，>10% 时重审定价 | 已披露 |
-   201|| 🟡 中 | Lifetime 边界 | `/terms` | 买断用户可能期望永久无限制更新 | 合约法 | Terms 已明确 lifetime 指当前主版本 v1.x；继续保留 | 已披露 |
-   202|| 🟡 中 | 设备限制执行 | `/checkout` / Terms | 最多 5 台设备，但无账户系统 | 授权策略 | license key 激活记录设备指纹；Terms 已披露；超限需联系客服 | 已披露，待 07 实现 |
-   203|| 🟡 中 | 订阅方案需修订 NOT-DO | 全局 | 方案 B 订阅模式违反当前 `MVP-NOT-DO.md` | 项目范围 | 当前采用方案 A，不涉及订阅；若未来考虑方案 B，必须先修订 PRD、NOT-DO、copy-freeze | 当前无风险 |
-   204|| 🟡 中 | credits 退款政策 | Terms / Refund | 未使用 credits 是否可退未定 | 消费者保护 | 本报告推荐：未使用 credits 14 天内可退；已使用不可退；需写入 Terms / Refund | 待确认 |
-   205|| 🟡 中 | device_id 隐私披露 | Privacy | 当前 Privacy 未披露 browser fingerprint + IP hash 及 KV 存储 | GDPR / CCPA | Privacy 新增 device_id 说明、用途、保留期 | 待 05/07 落地 |
-   206|| 🟡 中 | 管辖地 / 国际销售 | Terms | 未限制销售地理范围和管辖法律 | 冲突法 | Terms 新增 Delaware 管辖、美国首发、国际用户自负法律义务 | 待确认 |
-   207|| 🟡 中 | $19 Launch Special 边界 | Pricing / Terms / Checkout | 缺少截止日期或数量限制 | FTC 反误导 | 披露“limited time, may end without notice”；产品确认具体边界后回填 | 待确认 |
-   208|| 🟢 低 | 邮件送达 | `/success` | license key 邮件可能进垃圾邮件 | CAN-SPAM | 使用 Resend/Postmark；支持页面提供重发 | 已计划 |
-   209|| 🟢 低 | 分析工具隐私披露 | 全站 | 若启用 Google Analytics 需 Cookie 披露 | GDPR/CCPA/ePrivacy | 选型后更新 Privacy；必要时加入 Cookie 同意模态 | 待确认 |
-   210|| 🟢 低 | 后端 fallback 与用户预期冲突 | 免费工具页面 | 页面文案说“files stay in browser”，但 fallback 会临时上传 | 消费者保护 / 隐私 | 触发后端 fallback 时明确弹窗告知用户并适用 1 小时 TTL | 已要求 |
-   211|| 🟢 低 | 签名法律效力 | `/sign` | 手绘签名不是数字证书签名 | 各州电子签署法 | `/sign` 页面已包含免责声明；copy-freeze 已合规 | 已处理 |
-   212|| 🟢 低 | Footer 法律链接 | `Footer.tsx` | 指向 /contact 而非 /privacy /terms /refund | 导航一致性 | 07 前端阶段必须修正 Footer 链接 | 待 07 落地 |
-   213|
-   214|---
-   215|
-   216|## 5. 给 05 Copy Freeze v2 的禁用词与强制披露要求
-   217|
-   218|### 5.1 必须出现的披露语句（不可省略）
-   219|
-   220|以下语句必须在对应页面或全站文案中出现，05 Copy Freeze v2 必须纳入：
-   221|
-   222|| 位置 | 必须出现的披露语句 | 原因 |
-   223||---|---|---|
-   224|| `/pricing` 卡片 / 对比表 | `Convert PDF to Word: 10 conversions/month included` | 避免买断后无限制误解 |
-   225|| `/pricing` 卡片 / 对比表 | `Extra conversions: $0.50 each or $5 for 10` | 明确 Top-up 价格 |
-   226|| `/pricing` 卡片 | `Launch price for a limited time. Standard price is $29.` | 明确限时首发价 |
-   227|| `/pricing` 卡片 | `One-time payment. No subscription.` | 符合 NOT-DO 和卖点 |
-   228|| `/pricing` 卡片 | `Use on up to 5 personal devices` | 设备限制披露 |
-   229|| `/convert-to-word`（未购买） | `You have X free conversions left this 30-day period.` | 免费试用额度 |
-   230|| `/convert-to-word`（未购买） | `Free users get 3 conversions per 30 days. Full Editor includes 10 per month.` | 额度对比 |
-   231|| `/convert-to-word`（已购买，额度用完） | `You've used your 10 included conversions this month. Buy 10 more for $5 or $0.50 each.` | Top-up 触发 |
-   232|| `/convert-to-word` 数据流提示 | `This tool uses a backend server. Your file is uploaded temporarily and deleted automatically within 1 hour.` | 隐私披露 |
-   233|| `/checkout` | `14-day refund policy. License valid for the current major version.` | 退款 + Lifetime 边界 |
-   234|| `/checkout` | `Payments processed by Creem, our Merchant of Record. We do not store your card details.` | 支付安全 |
-   235|| `/checkout` | `Applicable sales tax, VAT, or GST will be calculated at checkout based on your billing address and remitted by Creem.` | 销售税披露 |
-   236|| `/faq` / 定价区 | `Lifetime means the current major version of RemovePDFPages Full Editor (v1.x).` | Lifetime 边界 |
-   237|| `/faq` / 退款区 | `Creem does not refund payment processing fees. We absorb a $0.40 fee per refund.` | 退款成本披露 |
-   238|| `/refund` | `Top-up credits are refundable only if unused and requested within 14 days.` | credits 退款 |
-   239|| 工具页 / Footer | `RemovePDFPages is a standalone tool and is not affiliated with Adobe, Foxit, or any other PDF software company.` | 避免品牌侵权暗示 |
-   240|| 免费工具页面 | `Currently free. Fair-use limits: 50 MB / 200 pages / 10–20 tasks per hour from the same IP.` | 公平使用限制 |
-   241|| `/sign` | `This is a visual signature image, not a digital certificate signature, and is not legally binding for regulated e-signing requirements.` | 签名法律效力免责声明 |
-   242|| `/convert-to-word` | `Conversion results depend on the original PDF structure; complex layouts may need cleanup.` | 避免“完美转换”承诺 |
-   243|| `/compress` | `Compression results depend on the original PDF. Scanned documents and image-heavy files may compress less than text-based PDFs.` | 避免效果承诺 |
-   244|| 首页 / 定价 | `No signup required` / `No watermark on free tools` / `One-time payment, no subscription` | 信任条 |
-   245|
-   246|### 5.2 全站禁用词（继续执行）
-   247|
-   248|| 禁词 | 风险 | 处理方式 |
-   249||---|---|---|
-   250|| `official` | 品牌侵权/误导 | 禁用 |
-   251|| `guaranteed` | 无法保证效果 | 禁用，改为“we aim to” / “designed to” |
-   252|| `100% accurate` / `perfect` | 转换/压缩无法完美 | 禁用 |
-   253|| `free forever` | 商业模式可能变更 | 禁用，改为“currently free” |
-   254|| `unlimited` / `no limits` | 免费额度有限制 | 禁用，必须明确限制 |
-   255|| `lifetime updates` | 未定义主版本范围 | 禁用，改为“updates for the current major version” |
-   256|| `AI-powered` | 未使用 AI | 禁用 |
-   257|| `open source` | 若不是开源 | 禁用 |
-   258|| `legal signature` / `legally binding` | 仅手绘签名 | 禁用 |
-   259|| `Adobe alternative` / `Foxit alternative` 作为主标题 | 可能引发品牌纠纷 | 博客标题已改为“Alternatives to Consider”，正文中若出现需加“not affiliated with”声明 |
-   260|| `best` / `top` | 博客竞品对比绝对化 | 禁用 |
-   261|| `full editor forever` | Lifetime 边界不清 | 禁用 |
-   262|| `compress any file` / `unlimited compression` | 有 50MB/200页限制 | 禁用 |
-   263|| `perfect conversion` / `100% formatting` | 转换不可能完美 | 禁用 |
-   264|
-   265|### 5.3 05 Copy Freeze v2 必须更新的页面
-   266|
-   267|05 Copy Freeze v2 需在 v1 基础上新增或修订以下页面文案：
-   268|
-   269|1. **`/pricing`**：确保 Full Editor 卡片包含 `10 conversions/month included`、`extra $0.50 each or $5/10`、`limited time launch price`、`up to 5 devices`。
-   270|2. **`/convert-to-word`**：免费试用提示、额度用完提示、Top-up CTA 文案必须准确。
-   271|3. **`/checkout`**：退款条款需包含 credits 退款；销售税披露（确认 Creem 后）。
-   272|4. **`/faq`**：新增/更新关于 credits 退款、销售税、$19 Launch Special 边界的 FAQ。
-   273|5. **`/terms`**（虽然由 04 合规输出内容，但 Copy Freeze 需确保前端展示不遗漏）：核对所有新增条款文案。
-   274|6. **`/privacy`**：确保 device_id、KV 存储、数据保留期等文案在前端完整展示。
-   275|7. **博客文章**：在介绍 Convert to Word 时，不得暗示买断后无限制；CTA 统一为 `$19 Launch Special`。
-   276|
-   277|---
-   278|
-   279|## 6. 下游交接：05 Copy Freeze v2 输入与验收标准
-   280|
-   281|### 6.1 必须读取的输入
-   282|
-   283|05 Copy Freeze v2 必须基于以下文件：
-   284|
-   285|- `docs/PRD-v3.md`（方案 A、额度、转化路径、CTA 统一要求）
-   286|- `docs/pricing-calibration-v2.md`（价格、套餐、文案建议）
-   287|- `docs/compliance-report.md` v2（本报告，含披露语句、禁用词、风险清单）
-   288|- `docs/copy-freeze.md` v1（现有文案基础）
-   289|- `docs/data-contract.md`（数据流、文件边界、API 错误码）
-   290|- `docs/MVP-NOT-DO.md`（范围约束、不做订阅）
-   291|- `app/privacy/page.tsx` / `app/terms/page.tsx` / `app/refund/page.tsx`（法律页当前内容，需按本报告修改）
-   292|
-   293|### 6.2 输出预期
-   294|
-   295|- 更新 `docs/copy-freeze.md` 为 v2，包含：
-   296|  - 所有页面文案中必须出现的披露语句（第 5.1 节）。
-   297|  - 与 PRD v3 一致的额度、价格、CTA 文案。
-   298|  - 新增 `/privacy` / `/terms` / `/refund` 文案修改要求，而不是只由 07 前端修改代码。
-   299|  - 新增关于 credits 退款、$19 Launch Special 边界、销售税的 FAQ 文案。
-   300|  - 确认全站禁用词检查结果。
-   301|
-   302|### 6.3 验收标准
-   303|
-   304|05 Copy Freeze v2 通过前必须满足：
-   305|
-   306|- [ ] 所有付费入口 CTA 统一为 `$19 Launch Special`；$29 仅作为 strikethrough 原价。
-   307|- [ ] `/pricing` 明确展示 `10 conversions/month included`、`extra $0.50 each or $5/10`、`limited time launch price`、`up to 5 devices`。
-   308|- [ ] `/convert-to-word` 明确展示 `3 free conversions per 30 days`（未购买）和 `10 conversions/month included`（已购买）以及 Top-up CTA。
-   309|- [ ] 所有文案避免 `unlimited` / `free forever` / `no limits` / `lifetime updates` / `perfect` / `100% accurate`。
-   310|- [ ] `/sign` 保留 “not a digital certificate signature” 免责声明。
-   311|- [ ] 工具页文案与数据流一致：免费工具默认本地处理；Convert to Word 后端临时上传并 1 小时删除。
-   312|- [ ] FAQ 中新增关于 credits 退款、销售税、$19 Launch Special 边界、Lifetime 定义的回答。
-   313|- [ ] Footer 法律链接指向 `/privacy` / `/terms` / `/refund`。
-   314|- [ ] 博客标题不宣称 `best` / `top`；CTA 统一为 `$19 Launch Special`。
-   315|- [ ] 未确认的 5 项（credits 退款、Creem、销售范围、Launch Special 边界、分析工具）在 Copy Freeze 中保留 `[待确认]` 占位或保守披露。
-   316|
-   317|---
-   318|
-   319|## 7. 待确认项汇总（必须上线前回填）
-   320|
-   321|| # | 待确认项 | 负责方 | 建议 | 阻塞等级 |
-   322||---|---|---|---|---|
-   323|| 1 | Top-up credits 退款政策（未使用 credits 是否可退） | 产品/运营 | 未使用 14 天内可退；已使用不可退 | P0 |
-   324|| 2 | Creem 是否已配置 | 财务/开发 | 必须在美国销售时自动计算销售税 | P0 |
-   325|| 3 | 目标销售地理范围（仅美国 vs 国际） | 产品/运营 | 建议美国首发，国际自负税务义务 | P1 |
-   326|| 4 | $19 Launch Special 截止日期或数量限制 | 产品/运营 | 披露“limited time, may end without notice”；有具体日期后回填 | P1 |
-   327|| 5 | 分析工具最终选型（Google Analytics / Plausible / Vercel Analytics） | 产品/开发 | 选型后立即更新 Privacy 与 Terms | P2 |
-   328|| 6 | 最终后端方案（Workers + WASM / 第三方 API / 自托管）及真实单次成本 | 开发 | 影响成本模型与盈亏监控 | P1（技术） |
-   329|| 7 | 用户实际平均生命周期、月转化率、平均使用频次 | 运营/数据 | 影响定价校准与成本模型 | P2（商业） |
-   330|
-   331|---
-   332|
-   333|## 8. 质量门槛自检
-   334|
-   335|- [x] 法律页与实际数据收集一致（免费工具本地处理；Convert to Word 后端 TTL 1 小时）。
-   336|- [x] 第三方服务（Creem、Resend、Cloudflare）已映射。
-   337|- [x] 方案 A 不违反 `MVP-NOT-DO.md`「不做订阅」条款。
-   338|- [ ] Terms 尚未完全披露额度、销售税、销售范围、credits 退款、device_id（已给出修改要求，待前端实现）。
-   339|- [ ] Refund 尚未披露 Top-up credits 退款政策（已给出修改要求）。
-   340|- [ ] Privacy 尚未披露 device_id、KV 存储、数据保留期（已给出修改要求）。
-   341|- [ ] Footer 法律链接尚未修正（已留给 07 前端）。
-   342|- [ ] Creem 配置、销售地理范围、$19 Launch Special 边界、分析工具选型仍 [待确认]。
-   343|
-   344|---
-   345|
-   346|## 9. 下游交接摘要
-   347|
-   348|### 当前结论
-   349|- **状态**：[GO with NEEDS_REVIEW]
-   350|- **一句话结论**：方案 A 商业模式合规；法律页需按本报告修改额度、退款、销售税、device_id、Lifetime 边界等披露；4 个 P0/P1 项完成后可转 [GO]。
-   351|
-   352|### 本阶段交付物
-   353|- 文件：`docs/compliance-report.md`（v2，本文件）
-   354|- 核心判断：
-   355|  - 方案 A 不违反 `MVP-NOT-DO.md`「不做订阅」约束。
-   356|  - Terms / Refund / Privacy 需要新增具体条款以匹配 PRD v3 方案 A。
-   357|  - 7 个确认项中 4 个仍需产品/运营回填，不能编造。
-   358|- 已确认项：
-   359|  - 数据流（免费 4 工具本地处理；Convert to Word 后端 TTL 1 小时）。
-   360|  - 买断后 Lifetime 边界为 v1.x。
-   361|  - 设备限制为 5 台。
-   362|  - Full Editor 14 天退款政策。
-   363|- 待确认项：见第 7 节。
-   364|
-   365|### 风险
-   366|- **P0**：Terms / Refund / Privacy 未按本报告修改前，存在消费者保护、税务、隐私披露不足的合规风险。
-   367|- **P1**：Creem 配置、销售地理范围、Launch Special 边界待确认。
-   368|- **P2**：分析工具选型、博客发布计划、邮件送达。
-   369|
-   370|### 给下游的最小必要信息
-   371|- **下一阶段**：05 Copy Freeze v2
-   372|- **必须读取**：`docs/PRD-v3.md`、`docs/compliance-report.md` v2、`docs/pricing-calibration-v2.md`、`docs/copy-freeze.md` v1、`docs/data-contract.md`、`docs/MVP-NOT-DO.md`
-   373|- **不能假设**：
-   374|  - 不能假设法律页当前内容已足够；必须按本报告新增/修改。
-   375|  - 不能假设 credits 退款政策已确定；Copy Freeze 必须保留保守披露或待确认占位。
-   376|  - 不能假设 Creem 已配置；税务披露需待确认后更新。
-   377|  - 不能假设 device_id 隐私披露已存在；Privacy 必须新增。
-   378|- **建议 05 Copy Freeze v2 启动 Prompt**：
-   379|
-   380|```text
-   381|请执行 05 Copy Freeze v2。输入：docs/PRD-v3.md + docs/compliance-report.md v2 + docs/pricing-calibration-v2.md + docs/copy-freeze.md v1 + docs/data-contract.md + docs/MVP-NOT-DO.md。要求：
-   382|1. 统一所有付费入口 CTA 为 $19 Launch Special；$29 仅作 strikethrough 原价。
-   383|2. 在 /pricing、/convert-to-word、/faq 中强制出现 compliance-report v2 第 5.1 节的披露语句。
-   384|3. 更新 /privacy /terms /refund 文案要求，确保 device_id、额度、销售税、credits 退款、Lifetime 边界已披露。
-   385|4. 全站禁用词检查必须包含 compliance-report v2 第 5.2 节清单。
-   386|5. 未确认项保留 [待确认] 占位，不要编造具体日期或法律结论。
-   387|6. 输出 docs/copy-freeze.md v2，并给出 [GO] / [GO with NEEDS_REVIEW] / [BLOCKED] 结论。
-   388|```
-   389|
-   390|### 给 07 前端实现的最小必要信息
-   391|- 必须按本报告第 3 节修改 `app/privacy/page.tsx`、`app/terms/page.tsx`、`app/refund/page.tsx`。
-   392|- `/convert-to-word` 必须展示：免费试用剩余次数、已购 license 月度剩余次数、额度用完后的 Top-up CTA（$5/10 conversions 或 $0.50 each）。
-   393|- Footer 法律链接必须修正为 `/privacy`、`/terms`、`/refund`。
-   394|- 工具页触发后端 fallback 时必须明确弹窗告知用户并适用 1 小时 TTL。
-   395|- `/api/convert` 必须实现配额校验（免费 3 次/30 天、已购 10 次/月、已用 credits）；`/api/credits/purchase` 必须实现 Top-up 购买。
-   396|
-   397|---
-   398|
-   399|**[DONE] Compliance Report v2 已完成。状态：[GO with NEEDS_REVIEW]。**
-   400|
+# RemovePDFPages — Compliance Report v3
+
+> 项目：removepdfpages.net  
+> 当前阶段：04-compliance（基于 PRD v3 + pricing-calibration-v3.md，支付服务商 Creem）  
+> 输入：docs/PRD-v3.md / docs/pricing-calibration-v3.md / docs/MVP-NOT-DO.md / docs/copy-freeze.md v3 / docs/data-contract.md v1 / project-control.md / docs/open-items.md / app/privacy/page.tsx / app/terms/page.tsx / app/refund/page.tsx  
+> 状态：**[DONE]**  
+> 更新日期：2026-07-29  
+> 执行人：合规审查官（jiancha）
+
+---
+
+## 1. 审查结论
+
+**结论：[DONE]**
+
+订阅制为主（月度 $19 / 年度 $99）+ 隐藏一次性买断 $59 + Top-up credits 的商业模式与 `MVP-NOT-DO.md` v1（已同步）无冲突；数据流（免费 4 工具客户端处理、Convert to Word / 后端 fallback 临时上传 TTL 1 小时）与 Privacy 披露一致；Terms / Refund / Privacy / Cookie Policy 已按 v3 商业模式重新起草。
+
+**仍保留 4 个 [待确认] 项，在 05 Copy Freeze v3 最终验收和 07 前端实现前需解决或回填：**
+
+1. **退款窗口**：已由用户 2026-07-29 确认为 **14 天**；已同步 PRD 决策变量、`project-control.md` 。
+2. **Creem 配置、目标销售国家/产品类别、webhook 测试状态** [待确认]。
+3. **$19 Launch Special 具体截止日期或数量限制** [待确认]。
+4. **第三方分析工具最终选型** [待确认]。
+5. **最终后端方案（Workers + WASM / 第三方 API / 自托管）及真实单次成本** [待确认]。
+
+> **免责声明**：本报告为合规审查辅助文档，不是法律意见。上线前建议由持有执业资格的律师最终审阅 Terms / Privacy / Refund / Cookie Policy 内容。
+
+---
+
+## 2. 上游输入一致性检查
+
+| 输入 | 版本/状态 | 关键信息 | 一致性 |
+|---|---|---|---|
+| `docs/PRD-v3.md` | [DONE] | 订阅制为主 + 隐藏买断 $59；14 天退款；Creem MOR；5 台设备；10 次/月额度；Top-up | ✅ 已对齐 |
+| `docs/pricing-calibration-v3.md` | [DONE] | 月 $19 / 年 $99 / 买断 $59；14 天退款；Top-up $5/10 或 $0.50/次 | ✅ 已对齐 |
+| `docs/MVP-NOT-DO.md` | v1 已同步 | §2.3 商业模式改为订阅制为主 | ✅ 已对齐 |
+| `docs/copy-freeze.md` | v3 | 已包含 Privacy/Terms/Refund/Cookie 文案段落，但首页 Primary CTA 指向 `/pricing` 与 PRD §8.1 冲突 | ⚠️ 05 copy-freeze 需修正 |
+| `project-control.md` | 2026-07-29 | 已更新为「退款窗 14 天」 | ✅ 已对齐 |
+| `docs/open-items.md` | 2026-07-29 | 04 compliance 已 [GO with NEEDS_REVIEW] | 已更新 |
+| `app/privacy/page.tsx` | 2026-07-21 | 仍写 Stripe；未提 device_id/KV/订阅 | ❌ 待 07 替换 |
+| `app/terms/page.tsx` | 2026-07-21 | 仍写买断 license；未提订阅/Top-up/销售税 | ❌ 待 07 替换 |
+| `app/refund/page.tsx` | 2026-07-21 | 仍写 Stripe；未提 credits/订阅退款 | ❌ 待 07 替换 |
+| `app/cookie-policy/page.tsx` | 不存在 | — | ❌ 需 07 新建 |
+
+---
+
+## 3. 数据清单
+
+| 数据类型 | 来源 | 用途 | 保留期 | 披露位置 |
+|---|---|---|---|---|
+| PDF 文件（免费 4 工具） | 用户上传，浏览器本地处理 | 本地处理 | 不上传 | Privacy §2 |
+| PDF 文件（Convert to Word / fallback） | 用户上传，临时服务器处理 | 后端转换 | ≤ 1 小时自动删除 | Privacy §2 / Terms §2 |
+| `device_id`（浏览器 fingerprint + IP hash） | 浏览器 + 后端生成 | 免费试用额度、设备限制、配额 | 订阅/授权有效期内；免费试用结束后 30 天 | Privacy §3.5 |
+| 免费试用次数 | KV 存储 | 限制 3 次/30 天 | 同上 | Privacy §3.5 |
+| 月度 Convert 额度 / credits 余额 | KV 存储 | 订阅/买断配额管理 | 订阅有效期内；授权结束后 30 天 | Privacy §3.5 |
+| 邮箱地址 | 用户输入 / Creem | 发送 license、客服、退款 | 客服与税务记录 ≥ 6 年或依法 | Privacy §3 / Terms §4.5 |
+| IP 地址 | 网络请求 | 限流、反滥用 | 7 天 | Privacy §3 |
+| 订单信息（Creem） | Creem 回调 | 交付、客服、税务 | 税务记录 ≥ 6 年或依法 | Privacy §4 / Terms §4.5 |
+| 联系/退款表单 | 用户输入 | 客服、退款 | ≥ 6 个月 | Privacy §4.5 |
+| 分析事件 | 待定（Plausible/GA4/CF Web Analytics/PostHog/Clarity） | 产品优化 | 依供应商 | Privacy §6 / Cookie Policy |
+
+---
+
+## 4. 第三方服务映射
+
+| 服务 | 角色 | 共享数据 | 用户退出方式 | 披露位置 |
+|---|---|---|---|---|
+| **Creem** (Armitage Labs OÜ, Estonia) | Merchant of Record；支付、订阅管理、销售税/VAT/GST 自动计算、反欺诈 | 订单详情、邮箱、账单地址、支付信息（我们不存卡号） | 通过 support@removepdfpages.com 取消订阅/请求删除 | Privacy §4 / Terms §4.5 / Refund |
+| **Resend** | 邮件发送（license key、收据、客服） | 邮箱、订单摘要 | 联系我们删除客服记录 | Privacy §4 |
+| **Cloudflare** | 托管、CDN、边缘安全 | 访问日志、IP | 不适用 | Privacy §4 |
+| **分析工具（待确认）** | 访问/行为分析 | 匿名或 Cookie 数据 | 依具体供应商；选型后补充 | Privacy §6 / Cookie Policy |
+
+---
+
+## 5. 风险分级
+
+### P0 / 阻塞
+
+| # | 类型 | 位置 | 问题描述 | 修复建议 | 状态 |
+|---|---|---|---|---|---|
+| 1 | 上游决策冲突 | 退款窗口 | 已由用户 2026-07-29 确认为 **14 天**；已同步 PRD 决策变量、`project-control.md` | 无需修复 | 已解决 |
+
+### P1 / 高
+
+| # | 类型 | 位置 | 问题描述 | 修复建议 |
+|---|---|---|---|---|
+| 1 | 支付服务商披露 | 全部法律页 | 当前 `app/privacy/page.tsx`、`app/refund/page.tsx` 仍写 Stripe | 07 前端按本报告 §7 替换为 Creem |
+| 2 | 订阅/买断/Top-up 条款 | Terms | 当前 Terms 仅描述买断 license，未提订阅、自动续订、取消、额度 | 07 前端按本报告 §7.2 替换 |
+| 3 | 销售税/国际销售 | Terms / Checkout | 需确认 Creem 是否已开启自动计税并明确地理范围 | 产品确认后回填 Terms §4.5 |
+| 4 | device_id 隐私披露 | Privacy | 当前 Privacy 未披露 fingerprint + IP hash 及 KV 存储 | 07 前端按本报告 §7.1 替换 |
+| 5 | 订阅 webhook 缺失 | 后端 | 若未处理 `subscription.cancelled` / `subscription.expired`，用户到期后仍能使用 | 08 后端实现 Creem webhook |
+| 6 | 首页 Primary CTA | `docs/copy-freeze.md` v3 | 当前 copy-freeze v3 将首页 Primary CTA 指向 `/pricing`，与 PRD §8.1「必须指向免费工具入口」冲突 | 05 copy-freeze 重跑时修正：Primary CTA → 免费工具入口；付费 CTA 仅放首页底部 |
+
+### P2 / 中
+
+| # | 类型 | 位置 | 问题描述 | 修复建议 |
+|---|---|---|---|---|
+| 1 | 分析工具选型 | Privacy / Cookie | 未确定 GA4/Plausible/PostHog/Clarity | 选型后更新 Privacy §6 和 Cookie Policy |
+| 2 | Launch Special 边界 | Pricing / Terms | 无具体截止日期或数量限制 | 保守披露 `limited time, may end without notice` |
+| 3 | 后端单次成本 | 成本模型 | 影响 Top-up 定价安全垫 | 08 后端确认后回填 |
+| 4 | 订阅到期状态 | Terms | 是否保留免费 3 次/30 天额度 | 产品确认后回填 Terms §3 |
+| 5 | 数据契约过时 | `docs/data-contract.md` v1 | 仍写 Stripe / 旧授权模型 | 08 后端启动前需重跑或同步 |
+| 6 | 页面矩阵过时 | `docs/page-matrix.md` v1 | 仍写买断制 / Stripe | 05/06/07 阶段需同步更新 |
+
+### P3 / 低
+
+| # | 类型 | 位置 | 问题描述 | 修复建议 |
+|---|---|---|---|---|
+| 1 | 邮件送达 | /success | license/收据邮件可能进垃圾邮件 | 使用 Resend；支持页提供重发 |
+| 2 | Footer 法律链接 | Footer | 当前指向 `/contact` | 07 改为 `/privacy` `/terms` `/refund` `/cookie-policy` |
+| 3 | Sitemap 过期 | `public/sitemap.xml` | 仍包含 `/workspace` | 07/10 阶段移除或 301 |
+
+---
+
+## 6. 法律页 Route Contract
+
+| 路由 | 页面 | 索引 | 备注 |
+|---|---|---|---|
+| `/privacy` | Privacy Policy | yes | 必须存在；07 按本报告 §7.1 替换内容 |
+| `/terms` | Terms of Service | yes | 必须存在；07 按本报告 §7.2 替换内容 |
+| `/refund` | Refund Policy | yes | 必须存在；07 按本报告 §7.3 替换内容 |
+| `/cookie-policy` | Cookie Policy | yes | **新增**；07 按本报告 §7.4 新建 |
+| `/contact` | Contact & Refund | yes | 退款操作入口；保留现有表单结构 |
+| `/faq` | Help & FAQs | yes | 含定价/退款/税务/设备/订阅 FAQ |
+
+**Footer 必须链接**：`/privacy`、`/terms`、`/refund`、`/cookie-policy`。
+
+**Header/Footer 其他合规要求**：
+- 首页 `/` 首屏 Primary CTA 必须指向免费工具入口（PRD §8.1）。
+- 付费转化入口 CTA 统一为 `$19/month Launch Special` / `$99/year` / `$59 one-time license`。
+- 工具页 / Footer 必须包含 `RemovePDFPages is a standalone tool and is not affiliated with Adobe, Foxit, or any other PDF software company.` 声明。
+
+---
+
+## 7. 法律页草稿（供 07 前端替换）
+
+### 7.1 `/privacy` — Privacy Policy
+
+**页面元信息**
+- **Title**：`Privacy Policy - RemovePDFPages`
+- **Meta Description**：`RemovePDFPages privacy policy: how we handle your files, device data, and order information.`
+- **H1**：`Privacy Policy`
+- **Last updated**：`July 29, 2026`
+
+**1. Overview**  
+RemovePDFPages operates removepdfpages.net. This Privacy Policy explains how we handle information when you use our free PDF tools and the Full Editor subscription or one-time license.
+
+**2. Files and PDFs**  
+- **Free tools:** By default, Remove Pages, Merge, Compress, and Sign process your files entirely in your browser. Your PDFs are not uploaded to our servers.  
+- **Convert PDF to Word:** This feature requires server-side processing. Your file is uploaded temporarily and deleted automatically within 1 hour.
+
+**3. Data we collect**  
+- Device identifier (browser fingerprint + IP hash) for free trial and device-limit enforcement.  
+- Convert to Word usage counts and credit balances stored in our KV database.  
+- Email address at checkout and in contact/refund forms.  
+- IP address for rate limiting and abuse prevention (retained up to 7 days).  
+- Billing address, payment details, and order details processed by Creem, our Merchant of Record. We do not store full card numbers.  
+- Subscription status, renewal dates, and cancellation requests processed by Creem. We store a subscription status flag to enforce Convert to Word quotas and access.
+
+**3.5. Device Identifier & Quota Storage**  
+To enforce free trial limits and license device limits without requiring user accounts, we generate a device identifier (`device_id`) based on a combination of browser characteristics and a one-way hash of your IP address. This identifier is stored in our key-value (KV) database along with your free trial usage count, monthly Convert to Word quota, and any purchased top-up credits. The device_id is not tied to your name, email, or PDF content. We retain this quota data for the duration of your active subscription or license, or for 30 days after the free trial period ends if you do not purchase.
+
+**4. Third parties**  
+We use Creem (Armitage Labs OÜ, Estonia) as our Merchant of Record (MOR). Creem processes payments, automatically calculates and remits applicable sales tax/VAT/GST based on the buyer's billing address, and handles fraud prevention. Creem also manages subscription billing, renewals, and cancellations. We do not store full card numbers. Creem shares order details with us so we can deliver the license key and provide support.
+
+We use Resend for license emails and Cloudflare for hosting. We do not sell your data or use your PDFs for training or advertising.
+
+`[待确认：第三方分析工具选型确定后，在此补充具体 provider、Cookie 使用情况、opt-out 方式。]`
+
+**4.5. Data Retention**  
+- Free-tool PDFs: never uploaded.  
+- Backend-processed PDFs (Convert to Word / fallback): deleted within 1 hour.  
+- Checkout email and order data: retained for customer service and tax record purposes for at least 6 years or as required by law. Order data is shared with Creem, our Merchant of Record, for tax and compliance purposes.  
+- Device identifier and quota data: retained while subscription or license is active, or 30 days after free trial ends.  
+- Subscription status and renewal dates: retained while the subscription is active, and for 30 days after cancellation or expiration.  
+- Contact form submissions: retained for at least 6 months.  
+- Analytics data: retention depends on the selected analytics provider `[待确认]`.
+
+**5. Your rights**  
+You can contact us to access, update, or delete your checkout email and contact records by emailing support@removepdfpages.com. Because we do not store free-tool PDFs, there is no PDF content to delete. Device identifiers and quota data are automatically deleted after subscription cancellation, license expiration, or free trial expiry.
+
+**6. Analytics / Cookie Disclosure**  
+We may use analytics to understand how the site is used. The specific provider, whether it uses cookies, and how to opt out will be disclosed here once the provider is selected. Until then, no third-party analytics cookies are placed without this notice being updated. See also our [Cookie Policy](/cookie-policy).
+
+---
+
+### 7.2 `/terms` — Terms of Service
+
+**页面元信息**
+- **Title**：`Terms of Service - RemovePDFPages`
+- **Meta Description**：`RemovePDFPages terms of service, license agreement, subscription terms, and usage policies.`
+- **H1**：`Terms of Service`
+- **Last updated**：`July 29, 2026`
+
+**1. Acceptance**  
+By accessing or using RemovePDFPages, you agree to these Terms of Service. If you do not agree, do not use the Service.
+
+**2. Description of the Service**  
+RemovePDFPages provides browser-based PDF tools. The free tools (Remove Pages, Merge, Compress, Sign) are processed locally in your browser by default. Convert PDF to Word and optional backend fallback processing require temporary server-side upload and are deleted within 1 hour. The Full Editor is available as a monthly subscription ($19/month Launch Special, standard $29/month), an annual subscription ($99/year, standard $149/year), or a one-time license ($59, standard $79) for the current major version (v1.x). All paid plans include 10 Convert to Word conversions per calendar month. Additional conversions may be purchased as top-up credits at $0.50 each or $5 for 10. Free users may try Convert to Word up to 3 times per 30-day period.
+
+**3. Full Editor Subscription & License**  
+The Full Editor is offered as a monthly subscription, an annual subscription, or a one-time license. Subscriptions bill automatically until canceled. You may cancel anytime; cancellation takes effect at the end of the current billing period. The one-time license is a single payment for the current major version of RemovePDFPages (v1.x). It includes updates within v1.x but does not guarantee updates for a future major version or new platform. All paid plans may be activated on up to 5 personal devices; we record a device fingerprint at activation to enforce this limit. You may not share, resell, or redistribute your license key. The license is non-transferable except where required by law.
+
+`[待确认：订阅到期后是否保留免费 3 次/30 天额度，由产品确认后回填。]`
+
+**3.5. Top-Up Credits**  
+Top-up credits are sold in packs of 1 conversion ($0.50) or 10 conversions ($5). Credits are non-transferable and expire only upon use or license/subscription revocation. Unused credits may be refunded within 14 days of purchase if requested; used credits are not refundable. Creem processing fees are not refunded on any refund.
+
+**3.6. Pricing Changes**  
+The $19/month Launch Special and $99/year Launch Special are limited-time introductory prices. We may end the launch period at any time and return to the standard prices of $29/month and $149/year without prior notice. Prices displayed at checkout at the time of purchase are the prices that apply to that purchase. `[待确认：具体截止日期或数量限制由产品确认后回填。]`
+
+**4. Acceptable Use**  
+You agree not to use the service to process unlawful, harmful, infringing, or otherwise objectionable content. You may not attempt to circumvent free trial limits, device limits, or rate limits. We may suspend or revoke a license or subscription for violations.
+
+**4.5. Sales Tax & Geographic Scope**  
+All prices are shown in USD. For purchases in the United States, applicable state and local sales tax will be calculated and collected automatically by Creem at checkout. International purchases may be subject to VAT or other local taxes; the buyer is responsible for compliance with local laws. The service is primarily offered to users in the United States; access from other jurisdictions does not create a local presence or obligation beyond these Terms. `[待确认：若开放国际销售，需补充 VAT 和管辖地条款。]`
+
+**5. Refunds**  
+Full Editor subscriptions and one-time licenses are eligible for a full refund within 14 days of purchase, no questions asked, by contacting support@removepdfpages.com or through the refund form. Creem processing fees are not refundable. We reserve the right to refuse refunds in cases of abuse, fraud, license redistribution, or after the 14-day window. Top-up credits are refundable only if unused and requested within 14 days of purchase; used credits are not refundable.
+
+**6. Governing Law / Dispute Resolution**  
+These Terms are governed by the laws of the State of Delaware, United States, without regard to conflict of law principles. Any dispute shall be resolved in the state or federal courts located in Delaware.
+
+**7. Disclaimer & Limitation of Liability**  
+The service is provided “as is” and “as available” without warranties of any kind. PDF conversion, compression, and signing results depend on the input file; we do not guarantee perfect output. In no event shall our liability exceed the amount you paid for the service in the 12 months preceding the claim. We are not liable for indirect, incidental, or consequential damages.
+
+---
+
+### 7.3 `/refund` — Refund Policy
+
+**页面元信息**
+- **Title**：`Refund Policy - RemovePDFPages`
+- **Meta Description**：`RemovePDFPages refund policy: 14-day refund for Full Editor subscriptions, one-time licenses, and unused top-up credits.`
+- **H1**：`Refund Policy`
+- **Last updated**：`July 29, 2026`
+
+**1. Refund Eligibility**  
+RemovePDFPages offers a 14-day, no-questions-asked refund for all Full Editor subscriptions and one-time licenses. If you are not satisfied, you may request a full refund within 14 days of your purchase date.
+
+**1.5. Top-Up Credits Refund**  
+Top-up credits ("10 conversions for $5" or "$0.50 per conversion") are refundable only if they have not been used and the refund is requested within 14 days of purchase. Once a credit has been consumed for a conversion, it is not refundable. Refunds for unused credits are processed through Creem and may take 5–10 business days to appear on your statement. Creem processing fees are not refunded.
+
+**2. How to Request a Refund**  
+Submit your request through our [Contact page](/contact) or by emailing support@removepdfpages.com. Include your Creem order ID and the email address used during checkout.
+
+**3. Processing Time**  
+Refunds are processed through Creem and usually appear within 5–10 business days, depending on your bank.
+
+**4. Exceptions**  
+We reserve the right to deny refunds in cases of abuse, fraud, license key redistribution, or after the 14-day window. Refunds of subscriptions or licenses will revoke the associated license key and any unused top-up credits. Creem payment processing fees are not returned by Creem; we absorb this cost on every refund.
+
+---
+
+### 7.4 `/cookie-policy` — Cookie Policy（新增）
+
+**页面元信息**
+- **Title**：`Cookie Policy - RemovePDFPages`
+- **Meta Description**：`RemovePDFPages cookie policy: how we use cookies and similar technologies.`
+- **H1**：`Cookie Policy`
+- **Last updated**：`July 29, 2026`
+
+**1. What are cookies**  
+Cookies are small text files placed on your device by websites you visit.
+
+**2. How we use cookies**  
+We do not currently use third-party analytics or advertising cookies. We may use essential cookies required for the service to function, such as security and rate limiting. If we add analytics cookies in the future, we will update this policy and, where required by law (e.g., EU/UK/California), obtain your consent before placing non-essential cookies.
+
+**3. Third-party cookies**  
+We do not currently allow third-party advertising cookies. Any future analytics provider will be listed here once selected.
+
+**4. Managing cookies**  
+You can manage or delete cookies through your browser settings. For more information, visit the help pages of your browser.
+
+**5. Changes**  
+We may update this Cookie Policy from time to time. The latest version will be posted at this page with the updated date.
+
+---
+
+## 8. 全站禁用词 / 高风险表达清单
+
+### 8.1 全站禁用
+
+| 禁词/表达 | 风险 | 处理方式 |
+|---|---|---|
+| `official` | 品牌侵权/误导 | 禁用 |
+| `guaranteed` | 无法保证效果 | 禁用，改为“we aim to” / “designed to” |
+| `100% accurate` / `perfect` | 转换/压缩无法完美 | 禁用 |
+| `free forever` | 商业模式可能变更 | 禁用，改为“currently free” |
+| `unlimited` / `no limits` | 免费额度有限制 | 禁用，必须明确限制 |
+| `lifetime updates` | 未定义主版本范围 | 禁用，改为“updates for the current major version” |
+| `AI-powered` | 未使用 AI | 禁用 |
+| `open source` | 若不是开源 | 禁用 |
+| `legal signature` / `legally binding` | 仅手绘签名 | 禁用 |
+| `best` / `top` | 博客竞品对比绝对化 | 禁用 |
+| `full editor forever` | Lifetime 边界不清 | 禁用 |
+| `compress any file` / `unlimited compression` | 有 50MB/200页限制 | 禁用 |
+| `perfect conversion` / `100% formatting` | 转换不可能完美 | 禁用 |
+| `Adobe alternative` / `Foxit alternative` 作为主标题 | 可能引发品牌纠纷 | 博客标题改为“Alternatives to Consider”，正文加“not affiliated with”声明 |
+
+### 8.2 页面特定禁用
+
+- `/sign`：`legally binding`, `e-signature compliant`, `digital certificate signature`
+- `/convert-to-word`：`perfect conversion`, `100% formatting`, `exact same layout`
+- `/compress`：`compress any file`, `unlimited compression`, `lossless always`
+- `/pricing`：`lifetime updates`, `unlimited conversions`, `free forever`, `$19 one-time`
+
+### 8.3 必须出现的披露语句
+
+以下语句必须在对应页面或全站文案中出现，05 Copy Freeze v3 / 07 前端实现必须纳入：
+
+| 位置 | 必须出现的披露语句 | 原因 |
+|---|---|---|
+| `/pricing` 卡片 / 对比表 | `Convert PDF to Word: 10 conversions/month included` | 避免买断后无限制误解 |
+| `/pricing` 卡片 / 对比表 | `Extra conversions: $0.50 each or $5 for 10` | 明确 Top-up 价格 |
+| `/pricing` 卡片 | `Launch price for a limited time. Standard price is $29/month.` | 明确限时首发价 |
+| `/pricing` 卡片 | `Use on up to 5 personal devices` | 设备限制披露 |
+| `/convert-to-word`（未购买） | `You have X free conversions left this 30-day period.` | 免费试用额度 |
+| `/convert-to-word`（未购买） | `Free users get 3 conversions per 30 days. Full Editor includes 10 per month.` | 额度对比 |
+| `/convert-to-word`（已购买，额度用完） | `You’ve used your 10 included conversions this month. Buy 10 more for $5 or $0.50 each.` | Top-up 触发 |
+| `/convert-to-word` 数据流提示 | `This tool uses a backend server. Your file is uploaded temporarily and deleted automatically within 1 hour.` | 隐私披露 |
+| `/checkout` | `Payments processed by Creem, our Merchant of Record. We do not store your card details.` | 支付安全 |
+| `/checkout` | `Sales tax, VAT, and GST are calculated and collected automatically by Creem based on your location.` | 销售税披露 |
+| `/checkout` | `14-day refund policy. Subscriptions and the one-time license are refundable within 14 days.` | 退款披露（若最终改为 7 天需同步替换） |
+| `/checkout` | `Includes 10 Convert to Word conversions per month.` | 额度披露 |
+| `/faq` / 定价区 | `One-time license means the current major version of RemovePDFPages Full Editor (v1.x).` | Lifetime 边界 |
+| `/faq` / 退款区 | `Creem does not refund payment processing fees. We absorb this cost on every refund.` | 退款成本披露 |
+| `/refund` | `Top-up credits are refundable only if unused and requested within 14 days.` | credits 退款（若最终改为 7 天需同步替换） |
+| 工具页 / Footer | `RemovePDFPages is a standalone tool and is not affiliated with Adobe, Foxit, or any other PDF software company.` | 避免品牌侵权暗示 |
+| 免费工具页面 | `Currently free. Fair-use limits: 50 MB / 200 pages / 10–20 tasks per hour from the same IP.` | 公平使用限制 |
+| `/sign` | `This tool creates a visual signature image on the PDF. It is not a digital certificate signature and is not legally binding for regulated electronic-signing requirements.` | 签名法律效力免责声明 |
+| `/convert-to-word` | `Conversion results depend on the original PDF structure; complex layouts may need cleanup.` | 避免“完美转换”承诺 |
+| `/compress` | `Compression results depend on the original PDF. Scanned documents and image-heavy files may compress less than text-based PDFs.` | 避免效果承诺 |
+| 首页 / 定价 | `No signup required` / `No watermark on free tools` / `Monthly, yearly, or one-time license options` | 信任条 |
+
+---
+
+## 9. QA 合规验收点
+
+### 9.1 法律页内容
+
+- [ ] `/privacy` 内容与本报告 §7.1 一致，特别包含：
+  - [ ] 免费 4 工具不上传
+  - [ ] Convert to Word / fallback 临时上传并 1 小时删除
+  - [ ] device_id 生成与 KV 配额存储披露
+  - [ ] Creem 作为 MOR 披露
+  - [ ] 数据保留期
+- [ ] `/terms` 内容与本报告 §7.2 一致，特别包含：
+  - [ ] 订阅 + 买断 + Top-up 模式
+  - [ ] 自动续订 + 随时取消
+  - [ ] 10 次/月额度 + 3 次/30 天免费试用
+  - [ ] 5 台设备限制
+  - [ ] 14 天退款（或用户确认后的 7 天）
+  - [ ] 销售税/地理范围
+  - [ ] Delaware 管辖
+- [ ] `/refund` 内容与本报告 §7.3 一致，特别包含：
+  - [ ] 14 天退款（或用户确认后的 7 天）
+  - [ ] Top-up credits 退款规则
+  - [ ] Creem 处理费不退
+- [ ] `/cookie-policy` 内容与本报告 §7.4 一致，新增页面
+- [ ] 所有法律页 Last updated 日期一致（建议 2026-07-29 或更晚）
+
+### 9.2 站点范围
+
+- [ ] Footer 法律链接指向 `/privacy`、`/terms`、`/refund`、`/cookie-policy`
+- [ ] 全站无禁用词（扫描清单 §8.1）
+- [ ] `/pricing` 无 $29 独立购买卡片；$29 仅作为 Monthly 原价锚点，$149 仅作为 Yearly 原价锚点
+- [ ] 首页 `/` 首屏 Primary CTA 指向免费工具入口（PRD §8.1）
+- [ ] 付费转化入口 CTA 统一为 `$19/month Launch Special` / `$99/year` / `$59 one-time license`
+- [ ] `/checkout` 展示 Monthly / Yearly / One-time 三个选项，默认 Monthly
+- [ ] `/convert-to-word` 展示免费试用额度、Top-up CTA、1 小时 TTL 提示
+- [ ] `/sign` 显示“not a digital certificate signature”免责声明
+- [ ] 工具页和 Footer 包含“not affiliated with Adobe/Foxit”声明
+
+### 9.3 后端/集成
+
+- [ ] Creem 商户账户、订阅/买断 plan、webhook 已配置并测试
+- [ ] `/api/convert` 配额校验实现（3 次/30 天免费、10 次/月付费、已用 credits）
+- [ ] `/api/subscription/purchase` / `/api/credits/purchase` 实现
+- [ ] 订阅续订/取消/过期 webhook 处理
+- [ ] 临时文件 TTL 1 小时删除
+- [ ] `device_id` 生成与 KV 配额存储实现
+
+---
+
+## 10. 待确认项汇总
+
+| # | 待确认项 | 负责方 | 建议 | 阻塞等级 |
+|---|---|---|---|---|
+| 1 | 退款窗口：7 天 vs 14 天 | 用户/产品 | 本报告按 14 天起草；如改为 7 天需修改 PRD 决策变量并重新冻结 | P0 |
+| 2 | Creem 订阅产品配置、目标销售国家、webhook 状态 | 开发/运营 | 必须在美国/国际销售时自动计税 | P0 |
+| 3 | $19 Launch Special 具体截止日期/数量限制 | 产品/运营 | 保守披露 `may end without notice` | P1 |
+| 4 | 第三方分析工具最终选型 | 产品/开发 | 选型后立即更新 Privacy/Cookie Policy | P2 |
+| 5 | 最终后端方案及真实单次成本 | 开发 | 影响成本模型与盈亏监控 | P1 |
+| 6 | 订阅到期后用户状态（是否保留免费 3 次/30 天额度） | 产品 | 建议保留；需 Terms 确认 | P2 |
+| 7 | 首页 Primary CTA 指向免费工具入口 vs `/pricing` | 产品/文案 | 按 PRD §8.1 应指向免费工具；05 copy-freeze 需修正 | P1 |
+
+---
+
+## 11. 下游交接摘要
+
+### 当前结论
+- **状态**：[GO with NEEDS_REVIEW]
+- **一句话结论**：订阅制商业模式合规；法律页已按 v3 商业模式重新起草；主要阻塞为退款窗口 7 天 vs 14 天的上游冲突，以及 Creem 配置/销售地理范围等 [待确认] 项。
+
+### 本阶段交付物
+- 文件：`/home/ubuntu/fancy-text-site/docs/compliance-report.md` v3
+- 核心判断：
+  - 订阅制为主 + 隐藏买断 $59 与 `MVP-NOT-DO.md` v1 无冲突。
+  - Terms / Privacy / Refund / Cookie Policy 已按 PRD v3 和 pricing v3 更新。
+  - 退款窗口存在上游冲突，需用户确认。
+- 已确认项：
+  - 数据流（免费 4 工具本地处理；Convert to Word 后端 TTL 1 小时）。
+  - 买断后 Lifetime 边界为 v1.x。
+  - 设备限制为 5 台。
+  - 14 天退款政策（待与 7 天冲突解决）。
+  - Top-up credits 退款规则：未使用 14 天内可退，已使用不可退。
+  - 法律页 route contract：新增 `/cookie-policy`。
+- 待确认项：见第 10 节。
+
+### 风险
+- **P0**：退款窗口上游冲突；未解决前不能视为最终合规。
+- **P1**：Creem 配置、销售税、销售地理范围待确认；当前法律页文案已按保守披露处理。
+- **P1**：首页 Primary CTA 与 copy-freeze v3 冲突；05 copy-freeze 需按 PRD §8.1 修正。
+- **P2**：分析工具选型、后端成本、订阅到期状态。
+- **P2**：`docs/data-contract.md` v1 和 `docs/page-matrix.md` v1 仍写旧商业模式；08/05 阶段需同步。
+
+### 给下游的最小必要信息
+- **下一阶段**：05 Copy Freeze v3（已有 v3 但需要基于本报告最终确认）/ 06 design / 07 frontend / 08 backend
+- **必须读取**：`docs/compliance-report.md` v3、`docs/PRD-v3.md`、`docs/pricing-calibration-v3.md`、`docs/copy-freeze.md` v3、`docs/MVP-NOT-DO.md`、`docs/data-contract.md`
+- **不能改动/不能假设**：
+  - 不能假设当前 `app/privacy/page.tsx`、`app/terms/page.tsx`、`app/refund/page.tsx` 已足够；必须按本报告 §7 替换。
+  - 不能假设 7 天退款已被确认；当前 PRD/定价/Refund 页均写 14 天。
+  - 不能假设 Creem 已配置；税务披露需待确认后更新。
+  - 不能假设 device_id 隐私披露已存在。
+  - 不能假设 `/cookie-policy` 已存在；07 需新建。
+  - 不能忽略首页 Primary CTA 冲突；05 copy-freeze 必须按 PRD §8.1 修正为指向免费工具入口。
+- **建议 05/07 启动 Prompt**：见 `docs/copy-freeze.md` v3 第 7 节；特别注意按本报告 §7 替换法律页内容、新增 `/cookie-policy`、修正首页 Primary CTA。
+
+---
+
+**[DONE] Compliance Report v3 已完成。**

@@ -1,0 +1,10 @@
+.rpp-file-list { display: grid; gap: var(--rpp-space-3); }
+.rpp-file-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--rpp-space-3);
+  padding: var(--rpp-space-3) var(--rpp-space-4);
+  background: var(--rpp-surface-100);
+  border: 1px solid var(--rpp-ink-200);
+  border-radius: var(--rpp-radius-md);
+}
+.rpp-file-row .rpp-mono { font-size: var(--rpp-scale-0); color: var(--rpp-ink-800); }

@@ -2,51 +2,18 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - RemovePDFPages',
-  description: "Last updated: July 21, 2026",
+  description: 'RemovePDFPages privacy policy: how we handle your files, device data, and order information.',
   alternates: {
     canonical: 'https://removepdfpages.net/privacy',
-  },
-  openGraph: {
-    title: 'Privacy Policy - RemovePDFPages',
-    description: "Last updated: July 21, 2026",
-    url: 'https://removepdfpages.net/privacy',
-    siteName: 'RemovePDFPages',
-    images: [{ url: 'https://removepdfpages.net/og-home.png', width: 1200, height: 630 }],
-    type: 'website',
   },
 };
 
 export default function Page() {
   return (
-    <div className="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col relative">
-    
-    <main className="flex-grow pt-32 pb-20">
-    <section className="max-w-3xl mx-auto px-margin-desktop">
-    <h1 className="font-display text-4xl md:text-5xl text-primary font-bold mb-2 tracking-tight">Privacy Policy</h1>
-    <p className="text-sm text-ink-600 mb-10">Last updated: July 21, 2026</p>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">1. Overview</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>RemovePDFPages operates removepdfpages.net. This Privacy Policy explains how we handle information when you use our free PDF tools and the Full Editor license.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">2. Files and PDFs</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p><strong>Free tools:</strong> By default, Remove Pages, Merge, Compress, and Sign process your files entirely in your browser. Your PDFs are not uploaded to our servers.</p><p><strong>Convert PDF to Word:</strong> This feature requires server-side processing. Your file is uploaded temporarily and deleted automatically within 1 hour.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">3. Data we collect</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>We collect your email address at checkout to send your license key and provide support. We may also collect IP addresses for rate limiting and abuse prevention.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">4. Third parties</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>We use Stripe for payments and Resend for email. We do not sell your data or use your PDFs for training or advertising.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">5. Your rights</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>You can contact us to access, update, or delete your account information. Because we do not store free-tool PDFs, there is no PDF content to delete.</p></div>
-    </section>
-    </section>
-    </main>
-    
-    </div>
+    <>
+
+<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><section className="rpp-section rpp-section-hero"><div className="rpp-container rpp-text-center"><h1 className="rpp-display">Privacy Policy</h1><span className="rpp-legal-updated">Last updated: July 29, 2026</span></div></section><section className="rpp-section"><div className="rpp-container"><div className="rpp-legal-list"><section className="rpp-legal-section"><h2>1. Overview</h2><p>RemovePDFPages operates removepdfpages.net. This Privacy Policy explains how we handle information when you use our free PDF tools and the Full Editor subscription or one-time license.</p></section><section className="rpp-legal-section"><h2>2. Files and PDFs</h2><p><strong>Free tools:</strong> By default, Remove Pages, Merge, Compress, and Sign process your files entirely in your browser. Your PDFs are not uploaded to our servers.</p><p><strong>Convert PDF to Word:</strong> This feature requires server-side processing. Your file is uploaded temporarily and deleted automatically within 1 hour.</p></section><section className="rpp-legal-section"><h2>3. Data we collect</h2><ul><li>Device identifier (browser fingerprint + IP hash) for free trial and device-limit enforcement.</li><li>Convert to Word usage counts and credit balances stored in our KV database.</li><li>Email address at checkout and in contact/refund forms.</li><li>IP address for rate limiting and abuse prevention (retained up to 7 days).</li><li>Billing address, payment details, and order details processed by Creem, our Merchant of Record. We do not store full card numbers.</li><li>Subscription status, renewal dates, and cancellation requests processed by Creem. We store a subscription status flag to enforce Convert to Word quotas and access.</li></ul></section><section className="rpp-legal-section"><h2>3.5. Device Identifier & Quota Storage</h2><p>To enforce free trial limits and license device limits without requiring user accounts, we generate a device identifier (<code>device_id</code>) based on a combination of browser characteristics and a one-way hash of your IP address. This identifier is stored in our key-value (KV) database along with your free trial usage count, monthly Convert to Word quota, and any purchased top-up credits. The device_id is not tied to your name, email, or PDF content. We retain this quota data for the duration of your active subscription or license, or for 30 days after the free trial period ends if you do not purchase.</p></section><section className="rpp-legal-section"><h2>4. Third parties</h2><p>We use Creem (Armitage Labs OÜ, Estonia) as our Merchant of Record (MOR). Creem processes payments, automatically calculates and remits applicable sales tax/VAT/GST based on the buyer's billing address, and handles fraud prevention. Creem also manages subscription billing, renewals, and cancellations. We do not store full card numbers. Creem shares order details with us so we can deliver the license key and provide support.</p><p>We use Resend for license emails and Cloudflare for hosting. We do not sell your data or use your PDFs for training or advertising.</p></section><section className="rpp-legal-section"><h2>4.5. Data Retention</h2><ul><li>Free-tool PDFs: never uploaded.</li><li>Backend-processed PDFs (Convert to Word / fallback): deleted within 1 hour.</li><li>Checkout email and order data: retained for customer service and tax record purposes for at least 6 years or as required by law. Order data is shared with Creem, our Merchant of Record, for tax and compliance purposes.</li><li>Device identifier and quota data: retained while subscription or license is active, or 30 days after free trial ends.</li><li>Subscription status and renewal dates: retained while the subscription is active, and for 30 days after cancellation or expiration.</li><li>Contact form submissions: retained for at least 6 months.</li><li>Analytics data: retention depends on the selected analytics provider.</li></ul></section><section className="rpp-legal-section"><h2>5. Your rights</h2><p>You can contact us to access, update, or delete your checkout email and contact records by emailing <a href="mailto:support@removepdfpages.net">support@removepdfpages.net</a>. Because we do not store free-tool PDFs, there is no PDF content to delete. Device identifiers and quota data are automatically deleted after subscription cancellation, license expiration, or free trial expiry.</p></section><section className="rpp-legal-section"><h2>6. Analytics / Cookie Disclosure</h2><p>We may use analytics to understand how the site is used. The specific provider, whether it uses cookies, and how to opt out will be disclosed here once the provider is selected. Until then, no third-party analytics cookies are placed without this notice being updated. See also our <a href="/cookie-policy">Cookie Policy</a>.</p></section></div></div></section></main>
+
+    </>
   );
 }

@@ -1,0 +1,22 @@
+.rpp-compress-options { display: grid; gap: var(--rpp-space-3); }
+.rpp-compress-option {
+  display: flex; align-items: flex-start; gap: var(--rpp-space-3);
+  padding: var(--rpp-space-4);
+  border: 1px solid var(--rpp-ink-200);
+  border-radius: var(--rpp-radius-md);
+  cursor: pointer;
+}
+.rpp-compress-option:hover { border-color: var(--rpp-indigo); background: var(--rpp-indigo-light); }
+.rpp-compress-option input { margin-top: 4px; }
+.rpp-compress-option-body { display: grid; gap: var(--rpp-space-1); }
+.rpp-compress-option-title { font-weight: 700; color: var(--rpp-ink-900); }
+.rpp-compress-option-desc { font-size: var(--rpp-scale-0); color: var(--rpp-ink-700); }
+
+.rpp-compress-result {
+  display: flex; align-items: center; justify-content: center; gap: var(--rpp-space-6);
+  flex-wrap: wrap;
+  text-align: center;
+  padding: var(--rpp-space-6);
+  background: var(--rpp-surface-100);
+  border-radius: var(--rpp-radius-md);
+}

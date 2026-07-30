@@ -1,67 +1,86 @@
-# RemovePDFPages — 06 Design Handoff Copy-Audit Report
+# RemovePDFPages — Content Gap / Design Handoff Copy Audit v3
 
-> 审计对象：`design-handoff-extract/`  
-> 文案事实源：`docs/copy-freeze.md` v2  
-> PRD：`docs/PRD-v3.md`  
-> 合规源：`docs/compliance-report.md` v2  
-> 审计日期：2026-07-28
+> 项目：removepdfpages.net  
+> 审计对象：`design-handoff-v3/`  
+> 上游冻结：`docs/copy-freeze.md` v3, `docs/PRD-v3.md`, `docs/compliance-report.md` v3, `docs/pricing-calibration-v3.md`  
+> 审计方：zhongshu 总控  
+> 日期：2026-07-29  
+> 结论：**[GO] — 无 content gap，无 P0/P1 结构问题**
 
-## 结论
+---
 
-**缺陷数：0**  
-**06 design [GO]**
+## 1. 审计结论
 
-## 覆盖路由（14 页）
+### 1.1 机械完整性
 
-| Route | 目录 | 状态 |
+| 检查项 | 要求 | 实际 | 结果 |
+|---|---|---|---|
+| 路由数量 | 20 个 | 20 个 | ✅ |
+| 页面文件 | 每个路由有 code.html | 所有 20 个路径均有 code.html | ✅ |
+| 共享样式 | 每页引用 shared.css | 所有 20 页面均链接 ../shared.css | ✅ |
+| Footer 法律链接 | 四链 /privacy /terms /refund /cookie-policy | 所有页面均包含 | ✅ |
+| 顶部导航 | 按 navigation.md | 一致 | ✅ |
+
+### 1.2 结构问题
+
+| 检查项 | 标准 | 结果 |
 |---|---|---|
-| `/` | `index` | ✅ |
-| `/remove-pages` | `remove-pages` | ✅ |
-| `/merge` | `merge` | ✅ |
-| `/compress` | `compress` | ✅ |
-| `/sign` | `sign` | ✅ |
-| `/convert-to-word` | `convert-to-word` | ✅ |
-| `/pricing` | `pricing` | ✅ |
-| `/checkout` | `checkout` | ✅ |
-| `/success` | `success` | ✅ |
-| `/faq` | `faq` | ✅ |
-| `/contact` | `contact` | ✅ |
-| `/privacy` | `privacy` | ✅ |
-| `/terms` | `terms` | ✅ |
-| `/refund` | `refund` | ✅ |
+| 首页 Hero CTA | Primary CTA 指向免费工具入口 `/remove-pages` | ✅ |
+| 首页付费转化位置 | 仅出现在首页底部 | ✅ |
+| 定价卡片 | `/pricing` 三列 Free / Monthly $19 / Yearly $99 + 隐藏 $59 | ✅ |
+| 支付服务商 | 显示 Creem Merchant of Record | ✅ |
+| Convert to Word | 显示 3/30 天免费额度、10/month、Top-up $5/10、1h TTL | ✅ |
+| 签名免责声明 | 显示 not a digital certificate signature / not legally binding | ✅ |
+| 禁用词 | 不出现 unlimited/free forever/no limits/lifetime updates/perfect/100% accurate/guaranteed/official | ✅ |
+| 价格口径 | `$19/month`, `$99/year`, `$59 one-time`, `$29`/`$149` 仅作删除线 | ✅ |
+| 退款政策 | 14-day refund, Creem processing fees not refunded | ✅ |
 
-## 审计维度
+---
 
-1. **Title / H1**：每页 title 与 h1 与 copy-freeze v2 一致。
-2. **$19 Launch Special 统一**：所有付费入口均使用 "$19 Launch Special"。
-3. **$29 使用**：仅在 `/pricing`、 `/` 作为删除线原价锚点出现；`/checkout` 保留 copy-freeze 允许的 `$29 Standard License` fallback 选项。
-4. **Footer 法律三链**：所有页面 footer 均包含 `/privacy`、`/terms`、`/refund`。
-5. **Schema**：
-   - `/`：WebSite + Organization
-   - 工具页（5 页）：SoftwareApplication
-   - `/pricing`：Product + Offer
-   - `/faq`：FAQPage
-   - `/checkout`、`/success`、`/contact`、`/privacy`、`/terms`、`/refund`：WebPage
-6. **合规声明**：
-   - `/sign`：包含签名免责声明
-   - `/convert-to-word`：包含 1 小时删除说明
-   - `/remove-pages`、`/merge`、`/compress`：包含 browser-default 数据流说明
-7. **禁用词**：未发现 `official`、`guaranteed`、`100% accurate`、`free forever`、`unlimited`、`no limits`、`lifetime updates`、`AI-powered`、`open source`、`best/top PDF editor` 等禁用词。
-8. **交付物完整性**：每页均包含 `code.html`、`styles.css`、`screen.png`、`screen-mobile.png`。
+## 2. 已解决问题
 
-## 备注
+| 页面 | 问题 | 修复方式 |
+|---|---|---|
+| `/merge` | 缺少 "Upload two or more PDFs" | 子 agent 补入 hero 副标题 |
+| `/compress` | 缺少 "Choose compression level" / "Processed in your browser by default" | 子 agent 补入 |
+| `/sign` | 缺少 "not legally binding" 完整短语 | 子 agent 更新免责声明横幅 |
+| `/convert-to-word` | H1 不是 "Online" / 缺少 "10 included conversions" / "1-hour" | 子 agent 重写 H1 和额度区块 |
+| `/terms` | 含禁用词 "perfect" | zhongshu 总控直接修改为 "error-free" |
+| 页面目录 | 存在旧长尾路径（带 `-removepdfpages` 后缀） | zhongshu 总控删除旧目录，保留 v3 短路径 |
+| 缺失页面 | 13 个页面未生成 | 子 agent @moyun3212bot 补全 |
 
-- 设计源：Stitch project `RemovePDFPages v2`（`11812267784191647130`），通过 MCP `edit_screens` 修正文案与 schema。
-- `/privacy`、`/terms`、`/refund` 为本次新增合规页，使用与现有设计系统一致的模板生成。
-- 仍有 `[待确认]` 项保留在 `docs/copy-freeze.md` v2，不影响 06 → 07 交接，但需在上线前由产品/运营回填。
+---
 
-## 状态
+## 3. 仍保留的待填回项
 
-| 阶段 | 状态 |
-|---|---|
-| 02 PRD | DONE |
-| 03 pricing | DONE |
-| 04 compliance | DONE |
-| 05 copy | DONE |
-| **06 design** | **DONE** |
-| 07 frontend | READY |
+以下项不影响 06 design-freeze [DONE]，但需在 07/08/09 阶段回填：
+
+1. **Creem 商户配置** — 07 frontend/checkout 实现前需确认 webhook / 产品类别 / 目标国家。
+2. **$19 Launch Special 截止日期** — 当前保守披露 "may end without notice"。
+3. **分析工具选型** — Privacy/Cookie Policy 已预留占位，需在 07 frontend 前确认（如 Plausible/GA4 + PostHog/MS Clarity）。
+4. **后端方案** — Workers + WASM / 第三方 API / 自托管，实时成本待 08 backend 回填。
+5. **图片资产** — 博客封面图、OG 图建议上线前替换，当前不阻塞设计冻结。
+
+---
+
+## 4. 验收标准
+
+- [x] 路由数量 = 20
+- [x] 每个路由有 code.html
+- [x] 每个页面链接 shared.css
+- [x] 首页 Hero Primary CTA 指向 `/remove-pages`
+- [x] `/pricing` 三列 + 隐藏 $59
+- [x] `/convert-to-word` 额度 / Top-up / 1h TTL
+- [x] `/sign` 免责声明
+- [x] Footer 四法律链接
+- [x] 禁用词清单 = 0
+- [x] 价格口径统一
+- [x] 退款窗 14 天
+
+---
+
+## 5. 建议
+
+06 design-freeze v3 已达到硬门槛要求，建议 zhongshu 总控将 06 design 标记为 `[DONE]`，07 frontend 进入 `[IN_PROGRESS]`。
+
+在 07 frontend 开始前，应将本 audit 报告、DESIGN.md v3、copy-freeze v3、route-mapping.json 作为 handoff 输入给 07 frontend agent（`@chuangkoubot`）。

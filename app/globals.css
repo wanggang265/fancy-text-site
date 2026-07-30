@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../design-handoff-v3/shared.css";
 
 /* Google Fonts: loaded in layout.tsx via <link> tags to match design handoff. */
 

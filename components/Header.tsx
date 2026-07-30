@@ -1,40 +1,230 @@
+"use client";
+
+import { useState } from "react";
+
+const tools = [
+  { href: "/remove-pages", label: "Remove Pages" },
+  { href: "/merge", label: "Merge PDFs" },
+  { href: "/compress", label: "Compress PDF" },
+  { href: "/sign", label: "Sign PDF" },
+  { href: "/convert-to-word", label: "Convert to Word", badge: "Full Editor" },
+];
+
+const support = [
+  { href: "/pricing", label: "Pricing" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Blog" },
+];
+
+const legal = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/refund", label: "Refund Policy" },
+  { href: "/cookie-policy", label: "Cookie Policy" },
+];
+
 export default function Header() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
+
   return (
-    <header className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop py-space-3 max-w-container-max mx-auto bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md">
-      <a className="text-heading-sm font-heading-sm text-primary dark:text-inverse-primary tracking-tight" href="/">RemovePDFPages</a>
-      <nav className="hidden md:flex gap-space-6 items-center">
-        <div className="relative group">
-          <button className="flex items-center gap-1 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md">
-            Tools
-            <span className="material-symbols-outlined transition-transform group-hover:rotate-180" style={{fontSize: 18}}>expand_more</span>
+    <header className="rpp-header">
+      <div className="rpp-container rpp-header-inner">
+        <a href="/" className="rpp-nav-logo" aria-current="page">
+          <span className="rpp-nav-logo-mark">R</span>
+          RemovePDFPages
+        </a>
+
+        <nav className="rpp-nav-links" aria-label="Main">
+          <div
+            className="relative"
+            onMouseEnter={() => setToolsOpen(true)}
+            onMouseLeave={() => setToolsOpen(false)}
+          >
+            <button
+              className="rpp-nav-link flex items-center gap-1"
+              onClick={() => setToolsOpen((v) => !v)}
+              aria-expanded={toolsOpen}
+            >
+              Tools
+              <svg
+                className="w-4 h-4 transition-transform"
+                style={{ transform: toolsOpen ? "rotate(180deg)" : undefined }}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            {toolsOpen && (
+              <div className="absolute top-full left-0 mt-2 w-72 bg-white border border-slate-200 rounded-lg shadow-lg p-2 z-50">
+                {tools.map((t) => (
+                  <a
+                    key={t.href}
+                    href={t.href}
+                    className="flex items-center justify-between px-3 py-2.5 rounded-md hover:bg-slate-50 transition-colors"
+                  >
+                    <span className="text-sm font-medium text-slate-800">
+                      {t.label}
+                    </span>
+                    {t.badge && (
+                      <span className="text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded bg-indigo-100 text-indigo-800">
+                        {t.badge}
+                      </span>
+                    )}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+          <a href="/pricing" className="rpp-nav-link">
+            Pricing
+          </a>
+          <a href="/faq" className="rpp-nav-link">
+            FAQ
+          </a>
+          <a href="/blog" className="rpp-nav-link">
+            Blog
+          </a>
+        </nav>
+
+        <div className="rpp-nav-cta">
+          <a
+            href="/remove-pages"
+            className="rpp-btn rpp-btn-secondary rpp-btn-small"
+          >
+            Try free
+          </a>
+          <a
+            href="/pricing"
+            className="rpp-btn rpp-btn-primary rpp-btn-small"
+          >
+            Get Full Editor — $19/month Launch Special
+          </a>
+        </div>
+
+        <button
+          className="rpp-menu-toggle"
+          aria-label="Open menu"
+          onClick={() => setDrawerOpen(true)}
+        >
+          <svg
+            className="rpp-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
+      </div>
+
+      {drawerOpen && (
+        <div
+          className="fixed inset-0 z-[200] bg-black/40"
+          onClick={() => setDrawerOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+      <div
+        className={`fixed top-0 right-0 h-full w-[300px] max-w-full bg-white shadow-xl z-[201] transform transition-transform duration-200 ${
+          drawerOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        aria-modal="true"
+        role="dialog"
+      >
+        <div className="flex items-center justify-between p-4 border-b border-slate-200">
+          <span className="font-bold text-slate-900">Menu</span>
+          <button
+            aria-label="Close menu"
+            onClick={() => setDrawerOpen(false)}
+            className="p-2 text-slate-600 hover:text-slate-900"
+          >
+            <svg
+              className="w-6 h-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
           </button>
-          <div className="absolute top-full left-0 mt-2 w-80 bg-paper border border-ink-200 rounded-lg shadow-lg p-2 hidden group-hover:block">
-            <a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/remove-pages">
-              <span className="material-symbols-outlined text-accent-olive-700">delete</span>
-              <span className="text-on-surface font-body-md text-body-md">Remove Pages</span>
+        </div>
+        <div className="p-4 space-y-6 overflow-y-auto h-full pb-24">
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">
+              Free Tools
+            </h3>
+            <div className="space-y-1">
+              {tools.slice(0, 4).map((t) => (
+                <a
+                  key={t.href}
+                  href={t.href}
+                  className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50"
+                >
+                  {t.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">
+              Full Editor
+            </h3>
+            <a
+              href="/convert-to-word"
+              className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50"
+            >
+              Convert to Word
             </a>
-            <a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/merge">
-              <span className="material-symbols-outlined text-accent-olive-700">merge_type</span>
-              <span className="text-on-surface font-body-md text-body-md">Merge PDF</span>
+          </div>
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">
+              Support
+            </h3>
+            <div className="space-y-1">
+              {support.map((s) => (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">
+              Legal
+            </h3>
+            <div className="space-y-1">
+              {legal.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50"
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="pt-4 border-t border-slate-200 space-y-3">
+            <a href="/remove-pages" className="rpp-btn rpp-btn-secondary rpp-btn-full">
+              Try free
             </a>
-            <a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/compress">
-              <span className="material-symbols-outlined text-accent-olive-700">compress</span>
-              <span className="text-on-surface font-body-md text-body-md">Compress PDF</span>
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/sign">
-              <span className="material-symbols-outlined text-accent-olive-700">signature</span>
-              <span className="text-on-surface font-body-md text-body-md">Sign PDF</span>
-            </a>
-            <a className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-brand-indigo-50 transition-colors" href="/convert-to-word">
-              <span className="material-symbols-outlined text-accent-olive-700">description</span>
-              <span className="text-on-surface font-body-md text-body-md">Convert to Word</span>
+            <a href="/pricing" className="rpp-btn rpp-btn-primary rpp-btn-full">
+              Get Full Editor — $19/month
             </a>
           </div>
         </div>
-        <a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/pricing">Pricing</a>
-        <a className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors font-body-md text-body-md" href="/faq">FAQ</a>
-      </nav>
-      <a className="hidden md:inline-flex items-center justify-center bg-primary text-on-primary font-mono-data text-mono-data px-4 py-2 rounded shadow-sm hover:shadow-md transition-all" href="/checkout">Buy License — $29</a>
+      </div>
     </header>
   );
 }

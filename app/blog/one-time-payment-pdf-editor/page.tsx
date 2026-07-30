@@ -2,52 +2,19 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'One-Time Payment PDF Editors Compared | RemovePDFPages',
-  description: "Published on the RemovePDFPages blog.",
+  description: 'Compare one-time payment PDF editors. See which tools let you buy once and avoid subscriptions, including the RemovePDFPages one-time license.',
   alternates: {
     canonical: 'https://removepdfpages.net/blog/one-time-payment-pdf-editor',
-  },
-  openGraph: {
-    title: 'One-Time Payment PDF Editors Compared | RemovePDFPages',
-    description: "Published on the RemovePDFPages blog.",
-    url: 'https://removepdfpages.net/blog/one-time-payment-pdf-editor',
-    siteName: 'RemovePDFPages',
-    images: [{ url: 'https://removepdfpages.net/og-home.png', width: 1200, height: 630 }],
-    type: 'website',
   },
 };
 
 export default function Page() {
   return (
-    <div className="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col relative">
-    
-    <main className="flex-grow pt-32 pb-20">
-    <article className="max-w-3xl mx-auto px-margin-desktop">
-    <header className="mb-10">
-    <h1 className="font-display text-3xl md:text-4xl text-primary font-bold mb-4 tracking-tight">One-Time Payment PDF Editors Compared</h1>
-    <p className="text-sm text-ink-600">Published on the RemovePDFPages blog.</p>
-    </header>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">Subscription fatigue</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">Many popular PDF editors charge monthly or yearly fees. A one-time payment can be cheaper if you only need core features.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">What one-time payment usually means</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">Most “lifetime” licenses cover the current major version. Major new platforms or products may need a separate purchase.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">RemovePDFPages approach</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">Free tools handle common tasks in the browser. The $19 Launch Special unlocks Convert to Word and more advanced editing.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">Comparison checklist</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">Check file limits, device limits, refund policy, and whether the tool works offline or requires a server.</p>
-    </section>
-    <div className="mt-12 pt-8 border-t border-ink-200">
-    <a className="inline-flex items-center bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary-container transition-colors shadow-sm" href="/pricing">Get Full Editor</a>
-    </div>
-    </article>
-    </main>
-    
-    </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "One-Time Payment PDF Editors Compared", "url": "https://removepdfpages.net/blog/one-time-payment-pdf-editor"}'}} />
+
+<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><article className="rpp-section rpp-section-hero"><div className="rpp-container rpp-text-center"><h1 className="rpp-display">One-Time Payment PDF Editors Compared</h1><p className="rpp-article-meta">Published July 29, 2026</p></div></article><section className="rpp-section"><div className="rpp-container"><div className="rpp-article-body"><p>PDF subscriptions can add up quickly. If you prefer to buy once, several PDF editors offer one-time payment licenses. Here are a few options to compare.</p><h2>What to compare</h2><ul><li>Price and included features</li><li>Device limits</li><li>Update policies</li><li>Refund terms</li></ul><p>Some “lifetime” licenses are limited to the current version, so read the terms carefully.</p><h2>Browser-based options</h2><p>Browser-based tools are convenient because they don’t require installation. They work well for tasks like converting PDF to Word, removing pages, or compressing files.</p><h2>Desktop one-time options</h2><p>Desktop editors often have more advanced features but may cost more and require installation on each device.</p><h2>Honest caveat</h2><p>No single PDF editor is right for everyone. Your choice depends on your file types, editing frequency, and whether you need offline access.</p><h2>Conclusion</h2><p>If you want a simple, no-subscription option for PDF editing and conversion, a one-time payment browser tool can be a good fit.</p><div className="rpp-flex" style={{marginTop: 'var(--rpp-space-6)', gap: 'var(--rpp-space-3)', flexWrap: 'wrap'}}><a href="/pricing" className="rpp-btn rpp-btn-primary">Get Full Editor — $19/month Launch Special</a><a href="/remove-pages" className="rpp-btn rpp-btn-secondary">Try free PDF tools</a></div></div></div></section></main>
+
+    </>
   );
 }

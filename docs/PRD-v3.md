@@ -62,7 +62,7 @@
 | 6 | 设计 handoff 的 11 个路由作为路由合约基础 | `route-mapping.json` | 路由合约必须与之一一对应 |
 | 7 | 移除 `/workspace` | 该路由不在 design handoff 中，已被删除 | sitemap 与重导向需处理 |
 | 8 | 增加 blog 内容矩阵 | `docs/keyword-research-v1.md` 提供 4 个 SEMRUSH 验证的 blog 主题 | 路由合约与页面矩阵需更新 |
-| 9 | 定价策略：主推订阅制月度 $19/month Launch Special + 年度 $99/year，隐藏一次性买断 $59 One-time License；$29 仅作月度原价锚点，$149 仅作年度原价锚点 | `docs/pricing-calibration-v3.md` | 博客、定价页、工具页付费转化入口 CTA 统一为 `$19/month Launch Special` / `$99/year` / `$59 one-time license`；首页 `/` 是工具入口页，其首屏 Primary CTA 必须指向免费工具入口，`$19 Launch Special` 仅允许出现在首页底部转化区 |
+| 9 | 定价策略：主推订阅制月度 $19/month Launch Special + 年度 $99/year，隐藏一次性买断 $59 One-time License；$29 仅作月度原价锚点，$149 仅作年度原价锚点 | `docs/pricing-calibration-v3.md` | 博客、定价页、工具页付费转化入口 CTA 统一为 `$19/month Launch Special` / `$99/year` / `$59 one-time license`；首页 `/` 首屏 Primary CTA 指向 `/pricing`，Secondary CTA 指向免费工具入口 |
 | 10 | 数据流与处理架构：免费 4 工具客户端处理；Convert to Word / 后端 fallback 临时上传，TTL 1 小时 | `docs/compliance-report.md` + `docs/data-contract.md` | Privacy / Terms 与实际数据流一致 |
 | 11 | 退款、税务、授权：14 天退款，订阅可随时取消，Creem 作为 MOR 自动处理销售税/VAT/GST，最多 5 台设备，设备指纹 | `docs/compliance-report.md` v2 + `docs/pricing-calibration-v3.md` | `/refund`、`/terms` 已填充；Footer 链接需修正 |
 | 12 | Convert to Word 引入免费试用额度与 Top-up credits | `docs/pricing-calibration-v3.md` | 后端需新增订阅状态校验、配额系统、credits 购买接口；前端需展示额度 |
@@ -482,4 +482,33 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 
 *本 PRD v3 已合并 `docs/pricing-calibration-v3.md`，形成待合规审查与 Copy Freeze v3 的产品定义；分析工具、税务配置、销售范围、credits 退款政策、订阅 webhook 确认后进入 v3 Freeze。*
 
-[DONE] 定价与商业模式已按 pricing-calibration-v3 更新。
+[DONE] 定价与商业模式已按 `docs/pricing-calibration-v3.md` 更新；竞品价格已由用户提供 2026-07-29 快照覆盖；$59 One-time License 隐藏方案已由用户 2026-07-29 确认（选项 A）。
+
+---
+
+## 12. 决策变量（变更时只改这里）
+
+|变量 | 当前值 | 影响文档 | 最后变更 |
+|---|---|---|---|---|
+| `pricing_model` | `subscription + hidden_lifetime` | pricing, copy-freeze, PRD, design, backend | 2026-07-29 |
+| `launch_price_monthly` | `$19/month` | copy-freeze, pricing page, checkout, CTA | 2026-07-29 |
+| `anchor_price_monthly` | `$29/month` | pricing page, checkout | 2026-07-29 |
+| `launch_price_yearly` | `$99/year` | copy-freeze, pricing page, checkout, CTA | 2026-07-29 |
+| `anchor_price_yearly` | `$149/year` | pricing page, checkout | 2026-07-29 |
+| `launch_price_onetime` | `$59` | pricing page, checkout, hidden CTA | 2026-07-29 |
+| `anchor_price_onetime` | `$79` | pricing page, checkout | 2026-07-29 |
+| `free_trial_mode` | `freemium_direct` | copy-freeze, PRD, backend | 2026-07-29 |
+| `convert_word_free_quota` | `3/30 days` | PRD, copy-freeze, backend | 2026-07-29 |
+| `convert_word_paid_quota` | `10/month` | PRD, copy-freeze, backend | 2026-07-29 |
+| `topup_credits` | `$5/10 conversions` | PRD, copy-freeze, backend, checkout | 2026-07-29 |
+| `refund_window` | `14 days` | compliance, terms, refund page | 2026-07-29 |
+| `payment_provider` | `Creem` | PRD, compliance, backend, checkout | 2026-07-29 |
+| `tax_strategy` | `Creem Tax` | compliance, backend, checkout | 2026-07-29 |
+| `device_limit` | `5 devices` | PRD, terms, backend | 2026-07-29 |
+| `free_tool_limits` | `50 MB / 200 pages / 10-20 per hour per IP` | PRD, copy-freeze, backend | 2026-07-29 |
+
+**变更流程：**
+1. 修改本表。
+2. 标注所有受影响文档。
+3. 回退到最早受影响阶段，重新走闸。
+4. 禁止 scattered patch（不在 PRD 以外的任何文档直接改变商业模式或定价）。

@@ -2,52 +2,19 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'How to Replace an Image in a PDF Without Adobe Acrobat | RemovePDFPages',
-  description: "Published on the RemovePDFPages blog.",
+  description: 'Learn how to replace an image in a PDF without Adobe Acrobat. Compare methods and browser-based tools that let you edit PDFs without a subscription.',
   alternates: {
     canonical: 'https://removepdfpages.net/blog/replace-image-in-pdf',
-  },
-  openGraph: {
-    title: 'How to Replace an Image in a PDF Without Adobe Acrobat | RemovePDFPages',
-    description: "Published on the RemovePDFPages blog.",
-    url: 'https://removepdfpages.net/blog/replace-image-in-pdf',
-    siteName: 'RemovePDFPages',
-    images: [{ url: 'https://removepdfpages.net/og-home.png', width: 1200, height: 630 }],
-    type: 'website',
   },
 };
 
 export default function Page() {
   return (
-    <div className="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col relative">
-    
-    <main className="flex-grow pt-32 pb-20">
-    <article className="max-w-3xl mx-auto px-margin-desktop">
-    <header className="mb-10">
-    <h1 className="font-display text-3xl md:text-4xl text-primary font-bold mb-4 tracking-tight">How to Replace an Image in a PDF Without Adobe Acrobat</h1>
-    <p className="text-sm text-ink-600">Published on the RemovePDFPages blog.</p>
-    </header>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">The problem with PDF images</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">PDFs are designed to preserve layout, so editing images inside them is less flexible than in a Word document.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">Option 1: Use a PDF editor</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">A Full Editor license can replace or extract images directly. This is the fastest option for simple layouts.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">Option 2: Convert to Word first</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">If the PDF has many images or complex formatting, convert it to DOCX, edit the image, and export back to PDF.</p>
-    </section>
-    <section className="mb-10">
-    <h2 className="text-2xl font-bold text-on-surface mb-3 font-heading">Option 3: Free online tools</h2>
-    <p className="text-base text-on-surface-variant leading-relaxed">For one-off tasks, free tools can remove pages or split files so you can rebuild the document in another app.</p>
-    </section>
-    <div className="mt-12 pt-8 border-t border-ink-200">
-    <a className="inline-flex items-center bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary-container transition-colors shadow-sm" href="/remove-pages">Try Remove Pages</a>
-    </div>
-    </article>
-    </main>
-    
-    </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How to Replace an Image in a PDF Without Adobe Acrobat", "url": "https://removepdfpages.net/blog/replace-image-in-pdf"}'}} />
+
+<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><article className="rpp-section rpp-section-hero"><div className="rpp-container rpp-text-center"><h1 className="rpp-display">How to Replace an Image in a PDF Without Adobe Acrobat</h1><p className="rpp-article-meta">Published July 29, 2026</p></div></article><section className="rpp-section"><div className="rpp-container"><div className="rpp-article-body"><p>Adobe Acrobat is the most well-known tool for editing PDFs, but it’s not the only option. Here are several ways to replace an image in a PDF without paying for a subscription.</p><h2>Method 1 — Use a PDF editor with object editing</h2><p>Some desktop and browser PDF editors let you select and replace images directly. This works best if the PDF was created digitally.</p><h2>Method 2 — Convert to Word, replace, then export back</h2><p>If your editor doesn’t support direct image replacement, convert the PDF to Word, replace the image, and export the document back to PDF.</p><h2>Method 3 — Remove the page and rebuild the PDF</h2><p>If the image is on a single page, you can remove that page, create a replacement page, and merge the files back together.</p><h2>Limitations</h2><p>Scanned PDFs and complex layouts may not behave cleanly. Results depend on how the PDF was originally created.</p><h2>Conclusion</h2><p>For occasional edits, browser-based tools and low-cost or one-time purchase editors are often enough. Pick the method that matches your comfort level and file type.</p><p className="rpp-affiliate-note">RemovePDFPages is a standalone tool and is not affiliated with Adobe.</p><div className="rpp-flex" style={{marginTop: 'var(--rpp-space-6)', gap: 'var(--rpp-space-3)', flexWrap: 'wrap'}}><a href="/remove-pages" className="rpp-btn rpp-btn-primary">Try Remove Pages</a><a href="/pricing" className="rpp-btn rpp-btn-secondary">Get Full Editor — $19/month Launch Special</a></div></div></div></section></main>
+
+    </>
   );
 }

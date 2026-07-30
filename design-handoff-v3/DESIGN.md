@@ -1,811 +1,347 @@
-# RemovePDFPages — Design System v2
+# RemovePDFPages — Design Handoff v3
 
-> Matured design system based on `07-design-system.md` and `07-page-designs.md`.  
-> Goal: eliminate generic AI-SaaS template feel, establish a distinctive, trustworthy, and implementable visual identity.  
-> Status: Final for handoff.
-
----
-
-## 1. Visual Direction
-
-### 1.1 Problem with v1
-
-v1 used:
-- **Inter everywhere** + pill buttons + indigo-600/emerald-500.
-- Centered hero + two-column split + 3-column feature grid.
-- Soft shadows, rounded-2xl cards, blur blobs.
-
-Result: visually identical to dozens of generic AI/SaaS landing pages. No brand memory.
-
-### 1.2 Visual Direction Options
-
-#### Direction A: "Indigo + Olive Grotesk" (Selected)
-
-- **Primary:** Deep indigo `#3730A3` (not the common `#4F46E5`).
-- **Accent:** Olive green `#65A30D` as the heavy secondary accent — unexpected for PDF software, conveys grounded reliability.
-- **Display font:** Space Grotesk (geometric, slightly quirky, modern but not generic).
-- **Body font:** Inter (kept for readability, but no longer used for display).
-- **Shape language:** Mix of large rounded corners (24px) on tool cards and sharp 0px corners on small badges/buttons. Asymmetric tension.
-- **Texture:** Subtle dot-grid background in tool sections (1px `#E2E8F0` dots, 24px grid).
-- **Why selected:** Keeps the blue/indigo requirement from the original brief, but the olive accent and Space Grotesk create a distinctive, professional-yet-approachable identity that feels like a real document utility rather than a startup template.
-
-#### Direction B: "Ink & Paper"
-
-- **Primary:** Warm charcoal `#292524`.
-- **Accent:** Terracotta `#C2410C`.
-- **Background:** Cream `#FAF9F6`.
-- **Display font:** Fraunces (serif, editorial, document-like).
-- **Shape language:** Sharp corners, paper-like cards, thin 1px borders.
-- **Why not selected:** More editorial, but less web-native and may feel heavy for a tool page. Better suited for a content brand than a utility.
-
-#### Direction C: "Graphite Workshop"
-
-- **Primary:** Graphite `#334155`.
-- **Accent:** Electric cyan `#06B6D4`.
-- **Display font:** JetBrains Mono (monospace, workshop/tool aesthetic).
-- **Shape language:** Rectangular, terminal-like, utilitarian.
-- **Why not selected:** Too technical and cold for a mainstream PDF consumer product. Could alienate non-technical users.
-
-### 1.3 Final Direction: Direction A
-
-**Key differentiators vs. generic AI SaaS:**
-1. **Space Grotesk display** — not Inter.
-2. **Olive accent** — not emerald or teal.
-3. **Asymmetric shape language** — 24px radius on large cards, 0px on small badges and buttons.
-4. **Dot-grid texture** in tool workspaces — references drafting paper.
-5. **Asymmetric hero** — text left-aligned, tool preview overlapping the right edge, not a centered two-column split.
-6. **No blur blobs** — replaced with solid color blocks and dot patterns.
+> 项目：removepdfpages.net  
+> 仓库路径：/home/ubuntu/fancy-text-site  
+> 阶段：06 design-freeze  
+> 状态：[DONE]  
+> 上游输入：docs/copy-freeze.md v3、docs/PRD-v3.md、docs/pricing-calibration-v3.md、docs/compliance-report.md v3、docs/page-matrix.md、docs/MVP-NOT-DO.md、project-control.md  
+> 最后更新：2026-07-29  
+> 输出路径：design-handoff-v3/
 
 ---
 
-## 2. Color Tokens (Exact Values)
+## 1. 设计目标
 
-### 2.1 Brand Palette
-
-| Token | HEX | RGB | Usage |
-|-------|-----|-----|-------|
-| `--brand-indigo-900` | `#1E1B4B` | 30, 27, 75 | Footer background, dark mode surfaces |
-| `--brand-indigo-800` | `#312E81` | 49, 46, 129 | Emphasis headings |
-| `--brand-indigo-700` | `#4338CA` | 67, 56, 202 | CTA hover |
-| `--brand-indigo-600` | `#4F46E5` | 79, 70, 229 | Primary actions, links |
-| `--brand-indigo-500` | `#6366F1` | 99, 102, 241 | Secondary accents |
-| `--brand-indigo-100` | `#E0E7FF` | 224, 231, 255 | Soft backgrounds |
-| `--brand-indigo-50` | `#EEF2FF` | 238, 242, 255 | Subtle tints |
-| `--accent-olive-700` | `#4D7C0F` | 77, 124, 15 | Dark olive for text |
-| `--accent-olive-600` | `#65A30D` | 101, 163, 13 | **Primary accent**: free badges, success states, hero highlights |
-| `--accent-olive-500` | `#84CC16` | 132, 204, 22 | Lighter olive highlights |
-| `--accent-olive-100` | `#ECFCCB` | 236, 252, 203 | Free badge background |
-| `--accent-olive-50` | `#F7FEE7` | 247, 254, 231 | Subtle olive tint |
-| `--accent-amber-500` | `#F59E0B` | 245, 158, 11 | Warning / trial hints |
-| `--accent-amber-100` | `#FEF3C7` | 254, 243, 199 | Warning backgrounds |
-
-### 2.2 Neutral Palette
-
-| Token | HEX | Usage |
-|-------|-----|-------|
-| `--ink-900` | `#0F172A` | Primary headings, body text |
-| `--ink-700` | `#334155` | Secondary text |
-| `--ink-600` | `#475569` | Descriptions |
-| `--ink-500` | `#64748B` | Meta text, captions |
-| `--ink-400` | `#94A3B8` | Placeholders, disabled |
-| `--ink-300` | `#CBD5E1` | Strong borders |
-| `--ink-200` | `#E2E8F0` | Default borders, dividers, dot-grid |
-| `--ink-100` | `#F1F5F9` | Subtle backgrounds |
-| `--ink-50` | `#F8FAFC` | Page section backgrounds |
-| `--paper` | `#FFFFFF` | Cards, surfaces |
-| `--cream` | `#FDFCF8` | Alternate warm background (limited use) |
-
-### 2.3 Semantic Palette
-
-| Token | HEX | Usage |
-|-------|-----|-------|
-| `--success` | `--accent-olive-600` | Free badges, success states |
-| `--success-bg` | `--accent-olive-100` | Free badge background |
-| `--success-text` | `--accent-olive-700` | Free badge text |
-| `--paid` | `--brand-indigo-600` | Paid badges, locked features |
-| `--paid-bg` | `--brand-indigo-100` | Paid badge background |
-| `--paid-text` | `--brand-indigo-800` | Paid badge text |
-| `--info` | `--brand-indigo-500` | Info banners, server notes |
-| `--info-bg` | `--brand-indigo-50` | Info banner background |
-| `--warning` | `--accent-amber-500` | Warnings |
-| `--warning-bg` | `--accent-amber-100` | Warning backgrounds |
-| `--error` | `#DC2626` | Error messages |
-| `--error-bg` | `#FEE2E2` | Error backgrounds |
+1. 去掉“通用 AI SaaS 模板”感：不用默认 Inter 做标题、不用紫色渐变、不做居中 Hero + 三卡片、不做统一圆角阴影。  
+2. 严格对齐 copy-freeze v3：首屏 CTA、价格、合规文案、禁用词、Footer 法律链接均不可改动。  
+3. 输出“真源”：前端可直接提取字体、颜色、间距、圆角、阴影、图标、状态类名。  
+4. 覆盖 desktop / mobile 两种视图以及关键空/加载/错误/付费墙/已授权状态。
 
 ---
 
-## 3. Typography (Exact Tokens)
+## 2. 设计决策
 
-### 3.1 Font Stack
+### 2.1 视觉方向
 
-| Role | Font | Weights | Usage |
-|------|------|---------|-------|
-| Display / Headings | **Space Grotesk** | 500, 600, 700 | H1, H2, H3, pricing, hero, brand wordmark |
-| Body | **Inter** | 400, 500, 600 | Paragraphs, UI labels, buttons, captions |
-| Mono | **JetBrains Mono** | 400, 500 | License keys, file names, code snippets, stats |
+- **主色**：深靛蓝 `#3730A3`（不是常见的 `#4F46E5`），沉稳、文档感。  
+- **强调色**：橄榄绿 `#65A30D`，用于“免费/成功/已解锁”状态，制造差异化。  
+- **显示字体**：Space Grotesk（几何、略带怪诞，替代默认 Inter）。  
+- **正文字体**：Plus Jakarta Sans（现代人文，避免全站 Inter）。  
+- **等宽字体**：JetBrains Mono（license key、文件名、数据）。  
+- **形状语言**：大卡片用 28px 大圆角，小徽章/标签用 0px 尖角，形成非对称张力。  
+- **质感**：工具工作区使用 24px 点阵背景（`radial-gradient(circle, #E2E8F0 1px, transparent 1px)`），暗示“稿纸/工程图”。  
+- **Hero 布局**：左文右图（工具预览卡向右边缘溢出），非居中对称。
 
-**Google Fonts URL:**
+### 2.2 与 v2 的关键差异
+
+| 项 | v2 | v3 |
+|---|---|---|
+| 商业模式 | 买断 $19 为主 | 订阅月 $19 / 年 $99 为主，隐藏买断 $59 |
+| 首页 Hero CTA | 指向 `/pricing` | 指向 `/remove-pages` 等免费工具入口 |
+| 定价卡片 | 两列（Free / $19） | 三列（Free / Monthly $19 / Yearly $99）+ 隐藏 $59 |
+| 字体 | Space Grotesk + Inter | Space Grotesk + Plus Jakarta Sans（正文不再默认 Inter） |
+| 主色 | `#4F46E5` | `#3730A3` 深靛蓝 |
+| 买断入口 | 主卡片 | 仅卡片下方和 checkout 第三选项 |
+| 工具页 | 仅默认态 | 增加空/加载/错误/付费墙/已授权状态 |
+| 签名页 | 免责声明文案 | 文案不变，视觉权重提升（横幅） |
+| Convert-to-Word | 买断 Paywall | 增加免费额度、Top-up、1 小时 TTL 提示 |
+| Footer | Legal 三链 | 四链：`/privacy` / `/terms` / `/refund` / `/cookie-policy` |
+
+### 2.3 设计原则
+
+1. **文案优先**：所有页面标题、H1、CTA、披露语句均复制自 copy-freeze v3。  
+2. **价格透明**：`$19/month`、`$99/year`、`$59 one-time` 不可混淆；`$29` / `$149` 仅作为删除线原价锚点。  
+3. **免费在前**：首页和工具页首先呈现免费价值，付费转化只出现在首页底部、`/pricing`、`/checkout`、`/convert-to-word` Paywall、博客 CTA。  
+4. **状态显式**：loading、error、empty、paywall、authorized 都有独立视觉区块。  
+5. **移动端不降级**：所有交互在移动端可用，导航变抽屉，定价卡片堆叠，工作区全宽。
+
+---
+
+## 3. 页面清单
+
+| # | 页面 | 路由 | 类型 | 本 handoff 文件 | 关键状态 |
+|---|---|---|---|---|---|
+| 1 | 首页 | `/` | 入口/SEO | `pages/home/` | 默认、首屏免费、底部付费转化 |
+| 2 | Remove PDF Pages | `/remove-pages` | 免费工具 | `pages/remove-pages/` | 空态、上传中、处理中、预览、成功、错误 |
+| 3 | Merge PDFs | `/merge` | 免费工具 | `pages/merge/` | 空态、上传中、排序、合并中、成功、错误 |
+| 4 | Compress PDF | `/compress` | 免费工具 | `pages/compress/` | 空态、上传中、处理中、成功、错误 |
+| 5 | Sign PDF | `/sign` | 免费工具 | `pages/sign/` | 空态、签名中、已放置、成功、错误 |
+| 6 | Convert PDF to Word | `/convert-to-word` | 付费工具 | `pages/convert-to-word/` | 未购买（免费试用）、已购买/已订阅、额度用完 Top-up、后端提示 |
+| 7 | Pricing | `/pricing` | 转化 | `pages/pricing/` | 默认三卡片 + 隐藏买断 |
+| 8 | Checkout | `/checkout` | 交易 | `pages/checkout/` | 默认月付、空邮箱错误、支付失败 |
+| 9 | Success | `/success` | 交易 | `pages/success/` | 一次性/订阅成功 |
+| 10 | FAQ | `/faq` | 支持/SEO | `pages/faq/` | 默认折叠 |
+| 11 | Contact & Refund | `/contact` | 支持 | `pages/contact/` | 默认、提交成功、提交错误 |
+| 12 | Privacy Policy | `/privacy` | 法律 | `pages/privacy/` | 静态文本 |
+| 13 | Terms of Service | `/terms` | 法律 | `pages/terms/` | 静态文本 |
+| 14 | Refund Policy | `/refund` | 法律 | `pages/refund/` | 静态文本 |
+| 15 | Cookie Policy | `/cookie-policy` | 法律 | `pages/cookie-policy/` | 静态文本 |
+| 16 | Blog Index | `/blog` | 内容 | `pages/blog/` | 默认列表 |
+| 17 | Foxit Alternative | `/blog/foxit-alternative` | 内容 | `pages/blog-foxit-alternative/` | 文章 |
+| 18 | Replace Image in PDF | `/blog/replace-image-in-pdf` | 内容 | `pages/blog-replace-image-in-pdf/` | 文章 |
+| 19 | One-Time Payment PDF Editor | `/blog/one-time-payment-pdf-editor` | 内容 | `pages/blog-one-time-payment-pdf-editor/` | 文章 |
+| 20 | No-Subscription PDF Editor | `/blog/no-subscription-pdf-editor` | 内容 | `pages/blog-no-subscription-pdf-editor/` | 文章 |
+
+---
+
+## 4. 状态清单
+
+| 状态 | 适用页面 | 视觉特征 | 类名前缀 |
+|---|---|---|---|
+| Empty | 工具页 | 虚线上传区 + 大图标 + 提示文案 | `.rpp-state-empty` |
+| Uploading | 工具页 | 进度条 + 文件名 + 取消按钮 | `.rpp-state-uploading` |
+| Processing | 工具页 | 半透遮罩 + spinner + 状态文字 | `.rpp-state-processing` |
+| Preview | Remove/Merge/Sign | 工具专用交互区激活 | `.rpp-state-preview` |
+| Success | 工具页/Contact/Success | 橄榄绿勾选 + 下载/下一步按钮 | `.rpp-state-success` |
+| Error | 全局 | 红色左侧边框提示 + 重试/联系支持 | `.rpp-state-error` |
+| Paywall | `/convert-to-word` | 靛蓝左侧边框横幅 + 锁图标 + 价格 CTA | `.rpp-state-paywall` |
+| Authorized | `/convert-to-word` | 上传区可用 + 月度剩余额度 | `.rpp-state-authorized` |
+| Quota-Exceeded | `/convert-to-word` | 黄色提示 + Top-up CTA | `.rpp-state-quota-exceeded` |
+| Default | 所有页面 | 正常渲染 | — |
+| Mobile Drawer | 所有页面 | 右侧滑出 300px 菜单 | `.rpp-mobile-drawer` |
+
+---
+
+## 5. 设计系统变量
+
+详见 `shared.css`。以下是核心摘要：
+
+### 5.1 颜色
+
+- `--rpp-brand-indigo-900: #1E1B4B` — Footer、深色表面
+- `--rpp-brand-indigo-700: #4338CA` — hover
+- `--rpp-brand-indigo-600: #3730A3` — 主按钮、链接、定价推荐边框
+- `--rpp-brand-indigo-100: #E0E7FF` — 付费徽章背景
+- `--rpp-accent-olive-700: #4D7C0F` — 深橄榄文本
+- `--rpp-accent-olive-600: #65A30D` — 免费徽章、成功态
+- `--rpp-accent-olive-100: #ECFCCB` — 免费徽章背景
+- `--rpp-ink-900: #0F172A` — 主标题、正文
+- `--rpp-ink-600: #475569` — 描述文字
+- `--rpp-ink-200: #E2E8F0` — 边框、点阵
+- `--rpp-error: #DC2626` — 错误
+- `--rpp-amber-500: #F59E0B` — 警告/试用提示
+
+### 5.2 字体
+
+```css
+--rpp-font-display: 'Space Grotesk', sans-serif;
+--rpp-font-body: 'Plus Jakarta Sans', sans-serif;
+--rpp-font-mono: 'JetBrains Mono', monospace;
 ```
-https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap
+
+Google Fonts URL:
+```
+https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap
 ```
 
-### 3.2 Type Scale (Desktop)
+### 5.3 字号（桌面端）
 
-| Token | Size | Line Height | Weight | Letter Spacing | Usage |
-|-------|------|-------------|--------|----------------|-------|
-| `--display-xl` | 64px / 4rem | 1.05 | 700 | -0.03em | Hero H1 (desktop) |
-| `--display` | 48px / 3rem | 1.1 | 700 | -0.02em | Page H1, pricing hero |
-| `--heading-1` | 36px / 2.25rem | 1.15 | 700 | -0.02em | Section H2 |
-| `--heading-2` | 28px / 1.75rem | 1.2 | 600 | -0.01em | Sub-section H3 |
-| `--heading-3` | 22px / 1.375rem | 1.3 | 600 | 0 | Card titles |
-| `--lead` | 18px / 1.5rem | 1.55 | 400 | 0 | Hero subheadline, lead paragraphs |
-| `--body` | 16px / 1rem | 1.65 | 400 | 0 | Body copy |
-| `--body-sm` | 14px / 0.875rem | 1.5 | 400 | 0 | Captions, meta, badges, labels |
-| `--label` | 12px / 0.75rem | 1.4 | 600 | 0.04em | Uppercase labels, eyebrow text |
-| `--mono` | 14px / 0.875rem | 1.4 | 500 | 0 | File names, keys, stats |
+| Token | 大小 | 字重 | 用途 |
+|---|---|---|---|
+| `--rpp-display-xl` | 64px / 4rem | 700 | 首页 Hero H1 |
+| `--rpp-display` | 48px / 3rem | 700 | 页面 H1 |
+| `--rpp-heading-1` | 36px / 2.25rem | 700 | 章节 H2 |
+| `--rpp-heading-2` | 28px / 1.75rem | 600 | 卡片标题 |
+| `--rpp-heading-3` | 22px / 1.375rem | 600 | 子标题 |
+| `--rpp-lead` | 18px / 1.125rem | 400 | Hero 副标题 |
+| `--rpp-body` | 16px / 1rem | 400 | 正文 |
+| `--rpp-body-sm` | 14px / 0.875rem | 400 | 说明、徽章 |
+| `--rpp-label` | 12px / 0.75rem | 600 | 大写标签 |
+| `--rpp-mono` | 14px / 0.875rem | 500 | license key、文件名 |
 
-### 3.3 Responsive Type Scale
+移动端响应式字号在 `shared.css` 媒体查询中定义。
 
-| Token | Mobile | Tablet | Desktop |
-|-------|--------|--------|---------|
-| `--display-xl` | 40px | 52px | 64px |
-| `--display` | 32px | 40px | 48px |
-| `--heading-1` | 28px | 32px | 36px |
-| `--heading-2` | 24px | 26px | 28px |
-| `--heading-3` | 20px | 21px | 22px |
-| `--lead` | 16px | 17px | 18px |
-| `--body` | 15px | 16px | 16px |
-| `--body-sm` | 13px | 14px | 14px |
-| `--label` | 11px | 12px | 12px |
+### 5.4 间距
 
----
+基础单位 4px：`--rpp-space-1` 到 `--rpp-space-32`（4px–128px）。  
+容器最大宽度：1200px（`--rpp-container-max`）。  
+工作区最大宽度：1080px（`--rpp-workspace-max`）。  
+法律页最大宽度：720px（`--rpp-legal-max`）。
 
-## 4. Spacing & Layout (Exact Tokens)
+### 5.5 圆角
 
-### 4.1 Base Grid
+- `--rpp-radius-2xl: 28px` — Hero 工具卡、定价卡、工具工作区
+- `--rpp-radius-xl: 20px` — 功能卡、法律页卡片
+- `--rpp-radius-lg: 12px` — 下拉菜单、小面板
+- `--rpp-radius-md: 8px` — 按钮、输入框、缩略图
+- `--rpp-radius-sm: 4px` — 小按钮、单选卡
+- `--rpp-radius-none: 0px` — 徽章、标签、小按钮
 
-Base unit: **4px**. All values are multiples of 4.
+### 5.6 阴影
 
-### 4.2 Spacing Scale
+- `--rpp-shadow-sm: 0 1px 2px rgba(15,23,42,0.04)`
+- `--rpp-shadow-md: 0 4px 12px rgba(15,23,42,0.06)`
+- `--rpp-shadow-lg: 0 8px 24px rgba(15,23,42,0.08)`
+- `--rpp-shadow-xl: 0 16px 40px rgba(15,23,42,0.10)`
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-0` | 0px | |
-| `--space-1` | 4px | Inline gaps, tight icon-text |
-| `--space-2` | 8px | Small internal gaps |
-| `--space-3` | 12px | Button vertical padding, badge padding |
-| `--space-4` | 16px | Card padding mobile, grid gap mobile |
-| `--space-5` | 20px | Card padding desktop, form gaps |
-| `--space-6` | 24px | Section internal gaps, desktop grid gap |
-| `--space-8` | 32px | Large internal gaps |
-| `--space-10` | 40px | Section heading to content |
-| `--space-12` | 48px | Hero internal spacing |
-| `--space-16` | 64px | Section padding mobile |
-| `--space-20` | 80px | Section padding desktop |
-| `--space-24` | 96px | Hero section padding desktop |
-| `--space-32` | 128px | Large section breaks |
+### 5.7 点阵纹理
 
-### 4.3 Layout Grid
+```css
+background-image: radial-gradient(circle, #E2E8F0 1px, transparent 1px);
+background-size: 24px 24px;
+opacity: 0.6;
+```
 
-- **Container max-width:** 1200px (`max-w-6xl`).
-- **Content max-width:** 720px (`max-w-3xl`) for text-heavy sections.
-- **Tool workspace max-width:** 1080px (`max-w-5xl`).
-- **Grid:** 12 columns, gap 24px desktop, 16px tablet, 12px mobile.
-- **Container padding:** 16px mobile, 24px tablet, 32px desktop, 48px 2xl.
-
-### 4.4 Breakpoints
-
-| Token | Width | Target |
-|-------|-------|--------|
-| `--bp-sm` | 640px | Landscape phones |
-| `--bp-md` | 768px | Tablets |
-| `--bp-lg` | 1024px | Small laptops |
-| `--bp-xl` | 1280px | Desktops |
-| `--bp-2xl` | 1536px | Large screens |
-
-### 4.5 Border Radius Tokens
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--radius-none` | 0px | Badges, small buttons, pills, tags |
-| `--radius-sm` | 4px | Inputs, small cards |
-| `--radius-md` | 8px | Buttons, medium cards |
-| `--radius-lg` | 12px | Feature cards, panels |
-| `--radius-xl` | 20px | Large cards, tool cards |
-| `--radius-2xl` | 28px | Hero tool card, pricing card |
-| `--radius-pill` | 9999px | Not used in v2 (avoid pill cliche) |
-
-**Asymmetric rule:** Large surfaces get `--radius-2xl` or `--radius-xl`; small interactive elements (badges, small buttons, status chips) get `--radius-none` or `--radius-sm`. This creates visual tension and avoids the "all rounded" look.
-
-### 4.6 Shadows
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--shadow-none` | none | Flat surfaces |
-| `--shadow-sm` | `0 1px 2px rgba(15,23,42,0.04)` | Subtle cards |
-| `--shadow-md` | `0 4px 12px rgba(15,23,42,0.06)` | Elevated cards, hover |
-| `--shadow-lg` | `0 8px 24px rgba(15,23,42,0.08)` | Tool cards, modals |
-| `--shadow-xl` | `0 16px 40px rgba(15,23,42,0.10)` | Hero tool card, pricing highlight |
-
-### 4.7 Borders
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--border-thin` | 1px solid `--ink-200` | Default card borders |
-| `--border-medium` | 1px solid `--ink-300` | Input borders, focus |
-| `--border-strong` | 2px solid `--brand-indigo-600` | Active pricing card, selected tool |
-| `--border-accent` | 2px solid `--accent-olive-600` | Free section emphasis |
-
-### 4.8 Background Textures
-
-**Dot grid:**
-- Used in tool workspace and some section backgrounds.
-- Pattern: `radial-gradient(circle, #E2E8F0 1px, transparent 1px)`.
-- Size: 24px × 24px.
-- Opacity: 0.6.
+仅用于工具工作区、license key 卡、成功页卡片。
 
 ---
 
-## 5. Components (All States)
+## 6. 组件清单
 
-### 5.1 Buttons
+所有组件类名前缀 `rpp-`。
 
-#### Primary Button
+### 6.1 按钮
 
-- **Default:**
-  - Background: `--brand-indigo-600`
-  - Text: white, `--body` weight 600
-  - Padding: 12px 24px (mobile), 14px 28px (desktop)
-  - Border radius: `--radius-md` (8px) — NOT pill
-  - Shadow: `--shadow-sm`
-- **Hover:**
-  - Background: `--brand-indigo-700`
-  - Transform: `translateY(-1px)`
-  - Shadow: `--shadow-md`
-- **Active/Pressed:**
-  - Background: `--brand-indigo-800`
-  - Transform: `translateY(0)`
-- **Focus:**
-  - `ring: 2px solid --brand-indigo-500, offset 2px`
-- **Disabled:**
-  - Background: `--ink-200`
-  - Text: `--ink-400`
-  - No shadow, no hover
+- `.rpp-btn-primary` — 深靛蓝填充，白字，8px 圆角，非 pill。
+- `.rpp-btn-secondary` — 白底，1px 边框，靛蓝字。
+- `.rpp-btn-tertiary` — 纯文本链接，悬停下划线。
+- `.rpp-btn-small` — 导航/徽章旁小按钮，4px 圆角，小号字体。
+- 状态：default / hover / active / focus / disabled。
 
-#### Secondary Button
+### 6.2 徽章
 
-- **Default:**
-  - Background: white
-  - Border: `--border-thin`
-  - Text: `--brand-indigo-700`
-  - Padding: same as primary
-  - Border radius: `--radius-md`
-- **Hover:**
-  - Background: `--brand-indigo-50`
-  - Border color: `--brand-indigo-200`
-- **Focus:**
-  - Same as primary
-- **Disabled:**
-  - Background: `--ink-50`
-  - Text: `--ink-400`
-  - Border: `--ink-200`
+- `.rpp-badge-free` — 橄榄绿 100 背景，尖角，16px 勾选图标。
+- `.rpp-badge-paid` — 靛蓝 100 背景，尖角，16px 锁图标。
+- `.rpp-badge-server` — 靛蓝 50 背景，尖角，16px 云图标。
+- `.rpp-badge-popular` / `.rpp-badge-value` — 定价卡片顶部标签，尖角。
 
-#### Tertiary / Text Link
+### 6.3 卡片
 
-- Text: `--brand-indigo-600`
-- Hover: underline, color `--brand-indigo-700`
-- Focus: outline 2px `--brand-indigo-500`
+- `.rpp-card` — 白底，细边框，20px 圆角，默认阴影 sm。
+- `.rpp-card-feature` — 功能入口卡，悬停上移 + 阴影 md。
+- `.rpp-tool-card` — 工作区，28px 圆角，点阵背景，阴影 lg。
+- `.rpp-pricing-card` — 定价卡，28px 圆角；推荐卡 2px 靛蓝边框 + 阴影 lg。
+- `.rpp-radio-card` — checkout 单选计划卡，4px 圆角，选中时 2px 靛蓝边框。
 
-#### Small Button (CTA in nav)
+### 6.4 导航与 Footer
 
-- Padding: 8px 16px
-- Border radius: `--radius-sm` (4px)
-- Font: `--body-sm` weight 600
-- Same primary colors
+- `.rpp-header` — 68px 高，白底，底部 1px 线，滚动后毛玻璃。
+- `.rpp-nav-logo` — Space Grotesk 700，18px。
+- `.rpp-nav-link` — 靛蓝 600，悬停下划线。
+- `.rpp-mobile-drawer` — 右侧 300px，白底，阴影 xl，滑入动画。
+- `.rpp-footer` — 靛蓝 900 背景，四列（Brand / Legal / Tools / Support），移动端单列。
+- Footer 法律链接：`/privacy`、`/terms`、`/refund`、`/cookie-policy`。
 
-### 5.2 Badges
+### 6.5 上传区
 
-#### Free Badge
+- `.rpp-upload-zone` — 2px 虚线边框，20px 圆角，点阵背景。
+- 状态：default / hover / active(drop) / error / disabled。
+- 图标：48px 云上传。
 
-- **Default:**
-  - Background: `--accent-olive-100`
-  - Text: `--accent-olive-700`, `--body-sm` weight 600
-  - Border radius: `--radius-none` (0px) — sharp, distinctive
-  - Padding: 4px 10px
-  - Icon: olive checkmark (16px)
-- **Hover:**
-  - Background: `#D9F99D` (slightly darker olive-100)
+### 6.6 付费墙与提示
 
-#### Paid Badge
+- `.rpp-paywall` — 靛蓝左侧 4px 边框，靛蓝 50 背景，圆角 md（左侧尖）。
+- `.rpp-notice-warning` — 琥珀 100 背景，左侧 4px 琥珀边框，用于签名免责声明。
+- `.rpp-notice-info` — 靛蓝 50 背景，左侧 4px 靛蓝边框，用于 Convert 1 小时 TTL。
+- `.rpp-notice-quota` — 琥珀 100 背景，用于 Top-up 提示。
+- `.rpp-error-alert` — 红色左侧 4px 边框，红色浅背景。
 
-- **Default:**
-  - Background: `--brand-indigo-100`
-  - Text: `--brand-indigo-800`, `--body-sm` weight 600
-  - Border radius: `--radius-none`
-  - Padding: 4px 10px
-  - Icon: indigo lock (16px)
+### 6.7 表单
 
-#### Server Badge
+- `.rpp-input` — 1px 边框，4px 圆角，padding 12px 16px，focus 靛蓝 600 边框 + 2px 靛蓝 500 outline offset。
+- `.rpp-select` — 与 input 同形。
+- `.rpp-textarea` — 与 input 同形，min-height 120px。
+- `.rpp-radio` — 隐藏原生 radio，用 `.rpp-radio-dot` 模拟，选中时靛蓝填充。
+- `.rpp-accordion` — FAQ 折叠，底部 1px 线，展开时 chevron 旋转 180°。
 
-- **Default:**
-  - Background: `--brand-indigo-50`
-  - Text: `--brand-indigo-700`, `--body-sm`
-  - Border radius: `--radius-none`
-  - Icon: cloud (16px)
+### 6.8 特殊组件
 
-### 5.3 Cards
-
-#### Feature Card (Homepage)
-
-- **Default:**
-  - Background: white
-  - Border: `--border-thin`
-  - Border radius: `--radius-xl` (20px)
-  - Padding: 24px
-  - Shadow: `--shadow-sm`
-- **Hover:**
-  - Border: 1px solid `--accent-olive-300` (free) or `--brand-indigo-300` (paid)
-  - Shadow: `--shadow-md`
-  - Transform: `translateY(-2px)`
-- **Icon container:**
-  - 40px × 40px
-  - Background: `--accent-olive-100` (free) or `--brand-indigo-100` (paid)
-  - Border radius: `--radius-md` (8px)
-  - Icon: 20px, `--accent-olive-700` or `--brand-indigo-700`
-
-#### Tool Workspace Card
-
-- **Default:**
-  - Background: white
-  - Border: `--border-thin`
-  - Border radius: `--radius-2xl` (28px)
-  - Padding: 32px (desktop), 24px (mobile)
-  - Shadow: `--shadow-lg`
-  - Background texture: dot-grid pattern
-- **States:**
-  - Active/drop: border `--brand-indigo-600`, background `--brand-indigo-50`
-  - Error: border `--error`, background `--error-bg`
-  - Processing: opacity 0.7, overlay spinner
-
-#### Pricing Card
-
-- **Default:**
-  - Background: white
-  - Border: `--border-strong` (2px indigo) for recommended
-  - Border: `--border-thin` for others
-  - Border radius: `--radius-2xl` (28px)
-  - Padding: 32px
-  - Shadow: `--shadow-lg` for recommended, `--shadow-sm` for others
-- **Hover:**
-  - Shadow: `--shadow-xl` for recommended
-
-### 5.4 Navigation
-
-#### Main Nav
-
-- **Default:**
-  - Height: 68px desktop, 60px mobile
-  - Background: white
-  - Border bottom: 1px solid `--ink-200`
-  - Container: max-width 1200px, centered
-  - Left: Logo mark + wordmark (Space Grotesk 700, 18px)
-  - Center: Tools dropdown, Pricing, FAQ
-  - Right: "Buy License — $29" small primary button
-- **Scroll state:**
-  - Background: `rgba(255,255,255,0.95)`
-  - Backdrop blur: 8px
-  - Shadow: `--shadow-sm`
-
-#### Mobile Drawer
-
-- **Default:**
-  - Width: 300px
-  - Background: white
-  - Shadow: `--shadow-xl`
-  - Slide from right, 300ms ease-out
-- **Sections:**
-  - Header: Logo + close
-  - Free tools list
-  - Full license tools list
-  - Legal links
-  - Bottom CTA
-
-#### Tools Dropdown
-
-- **Default:**
-  - Width: 320px
-  - Background: white
-  - Border: `--border-thin`
-  - Border radius: `--radius-lg` (12px)
-  - Shadow: `--shadow-lg`
-  - Padding: 8px
-- **Item:**
-  - Padding: 10px 12px
-  - Border radius: `--radius-md`
-  - Hover: `--brand-indigo-50`
-
-### 5.5 Footer
-
-- **Default:**
-  - Background: `--brand-indigo-900`
-  - Text: white / `--ink-300`
-  - Padding: 64px 0 32px
-  - Border top: none
-- **Layout:**
-  - 4-column desktop, 2-column tablet, 1-column mobile
-  - Column 1: Logo + tagline
-  - Columns 2-4: Legal, Tools, Contact
-- **Links:**
-  - Color: `--ink-300`
-  - Hover: white
-- **Bottom row:**
-  - Copyright + social placeholders
-
-### 5.6 Upload Zone
-
-- **Default:**
-  - Border: 2px dashed `--ink-300`
-  - Border radius: `--radius-xl` (20px)
-  - Background: `--ink-50`
-  - Padding: 48px 32px
-- **Hover:**
-  - Border: 2px solid `--brand-indigo-600`
-  - Background: `--brand-indigo-50`
-- **Active/drop:**
-  - Border: 2px solid `--brand-indigo-600`
-  - Background: `--brand-indigo-100`
-- **Error:**
-  - Border: 2px dashed `--error`
-  - Background: `--error-bg`
-- **Icon:**
-  - Upload cloud, 48px
-  - Default: `--ink-400`
-  - Active: `--brand-indigo-600`
-
-### 5.7 Page Preview Grid (Remove Pages)
-
-- **Thumbnail container:**
-  - Border: 1px solid `--ink-200`
-  - Border radius: `--radius-md` (8px)
-  - Background: white
-  - Shadow: `--shadow-sm`
-  - Aspect ratio: 1:√2 (A4)
-- **Hover:**
-  - Shadow: `--shadow-md`
-  - Transform: `translateY(-2px)`
-- **Selected:**
-  - Ring: 2px solid `--brand-indigo-600`
-  - Overlay: `rgba(79,70,229,0.10)`
-  - Checkmark: top-right, white circle + indigo check
-- **Page number:**
-  - `--body-sm`, `--ink-500`, centered below
-
-### 5.8 Paywall Banner (Inline, Non-Modal)
-
-- **Default:**
-  - Background: `--brand-indigo-50`
-  - Border left: 4px solid `--brand-indigo-600`
-  - Border radius: `--radius-md` (right side only, left flat)
-  - Padding: 20px 24px
-- **Icon:**
-  - Lock, 24px, `--brand-indigo-600`
-- **Title:**
-  - `--heading-3`, `--brand-indigo-900`
-- **Body:**
-  - `--body`, `--ink-700`
-- **CTA:**
-  - Small primary button "Buy Full License — $29"
-- **Secondary:**
-  - Text link "Learn more" → `/pricing/`
-
-### 5.9 FAQ Accordion
-
-- **Item:**
-  - Border bottom: 1px solid `--ink-200`
-  - Padding: 20px 0
-- **Question:**
-  - `--body` weight 600, `--ink-900`
-- **Answer:**
-  - `--body`, `--ink-600`, max-width 680px
-- **Hover:**
-  - Question color: `--brand-indigo-600`
-- **Open state:**
-  - Chevron rotates 180°
-  - Answer height animates 300ms
-
-### 5.10 Toast / Alert
-
-- **Success:**
-  - Background: `--accent-olive-100`
-  - Border left: 4px solid `--accent-olive-600`
-  - Text: `--accent-olive-700`
-- **Error:**
-  - Background: `--error-bg`
-  - Border left: 4px solid `--error`
-  - Text: `--error`
-- **Info:**
-  - Background: `--info-bg`
-  - Border left: 4px solid `--info`
-  - Text: `--brand-indigo-800`
-- **Position:**
-  - Top center, fixed, z-index 100
-  - Padding: 16px 24px
-  - Border radius: `--radius-md`
-  - Shadow: `--shadow-lg`
-  - Auto-dismiss: 5s
+- `.rpp-page-grid` — Remove 页面缩略图网格，4 列桌面，3 列平板，2 列手机。
+- `.rpp-page-thumb` — A4 比例（1:√2），白底，阴影 sm，选中态 ring + 叠加层。
+- `.rpp-signature-canvas` — 1px 边框，点阵背景，最小 200×120px。
+- `.rpp-comparison-table` — 白底卡片，表头靛蓝 50 背景，行 hover 靛蓝 50/10。
+- `.rpp-license-key` — JetBrains Mono，灰色边框，复制按钮。
+- `.rpp-progress-bar` — 4px 高，靛蓝填充，浅灰轨道。
+- `.rpp-spinner` — 24px 靛蓝圆环动画。
 
 ---
 
-## 6. States Design
+## 7. 响应式规则
 
-### 6.1 License States
-
-| State | Badge | CTA | Workspace |
-|-------|-------|-----|-----------|
-| Unknown | Skeleton shimmer | Disabled | Loading overlay |
-| Unlicensed | "Full License" indigo | "Buy — $29" | Paywall banner, preview disabled or blurred |
-| Licensed | "Unlocked" olive | "Download" / action | Full functionality |
-| Error | "Check failed" amber | Retry | Error alert |
-
-### 6.2 File Processing States
-
-| State | Visual |
-|-------|--------|
-| Idle | Upload zone or preview ready |
-| Uploading | Progress bar 0-100%, filename, cancel button |
-| Processing | Spinner + status text, 50% overlay |
-| Preview | Tool-specific UI active |
-| Success | Olive checkmark + download button + stats |
-| Error | Red alert + retry, preserve selection if possible |
-
-### 6.3 Button States
-
-All buttons have: default, hover, active, focus, disabled.
-
-### 6.4 Input States
-
-- **Default:** 1px `--ink-300`, `--radius-sm`, padding 12px 16px
-- **Hover:** border `--ink-400`
-- **Focus:** border `--brand-indigo-600`, ring 2px `--brand-indigo-500`
-- **Error:** border `--error`, background `--error-bg`
-- **Disabled:** background `--ink-100`, text `--ink-400`
+| 元素 | 桌面 | 平板 (≤1024) | 移动 (≤768) | 小屏 (≤480) |
+|---|---|---|---|---|
+| 导航 | 水平，全部链接 | 水平，简化 | 汉堡抽屉 | 汉堡抽屉 |
+| Hero | 左文右图，图向右溢出 | 堆叠 | 堆叠，文字在上 | 堆叠 |
+| 工具卡网格 | 4 列 | 2 列 | 1 列 | 1 列 |
+| 定价卡 | 3 列等宽 | 3 列 / 堆叠 | 堆叠，推荐卡置顶 | 堆叠 |
+| Checkout | 单选区 + 右侧摘要 | 堆叠 | 堆叠 | 堆叠 |
+| 工具工作区 | 1080px 居中 | 全宽 | 全宽，内边距 16px | 全宽 |
+| Footer | 4 列 | 2 列 | 1 列 | 1 列 |
+| 法律页 | 720px 居中 | 全宽 | 全宽 | 全宽 |
 
 ---
 
-## 7. Responsive Patterns
+## 8. 资产清单
 
-| Element | Desktop | Tablet | Mobile |
-|---------|---------|--------|--------|
-| Nav | Horizontal | Horizontal | Hamburger drawer |
-| Hero | Left text + overlapping tool preview | Stacked | Stacked, text first |
-| Split section | 2-column cards | 2-column | Stacked |
-| Feature grid | 4 columns | 2 columns | 1 column |
-| Tool workspace | 1080px centered | Full width | Edge-to-edge, stacked |
-| Page grid | 4 columns | 3 columns | 2 columns |
-| Pricing | 3 cards | 3 cards / stacked | Stacked, recommended first |
-| Footer | 4 columns | 2 columns | 1 column stacked |
+| 资产 | 类型 | 规格 | 位置 | 用途 | 备注 |
+|---|---|---|---|---|---|
+| Favicon | PNG/ICO | 32×32 | `assets/favicon-32x32.png` / `assets/favicon.ico` | 全站 | 沿用现有 |
+| Apple Touch Icon | PNG | 180×180 | `assets/apple-touch-icon.png` | 全站 | 沿用现有 |
+| OG Home | PNG | 1200×630 | `assets/og-home.png` | 首页 Open Graph | 建议替换为 v3 不对称构图 |
+| Hero 抽象插图 | PNG/SVG | 约 600×500 | `assets/hero-illustration-v3.svg` | 首页 Hero 右侧 | 新设计：浏览器窗口 + PDF 页面 + 橄榄绿勾选 |
+| 工具页空态插图 | SVG | 96×96 | 内联 | 上传区 | 可复用 Lucide cloud-upload |
+| 功能图标 | SVG | 20–24px | 内联 | 卡片/按钮 | 使用 Lucide 风格：FileX、Merge、Minimize、PenTool、FileType、Lock、Check 等 |
+| 博客文章封面 | 可选 | 1200×630 | 未包含 | 博客 hero | 可用抽象色块替代 |
 
----
-
-## 8. Dark Mode (Optional)
-
-If implementing dark mode:
-- Background: `--brand-indigo-900`
-- Surface: `--brand-indigo-800`
-- Text: white / `--ink-100`
-- Primary: `--brand-indigo-500`
-- Accent: `--accent-olive-500`
-- Borders: `rgba(255,255,255,0.10)`
-- Dot-grid texture: `rgba(255,255,255,0.05)`
-
-For v1 launch, dark mode is optional. All components must be designed to support it if added later.
+**新图标要求**：前端使用 Lucide React 或内联 SVG，保持 24px 默认、20px 中、16px 小、48px 上传区。所有装饰图标加 `aria-hidden="true"`。
 
 ---
 
-## 9. Accessibility
+## 9. 前端 Handoff 注意事项
 
-- Minimum contrast: 4.5:1 for body text, 3:1 for large text/UI.
-- Focus rings: 2px solid `--brand-indigo-500` with 2px offset.
-- Touch targets: minimum 44×44px.
-- Icons paired with text labels.
-- Decorative icons: `aria-hidden="true"`.
-- Tool state announcements: `aria-live="polite"` regions.
-- Reduced motion: disable transforms and animations.
-
----
-
-## 10. File Naming & Token Conventions
-
-- CSS variables: `--{category}-{name}-{variant}` (e.g., `--color-brand-indigo-600`)
-- Tailwind: extend theme with custom colors/typography/spacing.
-- Component classes: `rpp-{component}-{variant}-{state}`
-- Icons: Lucide React components, 24px default, 16px small, 20px medium.
-
----
-
-## 11. Design System v2 Changelog
-
-| Version | Date | Notes |
-|---------|------|-------|
-| v2 | 2026-07-18 | Matured system: Space Grotesk display, olive accent, asymmetric radius, dot-grid texture, exact tokens, all component states. |
-
+1. **字体**：必须加载 Space Grotesk + Plus Jakarta Sans + JetBrains Mono，不要只加载 Inter。  
+2. **颜色**：不要引入新的紫色渐变；主色固定为 `#3730A3`，成功/免费态固定为 `#65A30D`。  
+3. **Hero**：首页 Hero 必须左对齐，右侧工具预览卡可向右边缘溢出；不要居中两段式。  
+4. **按钮**：主按钮 8px 圆角，非 pill；小按钮/徽章 0px 或 4px 圆角。  
+5. **定价**：`/pricing` 必须三列：`Free`、`Monthly $19`、`Yearly $99`；`$59 one-time` 仅作为卡片下方次级链接。  
+6. **Checkout**：默认选中 `Monthly — $19/month`，第三选项为 `One-time License — $59`。  
+7. **Convert to Word**：必须展示：
+   - 未购买：`You have X free conversions left this 30-day period.` 和 Paywall。  
+   - 已购买：上传区 + 本月剩余额度。  
+   - 额度用完：`You’ve used your 10 included conversions this month.` + Top-up CTA。  
+   - 始终显示：后端 1 小时 TTL 提示。  
+8. **Sign**：必须显示“not a digital certificate signature”免责声明，横幅形式，位置在 Hero 下方。  
+9. **Footer**：四链法律列：`Privacy Policy`、`Terms of Service`、`Refund Policy`、`Cookie Policy`。  
+10. **禁用词**：全站不出现 `unlimited`、`free forever`、`no limits`、`lifetime updates`、`perfect`、`100% accurate`、`guaranteed`、`official`。  
+11. **文案不可改**：所有 `title`、`meta description`、`H1`、`CTA` 文案已冻结，前端不可现场改写。  
+12. **状态实现**：前端应通过 CSS 类切换或条件渲染实现状态清单中的状态，而非单页静态。  
+13. **无障碍**：焦点环 2px `--rpp-brand-indigo-500` + 2px offset；工具区使用 `aria-live="polite"`；减少运动偏好禁用动画。  
+14. **Next.js 注意**：项目 `AGENTS.md` 提醒 Next.js 版本可能有破坏性变更，实现前请阅读 `node_modules/next/dist/docs/` 相关章节。
 
 ---
 
-## 12. Frontend-Ready Token Reference
+## 10. 验收标准
 
-This section maps the design tokens documented above to the CSS custom properties
-and component classes shipped in `shared.css` so the frontend team does not need to
-reverse-engineer values.
-
-| Token type | shared.css variable | Example value |
-|------------|---------------------|---------------|
-| Brand indigo | `--rpp-color-brand-indigo-600` | `#4F46E5` |
-| Brand olive | `--rpp-color-accent-olive-600` | `#65A30D` |
-| Text ink | `--rpp-color-ink-900` | `#0F172A` |
-| Border | `--rpp-border-thin` | `1px solid #E2E8F0` |
-| Shadow card | `--rpp-shadow-lg` | `0 8px 24px rgba(15,23,42,0.08)` |
-| Radius card | `--rpp-radius-xl` | `20px` |
-| Radius tool card | `--rpp-radius-2xl` | `28px` |
-| Button primary | `.rpp-btn-primary` | documented in `shared.css` |
-| Input | `.rpp-input` | documented in `shared.css` |
-| Card | `.rpp-card` / `.rpp-tool-card` | documented in `shared.css` |
-| Header | `.rpp-header` | documented in `shared.css` |
-| Footer | `.rpp-footer` | documented in `shared.css` |
-
-All page-specific overrides live in `pages/{page-name}/styles.css`.
-
+- [x] 设计系统变量完整：颜色、字体、间距、圆角、阴影、图标。  
+- [x] 所有 20 个页面均输出 HTML/CSS 文件。  
+- [x] 首页 Hero Primary CTA 指向 `/remove-pages`，首屏不主导付费价格。  
+- [x] `/pricing` 三列卡片 + 隐藏买断入口落位正确。  
+- [x] `/convert-to-word` 展示免费额度、Top-up、1 小时 TTL 提示。  
+- [x] `/sign` 展示“not a digital certificate signature”免责声明。  
+- [x] Footer 法律链接指向 `/privacy` / `/terms` / `/refund` / `/cookie-policy`。  
+- [x] 包含 desktop 和 mobile 视图说明及响应式断点。  
+- [x] 包含主要状态：空态、加载态、错误态、付费墙、已授权。  
+- [x] 全站无禁用词，价格口径统一。  
+- [x] 视觉风格避免默认 Inter、紫色渐变、居中 Hero、统一圆角阴影。
 
 ---
 
-# Appendix: v3 Design Freeze Updates
+## 11. 状态
 
-> Updated: 2026-07-22  
-> Scope: pricing refactor, checkout/success refresh, new blog pages, restored legal pages, tool-page badge/disclaimer updates, footer restructure.  
-> All changes preserve the v2 Design System tokens (colors, typography, spacing, shadows).
+**[DONE]**
 
-## A. New / Modified Screens in v3
+- 本 design-handoff-v3 已按 copy-freeze v3 完成重制，所有 20 个页面、状态、设计系统、资产清单已输出。  
+- zhongshu 总控已完成 content-gap / copy-audit，结论为 [GO]，无禁用词、无 P0/P1 结构偏差。  
+- 未阻塞项：博客文章封面图、OG 图建议上线前替换，但可用占位色块先实现。  
+- 上游未确认项（Creem 配置、$19 Launch Special 截止日期、分析工具、后端方案）不影响设计冻结，已在文案中以占位或保守披露处理。
 
-| Screen | Route | Status | Notes |
-|--------|-------|--------|-------|
-| Homepage | `/` | Modified | Footer updated to new Legal/Tools/Support columns; all other sections remain unchanged. |
-| Remove PDF Pages | `/remove-pages` | Modified | Added "Currently free" badge in hero; footer updated. |
-| Merge PDFs | `/merge` | Modified | Added "Currently free" badge in hero; footer updated. |
-| Compress PDF | `/compress` | Modified | Added "Currently free" badge; backend-fallback notice added; footer updated. |
-| Sign PDF | `/sign` | Modified | Added "Currently free" badge; "not a digital certificate signature" disclaimer added; footer updated. |
-| Convert PDF to Word | `/convert-to-word` | Modified | Added "Currently free" badge (for browser context); 1-hour deletion notice added; footer updated. |
-| Pricing | `/pricing` | Rebuilt | Two-column layout: Free + $19 Launch Special. $29 is shown only as a strikethrough anchor. Comparison table + 5 pricing FAQs included. |
-| Checkout | `/checkout` | Rebuilt | $19 Launch Special selected by default. $29 Standard preserved as fallback. Email field, Stripe security note, refund note. |
-| Success | `/success` | Rebuilt | Purchase summary with $19 + $29 strikethrough. License key block, next-step cards, CTAs. |
-| FAQ | `/faq` | Modified | Footer updated only. |
-| Contact & Refund | `/contact` | Modified | Footer updated only. |
-| Privacy | `/privacy` | New | Legal-page layout: max-w-3xl, dot-grid background, section H2 style. |
-| Terms | `/terms` | New | Same legal-page layout. |
-| Refund | `/refund` | New | Same legal-page layout. |
-| Blog Index | `/blog` | New | 4 article cards, two-column grid. |
-| Blog: Foxit Alternative | `/blog/foxit-alternative` | New | Article layout with H1, sections, CTA. |
-| Blog: Replace Image in PDF | `/blog/replace-image-in-pdf` | New | Article layout with H1, sections, CTA. |
-| Blog: One-Time Payment | `/blog/one-time-payment-pdf-editor` | New | Article layout with H1, sections, CTA. |
-| Blog: No-Subscription | `/blog/no-subscription-pdf-editor` | New | Article layout with H1, sections, CTA. |
+---
 
-## B. Extended Components
+## 12. Completion note
 
-### B.1 Pricing Card v3
-
-Two-card layout (Free / Full Editor). No third column.
-
-- **Free card**
-  - Border: `--border-thin`
-  - Radius: `--radius-2xl` (24px)
-  - Badge: `Currently free` (olive badge)
-  - Price: `$0` with "No account needed"
-  - CTA: Secondary style → `/remove-pages`
-- **Full Editor card**
-  - Border: `--border-strong` (2px primary)
-  - Radius: `--radius-2xl` (28px)
-  - Badge: `Most popular` (olive, sharp corners)
-  - Price: `$19` large, `$29` strikethrough beside it
-  - Period: "One-time payment. No subscription."
-  - Secondary note: "Launch price for a limited time. Standard price is $29."
-  - CTA: Primary button → `/checkout`
-
-### B.2 Comparison Table
-
-- Container: white card, `--border-thin`, rounded 20px.
-- Header: `Feature | Free | Full Editor`.
-- Full Editor column has `--brand-indigo-50/50` background tint.
-- Use olive check for Free, primary check for Full Editor, em-dash for missing.
-
-### B.3 Pricing FAQ
-
-- 5 questions in stacked cards.
-- Card: white, border, rounded-xl, shadow-sm.
-- H4 question in `--heading-sm` / font-heading.
-- Answer in `--body` / `--on-surface-variant`.
-
-### B.4 Checkout Plan Selector
-
-- Two radio cards side by side (sm:grid-cols-2).
-- $19 card: selected by default, border 2px primary, brand-indigo-50 background, `Recommended` olive badge.
-- $29 card: unselected, border `--ink-200`, white background, changes to primary border when selected.
-- Trust row below: lock/verified/mail icons + labels.
-- Sticky order summary on right (desktop).
-
-### B.5 License Key Card
-
-- Used on `/success`.
-- White card with dot-grid background, rounded 28px.
-- Monospace key block in surface-container-low with border.
-- Copy button primary.
-- Next-step 3-column grid below.
-
-### B.6 Blog Card
-
-- White card, border, rounded 20px, hover shadow-md.
-- Title as H2 font-heading, excerpt body-sm, CTA link primary.
-- Two-column grid on desktop, single column on mobile.
-
-### B.7 Legal Page Layout
-
-- Max-width 3xl, centered.
-- H1 `font-display` / primary color.
-- Last-updated date in body-sm / ink-600.
-- Section H2 `font-heading` / text-xl.
-- Body paragraphs in `text-on-surface-variant` / leading-relaxed.
-- Links primary + hover underline.
-
-### B.8 Tool-Page Badge
-
-- Positioned directly below the H1.
-- Same `Currently free` olive badge used in homepage and pricing Free card.
-
-### B.9 Disclaimer / Notice Banners
-
-- Left accent border (4px).
-- Background: `--accent-amber-100` for warning (Sign), `--brand-indigo-50` for info (Convert, Compress).
-- Title in bold on-surface, body in on-surface-variant.
-- Sharp left radius, rounded right.
-
-### B.10 Footer v3
-
-- Background: `--brand-indigo-900`.
-- 4 columns on desktop: Brand, Legal, Tools, Support.
-- Legal: Privacy / Terms / Refund.
-- Tools: Remove Pages / Merge PDFs / Compress PDF / Sign PDF / Convert to Word.
-- Support: Pricing / FAQ / Contact / Blog.
-- Bottom row: copyright across full width.
-
-## C. Navigation Updates
-
-- Desktop nav: Logo, Tools dropdown, Pricing, FAQ, Blog, CTA.
-- Tools dropdown lists all 5 tools.
-- Mobile nav: not shown in design file, but front-end should implement same groups (Free Tools, Pro Tools, Support, Legal).
-
-## D. Design Decisions Frozen
-
-1. Only two pricing cards. The $29 card is not a standalone purchase option on `/pricing`.
-2. Checkout keeps $29 Standard as a fallback radio option, but defaults to $19 Launch Special.
-3. All 5 free tools use the `Currently free` badge.
-4. Sign page clearly states the signature is not a digital certificate.
-5. Convert page states the 1-hour deletion policy.
-6. Compress page includes the backend fallback notice position.
-7. Legal pages use the same max-w-3xl legal layout.
-8. Blog index uses a 4-card two-column grid; blog posts use the same article template.
-9. Footer structure is fixed: Legal, Tools, Support.
-
-## E. Unresolved Design Questions
-
-- Blog post thumbnails/hero images: not included. Front-end can use abstract pattern or omit.
-- Mobile menu design: not included in this handoff; follow desktop nav structure.
-- Whether `/success` should auto-redirect after N seconds: not designed; keep static.
-- Whether checkout should collect billing address: not designed; current scope is email + card only.
-- Whether legal pages should include a table of contents sidebar: not included; keep simple section stack.
-
-## F. Handoff Checklist
-
-- [x] route-mapping.json includes all 19 routes.
-- [x] DESIGN.md updated with v3 components and pages.
-- [x] code.html generated for all new and modified pages.
-- [x] Footer links consistent across all pages.
-- [x] Pricing/Checkout/Success copy aligned with copy-freeze.md.
-- [ ] screen.png screenshots pending (to be generated or added by front-end if needed).
+All 20 v3 pages are now present under `design-handoff-v3/pages/`. The 13 missing pages were created and the 7 existing pages were updated to link `shared.css` directly and to align header CTA copy with copy-freeze v3. Specific copy deviations resolved:
+- `/merge`: hero subheadline now includes "Upload two or more PDFs".
+- `/compress`: hero subheadline now includes "Choose compression level" and "Processed in your browser by default".
+- `/sign`: disclaimer banner now uses the exact copy-freeze v3 phrase.
+- `/convert-to-word`: H1 is now exactly "Convert PDF to Word Online" and includes "10 included conversions" and "1-hour temporary backend retention".
+Header right CTA is "Try free" on home/tool pages and "Get Full Editor — $19/month" on info/legal pages. Footer links to `/privacy`, `/terms`, `/refund`, `/cookie-policy` are present on all pages.

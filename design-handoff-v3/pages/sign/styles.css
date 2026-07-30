@@ -1,0 +1,27 @@
+.rpp-sign-canvas {
+  background: var(--rpp-ink-100);
+  border: 1px dashed var(--rpp-ink-300);
+  border-radius: var(--rpp-radius-md);
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  padding: var(--rpp-space-8);
+}
+.rpp-sign-placeholder {
+  text-align: center;
+}
+.rpp-sign-stamp {
+  display: inline-block;
+  font-family: var(--rpp-font-script);
+  font-size: var(--rpp-scale-6);
+  color: var(--rpp-ink-800);
+  border-bottom: 2px solid var(--rpp-indigo);
+  padding: 0 var(--rpp-space-4) var(--rpp-space-2);
+  margin-bottom: var(--rpp-space-5);
+}
+.rpp-sign-controls {
+  display: flex;
+  gap: var(--rpp-space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}

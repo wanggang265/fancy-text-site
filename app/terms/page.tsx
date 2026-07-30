@@ -2,55 +2,18 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service - RemovePDFPages',
-  description: "Last updated: July 21, 2026",
+  description: 'RemovePDFPages terms of service, license agreement, subscription terms, and usage policies.',
   alternates: {
     canonical: 'https://removepdfpages.net/terms',
-  },
-  openGraph: {
-    title: 'Terms of Service - RemovePDFPages',
-    description: "Last updated: July 21, 2026",
-    url: 'https://removepdfpages.net/terms',
-    siteName: 'RemovePDFPages',
-    images: [{ url: 'https://removepdfpages.net/og-home.png', width: 1200, height: 630 }],
-    type: 'website',
   },
 };
 
 export default function Page() {
   return (
-    <div className="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col relative">
-    
-    <main className="flex-grow pt-32 pb-20">
-    <section className="max-w-3xl mx-auto px-margin-desktop">
-    <h1 className="font-display text-4xl md:text-5xl text-primary font-bold mb-2 tracking-tight">Terms of Service</h1>
-    <p className="text-sm text-ink-600 mb-10">Last updated: July 21, 2026</p>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">1. Acceptance</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>By accessing or using RemovePDFPages, you agree to these Terms of Service. If you do not agree, do not use the Service.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">2. Description of the Service</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>We provide browser-based PDF tools. The free tools process files locally when possible. The Full Editor unlocks Convert to Word and other advanced features.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">3. Full Editor License</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>The Full Editor is sold as a one-time license for the current major version (v1.x). It covers up to 5 personal devices. A future new platform may require a separate license.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">4. Acceptable Use</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>You may not use the service to process unlawful, harmful, or copyrighted material you do not have permission to modify.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">5. Refunds</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>We offer a 14-day no-questions-asked refund for Full Editor purchases. Contact us with your order information.</p></div>
-    </section>
-    <section className="mb-8">
-    <h2 className="text-xl font-bold text-on-surface mb-3 font-heading">6. Limitation of Liability</h2>
-    <div className="text-base text-on-surface-variant leading-relaxed space-y-3"><p>We provide the service as-is. We are not liable for data loss or errors in output files. Always keep backups of important PDFs.</p></div>
-    </section>
-    </section>
-    </main>
-    
-    </div>
+    <>
+
+<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><section className="rpp-section rpp-section-hero"><div className="rpp-container rpp-text-center"><h1 className="rpp-display">Terms of Service</h1><span className="rpp-legal-updated">Last updated: July 29, 2026</span></div></section><section className="rpp-section"><div className="rpp-container"><div className="rpp-legal-list"><section className="rpp-legal-section"><h2>1. Acceptance</h2><p>By accessing or using RemovePDFPages, you agree to these Terms of Service. If you do not agree, do not use the Service.</p></section><section className="rpp-legal-section"><h2>2. Description of the Service</h2><p>RemovePDFPages provides browser-based PDF tools. The free tools (Remove Pages, Merge, Compress, Sign) are processed locally in your browser by default. Convert PDF to Word and optional backend fallback processing require temporary server-side upload and are deleted within 1 hour. The Full Editor is available as a monthly subscription ($19/month Launch Special, standard $29/month), an annual subscription ($99/year, standard $149/year), or a one-time license ($59, standard $79) for the current major version (v1.x). All paid plans include 10 Convert to Word conversions per calendar month. Additional conversions may be purchased as top-up credits at $0.50 each or $5 for 10. Free users may try Convert to Word up to 3 times per 30-day period.</p></section><section className="rpp-legal-section"><h2>3. Full Editor Subscription & License</h2><p>The Full Editor is offered as a monthly subscription, an annual subscription, or a one-time license. Subscriptions bill automatically until canceled. You may cancel anytime; cancellation takes effect at the end of the current billing period. The one-time license is a single payment for the current major version of RemovePDFPages (v1.x). It includes updates within v1.x but does not guarantee updates for a future major version or new platform. All paid plans may be activated on up to 5 personal devices; we record a device fingerprint at activation to enforce this limit. You may not share, resell, or redistribute your license key. The license is non-transferable except where required by law.</p></section><section className="rpp-legal-section"><h2>3.5. Top-Up Credits</h2><p>Top-up credits are sold in packs of 1 conversion ($0.50) or 10 conversions ($5). Credits are non-transferable and expire only upon use or license/subscription revocation. Unused credits may be refunded within 14 days of purchase if requested; used credits are not refundable. Creem processing fees are not refunded on any refund.</p></section><section className="rpp-legal-section"><h2>3.6. Pricing Changes</h2><p>The $19/month Launch Special and $99/year Launch Special are limited-time introductory prices. We may end the launch period at any time and return to the standard prices of $29/month and $149/year without prior notice. Prices displayed at checkout at the time of purchase are the prices that apply to that purchase.</p></section><section className="rpp-legal-section"><h2>4. Acceptable Use</h2><p>You agree not to use the service to process unlawful, harmful, infringing, or otherwise objectionable content. You may not attempt to circumvent free trial limits, device limits, or rate limits. We may suspend or revoke a license or subscription for violations.</p></section><section className="rpp-legal-section"><h2>4.5. Sales Tax & Geographic Scope</h2><p>All prices are shown in USD. For purchases in the United States, applicable state and local sales tax will be calculated and collected automatically by Creem at checkout. International purchases may be subject to VAT or other local taxes; the buyer is responsible for compliance with local laws. The service is primarily offered to users in the United States; access from other jurisdictions does not create a local presence or obligation beyond these Terms.</p></section><section className="rpp-legal-section"><h2>5. Refunds</h2><p>Full Editor subscriptions and one-time licenses are eligible for a full refund within 14 days of purchase, no questions asked, by contacting <a href="mailto:support@removepdfpages.net">support@removepdfpages.net</a> or through the <a href="/contact">refund form</a>. Creem processing fees are not refundable. We reserve the right to refuse refunds in cases of abuse, fraud, license redistribution, or after the 14-day window. Top-up credits are refundable only if unused and requested within 14 days of purchase; used credits are not refundable.</p></section><section className="rpp-legal-section"><h2>6. Governing Law / Dispute Resolution</h2><p>These Terms are governed by the laws of the State of Delaware, United States, without regard to conflict of law principles. Any dispute shall be resolved in the state or federal courts located in Delaware.</p></section><section className="rpp-legal-section"><h2>7. Disclaimer & Limitation of Liability</h2><p>The service is provided “as is” and “as available” without warranties of any kind. PDF conversion, compression, and signing results depend on the input file; we do not guarantee error-free output. In no event shall our liability exceed the amount you paid for the service in the 12 months preceding the claim. We are not liable for indirect, incidental, or consequential damages.</p></section></div></div></section></main>
+
+    </>
   );
 }
