@@ -200,15 +200,7 @@ export default function SignTool() {
               </div>
             </div>
           </div>
-          <div
-            style={{
-              border: "2px dashed var(--rpp-ink-300)",
-              borderRadius: "var(--rpp-radius-md)",
-              padding: "var(--rpp-space-3)",
-              background: "#fff",
-              marginBottom: "var(--rpp-space-4)",
-            }}
-          >
+          <div className="rpp-sign-canvas" style={{ marginBottom: "var(--rpp-space-4)" }}>
             <canvas
               ref={canvasRef}
               width={600}

@@ -13,7 +13,7 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FRONTEND_DIR="${SCRIPT_DIR}"
 WORKERS_DIR="${WORKERS_DIR:-/home/ubuntu/precision-pdf-pages-clone}"
-DESIGN_ZIP="${FRONTEND_DIR}/design-handoff-v3.zip"
+DESIGN_ZIP="${FRONTEND_DIR}/design-handoff-v4.zip"
 DOMAIN="https://removepdfpages.net"
 
 cd "${FRONTEND_DIR}"
@@ -33,11 +33,11 @@ fi
 
 # Fallback to cache if not present in repo
 if [[ ! -f "${DESIGN_ZIP}" ]]; then
-  DESIGN_ZIP="/home/ubuntu/.hermes/profiles/wangduoyu/cache/documents/doc_709b53ace910_design-handoff-v3.zip"
+  DESIGN_ZIP="/home/ubuntu/.hermes/profiles/wangduoyu/cache/documents/doc_709b53ace910_design-handoff-v4.zip"
 fi
 
 if [[ ! -f "${DESIGN_ZIP}" ]]; then
-  echo "❌ design handoff ZIP not found. Expected at ${FRONTEND_DIR}/design-handoff-v3.zip or the cache path."
+  echo "❌ design handoff ZIP not found. Expected at ${FRONTEND_DIR}/design-handoff-v4.zip or the cache path."
   exit 1
 fi
 
@@ -135,10 +135,25 @@ npx wrangler deploy
 echo "🌐 Gate N: verifying live URLs..."
 LIVE_URLS=(
   "${DOMAIN}/"
+  "${DOMAIN}/remove-pages"
+  "${DOMAIN}/merge"
+  "${DOMAIN}/compress"
+  "${DOMAIN}/sign"
+  "${DOMAIN}/convert-to-word"
   "${DOMAIN}/pricing"
   "${DOMAIN}/checkout"
-  "${DOMAIN}/remove-pages"
-  "${DOMAIN}/convert-to-word"
+  "${DOMAIN}/success"
+  "${DOMAIN}/faq"
+  "${DOMAIN}/contact"
+  "${DOMAIN}/privacy"
+  "${DOMAIN}/terms"
+  "${DOMAIN}/refund"
+  "${DOMAIN}/cookie-policy"
+  "${DOMAIN}/blog"
+  "${DOMAIN}/blog/foxit-alternative"
+  "${DOMAIN}/blog/replace-image-in-pdf"
+  "${DOMAIN}/blog/one-time-payment-pdf-editor"
+  "${DOMAIN}/blog/no-subscription-pdf-editor"
 )
 VERIFY_FAILED=false
 for url in "${LIVE_URLS[@]}"; do

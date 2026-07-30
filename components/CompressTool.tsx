@@ -162,7 +162,8 @@ export default function CompressTool() {
                   border: "1px solid var(--rpp-ink-200)",
                   borderRadius: "var(--rpp-radius-md)",
                   cursor: "pointer",
-                  background: status.level === level ? "var(--rpp-indigo-light)" : undefined,
+                  background: status.level === level ? "var(--rpp-marker-light)" : undefined,
+                  borderColor: status.level === level ? "var(--rpp-marker)" : undefined,
                 }}
               >
                 <input type="radio" name="level" checked={status.level === level} onChange={() => setLevel(level)} />

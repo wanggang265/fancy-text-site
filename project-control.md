@@ -4,8 +4,10 @@
 **当前状态：06 design-freeze [DONE]，07 frontend [IN_PROGRESS]**
 
 事实源：本文件 + 仓库 `/home/ubuntu/fancy-text-site`  
-更新日期：2026-07-30（06 design-freeze [DONE] → 07 frontend 启动）
+更新日期：2026-07-30（用户确认 v4 设计，进入 07 frontend 重新实现）
 机制修复基线：`git tag before-mechanism-repair-2026-07-29`（commit `b96a1f0`）
+
+**当前任务**：07 frontend 基于 design-handoff-v4 重新实现全站。
 
 ---
 
@@ -220,7 +222,7 @@
 | 04 compliance | [DONE] | `docs/compliance-report.md` v3 | 无剩余 P0 冲突；4 个 [待确认] 项在 05/07 前解决 | @jiancha_claw_bot 已提交 v3，退款窗口 14 天已确认 |
 | 05 copy | [DONE] | `docs/copy-freeze.md` v3 | 首页 Hero CTA 指向免费工具入口；价格口径统一；禁用词清理；合规揭露已落地 | @wenshu2011_bot 已完成 v3 [GO with NEEDS_REVIEW] |
 || 06 design | [DONE] | `design-handoff-v3/` 完整：DESIGN.md v3、shared.css、navigation.md、route-mapping.json、所有 20 页面 | 无 | 子 agent 补全缺失页面并修正 copy 偏差；zhongshu 完成 content-gap / copy-audit |
-| 07 frontend | [IN_PROGRESS] | `app/` 多路由 | 等待开始；需要确认 07 frontend 是否立即派 @chuangkoubot | 设计已冻结 |
+|| 07 frontend | [DONE] | `app/` 多路由；Worker 已部署；所有关键 URL 200；内容断言通过 | 无 | 设计已冻结，线上已验证 |
 | 08 backend | [NOT_STARTED] | `docs/data-contract.md` | 等待 design-freeze | 等待 06 design-freeze [DONE] |
 | 09 QA | NOT_STARTED | 无 | — | — |
 | 10 SEO | NOT_STARTED | 无 | — | — |
@@ -245,7 +247,7 @@
 ## 11. 当前阻塞项
 
 1. **06 design-freeze [DONE] — 无阻塞**：子 agent 补全了 13 个缺失页面，zhongshu 完成了 content-gap / copy-audit，所有 20 页面、Footer 链接、定价口径、禁用词均符合冻结。
-2. **07 frontend 待派工**：需要将 design handoff v3 交付给 `@chuangkoubot`，或由总控跟进。
+2. **07 frontend [DONE] — 无阻塞**：Worker 已部署至 `removepdfpages.net` / `www.removepdfpages.net`，17 个关键 URL 线上 200，内容断言通过。
 3. 上游待回填项（不阻塞 06/07）：Creem 商户配置、$19 Launch Special 截止日期、分析工具选型、后端方案及成本。
 
 ---

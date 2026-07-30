@@ -11,16 +11,26 @@ export function FaqAccordion({
 }) {
   const [active, setActive] = useState(false);
   return (
-    <div className={`faq-accordion border border-ink-200 rounded-lg bg-paper shadow-sm overflow-hidden ${active ? 'active' : ''}`}>
+    <div className={`faq-accordion rpp-card overflow-hidden ${active ? 'active' : ''}`}>
       <button
         type="button"
         onClick={() => setActive(!active)}
-        className="w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-on-surface hover:bg-brand-indigo-50/50 transition-colors"
+        className="w-full text-left flex items-center justify-between rpp-heading-3 hover:bg-[var(--rpp-ink-100)] transition-colors px-6 py-4"
+        aria-expanded={active}
       >
         {question}
-        <span className="material-symbols-outlined faq-icon transition-transform text-ink-600">expand_more</span>
+        <svg
+          className="faq-icon rpp-icon flex-shrink-0 transition-transform"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
       </button>
-      <div className="faq-accordion-content px-6 text-on-surface-variant">{children}</div>
+      <div className="faq-accordion-content px-6 rpp-body">{children}</div>
     </div>
   );
 }

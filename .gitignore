@@ -50,3 +50,8 @@ dist/
 screenshots/
 _tmp-*.png
 design-handoff-extract/
+
+# python
+__pycache__/
+*.py[cod]
+*$py.class
