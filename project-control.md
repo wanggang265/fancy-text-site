@@ -1,13 +1,13 @@
 # RemovePDFPages — Project Control Board
 
 项目：removepdfpages.net (fancy-text-site)  
-**当前状态：06 design-freeze [DONE]，07 frontend [IN_PROGRESS]**
+**当前状态：06 design-freeze [DONE]，07 frontend [DONE]，08 backend [NOT_STARTED]**
 
 事实源：本文件 + 仓库 `/home/ubuntu/fancy-text-site`  
 更新日期：2026-07-30（用户确认 v4 设计，进入 07 frontend 重新实现）
 机制修复基线：`git tag before-mechanism-repair-2026-07-29`（commit `b96a1f0`）
 
-**当前任务**：07 frontend 基于 design-handoff-v4 重新实现全站。
+**当前任务**：08 backend 实现。07 frontend 基于 design-handoff-v4 的全站重新实现已完成并部署。
 
 ---
 
@@ -221,9 +221,9 @@
 | 03 pricing | [DONE] | `docs/pricing-calibration-v3.md` | $59 买断隐藏方案已由用户 2026-07-29 确认（选项 A） | jiagoushi v3 已更新，竞品价格已由用户快照覆盖 |
 | 04 compliance | [DONE] | `docs/compliance-report.md` v3 | 无剩余 P0 冲突；4 个 [待确认] 项在 05/07 前解决 | @jiancha_claw_bot 已提交 v3，退款窗口 14 天已确认 |
 | 05 copy | [DONE] | `docs/copy-freeze.md` v3 | 首页 Hero CTA 指向免费工具入口；价格口径统一；禁用词清理；合规揭露已落地 | @wenshu2011_bot 已完成 v3 [GO with NEEDS_REVIEW] |
-|| 06 design | [DONE] | `design-handoff-v3/` 完整：DESIGN.md v3、shared.css、navigation.md、route-mapping.json、所有 20 页面 | 无 | 子 agent 补全缺失页面并修正 copy 偏差；zhongshu 完成 content-gap / copy-audit |
-|| 07 frontend | [DONE] | `app/` 多路由；Worker 已部署；所有关键 URL 200；内容断言通过 | 无 | 设计已冻结，线上已验证 |
-| 08 backend | [NOT_STARTED] | `docs/data-contract.md` | 等待 design-freeze | 等待 06 design-freeze [DONE] |
+|| 06 design-freeze | [DONE] | `design-handoff-v4/` 完整：HANDOFF.md、shared.css、route-mapping.json、所有 20 页面 | 无 | v4 设计已冻结 |
+|| 07 frontend | [DONE] | `app/` 全 20 路由实现；Worker 已部署；所有 20 URL 线上 200；handoff 文档已生成 | 6 个路由标题/H1 与 route-contract 有 copy drift；pre-existing lint errors | v4 前端已部署并验证；详见 `docs/07-frontend-handoff-v4.md` |
+|| 08 backend | [IN_PROGRESS] | `docs/data-contract.md` | 待实现 | 07 frontend [DONE]，可启动 |
 | 09 QA | NOT_STARTED | 无 | — | — |
 | 10 SEO | NOT_STARTED | 无 | — | — |
 | 11 launch | NOT_STARTED | 无 | — | — |
