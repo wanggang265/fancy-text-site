@@ -84,6 +84,19 @@ All visible title/H1 now match the frozen `docs/route-contract.json` and `docs/c
 
 These issues do not block the v4 frontend deployment but should be addressed during the **08 backend** or **09 QA** stage.
 
+## Tool Interaction / Functional Fixes (2026-07-30)
+
+After the initial v4 deployment, user reported 4 functional defects in the browser-based tools. The following fixes were implemented and re-deployed (commit `2839063`):
+
+| Tool | Problem | Fix | Verification |
+|---|---|---|---|
+| **Compress PDF** | Compression had little or no effect; UI sometimes showed `Original: 0 B`. | Installed `pdfjs-dist`, render pages to JPEG with configurable quality/scale for medium/high levels; detect image presence and fall back to structural optimization for text-only PDFs; capture original size before any buffer-consuming operation. | High-compression smoke test: 1.31 MB → 44.5 KB (≈3% of original). |
+| **Merge PDFs** | Uploading a second PDF replaced the first instead of appending. | `addFiles` now appends new files to the existing `ready` list, deduplicates by `name|size`, and resets the input so re-adding works. | Two sequential uploads result in 2 items in the merge list. |
+| **Sign PDF** | Signature was not visible in the downloaded PDF. | Added signature position selector (top-left/top-right/bottom-left/bottom-right/center) for the first page; placed signature with a white background rectangle at the selected corner (max 150 pt width); default is bottom-right. | Signed PDF is larger than original and download succeeds. |
+| **Remove PDF Pages** | No page preview before deleting. | Integrated `pdfjs-dist` to render real page thumbnail images via `lib/pdfjs.ts`; replaced placeholder bars with `<img>` thumbnails while preserving click-to-select UX. | 3-page test PDF renders 3 thumbnail images. |
+
+New shared helper: `lib/pdfjs.ts` provides `renderPageThumbnail`, `renderAllThumbnails`, `compressPdfWithImages`, and `pdfHasImages`.
+
 ## Next Steps
 
 - **08 backend** is the next stage per `project-control.md` when you decide to proceed.
