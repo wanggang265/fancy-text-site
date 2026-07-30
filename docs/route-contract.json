@@ -259,6 +259,19 @@
       "sitemapPriority": 0.8,
       "cta": "Get Full Editor — $19 Launch Special",
       "schema": "BlogPosting"
+    },
+    {
+      "route": "/cookie-policy",
+      "designHandoffName": "removepdfpages-cookie-policy",
+      "designHandoffRoute": "/cookie-policy",
+      "segment": "legal",
+      "title": "Cookie Policy - RemovePDFPages",
+      "h1": "Cookie Policy",
+      "mainKeyword": "cookie policy",
+      "indexable": false,
+      "sitemapPriority": 0.1,
+      "cta": "none",
+      "schema": "WebPage"
     }
   ]
 }

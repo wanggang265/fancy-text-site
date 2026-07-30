@@ -4,10 +4,10 @@
 **当前状态：06 design-freeze [DONE]，07 frontend [DONE]，08 backend [NOT_STARTED]**
 
 事实源：本文件 + 仓库 `/home/ubuntu/fancy-text-site`  
-更新日期：2026-07-30（用户确认 v4 设计，进入 07 frontend 重新实现）
-机制修复基线：`git tag before-mechanism-repair-2026-07-29`（commit `b96a1f0`）
+更新日期：2026-07-30（07 frontend 基于 design-handoff-v4 重新实现并部署；route-contract.json 已同步到 v4）
+机制修复基线：`git tag before-mechanism-repair-2026-07-30`（保留）
 
-**当前任务**：08 backend 实现。07 frontend 基于 design-handoff-v4 的全站重新实现已完成并部署。
+**当前任务**：等待用户决定是否启动 08 backend。07 frontend 已完成并部署。
 
 ---
 
