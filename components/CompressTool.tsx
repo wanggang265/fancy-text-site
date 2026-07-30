@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import type { PDFDocument } from "pdf-lib";
-import { compressPdfWithImages } from "@/lib/pdfjs";
+import { compressPdfWithImages, pdfHasImages } from "@/lib/pdfjs";
 
 type Level = "low" | "medium" | "high";
 
@@ -64,17 +64,23 @@ export default function CompressTool() {
     setStatus({ kind: "processing" });
     try {
       const { doc, bytes, name, level } = status;
+      // Capture the original size before any processing, because pdfjs may
+      // transfer/detach the underlying ArrayBuffer when it loads the document.
+      const originalSize = bytes.byteLength;
       let output: Uint8Array;
       let usedImageCompression = false;
 
       if (level === "low") {
         output = await doc.save({ useObjectStreams: false, updateFieldAppearances: false });
+      } else if (!(await pdfHasImages(doc))) {
+        // Avoid rasterizing text-only/vector PDFs; use structural optimization instead.
+        output = await doc.save({ useObjectStreams: true, updateFieldAppearances: false });
       } else {
         output = await compressPdfWithImages(bytes, level);
         usedImageCompression = true;
         // If image compression somehow makes the file larger, fall back to
         // pdf-lib structural optimization.
-        if (output.byteLength >= bytes.byteLength) {
+        if (output.byteLength >= originalSize) {
           output = await doc.save({ useObjectStreams: true, updateFieldAppearances: false });
           usedImageCompression = false;
         }
@@ -86,7 +92,7 @@ export default function CompressTool() {
         kind: "done",
         url,
         filename: name.replace(/\.pdf$/i, "-compressed.pdf"),
-        original: bytes.byteLength,
+        original: originalSize,
         compressed: output.byteLength,
         usedImageCompression,
       });

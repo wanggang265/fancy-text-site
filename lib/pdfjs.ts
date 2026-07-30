@@ -1,3 +1,5 @@
+import type { PDFDocument } from "pdf-lib";
+
 let workerSrcSet = false;
 
 async function ensureWorker() {
@@ -71,9 +73,12 @@ interface CompressionSettings {
 }
 
 const SETTINGS: Record<CompressionLevel, CompressionSettings> = {
+  // Low: keep pages at a high resolution, minor JPEG quality reduction.
   low: { scale: 2.0, quality: 0.85 },
-  medium: { scale: 2.0, quality: 0.7 },
-  high: { scale: 1.5, quality: 0.4 },
+  // Medium: lower resolution and JPEG quality for a balanced size reduction.
+  medium: { scale: 1.5, quality: 0.6 },
+  // High: smallest output, more aggressive downsampling and quality.
+  high: { scale: 1.0, quality: 0.35 },
 };
 
 export async function compressPdfWithImages(
@@ -108,7 +113,25 @@ export async function compressPdfWithImages(
     });
   }
 
-  return newDoc.save();
+  return newDoc.save({ useObjectStreams: true });
+}
+
+export async function pdfHasImages(doc: PDFDocument): Promise<boolean> {
+  const pdfLib = await import("pdf-lib");
+  const { PDFName, PDFRawStream, PDFContentStream } = pdfLib;
+
+  const objects = doc.context.enumerateIndirectObjects();
+  for (let i = 0; i < objects.length; i++) {
+    const obj = objects[i][1];
+    if (obj instanceof PDFRawStream || obj instanceof PDFContentStream) {
+      const subtype = obj.dict.lookup(PDFName.of("Subtype"));
+      if (subtype && subtype.toString() === "/Image") {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 export async function renderAllThumbnails(
