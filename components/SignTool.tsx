@@ -11,9 +11,12 @@ type Status =
   | { kind: "done"; url: string; filename: string }
   | { kind: "error"; message: string };
 
+type Position = "top-left" | "top-right" | "bottom-left" | "bottom-right" | "center";
+
 export default function SignTool() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [drawing, setDrawing] = useState(false);
+  const [position, setPosition] = useState<Position>("bottom-right");
   const inputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -104,11 +107,47 @@ export default function SignTool() {
       const png = await doc.embedPng(pngBytes);
       const page = doc.getPage(0);
       const { width, height } = page.getSize();
-      const sigWidth = Math.min(200, width * 0.4);
+      const MARGIN = 30;
+      const MAX_WIDTH = 150;
+      const sigWidth = Math.min(MAX_WIDTH, width - MARGIN * 2);
       const sigHeight = (png.height / png.width) * sigWidth;
+
+      let x = MARGIN;
+      let y = MARGIN;
+      switch (position) {
+        case "top-left":
+          x = MARGIN;
+          y = height - sigHeight - MARGIN;
+          break;
+        case "top-right":
+          x = width - sigWidth - MARGIN;
+          y = height - sigHeight - MARGIN;
+          break;
+        case "bottom-left":
+          x = MARGIN;
+          y = MARGIN;
+          break;
+        case "bottom-right":
+          x = width - sigWidth - MARGIN;
+          y = MARGIN;
+          break;
+        case "center":
+          x = (width - sigWidth) / 2;
+          y = (height - sigHeight) / 2;
+          break;
+      }
+
+      const padding = 4;
+      page.drawRectangle({
+        x: x - padding,
+        y: y - padding,
+        width: sigWidth + padding * 2,
+        height: sigHeight + padding * 2,
+        color: mod.rgb(1, 1, 1),
+      });
       page.drawImage(png, {
-        x: width - sigWidth - 50,
-        y: height - sigHeight - 50,
+        x,
+        y,
         width: sigWidth,
         height: sigHeight,
       });
@@ -119,10 +158,11 @@ export default function SignTool() {
     } catch {
       setStatus({ kind: "error", message: "Could not sign the PDF." });
     }
-  }, [status]);
+  }, [status, position]);
 
   const reset = useCallback(() => {
     setStatus({ kind: "idle" });
+    setPosition("bottom-right");
     clearCanvas();
     if (inputRef.current) inputRef.current.value = "";
   }, [clearCanvas]);
@@ -199,6 +239,31 @@ export default function SignTool() {
                 This signature is a visual mark only. It is not a digital certificate signature and is not legally binding for regulated electronic-signing requirements.
               </div>
             </div>
+          </div>
+          <div style={{ marginBottom: "var(--rpp-space-4)" }}>
+            <p className="rpp-body" style={{ marginBottom: "var(--rpp-space-2)", color: "var(--rpp-ink-700)" }}>
+              Signature position on the first page
+            </p>
+            <div className="rpp-flex" style={{ gap: "var(--rpp-space-2)", flexWrap: "wrap" }}>
+              {([
+                ["top-left", "Top left"],
+                ["top-right", "Top right"],
+                ["bottom-left", "Bottom left"],
+                ["bottom-right", "Bottom right"],
+                ["center", "Center"],
+              ] as const).map(([value, label]) => (
+                <button
+                  key={value}
+                  className={`rpp-btn rpp-btn-small ${position === value ? "rpp-btn-primary" : "rpp-btn-secondary"}`}
+                  onClick={() => setPosition(value)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <p className="rpp-body-sm" style={{ marginTop: "var(--rpp-space-2)", color: "var(--rpp-ink-600)" }}>
+              Your signature will appear on the first page in the selected corner, sized up to 150 points wide.
+            </p>
           </div>
           <div className="rpp-sign-canvas" style={{ marginBottom: "var(--rpp-space-4)" }}>
             <canvas

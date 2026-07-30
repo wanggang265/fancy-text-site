@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import type { PDFDocument } from "pdf-lib";
 
 interface FileItem {
   id: string;
@@ -31,22 +30,34 @@ export default function MergeTool() {
       setStatus({ kind: "error", message: "Please upload PDF files only." });
       return;
     }
+
+    const existingItems = status.kind === "ready" ? status.items : [];
     setStatus({ kind: "reading", name: valid.map((f) => f.name).join(", ") });
     try {
       const mod = await import("pdf-lib");
-      const items: FileItem[] = [];
+      const newItems: FileItem[] = [];
       for (const file of valid) {
         if (file.size > 50 * 1024 * 1024) throw new Error(`${file.name} is over 50 MB.`);
         const bytes = await file.arrayBuffer();
         const doc = await mod.PDFDocument.load(bytes, { updateMetadata: false });
         if (doc.getPageCount() > 200) throw new Error(`${file.name} has more than 200 pages.`);
-        items.push({ id: Math.random().toString(36).slice(2), file, bytes, pageCount: doc.getPageCount() });
+        newItems.push({ id: Math.random().toString(36).slice(2), file, bytes, pageCount: doc.getPageCount() });
       }
+
+      const combined = [...existingItems, ...newItems];
+      const seen = new Set<string>();
+      const items = combined.filter((item) => {
+        const key = `${item.file.name}|${item.file.size}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
       setStatus({ kind: "ready", items });
     } catch (err) {
       setStatus({ kind: "error", message: err instanceof Error ? err.message : "Could not read one of the PDFs." });
     }
-  }, []);
+  }, [status]);
 
   const moveItem = useCallback((index: number, direction: -1 | 1) => {
     setStatus((prev) => {
@@ -108,7 +119,10 @@ export default function MergeTool() {
         accept="application/pdf"
         multiple
         className="rpp-sr-only"
-        onChange={(e) => addFiles(e.currentTarget.files)}
+        onChange={(e) => {
+          addFiles(e.currentTarget.files);
+          e.currentTarget.value = "";
+        }}
       />
 
       {(status.kind === "idle" || status.kind === "error") && (

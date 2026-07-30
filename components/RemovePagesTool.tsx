@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { PDFDocument } from "pdf-lib";
+import { renderAllThumbnails } from "@/lib/pdfjs";
 
 interface PageInfo {
   index: number;
@@ -11,7 +12,7 @@ interface PageInfo {
 type Status =
   | { kind: "idle" }
   | { kind: "reading"; name: string }
-  | { kind: "preview"; doc: PDFDocument; pages: PageInfo[]; selected: Set<number>; name: string }
+  | { kind: "preview"; doc: PDFDocument; bytes: Uint8Array; pages: PageInfo[]; selected: Set<number>; name: string; thumbnails: Map<number, string>; loadingThumbnails: boolean }
   | { kind: "processing" }
   | { kind: "done"; url: string; filename: string; remaining: number }
   | { kind: "error"; message: string };
@@ -45,7 +46,7 @@ export default function RemovePagesTool() {
         index: i,
         number: i + 1,
       }));
-      setStatus({ kind: "preview", doc, pages, selected: new Set(), name: file.name });
+      setStatus({ kind: "preview", doc, bytes: new Uint8Array(bytes), pages, selected: new Set(), name: file.name, thumbnails: new Map(), loadingThumbnails: true });
     } catch {
       setStatus({ kind: "error", message: "Could not read the PDF. It may be encrypted or damaged." });
     }
@@ -99,6 +100,59 @@ export default function RemovePagesTool() {
     setStatus({ kind: "idle" });
     if (inputRef.current) inputRef.current.value = "";
   }, []);
+
+  const renderRef = useRef<number | null>(null);
+  const startedRef = useRef<WeakMap<Uint8Array, boolean>>(new WeakMap());
+
+  const bytesForThumb = status.kind === "preview" ? status.bytes : null;
+  const pageCountForThumb = status.kind === "preview" ? status.pages.length : 0;
+
+  useEffect(() => {
+    if (!bytesForThumb || !pageCountForThumb) return;
+    // Guard against double-run from StrictMode / re-renders for the same file.
+    if (startedRef.current.get(bytesForThumb)) return;
+    startedRef.current.set(bytesForThumb, true);
+    const runId = Date.now();
+    renderRef.current = runId;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const dataUrls = await renderAllThumbnails(
+          bytesForThumb,
+          pageCountForThumb,
+          220,
+          (index, dataUrl) => {
+            if (cancelled) return;
+            setStatus((prev) => {
+              if (prev.kind !== "preview") return prev;
+              if (renderRef.current !== runId) return prev;
+              const next = new Map(prev.thumbnails);
+              next.set(index, dataUrl);
+              return { ...prev, thumbnails: next };
+            });
+          }
+        );
+        if (!cancelled && renderRef.current === runId) {
+          setStatus((prev) => {
+            if (prev.kind !== "preview") return prev;
+            return { ...prev, thumbnails: dataUrls, loadingThumbnails: false };
+          });
+        }
+      } catch {
+        if (!cancelled) {
+          setStatus((prev) => {
+            if (prev.kind !== "preview") return prev;
+            return { ...prev, loadingThumbnails: false };
+          });
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [bytesForThumb, pageCountForThumb]);
 
   return (
     <div className="rpp-tool-card" style={{ position: "relative" }}>
@@ -200,6 +254,7 @@ export default function RemovePagesTool() {
           <div className="rpp-page-grid" style={{ marginBottom: "var(--rpp-space-6)" }}>
             {status.pages.map((page) => {
               const selected = status.selected.has(page.index);
+              const thumbSrc = status.thumbnails.get(page.index);
               return (
                 <button
                   key={page.index}
@@ -208,9 +263,26 @@ export default function RemovePagesTool() {
                   onClick={() => togglePage(page.index)}
                   aria-pressed={selected}
                 >
-                  <div className="line w-30" />
-                  <div className="line w-60" />
-                  <div className="line w-85" />
+                  {thumbSrc ? (
+                    <img
+                      src={thumbSrc}
+                      alt={`Thumbnail of page ${page.number}`}
+                      loading="lazy"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        borderRadius: "var(--rpp-radius-sm)",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  ) : (
+                    <>
+                      <div className="line w-30" />
+                      <div className="line w-60" />
+                      <div className="line w-85" />
+                    </>
+                  )}
                   <div className="rpp-page-number">Page {page.number}</div>
                 </button>
               );

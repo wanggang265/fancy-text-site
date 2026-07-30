@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import type { PDFDocument } from "pdf-lib";
+import { compressPdfWithImages } from "@/lib/pdfjs";
 
 type Level = "low" | "medium" | "high";
 
@@ -10,13 +11,18 @@ type Status =
   | { kind: "reading"; name: string }
   | { kind: "ready"; doc: PDFDocument; bytes: Uint8Array; name: string; level: Level }
   | { kind: "processing" }
-  | { kind: "done"; url: string; filename: string; original: number; compressed: number }
+  | { kind: "done"; url: string; filename: string; original: number; compressed: number; usedImageCompression: boolean }
   | { kind: "error"; message: string };
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+function reductionPercent(original: number, compressed: number) {
+  if (original <= 0) return "0%";
+  return `${Math.max(0, Math.round((1 - compressed / original) * 100))}%`;
 }
 
 export default function CompressTool() {
@@ -57,10 +63,23 @@ export default function CompressTool() {
     if (status.kind !== "ready") return;
     setStatus({ kind: "processing" });
     try {
-      const mod = await import("pdf-lib");
       const { doc, bytes, name, level } = status;
-      const useObjectStreams = level !== "low";
-      const output = await doc.save({ useObjectStreams, updateFieldAppearances: false });
+      let output: Uint8Array;
+      let usedImageCompression = false;
+
+      if (level === "low") {
+        output = await doc.save({ useObjectStreams: false, updateFieldAppearances: false });
+      } else {
+        output = await compressPdfWithImages(bytes, level);
+        usedImageCompression = true;
+        // If image compression somehow makes the file larger, fall back to
+        // pdf-lib structural optimization.
+        if (output.byteLength >= bytes.byteLength) {
+          output = await doc.save({ useObjectStreams: true, updateFieldAppearances: false });
+          usedImageCompression = false;
+        }
+      }
+
       const blob = new Blob([output as BlobPart], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       setStatus({
@@ -69,6 +88,7 @@ export default function CompressTool() {
         filename: name.replace(/\.pdf$/i, "-compressed.pdf"),
         original: bytes.byteLength,
         compressed: output.byteLength,
+        usedImageCompression,
       });
     } catch {
       setStatus({ kind: "error", message: "Could not compress the PDF." });
@@ -198,9 +218,12 @@ export default function CompressTool() {
               <path d="M5 12l5 5L20 7" />
             </svg>
             <div>
-              <div className="rpp-notice-title">Done!</div>
+              <div className="rpp-notice-title">
+                Done! Reduced by {reductionPercent(status.original, status.compressed)}
+              </div>
               <div className="rpp-notice-body">
                 Original: {formatBytes(status.original)} → Compressed: {formatBytes(status.compressed)}
+                {status.usedImageCompression && " (image re-encoding applied)"}
               </div>
             </div>
           </div>
