@@ -1,13 +1,16 @@
 # RemovePDFPages — Project Control Board
 
 项目：removepdfpages.net (fancy-text-site)  
-**当前状态：06 design-freeze [DONE]，07 frontend [DONE]，08 backend [NOT_STARTED]**
+**当前状态：06 design-freeze [DONE]，07 frontend [DONE]，08 backend [BLOCKED]**
 
 事实源：本文件 + 仓库 `/home/ubuntu/fancy-text-site`  
-更新日期：2026-07-30（07 frontend 工具交互/功能返修完成并重新部署）
+更新日期：2026-07-30（用户确认 A 额度方案：IP+浏览器指纹；等待 copy 和 pricing/compliance agent 更新上游文档）
 机制修复基线：`git tag before-mechanism-repair-2026-07-30`（保留）
 
-**当前任务**：等待用户决定是否启动 08 backend。07 frontend 已完成并部署。
+**当前任务**：08 backend 被阻塞，必须先完成上游 03 pricing + 05 copy-freeze 更新。具体：
+1. 委派 @wenshu2011_bot 重新撰写各工具 paywall/额度用完文案，强调付费带来的便利，不像催促消费。
+2. 委派 @jiancha_claw_bot 确认 $59 买断用户的 Convert to Word 额度策略（是否仍限 10 次/月，或放宽，或其他）。
+3. 两边返回后，zhongshu 同步到 PRD-v3 / pricing-calibration-v3 / copy-freeze / data-contract / route-contract，然后 08 backend 才能 [GO]。
 
 ---
 
