@@ -226,7 +226,7 @@
 || 07 frontend | [DONE] | `app/` 全 20 路由实现；Worker 已部署；所有 20 URL 线上 200；handoff 文档已生成 | 6 个路由标题/H1 与 route-contract 有 copy drift；pre-existing lint errors | v4 前端已部署并验证；详见 `docs/07-frontend-handoff-v4.md` |
 || 08 backend | [DONE] | `docs/data-contract.md` + `/home/ubuntu/projects/removepdfpages-workers/` + `docs/08-backend-handoff.md` | 无 | jishi 返修通过：真实 webhook secret 已配置、产品描述统一为 30 次/月、debug 端点已删除、Google OAuth redirect 已确认 |
 || 09 QA | [GO with residual issues] | `docs/09-qa-acceptance-report-v2.md` 返修后通过 | 新增 P2 见 §11.3 | zhongshu Re-QA 验证：commit 30d6c56、deploy.sh 20/20 通过、关键页面 200、checkout 跳转 Creem 成功、paywall 文案 30/month、success 动态渲染 |
-|| 10 SEO | [READY] | 无 | 待总控启动 10 SEO 工作流 | — |
+|| 10 SEO | [READY] | 无 | 待委派给专门 SEO agent 执行 `seo-launch-workflow` | — |
 | 11 launch | NOT_STARTED | 无 | — | — |
 | 12 data-review | NOT_STARTED | 无 | — | — |
 
