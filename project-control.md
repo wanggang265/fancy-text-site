@@ -272,9 +272,9 @@
    - Owner：backend
    - 说明：上线前需测试 50 MB / 200 页边界，并给出清晰错误提示。
 
-6. **分析工具选型与隐私文案一致**
-   - Owner：产品 / 用户决策
-   - 说明：当前 `cookie-policy` 提到 "analytics tool and cookie use will be disclosed"，需上线前确定工具并同步文案。
+6. **分析工具选型与隐私文案一致** ✅
+   - 决策：Plausible Analytics（2026-08-04 用户确认选项 A）。
+   - 完成：前端 `app/layout.tsx` 已插入 Plausible 脚本；`app/privacy/page.tsx` §6 和 `app/cookie-policy/page.tsx` §2/§3 已更新 Plausible 披露；Last updated 日期已刷新为 2026-08-04；已部署并通过线上验证。
 
 7. **订阅到期后自动降级验证**
    - Owner：backend
@@ -307,12 +307,12 @@
 6. ✅ `deploy.sh --check-only` 通过：新增 `allowed_extra = {'/login'}` 例外，并在 `project-control.md` §6.1 记录。
 
 ### P2 — 上线前尽量完成（新发现）
-7. `/success` 页面的 license key 仍为硬编码占位符 `REMPDF-XXXX-XXXX-XXXX`；subscription 不应显示 license key，onetime 应显示真实 license key。
-8. `/success` 页面 "Your subscription is active" 文案对 onetime 和 topup 不准确。
-9. `/success` 在 sessionStorage 存在旧 checkout 数据时优先使用旧数据，可能导致用户直接访问带 query 的 `/success` 看到与 query 不符的信息。
+7. `/success` 页面的 license key 仍为硬编码占位符 `REMPDF-XXXX-XXXX-XXXX`；subscription 不应显示 license key，onetime 应显示真实 license key。 → 前端已完成：硬编码占位符已移除，改为从 `/api/subscription` 返回的 `recent_transactions` 中读取 `license_key`；subscription/yearly/monthly/topup 不渲染 license key 区域；onetime 渲染真实 key 或占位符 "—" 及 fallback 文案。⚠️ 后端需确认 webhook 创建 `transactions` 记录时写入 `license_key` 字段（对 onetime 计划），否则页面仍显示 "—"。
+8. `/success` 页面 "Your subscription is active" 文案对 onetime 和 topup 不准确。 → 已完成：新增 `getHeroCopy(plan)`，monthly/yearly 显示 "Your subscription is active"，onetime 显示 "Your one-time license is active"，topup 显示 "Extra credits added"。
+9. `/success` 在 sessionStorage 存在旧 checkout 数据时优先使用旧数据，可能导致用户直接访问带 query 的 `/success` 看到与 query 不符的信息。 → 已完成：URL query 中的 `checkout_id` 与 sessionStorage 不一致时，清空旧 sessionStorage 并优先使用 URL query；无 URL checkout 时回退 sessionStorage。
 10. 登录后 `/api/usage/quota` 与 `convertToWord` 返回的 quota 字段命名不一致（不影响显示，但建议统一）。
 11. 大文件 / 多页 PDF 转换超时和错误提示验证。
-12. 分析工具选型与 `privacy`/`terms`/`cookie-policy` 文案一致。
+12. 分析工具选型与 `privacy`/`terms`/`cookie-policy` 文案一致。 → 已完成：Plausible Analytics 选定，隐私/.cookie 政策文案已更新，脚本已部署。
 13. 订阅到期后自动降级为 free plan 验证。
 
 ### 因缺少测试账号未覆盖
