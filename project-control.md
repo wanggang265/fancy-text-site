@@ -225,8 +225,8 @@
 || 06 design-freeze | [DONE] | `design-handoff-v4/` 完整：HANDOFF.md、shared.css、route-mapping.json、所有 20 页面 | 无 | v4 设计已冻结 |
 || 07 frontend | [DONE] | `app/` 全 20 路由实现；Worker 已部署；所有 20 URL 线上 200；handoff 文档已生成 | 6 个路由标题/H1 与 route-contract 有 copy drift；pre-existing lint errors | v4 前端已部署并验证；详见 `docs/07-frontend-handoff-v4.md` |
 || 08 backend | [DONE] | `docs/data-contract.md` + `/home/ubuntu/projects/removepdfpages-workers/` + `docs/08-backend-handoff.md` | 无 | jishi 返修通过：真实 webhook secret 已配置、产品描述统一为 30 次/月、debug 端点已删除、Google OAuth redirect 已确认 |
-|| 09 QA | [NO-GO] | `docs/09-qa-acceptance-report.md` | P0 x2：checkout 按钮无效、ConvertToWord paywall 文案 10→30 未修；P1 x4：success 占位符、按钮文案、topup 入口、deploy.sh login 路由缺失 | zhongshu 已执行 QA 验收，输出 NO-GO，详见报告 |
-|| 10 SEO | NOT_STARTED | 无 | — | — |
+|| 09 QA | [GO with residual issues] | `docs/09-qa-acceptance-report-v2.md` 返修后通过 | 新增 P2 见 §11.3 | zhongshu Re-QA 验证：commit 30d6c56、deploy.sh 20/20 通过、关键页面 200、checkout 跳转 Creem 成功、paywall 文案 30/month、success 动态渲染 |
+|| 10 SEO | [READY] | 无 | 待总控启动 10 SEO 工作流 | — |
 | 11 launch | NOT_STARTED | 无 | — | — |
 | 12 data-review | NOT_STARTED | 无 | — | — |
 
@@ -248,23 +248,24 @@
 
 ## 11. 当前阻塞项
 
-**09 QA 结论：NO-GO**（详见 `docs/09-qa-acceptance-report.md`）
+**09 QA 结论：GO with residual issues**（详见 `docs/09-qa-acceptance-report-v2.md`）
 
-### P0 — 必须返修后复测
-1. **`/checkout` 按钮无法完成购买**：`app/checkout/page.tsx` 是纯静态 HTML，未调用后端 `/api/creem/checkout` 创建 checkout session，点击按钮无反应、无跳转。用户无法购买任何 plan。
-2. **`ConvertToWordTool` paywall 文案仍是 10 次/月**：`components/ConvertToWordTool.tsx` 第 227 行 "paid plans include 10 per month" 应为 30。属于 copy-freeze 遗漏。
+### 返修项已全部通过（commit 30d6c56）
+1. ✅ `/checkout` 按钮完成购买：已改为 Client Component `CheckoutForm.tsx`，POST `/api/creem/checkout` 并跳转 Creem。
+2. ✅ `ConvertToWordTool` paywall 文案 10→30：已修正为 "paid plans include 30 per month"。
+3. ✅ `/success` 动态化：已新增 `SuccessContent.tsx`，读取 sessionStorage + `/api/subscription` 匹配 transaction + URL query fallback。
+4. ✅ `/checkout` 按钮文案随 plan/topup 变化：monthly/yearly/onetime/topup 文案均正确。
+5. ✅ `/checkout` topup 入口：`?topup=10` / `?topup=2` 进入 topup 模式，按钮文案分别为 "Buy 10 extra credits — $5" / "Buy 2 extra credits — $1"。
+6. ✅ `deploy.sh --check-only` 通过：新增 `allowed_extra = {'/login'}` 例外，并在 `project-control.md` §6.1 记录。
 
-### P1 — 进入 SEO 前必须完成
-3. `/success` 页面仍为占位符：`[plan price]`, `[user email]`, `[Creem order ID]`, `REMPDF-XXXX-XXXX-XXXX`。
-4. `/checkout` 按钮文案不随 plan 变化（monthly/yearly/onetime/topup 应不同）。
-5. `/checkout` 未处理 `?topup=10` 参数，topup 入口 UI 缺失。
-6. `deploy.sh --check-only` 失败：`app/login` 在实际代码中，但 `design-handoff-v4/route-mapping.json` 缺少 `/login`，再次部署会被闸口拦截。需补充 design handoff 或调整 deploy.sh 例外规则。
-
-### P2 — 上线前尽量完成
-7. 登录后 `/api/usage/quota` 与 `convertToWord` 返回的 quota 字段命名不一致（不影响显示，但建议统一）。
-8. 大文件 / 多页 PDF 转换超时和错误提示验证。
-9. 分析工具选型与 `privacy`/`terms`/`cookie-policy` 文案一致。
-10. 订阅到期后自动降级为 free plan 验证。
+### P2 — 上线前尽量完成（新发现）
+7. `/success` 页面的 license key 仍为硬编码占位符 `REMPDF-XXXX-XXXX-XXXX`；subscription 不应显示 license key，onetime 应显示真实 license key。
+8. `/success` 页面 "Your subscription is active" 文案对 onetime 和 topup 不准确。
+9. `/success` 在 sessionStorage 存在旧 checkout 数据时优先使用旧数据，可能导致用户直接访问带 query 的 `/success` 看到与 query 不符的信息。
+10. 登录后 `/api/usage/quota` 与 `convertToWord` 返回的 quota 字段命名不一致（不影响显示，但建议统一）。
+11. 大文件 / 多页 PDF 转换超时和错误提示验证。
+12. 分析工具选型与 `privacy`/`terms`/`cookie-policy` 文案一致。
+13. 订阅到期后自动降级为 free plan 验证。
 
 ### 因缺少测试账号未覆盖
 - Google OAuth 登录回调及登录态保持。
