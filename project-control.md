@@ -226,8 +226,8 @@
 || 07 frontend | [DONE] | `app/` 全 20 路由实现；Worker 已部署；所有 20 URL 线上 200；handoff 文档已生成 | 6 个路由标题/H1 与 route-contract 有 copy drift；pre-existing lint errors | v4 前端已部署并验证；详见 `docs/07-frontend-handoff-v4.md` |
 || 08 backend | [DONE] | `docs/data-contract.md` + `/home/ubuntu/projects/removepdfpages-workers/` + `docs/08-backend-handoff.md` | 无 | jishi 返修通过：真实 webhook secret 已配置、产品描述统一为 30 次/月、debug 端点已删除、Google OAuth redirect 已确认 |
 || 09 QA | [GO with residual issues] | `docs/09-qa-acceptance-report-v2.md` 返修后通过 | 新增 P2 见 §11.3 | zhongshu Re-QA 验证：commit 30d6c56、deploy.sh 20/20 通过、关键页面 200、checkout 跳转 Creem 成功、paywall 文案 30/month、success 动态渲染 |
-|| 10 SEO | [BLOCKED] | `docs/10-seo-report.md`, `lib/seo.ts`, `public/_headers`, `app/login/layout.tsx`, `app/robots.ts`, `app/sitemap.ts` | 生产部署与缓存刷新未执行；GSC/Bing/IndexNow 提交需要权限 | 代码修复本地已验证通过，见 `docs/10-seo-report.md` |
-| 11 launch | NOT_STARTED | 无 | — | — |
+||| 10 SEO | [DEPLOYED] | `docs/10-seo-report.md`, `lib/seo.ts`, `public/_headers`, `app/login/layout.tsx`, `app/robots.ts`, `app/sitemap.ts` | GSC/Bing/IndexNow 提交未执行（需权限） | 代码修复本地已验证通过，生产部署与缓存刷新已完成；剩余阻塞项为 GSC/Bing/IndexNow 提交，见 §11.1 |
+|| 11 launch | NOT_STARTED | 无 | 需完成 §11.1 平台提交 + §12 残留 P2 尽量处理 | — |
 | 12 data-review | NOT_STARTED | 无 | — | — |
 
 ---
