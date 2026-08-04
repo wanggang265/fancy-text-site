@@ -227,7 +227,7 @@
 || 08 backend | [DONE] | `docs/data-contract.md` + `/home/ubuntu/projects/removepdfpages-workers/` + `docs/08-backend-handoff.md` | 无 | jishi 返修通过：真实 webhook secret 已配置、产品描述统一为 30 次/月、debug 端点已删除、Google OAuth redirect 已确认 |
 || 09 QA | [GO with residual issues] | `docs/09-qa-acceptance-report-v2.md` 返修后通过 | 新增 P2 见 §11.3 | zhongshu Re-QA 验证：commit 30d6c56、deploy.sh 20/20 通过、关键页面 200、checkout 跳转 Creem 成功、paywall 文案 30/month、success 动态渲染 |
 ||| 10 SEO | [DEPLOYED] | `docs/10-seo-report.md`, `lib/seo.ts`, `public/_headers`, `app/login/layout.tsx`, `app/robots.ts`, `app/sitemap.ts` | GSC/Bing/IndexNow 提交未执行（需权限） | 代码修复本地已验证通过，生产部署与缓存刷新已完成；剩余阻塞项为 GSC/Bing/IndexNow 提交，见 §11.1 |
-|| 11 launch | NOT_STARTED | 无 | 需完成 §11.1 平台提交 + §12 残留 P2 尽量处理 | — |
+|| 11 launch | [PENDING P2 REPAIR] | 无 | 09 QA 残留 P2 待修复；完成后进入 launch ops | 见 §12.1 |
 | 12 data-review | NOT_STARTED | 无 | — | — |
 
 ---
@@ -246,29 +246,51 @@
 
 ---
 
-## 11. 10 SEO 阶段阻塞项
+## 11. 11-launch 阻塞项
 
-10-seo 代码修复已完成并通过本地构建验证，结论为 **[BLOCKED]**（详见 `docs/10-seo-report.md`）。
+10-seo 已部署并验证通过。当前 11-launch 阶段状态为 **[PENDING P2 REPAIR]**。
 
-### 必须完成才能进入 11-launch
+### 11.1 09 QA 残留 P2 必须修复项
 
-1. **生产部署 + Cloudflare 缓存刷新**
-   - Owner：前端维护者
-   - 操作：`git push` / `deploy.sh` 部署；在 Cloudflare Dashboard Purge Everything
-   - 验证：
-     - `curl -I https://removepdfpages.net/` 返回 `Content-Type: text/html; charset=utf-8`
-     - `curl -sL https://removepdfpages.net/login | grep robots` 包含 `noindex, nofollow`
+1. **`/success` 页面 license key 占位符**
+   - Owner：backend + frontend
+   - 说明：当前对所有 plan 类型显示 `REMPDF-XXXX-XXXX-XXXX`；subscription 不应显示 license key；onetime 应显示真实 license key。
 
-2. **Google Search Console 提交**
+2. **`/success` 页面文案准确性**
+   - Owner：frontend
+   - 说明："Your subscription is active" 对 onetime 和 topup 不准确，需根据 plan 类型显示不同文案。
+
+3. **`/success` sessionStorage 与 URL query 优先级冲突**
+   - Owner：frontend
+   - 说明：当 sessionStorage 中存在旧 checkout 数据时，直接访问带 query 的 `/success?plan=...` 可能显示旧数据。建议 URL query 的 checkout_id 与 sessionStorage 不一致时优先使用 URL query 或清空旧 sessionStorage。
+
+4. **quota 字段命名一致性**
+   - Owner：backend
+   - 说明：`/api/usage/quota` 返回 `free_conversions_used/included_conversions_used/credits_balance`，而 `convertToWord` 返回 `free_used/paid_used/credits`。建议统一为 quota 命名。
+
+5. **大文件 / 多页 PDF 转换超时和错误提示**
+   - Owner：backend
+   - 说明：上线前需测试 50 MB / 200 页边界，并给出清晰错误提示。
+
+6. **分析工具选型与隐私文案一致**
+   - Owner：产品 / 用户决策
+   - 说明：当前 `cookie-policy` 提到 "analytics tool and cookie use will be disclosed"，需上线前确定工具并同步文案。
+
+7. **订阅到期后自动降级验证**
+   - Owner：backend
+   - 说明：上线后需验证取消订阅/过期后状态正确降级为 free。
+
+### 11.2 第三方平台提交（SEO 后续）
+
+1. **Google Search Console 提交**
    - Owner：有 GSC 站点所有权的用户/运营
    - 操作：验证站点 → 提交 `https://removepdfpages.net/sitemap.xml` → 请求索引核心页面
-   - 验证：GSC「站点地图」显示成功
 
-3. **Bing Webmaster Tools 提交**
+2. **Bing Webmaster Tools 提交**
    - Owner：有 Microsoft 账号权限的用户（1gw471210@gmail.com）
    - 操作：验证站点 → 提交 sitemap
 
-4. **IndexNow 配置（建议）**
+3. **IndexNow（建议）**
    - Owner：前端维护者 + 运营
    - 操作：生成随机 key，部署 `{key}.txt` 到根目录；调用 IndexNow API 批量提交 18 个 sitemap URL
 
