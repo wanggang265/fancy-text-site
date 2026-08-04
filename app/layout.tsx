@@ -45,6 +45,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
+        <script
+          defer
+          data-domain="removepdfpages.net"
+          src="https://plausible.io/js/script.js"
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-white text-slate-900 antialiased">
         <a href="#main" className="rpp-sr-only">

@@ -74,6 +74,17 @@ export type ConvertToWordResponse = {
   message?: string;
 };
 
+export type Transaction = {
+  id: number;
+  creem_session_id: string;
+  plan_type: 'monthly' | 'yearly' | 'onetime' | 'topup';
+  amount: number;
+  credits_added: number;
+  status: string;
+  created_at: string;
+  license_key?: string | null;
+};
+
 // Auth
 export async function getMe(): Promise<{ user: User }> {
   return api<{ user: User }>('/auth/me');

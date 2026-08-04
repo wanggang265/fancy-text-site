@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Transaction } from "@/lib/api";
 
 type StoredCheckout = {
   checkout_id?: string;
@@ -9,16 +10,6 @@ type StoredCheckout = {
   plan?: string;
   price?: string;
   topup_credits?: number | null;
-};
-
-type Transaction = {
-  id: number;
-  creem_session_id: string;
-  plan_type: "monthly" | "yearly" | "onetime" | "topup";
-  amount: number;
-  credits_added: number;
-  status: string;
-  created_at: string;
 };
 
 type SubscriptionResponse = {
@@ -53,13 +44,44 @@ function formatPrice(plan?: string, amountCents?: number, credits?: number | nul
   return "";
 }
 
+type HeroCopy = {
+  title: string;
+  subtitle: string;
+};
+
+function getHeroCopy(plan?: string): HeroCopy {
+  switch (plan) {
+    case "monthly":
+    case "yearly":
+      return {
+        title: "Your subscription is active",
+        subtitle: "You now have 30 Convert to Word conversions per month.",
+      };
+    case "onetime":
+      return {
+        title: "Your one-time license is active",
+        subtitle: "Your license key is below.",
+      };
+    case "topup":
+      return {
+        title: "Extra credits added",
+        subtitle: "Your top-up credits are now available.",
+      };
+    default:
+      return {
+        title: "Welcome to the Full Editor",
+        subtitle: "Your purchase is complete. Your license key and receipts have been emailed to you.",
+      };
+  }
+}
+
 export default function SuccessContent() {
   const searchParams = useSearchParams();
 
   const queryData: StoredCheckout = useMemo(() => {
     const get = (key: string) => searchParams?.get(key) || undefined;
     return {
-      order: get("order") || get("checkout_id"),
+      checkout_id: get("checkout_id") || get("order"),
       email: get("email"),
       plan: get("plan"),
       price: get("price"),
@@ -72,13 +94,29 @@ export default function SuccessContent() {
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // Read sessionStorage once and resolve URL vs sessionStorage priority.
   useEffect(() => {
     setMounted(true);
     try {
       const raw = sessionStorage.getItem("removepdf_checkout");
-      if (raw) setStored(JSON.parse(raw));
+      const parsed: StoredCheckout | null = raw ? JSON.parse(raw) : null;
+      const urlCheckoutId = queryData.checkout_id;
+      const storedCheckoutId = parsed?.checkout_id;
+
+      if (urlCheckoutId && storedCheckoutId && urlCheckoutId !== storedCheckoutId) {
+        // URL wins; stale sessionStorage checkout is discarded.
+        sessionStorage.removeItem("removepdf_checkout");
+        setStored(null);
+      } else if (urlCheckoutId) {
+        // URL is authoritative; do not mix in stored fallback fields for this visit.
+        setStored(null);
+      } else {
+        // No URL checkout id; fall back to the stored checkout context.
+        setStored(parsed);
+      }
     } catch {
-      // ignore storage errors
+      // Ignore storage errors.
+      setStored(null);
     }
 
     fetch("/api/subscription", { credentials: "include" })
@@ -89,7 +127,7 @@ export default function SuccessContent() {
       .catch(() => {
         // ignore
       });
-  }, []);
+  }, [queryData.checkout_id]);
 
   const checkoutId = queryData.checkout_id || stored?.checkout_id;
 
@@ -102,6 +140,18 @@ export default function SuccessContent() {
     );
   }, [checkoutId, subscription]);
 
+  // Clear the stored checkout once we have successfully matched and rendered,
+  // so it does not leak into a future visit.
+  useEffect(() => {
+    if (matchedTx) {
+      try {
+        sessionStorage.removeItem("removepdf_checkout");
+      } catch {
+        // ignore storage errors
+      }
+    }
+  }, [matchedTx]);
+
   const plan = matchedTx?.plan_type || stored?.plan || queryData.plan;
   const price =
     formatPrice(matchedTx?.plan_type, matchedTx?.amount, matchedTx?.credits_added || undefined) ||
@@ -111,10 +161,13 @@ export default function SuccessContent() {
   const email = subscription?.user?.email || stored?.email || queryData.email || "—";
   const orderId = checkoutId || "—";
   const planName = formatPlanName(plan);
+  const hero = getHeroCopy(plan);
+  const licenseKey = matchedTx?.license_key || null;
 
   const handleCopyLicense = async () => {
+    if (!licenseKey) return;
     try {
-      await navigator.clipboard.writeText("REMPDF-XXXX-XXXX-XXXX");
+      await navigator.clipboard.writeText(licenseKey);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -157,13 +210,13 @@ export default function SuccessContent() {
             </div>
           </div>
           <h1 className="rpp-display" style={{ marginTop: "var(--rpp-space-5)" }}>
-            Welcome to the Full Editor
+            {hero.title}
           </h1>
           <p
             className="rpp-lead"
             style={{ maxWidth: "640px", margin: "var(--rpp-space-4) auto 0" }}
           >
-            Your purchase is complete. Your license key and receipts have been emailed to you.
+            {hero.subtitle}
           </p>
         </div>
       </section>
@@ -196,44 +249,31 @@ export default function SuccessContent() {
             </dl>
           </div>
 
-          <div className="rpp-card" style={{ marginTop: "var(--rpp-space-6)" }}>
-            <h2 className="rpp-heading-2">Your license key</h2>
-            <div className="rpp-license-box" style={{ marginTop: "var(--rpp-space-4)" }}>
-              <code className="rpp-mono">REMPDF-XXXX-XXXX-XXXX</code>
-              <button
-                type="button"
-                className="rpp-btn rpp-btn-secondary rpp-btn-small"
-                onClick={handleCopyLicense}
-              >
-                {copied ? "Copied" : "Copy License Key"}
-              </button>
-            </div>
-            <p
-              className="rpp-body-sm"
-              style={{ marginTop: "var(--rpp-space-3)", color: "var(--rpp-ink-700)" }}
-            >
-              We also emailed this key to {email}. Check your spam folder if you don’t see it.
-            </p>
-            <div className="rpp-notice rpp-notice-info" style={{ marginTop: "var(--rpp-space-4)" }}>
-              <svg
-                className="rpp-icon rpp-notice-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="16" x2="12" y2="12" />
-                <line x1="12" y1="8" x2="12.01" y2="8" />
-              </svg>
-              <div>
-                <div className="rpp-notice-title">Your subscription is active</div>
-                <div className="rpp-notice-body">
-                  You can cancel anytime from your account settings or by contacting support.
-                </div>
+          {plan === "onetime" && (
+            <div className="rpp-card" style={{ marginTop: "var(--rpp-space-6)" }}>
+              <h2 className="rpp-heading-2">Your license key</h2>
+              <div className="rpp-license-box" style={{ marginTop: "var(--rpp-space-4)" }}>
+                <code className="rpp-mono">{licenseKey || "—"}</code>
+                {licenseKey && (
+                  <button
+                    type="button"
+                    className="rpp-btn rpp-btn-secondary rpp-btn-small"
+                    onClick={handleCopyLicense}
+                  >
+                    {copied ? "Copied" : "Copy License Key"}
+                  </button>
+                )}
               </div>
+              <p
+                className="rpp-body-sm"
+                style={{ marginTop: "var(--rpp-space-3)", color: "var(--rpp-ink-700)" }}
+              >
+                {licenseKey
+                  ? `We also emailed this key to ${email}. Check your spam folder if you don’t see it.`
+                  : "Your license key is being prepared and will be emailed to you shortly."}
+              </p>
             </div>
-          </div>
+          )}
 
           <div className="rpp-card" style={{ marginTop: "var(--rpp-space-6)" }}>
             <h2 className="rpp-heading-2">What’s next</h2>
