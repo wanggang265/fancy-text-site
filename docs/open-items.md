@@ -28,7 +28,7 @@
    - 月付：$19/month Launch Special（原价 $29/month）
    - 年付：$99/year（原价 $149/year）
    - 买断：$59 One-time License（原价 $79），隐藏展示
-   - Top-up：$5/10 conversions 或 $0.50 each
+   - Top-up：$5/10 conversions 或 
 3. **支付服务商**：Creem（https://creem.io），不是 Stripe。
 4. **Creem 手续费**：3.9% + $0.40/笔。
 5. **国际销售**：全球开放（除禁售国），Creem 作为 MOR 自动处理 VAT/GST。

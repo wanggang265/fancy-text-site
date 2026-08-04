@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { LoginModal } from "@/components/LoginModal";
+import { getMe, logout, type User } from "@/lib/api";
 
 const navLinks = [
   { href: "/pricing", label: "Pricing" },
@@ -11,7 +13,48 @@ const navLinks = [
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
+  const refreshUser = () => {
+    getMe()
+      .then((data) => setUser(data.user))
+      .catch(() => setUser(null));
+  };
+
+  useEffect(() => {
+    refreshUser();
+    function handleCreditsRefresh() {
+      refreshUser();
+    }
+    window.addEventListener('removepdf:credits:refresh', handleCreditsRefresh);
+    return () => window.removeEventListener('removepdf:credits:refresh', handleCreditsRefresh);
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    }
+    if (userMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [userMenuOpen]);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch {
+      // ignore errors
+    }
+    setUser(null);
+    setUserMenuOpen(false);
+    window.location.reload();
+  };
   return (
     <header className="rpp-header">
       <div className="rpp-container rpp-header-inner">
@@ -29,6 +72,44 @@ export default function Header() {
         </nav>
 
         <div className="rpp-nav-cta">
+          {user ? (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                onClick={() => setUserMenuOpen((v) => !v)}
+                className="rpp-nav-link flex items-center gap-1 truncate max-w-[200px]"
+                title={user.email}
+              >
+                {user.name || user.email}
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-56 rounded-lg border border-slate-200 bg-white py-1 shadow-lg z-50">
+                  <div className="px-4 py-2 text-xs text-slate-500 truncate border-b border-slate-100">
+                    {user.email}
+                  </div>
+                  <div className="px-4 py-2 text-sm text-slate-700 flex items-center justify-between">
+                    <span>Credits</span>
+                    <span className="font-semibold text-slate-900">{user.credits}</span>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50 border-t border-slate-100"
+                  >
+                    Log out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <button
+              onClick={() => setLoginOpen(true)}
+              className="rpp-nav-link"
+            >
+              Sign in
+            </button>
+          )}
           <Link
             href="/pricing"
             className="rpp-btn rpp-btn-secondary rpp-btn-small"
@@ -105,6 +186,36 @@ export default function Header() {
                 </Link>
               ))}
               <div className="pt-4 border-t border-[var(--rpp-ink-200)] space-y-3">
+                {user ? (
+                  <div className="space-y-2">
+                    <div className="px-3 py-2 text-sm text-[var(--rpp-ink-700)] truncate">
+                      {user.name || user.email}
+                    </div>
+                    <div className="px-3 py-2 text-sm text-[var(--rpp-ink-700)] flex items-center justify-between">
+                      <span>Credits</span>
+                      <span className="font-semibold text-[var(--rpp-ink-900)]">{user.credits}</span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setDrawerOpen(false);
+                        handleLogout();
+                      }}
+                      className="rpp-btn rpp-btn-secondary rpp-btn-full"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setDrawerOpen(false);
+                      setLoginOpen(true);
+                    }}
+                    className="rpp-btn rpp-btn-secondary rpp-btn-full"
+                  >
+                    Sign in
+                  </button>
+                )}
                 <Link
                   href="/remove-pages"
                   className="rpp-btn rpp-btn-secondary rpp-btn-full"
@@ -124,6 +235,7 @@ export default function Header() {
           </div>
         </>
       )}
+      <LoginModal isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
     </header>
   );
 }

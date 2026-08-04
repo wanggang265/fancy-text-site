@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { sendMagicLink, getAnonId } from '@/lib/api';
+import { sendMagicLink } from '@/lib/api';
 import { GoogleSignInButton } from '@/components/GoogleSignInButton';
 
-export function LoginModal({ onClose }: { onClose: () => void }) {
+export function LoginModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -26,17 +26,15 @@ export function LoginModal({ onClose }: { onClose: () => void }) {
     }
   };
 
-  const handleGoogle = async () => {
-    // For static export, we use the Google Sign-In button approach
-    // The actual Google login is handled via the backend OAuth redirect flow
-    // or we can use the Google Identity Services JS library
-    // For now, redirect to the backend Google OAuth endpoint
-    window.location.href = 'https://removepdfpages-workers.gw471210.workers.dev/api/auth/google';
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl">
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-200 ${
+        isOpen ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-0'
+      }`}
+      aria-hidden={!isOpen}
+    >
+      <div className="absolute inset-0 z-0 bg-black/40" onClick={onClose} />
+      <div className="relative z-10 w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-slate-950">Sign in</h2>
           <button
@@ -90,7 +88,7 @@ export function LoginModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="mt-4">
-          <GoogleSignInButton onSuccess={onClose} />
+          <GoogleSignInButton />
         </div>
 
         <p className="mt-4 text-center text-xs text-slate-400">

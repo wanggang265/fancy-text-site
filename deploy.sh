@@ -87,6 +87,10 @@ with tempfile.TemporaryDirectory() as tmp:
                 route = '/' + rel.replace('\\', '/')
             actual_routes.add(route)
 
+    # Allowed extra routes: auth/noindex pages not required by design handoff.
+    allowed_extra = {'/login'}
+    actual_routes = actual_routes - allowed_extra
+
     missing = sorted(expected_routes - actual_routes)
     extra = sorted(actual_routes - expected_routes)
 

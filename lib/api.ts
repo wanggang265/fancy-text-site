@@ -45,6 +45,35 @@ export type UsageStats = {
   } | null;
 };
 
+export type QuotaStatus = {
+  plan: 'free' | 'monthly' | 'yearly' | 'onetime';
+  free_conversions_used: number;
+  free_conversions_limit: number;
+  free_conversions_reset_at?: string;
+  included_conversions_used: number;
+  included_conversions_limit: number;
+  included_conversions_reset_at?: string;
+  credits_balance: number;
+  is_cancelled: boolean;
+};
+
+export type QuotaResponse = {
+  user: Omit<User, 'credits'> | null;
+  anon_id: string;
+  quota: QuotaStatus;
+};
+
+export type ConvertToWordResponse = {
+  ok: boolean;
+  download_url?: string;
+  file_name?: string;
+  output_format?: string;
+  expires_at?: string;
+  quota?: QuotaStatus;
+  errorCode?: string;
+  message?: string;
+};
+
 // Auth
 export async function getMe(): Promise<{ user: User }> {
   return api<{ user: User }>('/auth/me');
@@ -89,6 +118,41 @@ export async function recordUsage(
   });
 }
 
+export async function getQuota(anonId?: string): Promise<QuotaResponse> {
+  const url = anonId ? `/usage/quota?anon_id=${encodeURIComponent(anonId)}` : '/usage/quota';
+  return api<QuotaResponse>(url, {
+    headers: anonId ? { 'x-anon-id': anonId } : undefined,
+  });
+}
+
+export async function convertToWord(
+  file: File,
+  outputFormat: 'docx' | 'rtf' = 'docx',
+  anonId?: string
+): Promise<ConvertToWordResponse> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('output_format', outputFormat);
+
+  const headers: Record<string, string> = {};
+  if (anonId) headers['x-anon-id'] = anonId;
+
+  const res = await fetch(`${API_BASE}/pdf/convert-to-word`, {
+    method: 'POST',
+    credentials: 'include',
+    headers,
+    body: formData,
+  });
+
+  const data = (await res.json().catch(() => ({}))) as ConvertToWordResponse;
+  if (!res.ok) {
+    const err = new Error(data.message || `HTTP ${res.status}`) as Error & { code?: string };
+    err.code = data.errorCode || `HTTP_${res.status}`;
+    throw err;
+  }
+  return data;
+}
+
 // Generate anonymous ID for unauthenticated users
 export function getAnonId(): string {
   let id = localStorage.getItem('removepdf_anon_id');
@@ -97,4 +161,10 @@ export function getAnonId(): string {
     localStorage.setItem('removepdf_anon_id', id);
   }
   return id;
+}
+
+export function emitCreditsRefresh(): void {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('removepdf:credits:refresh'));
+  }
 }

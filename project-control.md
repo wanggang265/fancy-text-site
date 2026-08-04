@@ -1,16 +1,14 @@
 # RemovePDFPages — Project Control Board
 
 项目：removepdfpages.net (fancy-text-site)  
-**当前状态：06 design-freeze [DONE]，07 frontend [DONE]，08 backend [BLOCKED]**
-
+**当前状态：09 QA [IN_PROGRESS]**
 事实源：本文件 + 仓库 `/home/ubuntu/fancy-text-site`  
-更新日期：2026-07-30（用户确认 A 额度方案：IP+浏览器指纹；等待 copy 和 pricing/compliance agent 更新上游文档）
-机制修复基线：`git tag before-mechanism-repair-2026-07-30`（保留）
+更新日期：2026-07-31（用户确认 backend 架构：B 简化用户识别 + jishi 创建 Creem 产品 + 第三方 API 转换）
+机制修复基线：`git tag before-mechanism-repair-2026-07-29`（保留）
 
-**当前任务**：08 backend 被阻塞，必须先完成上游 03 pricing + 05 copy-freeze 更新。具体：
-1. 委派 @wenshu2011_bot 重新撰写各工具 paywall/额度用完文案，强调付费带来的便利，不像催促消费。
-2. 委派 @jiancha_claw_bot 确认 $59 买断用户的 Convert to Word 额度策略（是否仍限 10 次/月，或放宽，或其他）。
-3. 两边返回后，zhongshu 同步到 PRD-v3 / pricing-calibration-v3 / copy-freeze / data-contract / route-contract，然后 08 backend 才能 [GO]。
+**流程修正**：03 pricing 必须先 `[DONE]`，05 copy-freeze 才能启动，禁止 pricing 与 copy 并行派活。
+
+**当前任务**：@jishi555_bot 后端改造。输入 `/home/ubuntu/projects/removepdfpages-workers/` + `docs/PRD-v3.md` + `docs/copy-freeze.md` + `docs/pricing-calibration-v3.md` + `docs/data-contract.md`，输出改造后的后端代码 + 部署验证。
 
 ---
 
@@ -153,7 +151,7 @@
 
 ### 6.1 [GO] 必须满足
 1. 当前代码已 `git commit`，且有 commit SHA。
-2. `./deploy.sh --check-only` 通过。
+2. `./deploy.sh --check-only` 通过。`/login` 路由为 noindex 认证页面，不在 design-handoff-v4/route-mapping.json 中，已在 `deploy.sh` 的 design-handoff diff 脚本中加入 `allowed_extra = {'/login'}` 例外。该例外记录于 `project-control.md` §6.1。
 3. 实际部署成功。
 4. 部署后 curl 检查关键页面返回 200：
    - `https://removepdfpages.net/`
@@ -182,7 +180,7 @@
 | anchor_price | $29/month | pricing page, checkout | 2026-07-29 |
 | free_trial_mode | freemium_direct | copy-freeze, PRD, backend | 2026-07-29 |
 | convert_word_free_quota | 3/30 days | PRD, copy-freeze, backend | 2026-07-29 |
-| convert_word_paid_quota | 10/month | PRD, copy-freeze, backend | 2026-07-29 |
+| convert_word_paid_quota | 30/month | PRD, copy-freeze, backend | 2026-07-31 |
 | refund_window | 14 days | compliance, terms, refund page | 2026-07-29 |
 
 变更流程：
@@ -223,12 +221,12 @@
 | 02 PRD | [DONE] | `docs/PRD-v3.md` | 已补「决策变量」章节；待 04 compliance / 05 copy 验收后算正式完结 | 商业模式确认为混合后已同步 |
 | 03 pricing | [DONE] | `docs/pricing-calibration-v3.md` | $59 买断隐藏方案已由用户 2026-07-29 确认（选项 A） | jiagoushi v3 已更新，竞品价格已由用户快照覆盖 |
 | 04 compliance | [DONE] | `docs/compliance-report.md` v3 | 无剩余 P0 冲突；4 个 [待确认] 项在 05/07 前解决 | @jiancha_claw_bot 已提交 v3，退款窗口 14 天已确认 |
-| 05 copy | [DONE] | `docs/copy-freeze.md` v3 | 首页 Hero CTA 指向免费工具入口；价格口径统一；禁用词清理；合规揭露已落地 | @wenshu2011_bot 已完成 v3 [GO with NEEDS_REVIEW] |
+| 05 copy | [DONE] | `docs/copy-freeze.md` v3 | 无 | wenshu 已修正残留 10→30；zhongshu 复核通过 |
 || 06 design-freeze | [DONE] | `design-handoff-v4/` 完整：HANDOFF.md、shared.css、route-mapping.json、所有 20 页面 | 无 | v4 设计已冻结 |
 || 07 frontend | [DONE] | `app/` 全 20 路由实现；Worker 已部署；所有 20 URL 线上 200；handoff 文档已生成 | 6 个路由标题/H1 与 route-contract 有 copy drift；pre-existing lint errors | v4 前端已部署并验证；详见 `docs/07-frontend-handoff-v4.md` |
-|| 08 backend | [IN_PROGRESS] | `docs/data-contract.md` | 待实现 | 07 frontend [DONE]，可启动 |
-| 09 QA | NOT_STARTED | 无 | — | — |
-| 10 SEO | NOT_STARTED | 无 | — | — |
+|| 08 backend | [DONE] | `docs/data-contract.md` + `/home/ubuntu/projects/removepdfpages-workers/` + `docs/08-backend-handoff.md` | 无 | jishi 返修通过：真实 webhook secret 已配置、产品描述统一为 30 次/月、debug 端点已删除、Google OAuth redirect 已确认 |
+|| 09 QA | [NO-GO] | `docs/09-qa-acceptance-report.md` | P0 x2：checkout 按钮无效、ConvertToWord paywall 文案 10→30 未修；P1 x4：success 占位符、按钮文案、topup 入口、deploy.sh login 路由缺失 | zhongshu 已执行 QA 验收，输出 NO-GO，详见报告 |
+|| 10 SEO | NOT_STARTED | 无 | — | — |
 | 11 launch | NOT_STARTED | 无 | — | — |
 | 12 data-review | NOT_STARTED | 无 | — | — |
 
@@ -241,17 +239,38 @@
 3. MVP 主推：`$19/month Launch Special` / `$99/year`，`$29` 仅作删除线原价锚点
 4. 试用模式：Freemium 直接转化，不提供 7 天免费试用
 5. 法律页：保留 `/privacy`、`/terms`、`/refund`
-6. Convert to Word：免费 3 次/30 天，订阅用户 10 次/月，超出 Top-up
+6. Convert to Word：免费 3 次/30 天，订阅/买断用户 30 次/月，超出 Top-up
 7. 首页：首屏 Primary CTA 必须指向免费工具入口，`$19 Launch Special` 只能出现在首页底部转化区及其他付费转化入口
 8. **支付/税务：Creem + Creem Tax，退款窗 14 天**
+9. **Backend 架构（2026-07-31 确认）**：保留简化用户识别（magic link / Google 一键登录），不做完整账户系统；Convert to Word 用第三方 API；jishi 在 Creem 创建 Monthly $19 / Yearly $99 / One-time $59 三个产品
 
 ---
 
 ## 11. 当前阻塞项
 
-1. **06 design-freeze [DONE] — 无阻塞**：子 agent 补全了 13 个缺失页面，zhongshu 完成了 content-gap / copy-audit，所有 20 页面、Footer 链接、定价口径、禁用词均符合冻结。
-2. **07 frontend [DONE] — 无阻塞**：Worker 已部署至 `removepdfpages.net` / `www.removepdfpages.net`，17 个关键 URL 线上 200，内容断言通过。
-3. 上游待回填项（不阻塞 06/07）：Creem 商户配置、$19 Launch Special 截止日期、分析工具选型、后端方案及成本。
+**09 QA 结论：NO-GO**（详见 `docs/09-qa-acceptance-report.md`）
+
+### P0 — 必须返修后复测
+1. **`/checkout` 按钮无法完成购买**：`app/checkout/page.tsx` 是纯静态 HTML，未调用后端 `/api/creem/checkout` 创建 checkout session，点击按钮无反应、无跳转。用户无法购买任何 plan。
+2. **`ConvertToWordTool` paywall 文案仍是 10 次/月**：`components/ConvertToWordTool.tsx` 第 227 行 "paid plans include 10 per month" 应为 30。属于 copy-freeze 遗漏。
+
+### P1 — 进入 SEO 前必须完成
+3. `/success` 页面仍为占位符：`[plan price]`, `[user email]`, `[Creem order ID]`, `REMPDF-XXXX-XXXX-XXXX`。
+4. `/checkout` 按钮文案不随 plan 变化（monthly/yearly/onetime/topup 应不同）。
+5. `/checkout` 未处理 `?topup=10` 参数，topup 入口 UI 缺失。
+6. `deploy.sh --check-only` 失败：`app/login` 在实际代码中，但 `design-handoff-v4/route-mapping.json` 缺少 `/login`，再次部署会被闸口拦截。需补充 design handoff 或调整 deploy.sh 例外规则。
+
+### P2 — 上线前尽量完成
+7. 登录后 `/api/usage/quota` 与 `convertToWord` 返回的 quota 字段命名不一致（不影响显示，但建议统一）。
+8. 大文件 / 多页 PDF 转换超时和错误提示验证。
+9. 分析工具选型与 `privacy`/`terms`/`cookie-policy` 文案一致。
+10. 订阅到期后自动降级为 free plan 验证。
+
+### 因缺少测试账号未覆盖
+- Google OAuth 登录回调及登录态保持。
+- 真实支付后 webhook 激活订阅、`/success` 真实数据渲染、topup credits 增加。
+- 取消订阅、退款后状态 revoked。
+- 文件 1 小时后自动删除。
 
 ---
 

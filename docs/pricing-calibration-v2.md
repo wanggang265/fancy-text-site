@@ -230,8 +230,8 @@
 - **Secondary text**：Launch price for a limited time. Standard price is $29.
 - **Features**：
   - Everything in Free
-  - Convert PDF to Word (10 conversions/month included)
-  - Extra conversions: $0.50 each or $5 for 10
+  - Convert PDF to Word (30 conversions/month included)
+  - Extra conversions: $1/2 credits or $5/10 credits
   - Use on up to 5 personal devices
   - Updates for the current major version
   - 14-day refund policy
@@ -242,7 +242,7 @@
 |---|---|---|
 | Remove / Merge / Compress / Sign | ✅ Included | ✅ Included |
 | Convert PDF to Word | 3/30 days trial | ✅ Included (10/month) |
-| Extra Convert to Word | — | $0.50 each or $5/10 |
+| Extra Convert to Word | — | $1/2 credits or $5/10 credits |
 | Max file size | 50 MB | 50 MB |
 | Max pages per file | 200 | 200 |
 | Devices | Browser only | Up to 5 devices |
@@ -252,7 +252,7 @@
 - **Q1**：Is the $19 price really a one-time payment?  
   **A**：Yes. The $19 Launch Special is a one-time purchase. There is no monthly subscription. The standard price is $29, so the launch price saves you $10.
 - **Q2**：How many Convert to Word conversions do I get?  
-  **A**：Free users can try 3 conversions per 30-day period. The Full Editor includes 10 conversions per month. Additional conversions are $0.50 each or $5 for 10.
+  **A**：Free users can try 3 conversions per 30-day period. The Full Editor includes 30 conversions per month. Additional conversions are $1 for 2 or $5 for 10.
 - **Q3**：What happens when the launch period ends?  
   **A**：We will return to the standard price of $29. If you buy during the launch period, your license stays valid for the current major version at no extra cost.
 - **Q4**：Can I get a refund?  
@@ -271,7 +271,7 @@
 - **Email field**：Email for your license key
 - **Payment note**：Payments are processed by Creem. We do not store your card details.
 - **Tax note**：Sales tax, VAT, and GST are calculated and collected automatically by Creem based on your location.
-- **Refund note**：14-day refund policy. License valid for the current major version. Includes 10 Convert to Word conversions per month.
+- **Refund note**：14-day refund policy. License valid for the current major version. Includes 30 Convert to Word conversions per month.
 - **CTA**：Pay $19 — Unlock Full Editor
 
 ### 5.3 `/convert-to-word` 工具页 Paywall 文案
@@ -286,7 +286,7 @@
 
 #### 已购买但额度用完
 - **Notice**：You’ve used your 10 included conversions this month.
-- **CTA**：Buy 10 more conversions for $5
+- **CTA**：Buy extra credits
 - **Secondary**：See pricing → `/pricing`
 
 ### 5.4 首页 `/` 与博客 `/blog/*` CTA
@@ -304,7 +304,7 @@
 | 风险等级 | 类型 | 位置 | 问题描述 | 引用标准 | 修复建议 |
 |---|---|---|---|---|---|
 | 🔴 高 | 买断后成本不可控 | 后端 Convert to Word | 若用户高频使用，10 次/月额度仍可能无法覆盖成本（取决于实际成本是否接近 $0.10/次） | 成本模型 | 严格按 Top-up 计费；上线后监控实际后端成本与使用频次 |
-| 🔴 高 | 文案误导 | `/pricing` / `/convert-to-word` | 若未明确说明“10 次/月”限制，用户可能误解为买断后无限制 | 禁用词清单 | 所有文案必须写明“10 conversions/month included”和“extra $0.50 each” |
+| 🔴 高 | 文案误导 | `/pricing` / `/convert-to-word` | 若未明确说明“10 次/月”限制，用户可能误解为买断后无限制 | 禁用词清单 | 所有文案必须写明“30 conversions/month included”和“extra ” |
 | 🔴 高 | 免费试用滥用 | `/convert-to-word` | 无账户系统，脚本可换 IP 刷免费额度 | 成本控制 | 使用 fingerprint + IP + rate limit；监控异常设备/IP 的转换行为 |
 | 🟡 中 | 价格欺诈 / 误导性折扣 | `/pricing` | $29 与 $19 同时作为独立卡片售卖 | FTC Act §5 | 保持 `$29` 仅作为 strikethrough 原价，`$19` 作为当前价 |
 | 🟡 中 | 退款成本 | `/checkout` | 14 天无理由退款，每退一单损失 $0.40 + 3.9% Creem 手续费 | Creem 政策 | 在 FAQ / refund 页明确退款条件；统计退款率，>10% 时重审定价 |

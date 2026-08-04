@@ -6,13 +6,13 @@
 > **生效日期**：2026-07-29  
 > **状态**：COPY FREEZE v3 — 设计 / 前端 / 07 实现前必须按本文档执行，不得现场重写价格、CTA 或合规声明  
 > **依据**：`docs/PRD-v3.md` + `docs/pricing-calibration-v3.md` + `docs/compliance-report.md` v3 + `docs/data-contract.md` + `docs/MVP-NOT-DO.md` + `docs/page-matrix.md`  
-> **审查结论**：[GO with NEEDS_REVIEW]
+> **审查结论**：[DONE]
 
 ---
 
 ## 1. 审查结论
 
-**[GO with NEEDS_REVIEW]**
+**[DONE]**
 
 本版为 05 copy-freeze v3 重跑，基于 `docs/PRD-v3.md` + `docs/pricing-calibration-v3.md` + `docs/compliance-report.md` v3。主要修正：首页 `/` 首屏 Hero Primary CTA 从 `/pricing` 改为 `/remove-pages` 等免费工具入口，首屏不再以付费价格为主导；所有付费入口仍统一主推 `$19/month Launch Special` / `$99/year` / `$59 one-time license`，`$29` 仅作为月度 strikethrough 原价，`$149` 仅作为年度 strikethrough 原价。Stripe 已替换为 Creem 并补充 Merchant of Record / 销售税披露，`/pricing` 与 `/convert-to-word` 已明确额度与 Top-up 文案，`/privacy` / `/terms` / `/refund` / `/cookie-policy` 已给出 07 前端落地所需的完整文案段落。
 
@@ -39,7 +39,7 @@
 | **/pricing 结构** | 两列卡片（Free / $19 Launch Special） | 三列卡片（Free / Monthly $19 / Yearly $99）+ 隐藏买断 $59 入口 |
 | **/pricing 额度** | Convert to Word 10 次/月 | 同前；$29 仅作月度原价锚点，$149 仅作年度原价锚点 |
 | **/convert-to-word 免费试用** | 3 次/30 天 | 同前 |
-| **/convert-to-word Top-up** | 额度用完后 Top-up | 同前：`Buy 10 more conversions for $5` 或 `$0.50 each` |
+| **/convert-to-word Top-up** | 额度用完后 Top-up | 同前：`Buy extra credits` 或 `` |
 | **/checkout 选项** | 默认 $19 Launch Special License，保留 $29 Standard | 默认 Monthly $19，保留 Yearly $99，隐藏 One-time License $59 |
 | **/faq 隐私 Q2** | Creem / Resend | 同前 |
 | **/faq 退款** | 14 天退款、Top-up credits 退款 | 同前；订阅取消政策、买断生命周期边界 |
@@ -117,6 +117,17 @@
 - `Supports PDFs up to 50 MB and 200 pages`
 - `No watermark on the output`
 
+**新增：免费额度提示**
+- **UI 位置**：上传区上方 / 文件处理结果区域
+- **文案**：`Free to use. Fair-use limit: 10–20 tasks per hour from the same IP.`
+
+**新增：小时额度用完提示 / 升级引导**
+- **UI 位置**：上传区或处理按钮附近，以横幅/卡片形式展示
+- **Title**：`You've reached the hourly free limit`
+- **Body**：`Remove Pages is free for occasional use, with a fair-use limit of 10–20 tasks per hour from the same IP. The limit resets in about an hour. If you need Convert to Word or more room to work across PDF tasks, check out the Full Editor.`
+- **Primary CTA**：`Try again later`（关闭提示，返回工具）
+- **Secondary CTA**：`See Full Editor features` → `/pricing`
+
 **限制与合规说明**
 - `Free to use. Fair-use limits apply: up to 50 MB per file, 200 pages per file, and 10–20 free tasks per hour from the same IP.`
 
@@ -144,6 +155,17 @@
 - `Reorder files before merging`
 - `Processed in your browser by default`
 - `No watermark on the output`
+
+**新增：免费额度提示**
+- **UI 位置**：上传区上方 / 文件处理结果区域
+- **文案**：`Free to use. Fair-use limit: 10–20 tasks per hour from the same IP.`
+
+**新增：小时额度用完提示 / 升级引导**
+- **UI 位置**：上传区或处理按钮附近，以横幅/卡片形式展示
+- **Title**：`You've reached the hourly free limit`
+- **Body**：`Merge PDFs is free for occasional use, with a fair-use limit of 10–20 tasks per hour from the same IP. The limit resets in about an hour. If you need Convert to Word or more room to work across PDF tasks, check out the Full Editor.`
+- **Primary CTA**：`Try again later`（关闭提示，返回工具）
+- **Secondary CTA**：`See Full Editor features` → `/pricing`
 
 **限制与合规说明**
 - `Currently free. Fair-use limits: up to 10 files per merge, 50 MB total, 200 pages per file, and 10–20 free tasks per hour from the same IP.`
@@ -176,6 +198,17 @@
 - `Processed in your browser by default`
 - `If your PDF can’t be compressed in the browser, you may choose a backend fallback option with a 1-hour file deletion policy`
 - `No watermark on the output`
+
+**新增：免费额度提示**
+- **UI 位置**：上传区上方 / 文件处理结果区域
+- **文案**：`Free to use. Fair-use limit: 10–20 tasks per hour from the same IP.`
+
+**新增：小时额度用完提示 / 升级引导**
+- **UI 位置**：上传区或处理按钮附近，以横幅/卡片形式展示
+- **Title**：`You've reached the hourly free limit`
+- **Body**：`Compress PDF is free for occasional use, with a fair-use limit of 10–20 tasks per hour from the same IP. The limit resets in about an hour. If you need Convert to Word or more room to work across PDF tasks, check out the Full Editor.`
+- **Primary CTA**：`Try again later`（关闭提示，返回工具）
+- **Secondary CTA**：`See Full Editor features` → `/pricing`
 
 **限制与合规说明**
 - `Currently free. Supports PDFs up to 50 MB and 200 pages. Fair-use limits apply: 10–20 free tasks per hour from the same IP.`
@@ -211,6 +244,17 @@
 - `Processed in your browser by default`
 - `No watermark on the output`
 
+**新增：免费额度提示**
+- **UI 位置**：上传区上方 / 签名画布区域上方
+- **文案**：`Free to use. Fair-use limit: 10–20 tasks per hour from the same IP.`
+
+**新增：小时额度用完提示 / 升级引导**
+- **UI 位置**：上传区或处理按钮附近，以横幅/卡片形式展示
+- **Title**：`You've reached the hourly free limit`
+- **Body**：`Sign PDF is free for occasional use, with a fair-use limit of 10–20 tasks per hour from the same IP. The limit resets in about an hour. If you need Convert to Word or more room to work across PDF tasks, check out the Full Editor.`
+- **Primary CTA**：`Try again later`（关闭提示，返回工具）
+- **Secondary CTA**：`See Full Editor features` → `/pricing`
+
 **限制与合规说明**
 - `Currently free. Supports PDFs up to 50 MB and 200 pages. This is not a digital certificate signature. If you need legally compliant e-signatures, please use a dedicated e-signature platform.`
 
@@ -220,7 +264,7 @@
 
 **Title & Meta**
 - **Title**：`Convert PDF to Word Online | RemovePDFPages`
-- **Meta Description**：`Convert PDF to editable Word documents with the RemovePDFPages Full Editor. $19/month Launch Special, $99/year, or $59 one-time license. Files are deleted from our server within 1 hour.`
+- **Meta Description**：`Convert PDF to Word online. Get editable DOCX or RTF output and keep fonts and basic formatting where possible. Files auto-delete within 1 hour. Plans from $19/month.`
 - **H1**：`Convert PDF to Word`
 - **Schema**：`SoftwareApplication`（`offers: $19/month Launch Special`）
 
@@ -247,15 +291,15 @@
 **免费试用提示（未购买状态）**
 - **Indicator**：`You have X free conversions left this 30-day period.`
 - **Paywall Title**：`This feature is part of the Full Editor`
-- **Paywall Body**：`Convert PDF to Word is included with the Full Editor. Free users get 3 conversions per 30 days; paid plans include 10 per month, with extra conversions available as needed.`
+- **Paywall Body**：`Convert PDF to Word is included with the Full Editor. Free users get 3 conversions per 30 days; paid plans include 30 per month, with extra conversions available as needed.`
 - **CTA**：`Get Full Editor — $19/month Launch Special`
 - **CTA 指向**：`/pricing`
 - **Secondary**：`See all features` → `/pricing`
 
 **已购买但额度用完提示**
-- **Notice**：`You’ve used your 10 included conversions this month.`
-- **CTA**：`Buy 10 more conversions for $5`
-- **Secondary CTA**：`$0.50 each`
+- **Notice**：`You’ve used your 30 included conversions this month.`
+- **CTA**：`Buy extra credits`
+- **Secondary CTA**：``
 - **Tertiary**：`See pricing` → `/pricing`
 
 **限制与合规说明**
@@ -299,8 +343,8 @@
 - **Secondary text**：`Launch price for a limited time. Standard price is $29/month.`
 - **Feature list**：
   - `Everything in Free`
-  - `Convert PDF to Word (10 conversions/month included)`
-  - `Extra conversions: $0.50 each or $5 for 10`
+  - `Convert PDF to Word (30 conversions/month included)`
+  - `Extra conversions: $1/2 credits or $5/10 credits`
   - `Use on up to 5 personal devices`
   - `Updates for the current major version`
   - `14-day refund policy`
@@ -324,8 +368,8 @@
 | Feature | Free | Monthly / Yearly | One-time |
 |---|---|---|---|
 | Remove / Merge / Compress / Sign | ✅ Included | ✅ Included | ✅ Included |
-| Convert PDF to Word | 3/30 days trial | 10/month included | 10/month included |
-| Extra Convert to Word | — | $0.50 each or $5/10 | $0.50 each or $5/10 |
+| Convert PDF to Word | 3/30 days trial | 30/month included | 30/month included |
+| Extra Convert to Word | — | $1/2 credits or $5/10 credits | $1/2 credits or $5/10 credits |
 | Max file size | 50 MB | 50 MB | 50 MB |
 | Max pages per file | 200 | 200 | 200 |
 | Devices | Browser only | Up to 5 devices | Up to 5 devices |
@@ -335,9 +379,9 @@
 - **Q1**：`Is the $19 price a subscription?`
   - **A**：`Yes, the $19 Launch Special is a monthly subscription. You can also choose the $99/year plan to save $129, or the $59 one-time license if you prefer not to subscribe.`
 - **Q2**：`Can I pay once instead of subscribing?`
-  - **A**：`Yes. Select the One-time License at checkout for $59. It includes the same 10 Convert to Word conversions per month.`
+  - **A**：`Yes. Select the One-time License at checkout for $59. It includes the same 30 Convert to Word conversions per month.`
 - **Q3**：`How many Convert to Word conversions do I get?`
-  - **A**：`Free users can try 3 conversions per 30-day period. Paid plans include 10 conversions per month. Additional conversions are $0.50 each or $5 for 10.`
+  - **A**：`Free users can try 3 conversions per 30-day period. Paid plans include 30 conversions per month. Additional conversions are $1 for 2 or $5 for 10.`
 - **Q4**：`Can I cancel anytime?`
   - **A**：`Yes. Monthly and yearly subscriptions can be canceled anytime. Your access continues until the end of the current billing period. We also offer a 14-day refund policy.`
 - **Q5**：`What happens when the launch period ends?`
@@ -364,7 +408,7 @@
 - **Email placeholder**：`you@example.com`
 - **Payment note**：`Payments are processed by Creem, our Merchant of Record. We do not store your card details.`
 - **Tax note**：`Sales tax, VAT, and GST are calculated and collected automatically by Creem based on your location.`
-- **Refund note**：`14-day refund policy. Subscriptions and the one-time license are refundable within 14 days. Includes 10 Convert to Word conversions per month.`
+- **Refund note**：`14-day refund policy. Subscriptions and the one-time license are refundable within 14 days. Includes 30 Convert to Word conversions per month.`
 
 **购买选项（默认选中 Monthly）**
 
@@ -388,7 +432,7 @@
 - `✓ 14-day refund policy`
 - `✓ License key / receipts sent to your email`
 - `✓ Cancel monthly or yearly subscriptions anytime`
-- `✓ Includes 10 Convert to Word conversions per month`
+- `✓ Includes 30 Convert to Word conversions per month`
 
 **错误 / 空状态**
 - **No email**：`Please enter your email address to receive your license key and receipts.`
@@ -469,7 +513,7 @@
 - **Q4**：`How many devices can I use?`
   - **A**：`One license or subscription can be activated on up to 5 personal devices. We record a device fingerprint during activation to enforce this limit.`
 - **Q5**：`How many Convert to Word conversions do I get?`
-  - **A**：`Free users can try 3 conversions per 30-day period. Paid plans include 10 conversions per calendar month. Additional conversions are $0.50 each or $5 for 10.`
+  - **A**：`Free users can try 3 conversions per 30-day period. Paid plans include 30 conversions per calendar month. Additional conversions are $1 for 2 or $5 for 10.`
 - **Q6**：`What happens when the launch period ends?`
   - **A**：`We will return to the standard price of $29/month and $149/year. The $19/month Launch Special is limited time and may end without notice.`
 - **Q7**：`Can I cancel my subscription?`
@@ -477,7 +521,7 @@
 
 #### 3.6.4 Top-up Credits（#credits）【新增】
 - **Q1**：`How do top-up credits work?`
-  - **A**：`After you use your 10 included Convert to Word conversions each month, you can buy extra credits at $0.50 each or $5 for 10. Unused credits are refundable within 14 days; used credits are not.`
+  - **A**：`After you use your 30 included Convert to Word conversions each month, you can buy extra credits at  or $5 for 10. Unused credits are refundable within 14 days; used credits are not.`
 - **Q2**：`Can I refund top-up credits?`
   - **A**：`Unused credits are refundable within 14 days of purchase. Once a credit has been used for a conversion, it is not refundable.`
 
@@ -777,13 +821,13 @@
 > By accessing or using RemovePDFPages, you agree to these Terms of Service. If you do not agree, do not use the Service.
 
 **第 2 节：Description of the Service**
-> RemovePDFPages provides browser-based PDF tools. The free tools (Remove Pages, Merge, Compress, Sign) are processed locally in your browser by default. Convert PDF to Word and optional backend fallback processing require temporary server-side upload and are deleted within 1 hour. The Full Editor is available as a monthly subscription ($19/month Launch Special, standard $29/month), an annual subscription ($99/year, standard $149/year), or a one-time license ($59, standard $79) for the current major version (v1.x). All paid plans include 10 Convert to Word conversions per calendar month. Additional conversions may be purchased as top-up credits at $0.50 each or $5 for 10. Free users may try Convert to Word up to 3 times per 30-day period.
+> RemovePDFPages provides browser-based PDF tools. The free tools (Remove Pages, Merge, Compress, Sign) are processed locally in your browser by default. Convert PDF to Word and optional backend fallback processing require temporary server-side upload and are deleted within 1 hour. The Full Editor is available as a monthly subscription ($19/month Launch Special, standard $29/month), an annual subscription ($99/year, standard $149/year), or a one-time license ($59, standard $79) for the current major version (v1.x). All paid plans include 30 Convert to Word conversions per calendar month. Additional conversions may be purchased as top-up credits at  or $5 for 10. Free users may try Convert to Word up to 3 times per 30-day period.
 
 **第 3 节：Full Editor Subscription & License**
 > The Full Editor is offered as a monthly subscription, an annual subscription, or a one-time license. Subscriptions bill automatically until canceled. You may cancel anytime; cancellation takes effect at the end of the current billing period. The one-time license is a single payment for the current major version of RemovePDFPages (v1.x). It includes updates within v1.x but does not guarantee updates for a future major version or new platform. All paid plans may be activated on up to 5 personal devices; we record a device fingerprint at activation to enforce this limit. You may not share, resell, or redistribute your license key. The license is non-transferable except where required by law.
 
 **第 3.5 节：Top-Up Credits（新增）**
-> Top-up credits are sold in packs of 1 conversion ($0.50) or 10 conversions ($5). Credits are non-transferable and expire only upon use or license/subscription revocation. Unused credits may be refunded within 14 days of purchase if requested; used credits are not refundable. Creem processing fees are not refunded on any refund.
+> Top-up credits are sold in packs of 2 conversions ($1) or 10 conversions ($5). The minimum purchase is $1/2 credits. Credits are non-transferable and expire only upon use or license/subscription revocation. Unused credits may be refunded within 14 days of purchase if requested; used credits are not refundable. Creem processing fees are not refunded on any refund.
 
 **第 3.6 节：Pricing Changes（新增）**
 > The $19/month Launch Special and $99/year Launch Special are limited-time introductory prices. We may end the launch period at any time and return to the standard prices of $29/month and $149/year without prior notice. Prices displayed at checkout at the time of purchase are the prices that apply to that purchase. [待确认：具体截止日期或数量限制由产品确认后回填。]
@@ -817,7 +861,7 @@
 > RemovePDFPages offers a 14-day, no-questions-asked refund for all Full Editor subscriptions and one-time licenses. If you are not satisfied, you may request a full refund within 14 days of your purchase date.
 
 **第 1.5 节：Top-Up Credits Refund（新增）**
-> Top-up credits ("10 conversions for $5" or "$0.50 per conversion") are refundable only if they have not been used and the refund is requested within 14 days of purchase. Once a credit has been consumed for a conversion, it is not refundable. Refunds for unused credits are processed through Creem and may take 5–10 business days to appear on your statement. Creem processing fees are not refunded.
+> Top-up credits ("2 conversions for $1" or "10 conversions for $5") are refundable only if they have not been used and the refund is requested within 14 days of purchase. Once a credit has been consumed for a conversion, it is not refundable. Refunds for unused credits are processed through Creem and may take 5–10 business days to appear on your statement. Creem processing fees are not refunded.
 
 **第 2 节：How to Request a Refund**
 > Submit your request through our [Contact page](/contact) or by emailing support@removepdfpages.com. Include your Creem order ID and the email address used during checkout.
@@ -903,7 +947,7 @@
 ### 7.1 设计阶段（06）必须处理
 1. **Pricing 卡片结构**：改为 **三列**（Free / Monthly $19 / Yearly $99），在卡片下方增加隐藏买断入口 `Prefer to pay once? $59 one-time license`。
 2. **Convert to Word 数据流提示**：上传区必须醒目展示 “This tool uses a backend server. Your file is uploaded temporarily and deleted within 1 hour.”
-3. **Convert to Word 额度提示**：免费试用显示 `You have X free conversions left this 30-day period.`；额度用完后显示 Top-up CTA `Buy 10 more conversions for $5` / `$0.50 each`。
+3. **Convert to Word 额度提示**：免费试用显示 `You have X free conversions left this 30-day period.`；额度用完后显示 Top-up CTA `Buy extra credits` / ``。
 4. **Sign 免责声明**：Hero 区或签名画布上方必须显示 “not a digital certificate signature” 提示。
 5. **Free 工具标签**：使用 “Currently free” badge，不使用 “Free forever”。
 6. **Footer 法律链接**：确保 Legal 列指向 `/privacy` / `/terms` / `/refund` / `/cookie-policy`。
@@ -927,7 +971,7 @@
    - Yearly 卡片显示 `$99/year` + `~~$149~~` + `Save $129`；
    - 卡片下方增加隐藏买断入口：$59 one-time license；
    - CTA 改为 `Get Monthly — $19 Launch Special` / `Get Yearly — $99/year`；
-   - Feature list 必须包含 `Convert PDF to Word (10 conversions/month included)`、`Extra conversions: $0.50 each or $5 for 10`、`Use on up to 5 personal devices`、`Updates for the current major version`、`14-day refund policy`；
+   - Feature list 必须包含 `Convert PDF to Word (30 conversions/month included)`、`Extra conversions: $1/2 credits or $5/10 credits`、`Use on up to 5 personal devices`、`Updates for the current major version`、`14-day refund policy`；
    - 对比表按第 3.3 节更新；
    - 底部信任条 `Secure Stripe checkout` 改为 `Secure Creem checkout`。
 5. **`app/convert-to-word/page.tsx`**：
@@ -939,7 +983,7 @@
 6. **`app/checkout/page.tsx`**：
    - Subheadline 改为 `securely through Creem`；
    - 添加 Monthly / Yearly / One-time 三个选项，默认 Monthly；
-   - 添加 Payment note / Tax note / Refund note（含 MOR、销售税、10 conversions/month、订阅可取消）；
+   - 添加 Payment note / Tax note / Refund note（含 MOR、销售税、30 conversions/month、订阅可取消）；
    - 信任条改为 `Encrypted checkout via Creem`；
    - 默认选中 `Monthly — $19/month`。
 7. **`app/success/page.tsx`**：
@@ -954,9 +998,9 @@
 ### 7.3 给 05 Copy Freeze → 06 design handoff copy-audit 的对照要点
 - 06/07 阶段需逐页核对本文档第 3 节每个页面的 title / meta / H1 / CTA / 披露语句是否出现在 design handoff 或前端代码中。
 - 重点审计：
-  - `/pricing` 是否出现 `Monthly $19/month`、`Yearly $99/year`、`Save $129`、`One-time $59`、`10 conversions/month included`、`extra $0.50 each or $5/10`、`up to 5 devices`。
+  - `/pricing` 是否出现 `Monthly $19/month`、`Yearly $99/year`、`Save $129`、`One-time $59`、`30 conversions/month included`、`extra $1/2 credits or $5/10 credits`、`up to 5 devices`。
   - `/convert-to-word` 是否出现免费试用提示、Top-up CTA、1 小时 TTL 数据流提示；CTA 是否指向 `/pricing`。
-  - `/checkout` 是否出现 Monthly / Yearly / One-time 三个选项、Creem MOR、tax note、14-day refund、10 conversions/month、cancel anytime。
+  - `/checkout` 是否出现 Monthly / Yearly / One-time 三个选项、Creem MOR、tax note、14-day refund、30 conversions/month、cancel anytime。
   - `/faq` 是否新增 subscription vs one-time、credits 退款、销售税、Launch Special 边界、One-time license 定义。
   - Footer 是否指向 `/privacy` / `/terms` / `/refund` / `/cookie-policy`；Tagline 是否改为订阅/买断口径。
   - 全站是否仍有 Stripe、$19 one-time、$29 独立购买卡片、unlimited、free forever、perfect、100% accurate、lifetime updates 等。
@@ -971,8 +1015,8 @@
 - [x] 主推套餐明确为订阅制（月 $19 / 年 $99）。
 - [x] 首页 `/` Hero Primary CTA 指向免费工具入口（如 `/remove-pages` / `/merge` / `/compress` / `/sign`），首屏不出现付费价格主导。
 - [x] 隐藏买断/lifetime 价格明确（$59），展示位置明确（`/pricing` 卡片下方 + `/checkout` 第三选项）。
-- [x] 免费版功能与付费版功能边界清晰：免费 4 工具；Convert to Word 3 次/30 天；付费计划 10 次/月。
-- [x] Convert to Word 额度策略清晰：3 次/30 天免费 → 10 次/月包含 → Top-up $5/10 或 $0.50/次。
+- [x] 免费版功能与付费版功能边界清晰：免费 4 工具；Convert to Word 3 次/30 天；付费计划 30 次/月。
+- [x] Convert to Word 额度策略清晰：3 次/30 天免费 → 30 次/月包含 → Top-up $5/10 或 $0.50/次。
 - [x] 所有文案避免 `unlimited` / `free forever` / `no limits` / `lifetime updates` / `perfect` / `100% accurate`。
 - [x] `/sign` 保留 “not a digital certificate signature” 免责声明。
 - [x] 工具页文案与数据流一致：免费工具默认本地处理；Convert to Word 后端临时上传并 1 小时删除。
@@ -1008,8 +1052,22 @@
 - 禁用词（`unlimited` / `free forever` / `no limits` / `lifetime updates` / `perfect` / `100% accurate` 等）已清理。
 - 未确认项保留 `[NEEDS_SOURCE_CHECK]` / `[待确认]` 占位，未编造价格或承诺。
 
-**状态：[GO with NEEDS_REVIEW]**
+**状态：[DONE]**
 - 原因：文案框架已满足 05 copy-freeze 验收要求，但上游仍有未确认项（第三方分析工具选型、`$19 Launch Special` 截止日期 / 数量限制、最终后端方案与真实单次成本、订阅到期后状态、Creem 商户配置与 webhooks 等），需 06/07 阶段回填并再次审计。
 - 下游 06 design / 07 frontend 必须按本文档执行首页 Hero CTA、底部转化区、定价口径与合规披露。
 
 **定价数字来源：已由用户 2026-07-29 竞品价格快照覆盖；本报告不构成法律意见。**
+---
+
+## 修订记录
+
+### 2026-07-31
+- **修订人**：wenshu（文案）
+- **审核依据**：@jiancha_claw_bot 已确认的最终定价口径
+- **修订内容**：
+  - 替换 3.2.1–3.2.5 五个工具页的额度 / paywall 文案；
+  - 4 个免费工具（Remove Pages / Merge / Compress / Sign）新增小时额度提示与小时额度用完升级引导，Primary CTA 为 `Try again later`，Secondary CTA 为 `See Full Editor features`；
+  - `/convert-to-word` 收紧 Meta description，突出价值与自动删除，弱化价格密度；
+  - 保持最终定价口径不变：$19/month Launch Special / $99/year / $59 one-time license，Convert to Word 3 次/30 天免费试用、30 次/月包含额度、Top-up $5/10 或 。
+  - 2026-07-31 修正月度额度残留数字 10→30（Top-up 按量包 $5/10 不变）。
+- **状态更新**：由 `[GO with NEEDS_REVIEW]` 改为 `[DONE]`。

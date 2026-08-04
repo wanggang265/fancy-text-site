@@ -1,17 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getAnonId, getQuota, convertToWord, emitCreditsRefresh, type QuotaStatus, type QuotaResponse } from "@/lib/api";
 
-type ViewState = "paywall" | "authorized" | "processing" | "success" | "quota-exceeded" | "top-up";
-
-const demoStates: { value: ViewState; label: string }[] = [
-  { value: "paywall", label: "Paywall" },
-  { value: "authorized", label: "Authorized" },
-  { value: "processing", label: "Processing" },
-  { value: "success", label: "Success" },
-  { value: "quota-exceeded", label: "Quota exceeded" },
-  { value: "top-up", label: "Top-up" },
-];
+type ViewState = "loading" | "paywall" | "authorized" | "processing" | "success" | "quota-exceeded" | "top-up";
 
 function InfoIcon() {
   return (
@@ -50,108 +42,189 @@ function UploadIcon() {
   );
 }
 
-export default function ConvertToWordTool() {
-  const [state, setState] = useState<ViewState>("paywall");
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+function isAllowed(q: QuotaStatus | null): boolean {
+  if (!q) return false;
+  if (q.plan === "free") {
+    return q.free_conversions_used < q.free_conversions_limit;
+  }
+  const includedRemaining = q.included_conversions_limit - q.included_conversions_used;
+  return includedRemaining > 0 || q.credits_balance > 0;
+}
 
-  // Simulate conversion: processing → success after 1.5s.
-  useEffect(() => {
-    if (state !== "processing") return;
-    const timer = setTimeout(() => {
-      setState("success");
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [state]);
-
-  // Create a fake DOCX download on demand.
-  const handleDownload = () => {
-    const filename = selectedFile ? selectedFile.name.replace(/\.pdf$/i, ".docx") : "converted.docx";
-    const blob = new Blob(["Mock DOCX content for RemovePDFPages"], {
-      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+function quotaLabel(q: QuotaStatus): { label: string; percent: number } {
+  if (q.plan === "free") {
+    const remaining = Math.max(0, q.free_conversions_limit - q.free_conversions_used);
+    const pct = Math.round((remaining / Math.max(1, q.free_conversions_limit)) * 100);
+    return {
+      label: `${remaining} free conversion${remaining === 1 ? "" : "s"} remaining this 30-day period.`,
+      percent: pct,
+    };
+  }
+  const includedRemaining = Math.max(0, q.included_conversions_limit - q.included_conversions_used);
+  const creditText = q.credits_balance > 0 ? ` (${q.credits_balance} credit${q.credits_balance === 1 ? "" : "s"} available)` : "";
+  const pct = Math.round((includedRemaining / Math.max(1, q.included_conversions_limit)) * 100);
+  return {
+    label: `${includedRemaining} included conversion${includedRemaining === 1 ? "" : "s"} remaining this month.${creditText}`,
+    percent: pct,
   };
+}
 
-  const handleDemoStateChange = (next: ViewState) => {
-    setState(next);
-    if (next === "authorized") {
-      setSelectedFile(null);
-      if (inputRef.current) inputRef.current.value = "";
+export default function ConvertToWordTool() {
+  const [view, setView] = useState<ViewState>("loading");
+  const [quota, setQuota] = useState<QuotaStatus | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [result, setResult] = useState<{ downloadUrl: string; fileName: string } | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const isMounted = useRef(true);
+
+  const anonId = typeof window !== "undefined" ? getAnonId() : "";
+
+  const refreshQuota = async () => {
+    try {
+      const data: QuotaResponse = await getQuota(anonId);
+      if (!isMounted.current) return;
+      setQuota(data.quota);
+      const allowed = isAllowed(data.quota);
+      setView((current) => {
+        if (current === "processing" || current === "success") return current;
+        return allowed ? "authorized" : "quota-exceeded";
+      });
+    } catch (err) {
+      if (!isMounted.current) return;
+      setError(err instanceof Error ? err.message : "Unable to load quota.");
+      setView("quota-exceeded");
     }
   };
+
+  useEffect(() => {
+    let cancelled = false;
+    getQuota(anonId)
+      .then((data) => {
+        if (cancelled) return;
+        setQuota(data.quota);
+        setView((current) => {
+          if (current === "processing" || current === "success") return current;
+          return isAllowed(data.quota) ? "authorized" : "quota-exceeded";
+        });
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setError(err instanceof Error ? err.message : "Unable to load quota.");
+        setView("quota-exceeded");
+      });
+    return () => {
+      cancelled = true;
+      isMounted.current = false;
+    };
+  }, [anonId]);
 
   const handleFiles = (files: FileList | null) => {
     const file = files?.[0] ?? null;
     if (!file) return;
     if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+      setError("Please upload a PDF file.");
       return;
     }
+    if (file.size > 50 * 1024 * 1024) {
+      setError("File too large. Max 50 MB.");
+      return;
+    }
+    setError(null);
     setSelectedFile(file);
   };
 
-  const handleConvert = () => {
+  const handleConvert = async () => {
     if (!selectedFile) return;
-    setState("processing");
+    if (!isAllowed(quota)) {
+      setView("quota-exceeded");
+      return;
+    }
+    setView("processing");
+    setError(null);
+    try {
+      const data = await convertToWord(selectedFile, "docx", anonId);
+      if (!isMounted.current) return;
+      if (!data.ok || !data.download_url) {
+        throw new Error(data.message || "Conversion failed.");
+      }
+      setResult({ downloadUrl: data.download_url, fileName: data.file_name || selectedFile.name.replace(/\.pdf$/i, ".docx") });
+      setView("success");
+      // Refresh displayed quota and header credits
+      await refreshQuota();
+      emitCreditsRefresh();
+    } catch (err) {
+      if (!isMounted.current) return;
+      const code = (err as Error & { code?: string }).code;
+      const message = err instanceof Error ? err.message : "Conversion failed.";
+      if (code === "FREE_LIMIT_REACHED" || code === "PAID_LIMIT_REACHED" || code === "NO_CREDITS" || code === "QUOTA_EXCEEDED") {
+        setView("quota-exceeded");
+      } else {
+        setView("authorized");
+      }
+      setError(message);
+    }
+  };
+
+  const handleDownload = () => {
+    if (!result) return;
+    const a = document.createElement("a");
+    a.href = result.downloadUrl;
+    a.download = result.fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const handleConvertAnother = () => {
-    setState("authorized");
     setSelectedFile(null);
+    setResult(null);
+    setError(null);
     if (inputRef.current) inputRef.current.value = "";
+    refreshQuota();
   };
 
   const quotaBar = (label: string, percent: number) => (
     <div className="rpp-quota-bar">
       <div className="rpp-quota-track">
-        <div className="rpp-quota-fill" style={{ width: `${percent}%` }} />
+        <div className="rpp-quota-fill" style={{ width: `${Math.max(0, Math.min(100, percent))}%` }} />
       </div>
       <p className="rpp-quota-label">{label}</p>
     </div>
   );
 
+  if (view === "loading") {
+    return (
+      <div className="rpp-tool-card">
+        <div className="rpp-processing-overlay" style={{ position: "static", minHeight: "220px" }}>
+          <div className="rpp-spinner" />
+          <p className="rpp-body">Loading your account...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="rpp-tool-card" style={{ position: "relative" }}>
-      {/* Mock state switcher for component review / local development */}
-      <div
-        style={{
-          marginBottom: "var(--rpp-space-6)",
-          display: "flex",
-          gap: "var(--rpp-space-2)",
-          flexWrap: "wrap",
-        }}
-      >
-        <span className="rpp-body-sm" style={{ alignSelf: "center", marginRight: "var(--rpp-space-2)" }}>
-          Mock state:
-        </span>
-        {demoStates.map((s) => (
-          <button
-            key={s.value}
-            type="button"
-            className={`rpp-btn rpp-btn-small ${state === s.value ? "rpp-btn-primary" : "rpp-btn-secondary"}`}
-            onClick={() => handleDemoStateChange(s.value)}
-          >
-            {s.label}
-          </button>
-        ))}
-      </div>
+      {error && view !== "quota-exceeded" && (
+        <div className="rpp-notice rpp-notice-warning" style={{ marginBottom: "var(--rpp-space-6)" }}>
+          <WarningIcon />
+          <div>
+            <div className="rpp-notice-title">Something went wrong</div>
+            <div className="rpp-notice-body">{error}</div>
+          </div>
+        </div>
+      )}
 
-      {state === "paywall" && (
+      {(view === "paywall" || view === "quota-exceeded") && (
         <>
-          {quotaBar("You have 2 free conversions left this 30-day period.", 33)}
+          {quota && !isAllowed(quota) && quotaBar(quotaLabel(quota).label, quotaLabel(quota).percent)}
           <div className="rpp-notice rpp-notice-info" style={{ marginBottom: "var(--rpp-space-6)" }}>
             <InfoIcon />
             <div>
               <div className="rpp-notice-title">This feature is part of the Full Editor</div>
               <div className="rpp-notice-body">
-                Convert PDF to Word is included with the Full Editor. Free users get 3 conversions per 30 days; paid plans include 10 per month, with extra conversions available as needed.
+                Convert PDF to Word is included with the Full Editor. Free users get {quota?.free_conversions_limit ?? 3} conversions per 30 days; paid plans include 30 per month, with extra conversions available as needed.
               </div>
             </div>
           </div>
@@ -164,7 +237,7 @@ export default function ConvertToWordTool() {
                 <span className="rpp-pricing-card-unit">/month</span>
               </div>
               <ul className="rpp-pricing-card-list" style={{ marginTop: "var(--rpp-space-4)" }}>
-                <li>10 conversions per month</li>
+                <li>30 conversions per month</li>
                 <li>All PDF tools unlocked</li>
                 <li>Use on up to 5 devices</li>
               </ul>
@@ -177,26 +250,26 @@ export default function ConvertToWordTool() {
               <div className="rpp-pricing-card-price" style={{ fontSize: "var(--rpp-scale-5)" }}>
                 $5
               </div>
-              <p className="rpp-pricing-card-period">10 conversions</p>
+              <p className="rpp-pricing-card-period">2 credits minimum</p>
               <p className="rpp-body-sm" style={{ color: "var(--rpp-ink-600)", marginTop: "var(--rpp-space-2)" }}>
-                Or $0.50 each
+                $5 for 10 or $1 for 2
               </p>
               <button
                 type="button"
                 className="rpp-btn rpp-btn-secondary rpp-btn-full"
                 style={{ marginTop: "var(--rpp-space-5)" }}
-                onClick={() => handleDemoStateChange("top-up")}
+                onClick={() => setView("top-up")}
               >
-                Buy 10 more conversions for $5
+                Buy extra credits
               </button>
             </div>
           </div>
         </>
       )}
 
-      {state === "authorized" && (
+      {view === "authorized" && quota && (
         <>
-          {quotaBar("10 included conversions remaining this month.", 80)}
+          {quotaBar(quotaLabel(quota).label, quotaLabel(quota).percent)}
           <input
             ref={inputRef}
             type="file"
@@ -218,7 +291,7 @@ export default function ConvertToWordTool() {
             </div>
             <div className="rpp-upload-zone-title">Upload PDF to convert</div>
             <p className="rpp-upload-zone-meta">
-              Drop your PDF here or click to browse. Max 50 MB and 200 pages for free users.
+              Drop your PDF here or click to browse. Max 50 MB and 200 pages.
             </p>
           </div>
           {selectedFile && (
@@ -232,7 +305,7 @@ export default function ConvertToWordTool() {
         </>
       )}
 
-      {state === "processing" && (
+      {view === "processing" && (
         <div className="rpp-processing-overlay" style={{ position: "static", minHeight: "220px" }}>
           <div className="rpp-spinner" />
           <p className="rpp-body">Converting PDF to Word...</p>
@@ -242,7 +315,7 @@ export default function ConvertToWordTool() {
         </div>
       )}
 
-      {state === "success" && (
+      {view === "success" && result && (
         <>
           <div className="rpp-notice rpp-notice-success" style={{ marginBottom: "var(--rpp-space-6)" }}>
             <SuccessIcon />
@@ -267,54 +340,32 @@ export default function ConvertToWordTool() {
         </>
       )}
 
-      {state === "quota-exceeded" && (
-        <>
-          <div className="rpp-notice rpp-notice-warning" style={{ marginBottom: "var(--rpp-space-6)" }}>
-            <WarningIcon />
-            <div>
-              <div className="rpp-notice-title">You’ve used your included conversions</div>
-              <div className="rpp-notice-body">
-                You’ve used your 10 included conversions this month. Top up to keep converting, or upgrade to a plan with more included conversions.
-              </div>
-            </div>
-          </div>
-          <div className="rpp-flex" style={{ gap: "var(--rpp-space-3)", flexWrap: "wrap" }}>
-            <a href="/pricing" className="rpp-btn rpp-btn-primary">
-              View pricing
-            </a>
-            <button type="button" className="rpp-btn rpp-btn-secondary" onClick={() => handleDemoStateChange("top-up")}>
-              Top up
-            </button>
-          </div>
-        </>
-      )}
-
-      {state === "top-up" && (
+      {view === "top-up" && (
         <>
           <div className="rpp-notice rpp-notice-info" style={{ marginBottom: "var(--rpp-space-6)" }}>
             <InfoIcon />
             <div>
               <div className="rpp-notice-title">Choose a plan or add credits</div>
               <div className="rpp-notice-body">
-                All paid plans include 10 Convert to Word conversions per month. Credits roll over for 30 days.
+                All paid plans include 30 Convert to Word conversions per month. Top-up credits are consumed after included conversions are used.
               </div>
             </div>
           </div>
           <div className="rpp-pricing-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
             <div className="rpp-pricing-card">
               <h3 className="rpp-pricing-card-name">Free</h3>
-              <p className="rpp-pricing-card-desc">3 Convert to Word conversions per 30 days.</p>
+              <p className="rpp-pricing-card-desc">{quota?.free_conversions_limit ?? 3} Convert to Word conversions per 30 days.</p>
               <div className="rpp-pricing-card-price" style={{ fontSize: "var(--rpp-scale-5)" }}>
                 $0
               </div>
-              <a href="/convert-to-word" className="rpp-btn rpp-btn-secondary rpp-btn-full">
+              <button type="button" onClick={() => refreshQuota()} className="rpp-btn rpp-btn-secondary rpp-btn-full">
                 Continue free
-              </a>
+              </button>
             </div>
             <div className="rpp-pricing-card rpp-pricing-card-popular">
               <div className="rpp-pricing-card-popular-flag">Launch Special</div>
               <h3 className="rpp-pricing-card-name">Monthly</h3>
-              <p className="rpp-pricing-card-desc">10 conversions per month. Cancel anytime.</p>
+              <p className="rpp-pricing-card-desc">30 conversions per month. Cancel anytime.</p>
               <div className="rpp-pricing-card-price">
                 <span className="rpp-pricing-card-old">$29</span>
                 <span>$19</span>
@@ -326,7 +377,7 @@ export default function ConvertToWordTool() {
             </div>
             <div className="rpp-pricing-card">
               <h3 className="rpp-pricing-card-name">Yearly</h3>
-              <p className="rpp-pricing-card-desc">Best value. 10 conversions per month.</p>
+              <p className="rpp-pricing-card-desc">Best value. 30 conversions per month.</p>
               <div className="rpp-pricing-card-price">
                 <span className="rpp-pricing-card-old">$149</span>
                 <span>$99</span>
@@ -338,7 +389,7 @@ export default function ConvertToWordTool() {
             </div>
             <div className="rpp-pricing-card">
               <h3 className="rpp-pricing-card-name">One-time</h3>
-              <p className="rpp-pricing-card-desc">One-time license. 10 conversions per month.</p>
+              <p className="rpp-pricing-card-desc">One-time license. 30 conversions per month.</p>
               <div className="rpp-pricing-card-price">
                 <span className="rpp-pricing-card-old">$79</span>
                 <span>$59</span>
@@ -349,9 +400,9 @@ export default function ConvertToWordTool() {
             </div>
           </div>
           <div style={{ marginTop: "var(--rpp-space-6)", textAlign: "center" }}>
-            <p className="rpp-body-sm">Need more this month? Buy 10 extra conversions for $5.</p>
+            <p className="rpp-body-sm">Need more this month? Top-up credits start at $1 for 2, or $5 for 10 (minimum $1/2 credits).</p>
             <a href="/checkout?topup=10" className="rpp-btn rpp-btn-secondary" style={{ marginTop: "var(--rpp-space-3)" }}>
-              Buy 10 conversions for $5
+              Buy extra credits
             </a>
           </div>
         </>

@@ -31,7 +31,7 @@
 
 | 输入 | 版本/状态 | 关键信息 | 一致性 |
 |---|---|---|---|
-| `docs/PRD-v3.md` | [DONE] | 订阅制为主 + 隐藏买断 $59；14 天退款；Creem MOR；5 台设备；10 次/月额度；Top-up | ✅ 已对齐 |
+| `docs/PRD-v3.md` | [DONE] | 订阅制为主 + 隐藏买断 $59；14 天退款；Creem MOR；5 台设备；30 次/月额度；Top-up | ✅ 已对齐 |
 | `docs/pricing-calibration-v3.md` | [DONE] | 月 $19 / 年 $99 / 买断 $59；14 天退款；Top-up $5/10 或 $0.50/次 | ✅ 已对齐 |
 | `docs/MVP-NOT-DO.md` | v1 已同步 | §2.3 商业模式改为订阅制为主 | ✅ 已对齐 |
 | `docs/copy-freeze.md` | v3 | 已包含 Privacy/Terms/Refund/Cookie 文案段落，但首页 Primary CTA 指向 `/pricing` 与 PRD §8.1 冲突 | ⚠️ 05 copy-freeze 需修正 |
@@ -196,7 +196,7 @@ We may use analytics to understand how the site is used. The specific provider, 
 By accessing or using RemovePDFPages, you agree to these Terms of Service. If you do not agree, do not use the Service.
 
 **2. Description of the Service**  
-RemovePDFPages provides browser-based PDF tools. The free tools (Remove Pages, Merge, Compress, Sign) are processed locally in your browser by default. Convert PDF to Word and optional backend fallback processing require temporary server-side upload and are deleted within 1 hour. The Full Editor is available as a monthly subscription ($19/month Launch Special, standard $29/month), an annual subscription ($99/year, standard $149/year), or a one-time license ($59, standard $79) for the current major version (v1.x). All paid plans include 10 Convert to Word conversions per calendar month. Additional conversions may be purchased as top-up credits at $0.50 each or $5 for 10. Free users may try Convert to Word up to 3 times per 30-day period.
+RemovePDFPages provides browser-based PDF tools. The free tools (Remove Pages, Merge, Compress, Sign) are processed locally in your browser by default. Convert PDF to Word and optional backend fallback processing require temporary server-side upload and are deleted within 1 hour. The Full Editor is available as a monthly subscription ($19/month Launch Special, standard $29/month), an annual subscription ($99/year, standard $149/year), or a one-time license ($59, standard $79) for the current major version (v1.x). All paid plans include 30 Convert to Word conversions per calendar month. Additional conversions may be purchased as top-up credits at  or $5 for 10. Free users may try Convert to Word up to 3 times per 30-day period.
 
 **3. Full Editor Subscription & License**  
 The Full Editor is offered as a monthly subscription, an annual subscription, or a one-time license. Subscriptions bill automatically until canceled. You may cancel anytime; cancellation takes effect at the end of the current billing period. The one-time license is a single payment for the current major version of RemovePDFPages (v1.x). It includes updates within v1.x but does not guarantee updates for a future major version or new platform. All paid plans may be activated on up to 5 personal devices; we record a device fingerprint at activation to enforce this limit. You may not share, resell, or redistribute your license key. The license is non-transferable except where required by law.
@@ -204,7 +204,7 @@ The Full Editor is offered as a monthly subscription, an annual subscription, or
 `[待确认：订阅到期后是否保留免费 3 次/30 天额度，由产品确认后回填。]`
 
 **3.5. Top-Up Credits**  
-Top-up credits are sold in packs of 1 conversion ($0.50) or 10 conversions ($5). Credits are non-transferable and expire only upon use or license/subscription revocation. Unused credits may be refunded within 14 days of purchase if requested; used credits are not refundable. Creem processing fees are not refunded on any refund.
+Top-up credits are sold in packs of 2 conversions ($1) or 10 conversions ($5). The minimum purchase is $1/2 credits. Credits are non-transferable and expire only upon use or license/subscription revocation. Unused credits may be refunded within 14 days of purchase if requested; used credits are not refundable. Creem processing fees are not refunded on any refund.
 
 **3.6. Pricing Changes**  
 The $19/month Launch Special and $99/year Launch Special are limited-time introductory prices. We may end the launch period at any time and return to the standard prices of $29/month and $149/year without prior notice. Prices displayed at checkout at the time of purchase are the prices that apply to that purchase. `[待确认：具体截止日期或数量限制由产品确认后回填。]`
@@ -238,7 +238,7 @@ The service is provided “as is” and “as available” without warranties of
 RemovePDFPages offers a 14-day, no-questions-asked refund for all Full Editor subscriptions and one-time licenses. If you are not satisfied, you may request a full refund within 14 days of your purchase date.
 
 **1.5. Top-Up Credits Refund**  
-Top-up credits ("10 conversions for $5" or "$0.50 per conversion") are refundable only if they have not been used and the refund is requested within 14 days of purchase. Once a credit has been consumed for a conversion, it is not refundable. Refunds for unused credits are processed through Creem and may take 5–10 business days to appear on your statement. Creem processing fees are not refunded.
+Top-up credits ("2 conversions for $1" or "10 conversions for $5") are refundable only if they have not been used and the refund is requested within 14 days of purchase. Once a credit has been consumed for a conversion, it is not refundable. Refunds for unused credits are processed through Creem and may take 5–10 business days to appear on your statement. Creem processing fees are not refunded.
 
 **2. How to Request a Refund**  
 Submit your request through our [Contact page](/contact) or by emailing support@removepdfpages.com. Include your Creem order ID and the email address used during checkout.
@@ -310,18 +310,18 @@ We may update this Cookie Policy from time to time. The latest version will be p
 
 | 位置 | 必须出现的披露语句 | 原因 |
 |---|---|---|
-| `/pricing` 卡片 / 对比表 | `Convert PDF to Word: 10 conversions/month included` | 避免买断后无限制误解 |
-| `/pricing` 卡片 / 对比表 | `Extra conversions: $0.50 each or $5 for 10` | 明确 Top-up 价格 |
+| `/pricing` 卡片 / 对比表 | `Convert PDF to Word: 30 conversions/month included` | 避免买断后无限制误解 |
+| `/pricing` 卡片 / 对比表 | `Extra conversions: $1/2 credits or $5/10 credits` | 明确 Top-up 价格 |
 | `/pricing` 卡片 | `Launch price for a limited time. Standard price is $29/month.` | 明确限时首发价 |
 | `/pricing` 卡片 | `Use on up to 5 personal devices` | 设备限制披露 |
 | `/convert-to-word`（未购买） | `You have X free conversions left this 30-day period.` | 免费试用额度 |
-| `/convert-to-word`（未购买） | `Free users get 3 conversions per 30 days. Full Editor includes 10 per month.` | 额度对比 |
-| `/convert-to-word`（已购买，额度用完） | `You’ve used your 10 included conversions this month. Buy 10 more for $5 or $0.50 each.` | Top-up 触发 |
+| `/convert-to-word`（未购买） | `Free users get 3 conversions per 30 days. Full Editor includes 30 per month.` | 额度对比 |
+| `/convert-to-word`（已购买，额度用完） | `You’ve used your 30 included conversions this month. Buy 10 more for $5 or .` | Top-up 触发 |
 | `/convert-to-word` 数据流提示 | `This tool uses a backend server. Your file is uploaded temporarily and deleted automatically within 1 hour.` | 隐私披露 |
 | `/checkout` | `Payments processed by Creem, our Merchant of Record. We do not store your card details.` | 支付安全 |
 | `/checkout` | `Sales tax, VAT, and GST are calculated and collected automatically by Creem based on your location.` | 销售税披露 |
 | `/checkout` | `14-day refund policy. Subscriptions and the one-time license are refundable within 14 days.` | 退款披露（若最终改为 7 天需同步替换） |
-| `/checkout` | `Includes 10 Convert to Word conversions per month.` | 额度披露 |
+| `/checkout` | `Includes 30 Convert to Word conversions per month.` | 额度披露 |
 | `/faq` / 定价区 | `One-time license means the current major version of RemovePDFPages Full Editor (v1.x).` | Lifetime 边界 |
 | `/faq` / 退款区 | `Creem does not refund payment processing fees. We absorb this cost on every refund.` | 退款成本披露 |
 | `/refund` | `Top-up credits are refundable only if unused and requested within 14 days.` | credits 退款（若最终改为 7 天需同步替换） |
@@ -347,7 +347,7 @@ We may update this Cookie Policy from time to time. The latest version will be p
 - [ ] `/terms` 内容与本报告 §7.2 一致，特别包含：
   - [ ] 订阅 + 买断 + Top-up 模式
   - [ ] 自动续订 + 随时取消
-  - [ ] 10 次/月额度 + 3 次/30 天免费试用
+  - [ ] 30 次/月额度 + 3 次/30 天免费试用
   - [ ] 5 台设备限制
   - [ ] 14 天退款（或用户确认后的 7 天）
   - [ ] 销售税/地理范围
@@ -374,7 +374,7 @@ We may update this Cookie Policy from time to time. The latest version will be p
 ### 9.3 后端/集成
 
 - [ ] Creem 商户账户、订阅/买断 plan、webhook 已配置并测试
-- [ ] `/api/convert` 配额校验实现（3 次/30 天免费、10 次/月付费、已用 credits）
+- [ ] `/api/convert` 配额校验实现（3 次/30 天免费、30 次/月付费、已用 credits）
 - [ ] `/api/subscription/purchase` / `/api/credits/purchase` 实现
 - [ ] 订阅续订/取消/过期 webhook 处理
 - [ ] 临时文件 TTL 1 小时删除

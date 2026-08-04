@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import CheckoutForm from './CheckoutForm';
 
 export const metadata: Metadata = {
   title: 'Checkout | RemovePDFPages',
@@ -11,13 +13,37 @@ export const metadata: Metadata = {
   },
 };
 
+function CheckoutSkeleton() {
+  return (
+    <main id="main">
+      <section className="rpp-section rpp-section-hero">
+        <div className="rpp-container rpp-text-center">
+          <h1 className="rpp-display">Get the Full Editor</h1>
+          <p className="rpp-lead">Loading checkout…</p>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 export default function Page() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "WebPage", "name": "Checkout", "url": "https://removepdfpages.net/checkout"}'}} />
-
-<a href="#main" className="rpp-sr-only">Skip to content</a><main id="main"><section className="rpp-section rpp-section-hero"><div className="rpp-container rpp-text-center"><h1 className="rpp-display">Get the Full Editor</h1><p className="rpp-lead" style={{maxWidth: '640px', margin: 'var(--rpp-space-4) auto 0'}}>Choose a plan and complete your purchase securely through Creem.</p></div></section><section className="rpp-section"><div className="rpp-workspace"><div className="rpp-card"><div className="rpp-checkout-options"><label className="rpp-checkout-option rpp-checkout-option-selected"><input type="radio" name="plan" defaultValue="monthly" defaultChecked /><span className="rpp-checkout-option-body"><span className="rpp-checkout-option-title">Monthly — $19/month</span><span className="rpp-checkout-option-desc">Billed monthly. Cancel anytime. Save $10 off the standard price.</span><span className="rpp-checkout-option-price"><span className="rpp-pricing-card-old">$29</span>$19<span className="rpp-pricing-card-unit">/month</span></span></span></label><label className="rpp-checkout-option"><input type="radio" name="plan" defaultValue="yearly" /><span className="rpp-checkout-option-body"><span className="rpp-checkout-option-title">Yearly — $99/year</span><span className="rpp-checkout-option-desc">Billed annually. Save $129.</span><span className="rpp-checkout-option-price"><span className="rpp-pricing-card-old">$149</span>$99<span className="rpp-pricing-card-unit">/year</span></span></span></label><label className="rpp-checkout-option"><input type="radio" name="plan" defaultValue="onetime" /><span className="rpp-checkout-option-body"><span className="rpp-checkout-option-title">One-time License — $59</span><span className="rpp-checkout-option-desc">Pay once. Use for the current major version. No recurring billing.</span><span className="rpp-checkout-option-price"><span className="rpp-pricing-card-old">$79</span>$59<span className="rpp-pricing-card-unit">one-time</span></span></span></label></div><div className="rpp-checkout-form" style={{marginTop: 'var(--rpp-space-6)'}}><label className="rpp-checkout-label" htmlFor="email">Email for your license key / receipts</label><input className="rpp-checkout-input" id="email" type="email" placeholder="you@example.com" /><button className="rpp-btn rpp-btn-primary rpp-btn-full" style={{marginTop: 'var(--rpp-space-4)'}}>Subscribe — $19/month</button></div><div className="rpp-checkout-notes" style={{marginTop: 'var(--rpp-space-5)'}}><div className="rpp-notice rpp-notice-info"><svg className="rpp-icon rpp-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg><div><div className="rpp-notice-title">Payments processed by Creem, our Merchant of Record. We do not store your card details.</div><div className="rpp-notice-body">Sales tax, VAT, and GST are calculated and collected automatically by Creem based on your location. 14-day refund policy. Subscriptions and the one-time license are refundable within 14 days. Includes 10 Convert to Word conversions per month.</div></div></div></div><div className="rpp-trust-bar" style={{marginTop: 'var(--rpp-space-6)'}}><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>Encrypted checkout via Creem</div><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>14-day refund policy</div><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>License key / receipts sent to your email</div><div className="rpp-trust-item"><svg className="rpp-icon" viewBox="0 0 24 24" fill="none" stroke="#65A30D" strokeWidth="2"><path d="M5 12l5 5L20 7"></path></svg>Cancel monthly or yearly subscriptions anytime</div></div></div></div></section></main>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Checkout",
+            url: "https://removepdfpages.net/checkout",
+          }),
+        }}
+      />
+      <a href="#main" className="rpp-sr-only">Skip to content</a>
+      <Suspense fallback={<CheckoutSkeleton />}>
+        <CheckoutForm />
+      </Suspense>
     </>
   );
 }

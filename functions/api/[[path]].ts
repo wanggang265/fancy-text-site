@@ -5,10 +5,10 @@ export const onRequest = async (context: { request: Request; env: Record<string,
   const path = url.pathname.replace(/^\/api/, '');
   const query = url.search;
 
-  const target = `https://removepdfpages-workers.gw471210.workers.dev/api${path}${query}`;
+  const target = `https://api.removepdfpages.net/api${path}${query}`;
 
   const headers = new Headers(request.headers);
-  headers.set('Host', 'removepdfpages-workers.gw471210.workers.dev');
+  headers.set('Host', 'api.removepdfpages.net');
 
   try {
     const response = await fetch(target, {

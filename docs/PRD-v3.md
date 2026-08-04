@@ -33,7 +33,7 @@
 - `数据流与文件处理架构`（免费 4 工具默认纯客户端处理；Convert to Word / 后端 fallback 临时上传，处理完成后 TTL 1 小时自动删除）[NEEDS_SOURCE_CHECK: 最终后端选型] [已确认：data-contract.md + compliance-report.md]
 - `免费额度`（单文件 ≤50MB，≤200 页；每小时同 IP 10–20 次免费处理；Merge ≤10 文件）[已确认：pricing-calibration-v3.md]
 - `Convert to Word 免费试用额度`（3 次/30 天）[已确认：pricing-calibration-v3.md]
-- `Full Editor 包含 Convert to Word 额度`（10 次/月）[已确认：pricing-calibration-v3.md]
+- `Full Editor 包含 Convert to Word 额度`（30 次/月）[已确认：pricing-calibration-v3.md]
 - `Top-up 价格`（$0.50/次 或 $5/10 次）[已确认：pricing-calibration-v3.md]
 - `法律管辖地`（US 州法 / GDPR / CCPA 影响）[已确认：Terms 采用 Delaware 管辖，国际用户自负法律义务；等待 04 合规落地]
 - `支付服务商`（Creem）[已确认：Armitage Labs OÜ，Merchant of Record；商户账户、订阅产品配置、webhook 仍待测试]
@@ -131,13 +131,13 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 - **购买方式**：通过 Creem 订阅（月/年）或一次性买断；买断 license 主要用于当前主版本 RemovePDFPages Full Editor v1.x
 - **支付与税务**：通过 Creem（Merchant of Record）处理收款；Creem 根据买家账单地址自动计算并汇缴适用的销售税/VAT/GST；商家（我们）负责产品交付、客服与退款请求
 - **解锁功能**：Convert PDF to Word 与高级编辑占位功能
-- **包含额度**：Convert to Word 10 次/月（订阅与买断均包含）
+- **包含额度**：Convert to Word 30 次/月（订阅与买断均包含）
 - **超出额度**：按量 Top-up，$0.50/次 或 $5/10 次；通过 credits 购买实现
 - **设备限制**：最多 5 台个人设备；license key 激活时记录设备指纹
 - **退款政策**：14 天无理由退款；每退一单损失 Creem 手续费（3.9% + $0.40），其中处理费不退还。未使用 credits 14 天内可退，已使用不可退；Creem 从给我们的 Payout 中扣除退款金额
 - **Launch Special 边界**：`Limited time. May end without notice.`暂不公开截止日期或数量限制
 - **CTA 统一**：首页 `/` 是工具入口页，不是付费转化入口；其首屏 Primary CTA 必须指向免费工具入口。博客 `/blog/*`、`/convert-to-word`、`/pricing`、`/checkout` 主推文案统一为 `$19/month Launch Special` / `$99/year` / `$59 one-time license`；`$29` 仅作为月度原价锚点，`$149` 仅作为年度原价锚点。
-- **转化路径**：首页 `/` 让用户发现并进入免费工具入口（如 `/remove-pages`、`/merge`、`/compress`、`/sign` 及含免费试用的 `/convert-to-word`）；免费工具入口引导用户使用 `Convert to Word` → 3 次免费试用 → 触发 Paywall → 订阅/买断 Full Editor → 获得 10 次/月额度 → 高用量触发 Top-up。
+- **转化路径**：首页 `/` 让用户发现并进入免费工具入口（如 `/remove-pages`、`/merge`、`/compress`、`/sign` 及含免费试用的 `/convert-to-word`）；免费工具入口引导用户使用 `Convert to Word` → 3 次免费试用 → 触发 Paywall → 订阅/买断 Full Editor → 获得 30 次/月额度 → 高用量触发 Top-up。
 
 [依据：`docs/pricing-calibration-v3.md` + `docs/compliance-report.md` v2]
 
@@ -182,11 +182,11 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
      - 若 30 天内已使用 < 3 次：允许免费转换，页面显示 `You have X free conversions left this 30-day period.`
      - 若免费额度已用完且未订阅/购买 Full Editor：展示 `$19/month Launch Special` / `$99/year` / `$59 one-time license` Paywall，CTA 指向 `/pricing`
   3. 若已订阅/购买 Full Editor：检查本月已用转换次数
-     - 若本月已用 < 10 次：正常转换，页面显示本月剩余额度
-     - 若本月已用 ≥ 10 次：展示 Top-up CTA（`Buy 10 more conversions for $5` 或 `$0.50 each`）
+     - 若本月已用 < 30 次：正常转换，页面显示本月剩余额度
+     - 若本月已用 ≥ 30 次：展示 Top-up CTA（`Buy extra credits` 或 ``）
   4. 用户点击 Convert → 后端处理 → 下载 Word 文档
 - **成功标准：** Word 文档可编辑，格式尽量保留。
-- **CTA 统一：** 本页所有购买入口（Paywall、按钮、横幅）必须统一使用 `$19/month Launch Special` / `$99/year` / `$59 one-time license` 口径，与博客、定价页一致；首页 `/` 是工具入口页，其首屏 Primary CTA 必须指向免费工具入口。额度用完后统一使用 Top-up 价格 `$5/10 conversions` 或 `$0.50 each`。
+- **CTA 统一：** 本页所有购买入口（Paywall、按钮、横幅）必须统一使用 `$19/month Launch Special` / `$99/year` / `$59 one-time license` 口径，与博客、定价页一致；首页 `/` 是工具入口页，其首屏 Primary CTA 必须指向免费工具入口。额度用完后统一使用 Top-up 价格 `$5/10 conversions` 或 ``。
 - **Top-up 购买流程**：用户在 `/convert-to-word` 点击 Top-up → 调用 `/api/credits/purchase` 创建 Creem Checkout 会话 → 完成支付 → Creem webhook `checkout.completed` 触发 credits 到账 → 继续转换
 
 ---
@@ -211,7 +211,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 - 首页 `/` 首屏 Primary CTA 必须指向免费工具入口（例如 `/remove-pages`、`/merge`、`/compress`、`/sign` 或页面内工具锚点），不是付费转化入口。`$19 Launch Special` 只能出现在首页底部转化区、`/pricing`、`/checkout` 或 `/convert-to-word` Paywall 中。
 - `/pricing` 页面主卡片区为 Free / Monthly $19 / Yearly $99；`$29` 仅作为月度 strikethrough 原价锚点，`$149` 仅作为年度 strikethrough 原价锚点；在页面下方以次级文案提供 `$59 one-time license` 选项。
 - `/checkout` 默认选项为 Monthly $19 Launch Special，保留 Yearly $99 选项，并在 checkout 页面以第三选项或次级链接提供 One-time License $59。
-- `/convert-to-word` 在免费额度用完后展示 `$19/month Launch Special` / `$99/year` / `$59 one-time license` Paywall，CTA 指向 `/pricing`；已购买/订阅用户额度用完后展示 Top-up CTA `$5/10 conversions` 或 `$0.50 each`。
+- `/convert-to-word` 在免费额度用完后展示 `$19/month Launch Special` / `$99/year` / `$59 one-time license` Paywall，CTA 指向 `/pricing`；已购买/订阅用户额度用完后展示 Top-up CTA `$5/10 conversions` 或 ``。
 - 博客文章中的价格提法必须与 `/pricing` 一致，禁止同时出现 `$19 one-time` 与 `$19/month` 两种默认口径。
 - 所有文案避免 `unlimited`、`free forever`、`no limits`；免费工具使用 `currently free` + `fair-use limits`。
 
@@ -231,7 +231,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 - **`/api/convert`**：Convert to Word 后端处理端点
   - 请求前校验 `device_id` 、license key 状态及 subscription 状态（月/年/过期）
   - 未购买/订阅用户：检查 30 天免费试用额度（3 次/30 天），额度内允许请求，额外返回 `402 LICENSE_REQUIRED` 并触发 Paywall
-  - 已订阅/已买断用户：检查本月已用转换次数（10 次/月），额度内正常处理，额外返回 `403 QUOTA_EXCEEDED` 并触发 Top-up CTA
+  - 已订阅/已买断用户：检查本月已用转换次数（30 次/月），额度内正常处理，额外返回 `403 QUOTA_EXCEEDED` 并触发 Top-up CTA
   - 每次转换消耗 1 次额度；成功与失败分别定义错误码
 - **`/api/subscription/purchase` / Creem checkout**：创建订阅或买断订单
   - 月度 / 年度 / 买断三个 plan，通过 Creem Checkout 创建订单
@@ -243,7 +243,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 - **`device_id` / `license_key` / `subscription_id` 维护**
   - 在浏览器端生成并持久化 `device_id`（fingerprint + IP hash 复合）
   - 后端使用 KV（Cloudflare Workers KV / Upstash Redis）维护 `device_id / license_key → 本月已用次数/剩余 credits / subscription 状态及过期日期`
-  - 免费额度与购买额度分开计算：免费 3 次/30 天不影响订阅/买断后的 10 次/月
+  - 免费额度与购买额度分开计算：免费 3 次/30 天不影响订阅/买断后的 30 次/月
   - 同一设备/IP 换浏览器或清除缓存可能被视为新 `device_id`，存在被刷风险；需配合 rate limit 与异常监控
 - **配额状态端点**
   - 前端需获取当前 `device_id` 的免费试用剩余次数、已购 license / 订阅的月度剩余次数、当前 credits 余额
@@ -294,7 +294,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 | 价格 | $0 | $19/month Launch Special（原价 $29） | $99/year（原价 $149） | $59（标准价 $79） | $0.50/次 或 $5/10 次 |
 | 购买方式 | 无需购买 | 月度订阅，随时取消 | 年度订阅 | 一次性买断 | 账户内购买 credits |
 | Remove / Merge / Compress / Sign | ✅ 可用 | ✅ 可用 | ✅ 可用 | ✅ 可用 | — |
-| Convert to Word | 3 次/30 天 免费试用 | 10 次/月 包含额度 | 10 次/月 包含额度 | 10 次/月 包含额度 | 超出额度后按量计费 |
+| Convert to Word | 3 次/30 天 免费试用 | 30 次/月 包含额度 | 30 次/月 包含额度 | 30 次/月 包含额度 | 超出额度后按量计费 |
 | 文件大小/页数 | 50 MB / 200 页 | 50 MB / 200 页 | 50 MB / 200 页 | 50 MB / 200 页 | 50 MB / 200 页 |
 | 设备 | 浏览器 | 最多 5 台个人设备 | 最多 5 台个人设备 | 最多 5 台个人设备 | 同授权设备 |
 | 更新 | 免费工具更新 | 当前主版本 v1.x | 当前主版本 v1.x | 当前主版本 v1.x | — |
@@ -313,7 +313,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 || 入口 CTA 统一 | 博客 `/blog/*`、`/convert-to-word`、`/pricing`、`/checkout` 主推 `$19 Launch Special` / `$99/year` / `$59 one-time license`；首页 `/` 首屏 Primary CTA 指向免费工具入口，`$19 Launch Special` 仅允许出现在首页底部转化区 | 统一全站价格口径，Freemium 直接转化 |
 | 价格结构 | 订阅制为主（月 $19/年 $99） + 隐藏买断 $59 + 按量 Top-up credits | pricing-calibration-v3 + 已更新的 NOT-DO |
 | 免费试用额度 | Convert to Word 3 次/30 天 | pricing-calibration-v3：足够体验、不亏穿 |
-| 包含额度 | Full Editor 含 10 次/月 Convert to Word | pricing-calibration-v3：覆盖大多数用户基础需求 |
+| 包含额度 | Full Editor 含 30 次/月 Convert to Word | pricing-calibration-v3：覆盖大多数用户基础需求 |
 | 超出额度 | $0.50/次 或 $5/10 次 | pricing-calibration-v3：覆盖后端成本 |
 
 ### 11.3 免费额度与处理架构
@@ -327,7 +327,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 | Convert to Word / 后端 fallback | 临时上传服务器，处理完成后 1 小时内自动删除 | compliance-report + data-contract |
 | 输出文件 TTL | 1 小时（后端处理场景） | 降低存储成本，与隐私声明一致 |
 | Convert to Word 免费试用 | 3 次/30 天，基于 device_id（fingerprint + IP） | pricing-calibration-v3 |
-| Full Editor 包含额度 | 10 次/月 | pricing-calibration-v3 |
+| Full Editor 包含额度 | 30 次/月 | pricing-calibration-v3 |
 | Top-up 计费 | $0.50/次 或 $5/10 次 | pricing-calibration-v3 |
 
 ### 11.4 退款、税务与授权
@@ -359,7 +359,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 - 免费工具页面文案避免 `unlimited`、`free forever`、`no limits`；使用 `currently free`。
 - 工具页面保持 “Your file stays in your browser” 仅适用于默认客户端处理；后端 fallback 需明确告知用户。
 - Footer 法律链接必须指向 `/privacy`、`/terms`、`/refund`（当前指向 `/contact`，需修正）。
-- `/convert-to-word` 页面需展示：免费试用剩余次数、已订阅/已买断 license 的月度剩余次数、额度用完后的 Top-up CTA（$5/10 conversions 或 $0.50 each）。
+- `/convert-to-word` 页面需展示：免费试用剩余次数、已订阅/已买断 license 的月度剩余次数、额度用完后的 Top-up CTA（$5/10 conversions 或 ）。
 - 后端需支持订阅状态校验（月/年/过期）、订阅续订/取消 webhook 处理。
 
 ### 11.7 风险与合规
@@ -368,8 +368,8 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 |---|---|---|---|---|
 | 🔴 高 | 文案误导：$19 一次性 vs 订阅 | 全站 | 用户可能误认为 $19 仍是一次性买断 | 所有文案明确 `$19/month`、`billed monthly`、`cancel anytime` |
 | 🔴 高 | 订阅流失 | 全局 | 月付用户流失后无持续收入 | 主推年费 $99，提高预付现金流 |
-| 🔴 高 | 后端成本不可控 | 后端 Convert to Word | 若用户高频使用，10 次/月额度可能无法覆盖成本 | 严格按 Top-up 计费；上线后监控实际后端成本与使用频次 |
-| 🔴 高 | 文案误导 | `/pricing` / `/convert-to-word` | 若未明确说明“10 次/月”限制，用户可能误解为买断后无限制 | 所有文案必须写明“10 conversions/month included”和“extra $0.50 each” |
+| 🔴 高 | 后端成本不可控 | 后端 Convert to Word | 若用户高频使用，30 次/月额度可能无法覆盖成本 | 严格按 Top-up 计费；上线后监控实际后端成本与使用频次 |
+| 🔴 高 | 文案误导 | `/pricing` / `/convert-to-word` | 若未明确说明“30 次/月”限制，用户可能误解为买断后无限制 | 所有文案必须写明“30 conversions/month included”和“extra ” |
 | 🔴 高 | 免费试用滥用 | `/convert-to-word` | 无账户系统，脚本可换 IP 刷免费额度 | 使用 fingerprint + IP + rate limit；监控异常 device_id 的转换行为 |
 | 🟡 中 | 价格欺诈 / 误导性折扣 | `/pricing` | $29 与 $19 同时作为独立卡片售卖 | 保持 `$29` 仅作为月度 strikethrough 原价，`$149` 仅作为年度 strikethrough 原价；`$19` 作为当前月度价，`$99` 作为当前年度价 |
 | 🟡 中 | Cannibalization | `/pricing` | 买断 $59 低于 6 个月月费，可能吸引本可订阅的用户 | 买断作为隐藏选项，不在主 CTA 展示；价格锚定高于 3 个月月费 |
@@ -421,13 +421,13 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 - Owner：前端 / 后端开发
 - 必需输入：本 PRD v3、`docs/pricing-calibration-v3.md`、design handoff v2、`docs/data-contract.md`、`docs/compliance-report.md` v2
 - 输出预期：修复后的 `/pricing`（三列卡片：Free / Monthly / Yearly + 隐藏买断）、`/checkout`、工具页、`/convert-to-word` 额度展示与 Top-up CTA、`/api/convert` 配额校验、`/api/subscription/purchase` / 订阅 webhook、`/api/credits/purchase`、Footer 法律链接
-- 验收：$29 仅作为月度 strikethrough 原价，$149 仅作为年度 strikethrough 原价；Footer `/privacy` `/terms` `/refund` 不 404；工具页处理逻辑与数据流一致；免费 3 次/30 天、包含 10 次/月、Top-up $5/10 次或 $0.50/次 均正确实现；订阅续订/取消/过期 webhook 正确处理
+- 验收：$29 仅作为月度 strikethrough 原价，$149 仅作为年度 strikethrough 原价；Footer `/privacy` `/terms` `/refund` 不 404；工具页处理逻辑与数据流一致；免费 3 次/30 天、包含 30 次/月、Top-up $5/10 次或 $0.50/次 均正确实现；订阅续订/取消/过期 webhook 正确处理
 
 > 注：04 合规审查已完成（`docs/compliance-report.md` v2），本阶段结论已纳入 PRD v3、pricing-calibration-v3 与 data-contract.md 引用。
 
 ### 给下游的最小必要信息
 - 不能假设 $19 Launch Special 是永久价；它是 MVP 限时首发价，文案为 `Limited time. May end without notice.`，未来可能切回 $29/month（月度）、$149/year（年度）
-- 不能假设买断后 Convert to Word 无限制；必须明确 10 次/月，超出需 Top-up
+- 不能假设买断后 Convert to Word 无限制；必须明确 30 次/月，超出需 Top-up
 - 不能假设 free 用户可以无限试用；必须限制 3 次/30 天
 - 不能假设 Top-up credits 退款政策未定；已确认：未使用 14 天内可退，已使用不可退，处理费不退还；Creem 从 Payout 中扣除
 - 不能假设 Convert to Word 可以纯客户端实现；必须按 TTL 1 小时的后端临时处理实现
@@ -499,7 +499,7 @@ RemovePDFPages 是面向美国个人用户与小团队的 **5 工具 PDF 套件*
 | `anchor_price_onetime` | `$79` | pricing page, checkout | 2026-07-29 |
 | `free_trial_mode` | `freemium_direct` | copy-freeze, PRD, backend | 2026-07-29 |
 | `convert_word_free_quota` | `3/30 days` | PRD, copy-freeze, backend | 2026-07-29 |
-| `convert_word_paid_quota` | `10/month` | PRD, copy-freeze, backend | 2026-07-29 |
+| `convert_word_paid_quota` | `30/month` | PRD, copy-freeze, backend | 2026-07-29 |
 | `topup_credits` | `$5/10 conversions` | PRD, copy-freeze, backend, checkout | 2026-07-29 |
 | `refund_window` | `14 days` | compliance, terms, refund page | 2026-07-29 |
 | `payment_provider` | `Creem` | PRD, compliance, backend, checkout | 2026-07-29 |

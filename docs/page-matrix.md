@@ -15,7 +15,7 @@
 | `/merge` | tool-free | Merge PDFs Online \| RemovePDFPages | Merge PDFs Online | merge pdf online | Combine multiple PDFs into one file online. Drag and drop to reorder pages, then download your merged PDF. No signup required. | Upload PDFs | SoftwareApplication | yes |
 | `/compress` | tool-free | Compress PDF Online \| RemovePDFPages | Compress PDF Online | compress pdf online | Reduce PDF file size online. Choose a compression level, then download a smaller file. No signup, no watermark. | Upload PDF | SoftwareApplication | yes |
 | `/sign` | tool-free | Sign PDF Online \| RemovePDFPages | Sign PDF Online | sign pdf online | Add a handwritten signature to any PDF online. Draw your signature, place it on the page, and download the signed file. No signup required. | Upload PDF | SoftwareApplication | yes |
-| `/convert-to-word` | tool-paid | Convert PDF to Word Online \| RemovePDFPages | Convert PDF to Word Online | convert pdf to word | Convert PDFs to editable Word documents. Free users get 3 conversions per 30 days; paid plans include 10 per month. Files are deleted within 1 hour. | Get Full Editor — $19/month Launch Special | SoftwareApplication | yes |
+| `/convert-to-word` | tool-paid | Convert PDF to Word Online \| RemovePDFPages | Convert PDF to Word Online | convert pdf to word | Convert PDFs to editable Word documents. Free users get 3 conversions per 30 days; paid plans include 30 per month. Files are deleted within 1 hour. | Get Full Editor — $19/month Launch Special | SoftwareApplication | yes |
 | `/pricing` | conversion | Pricing \| RemovePDFPages | Simple subscription pricing. One-time option available. | pdf editor pricing | RemovePDFPages pricing: free PDF tools and the Full Editor from $19/month or $99/year. One-time license $59. 14-day refund policy. | Get Full Editor — $19/month Launch Special | Product | yes |
 | `/faq` | support | FAQ \| RemovePDFPages | Frequently Asked Questions | pdf tools help | Find answers to common questions about RemovePDFPages free tools, subscriptions, and the one-time license. | Browse pricing | FAQPage | yes |
 | `/contact` | support | Contact & Refund \| RemovePDFPages | Contact & Refund | removepdfpages support | Get in touch with RemovePDFPages for support, questions, or refund requests. | Send message | ContactPage | yes |
@@ -40,11 +40,11 @@
    - `$19/month Launch Special`（原价 $29/month 删除线）
    - `$99/year`（原价 $149/year 删除线）
    - `$59 one-time license`（原价 $79 删除线）
-   - `$5/10 conversions` 或 `$0.50 each` Top-up
+   - `$5/10 conversions` 或 `` Top-up
 3. **首页 Hero**：Primary CTA 必须指向 `/remove-pages`（免费工具），付费转化区仅在首页底部、`/pricing`、`/checkout`、`/convert-to-word`、博客 CTA 出现。
 4. **Footer 法律链接**：`/privacy` / `/terms` / `/refund` / `/cookie-policy`（四链）。
 5. **禁用词**：全站不得出现 `unlimited`, `free forever`, `no limits`, `lifetime updates`, `perfect`, `100% accurate`, `guaranteed`, `official`。
-6. **Convert to Word**：免费 3 次/30 天；订阅/买断用户 10 次/月；超出 Top-up；文件后端临时保留 1 小时后删除。
+6. **Convert to Word**：免费 3 次/30 天；订阅/买断用户 30 次/月；超出 Top-up；文件后端临时保留 1 小时后删除。
 7. **Sign**：必须显示免责声明："not a digital certificate signature and is not legally binding for regulated electronic-signing requirements."。
 8. **支付披露**：Payments processed by Creem, our Merchant of Record. We do not store your card details. Sales tax/VAT/GST collected by Creem.
 9. **退款**：14-day refund policy；已使用 credits / 支付处理费不退。

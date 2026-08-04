@@ -43,7 +43,7 @@ export default function Page() {
             >
               Turn PDFs into DOCX or RTF files you can edit in Word. Subscribe from $19/month or
               $99/year, or buy a one-time license for $59. Use on up to 5 devices. Each paid plan
-              includes 10 included conversions per month.
+              includes 30 included conversions per month.
             </p>
           </div>
         </section>
