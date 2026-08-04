@@ -1,12 +1,11 @@
-import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'PDF Tools & Editing Tips | RemovePDFPages Blog',
-  description: 'Read PDF tips, tool comparisons, and guides about no-subscription and budget-friendly PDF editors on the RemovePDFPages blog.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/blog',
-  },
-};
+export const metadata = buildMetadata({
+  title: "PDF Tools & Editing Tips | RemovePDFPages Blog",
+  description: "Read PDF tips, tool comparisons, and guides about no-subscription and budget-friendly PDF editors on the RemovePDFPages blog.",
+  path: "/blog",
+  type: "website",
+});
 
 export default function Page() {
   return (

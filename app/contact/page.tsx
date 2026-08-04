@@ -1,12 +1,11 @@
-import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Contact & Refund | RemovePDFPages',
-  description: 'Get in touch with RemovePDFPages for support, questions, or refund requests. We typically reply within 1–2 business days.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/contact',
-  },
-};
+export const metadata = buildMetadata({
+  title: "Contact & Refund | RemovePDFPages",
+  description: "Get in touch with RemovePDFPages for support, questions, or refund requests. We typically reply within 1\u20132 business days.",
+  path: "/contact",
+  type: "website",
+});
 
 export default function Page() {
   return (

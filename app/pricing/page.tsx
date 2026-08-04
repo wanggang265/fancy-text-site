@@ -1,5 +1,5 @@
+import { buildMetadata } from '@/lib/seo';
 import StructuredData from '@/components/StructuredData';
-import type { Metadata } from 'next';
 
 const schema = {
   "@context": "https://schema.org",
@@ -49,13 +49,12 @@ const schema = {
   ],
 };
 
-export const metadata: Metadata = {
-  title: 'Pricing | RemovePDFPages',
-  description: 'RemovePDFPages pricing: free PDF tools and a $19/month Launch Special for the Full Editor. $99/year. One-time license $59. 14-day refund policy.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/pricing',
-  },
-};
+export const metadata = buildMetadata({
+  title: "Pricing | RemovePDFPages",
+  description: "RemovePDFPages pricing: free PDF tools and a $19/month Launch Special for the Full Editor. $99/year. One-time license $59. 14-day refund policy.",
+  path: "/pricing",
+  type: "website",
+});
 
 export default function Page() {
   return (

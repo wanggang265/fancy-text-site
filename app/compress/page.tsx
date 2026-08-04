@@ -1,15 +1,13 @@
+import { buildMetadata } from '@/lib/seo';
 import CompressTool from "@/components/CompressTool";
 import StructuredData from "@/components/StructuredData";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Compress PDF Online | RemovePDFPages",
-  description:
-    "Reduce PDF file size online. Choose a compression level and download a smaller PDF. No signup required.",
-  alternates: {
-    canonical: "https://removepdfpages.net/compress",
-  },
-};
+  description: "Reduce PDF file size online. Choose a compression level and download a smaller PDF. No signup required.",
+  path: "/compress",
+  type: "website",
+});
 
 const schema = {
   "@context": "https://schema.org",

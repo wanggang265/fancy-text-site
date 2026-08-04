@@ -1,12 +1,11 @@
-import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'No-Subscription PDF Editors: Free, Budget, and One-Time-Pay Options | RemovePDFPages',
-  description: 'Discover no-subscription PDF editors — free browser tools and low-cost or one-time payment options. Compare features before you choose a monthly plan.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/blog/no-subscription-pdf-editor',
-  },
-};
+export const metadata = buildMetadata({
+  title: "No-Subscription PDF Editors: Free, Budget, and One-Time-Pay Options | RemovePDFPages",
+  description: "Discover no-subscription PDF editors \u2014 free browser tools and low-cost or one-time payment options. Compare features before you choose a monthly plan.",
+  path: "/blog/no-subscription-pdf-editor",
+  type: "article",
+});
 
 export default function Page() {
   return (

@@ -1,12 +1,11 @@
-import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'One-Time Payment PDF Editors Compared | RemovePDFPages',
-  description: 'Compare one-time payment PDF editors. See which tools let you buy once and avoid subscriptions, including the RemovePDFPages one-time license.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/blog/one-time-payment-pdf-editor',
-  },
-};
+export const metadata = buildMetadata({
+  title: "One-Time Payment PDF Editors Compared | RemovePDFPages",
+  description: "Compare one-time payment PDF editors. See which tools let you buy once and avoid subscriptions, including the RemovePDFPages one-time license.",
+  path: "/blog/one-time-payment-pdf-editor",
+  type: "article",
+});
 
 export default function Page() {
   return (

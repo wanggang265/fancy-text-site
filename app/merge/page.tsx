@@ -1,15 +1,13 @@
+import { buildMetadata } from '@/lib/seo';
 import MergeTool from "@/components/MergeTool";
 import StructuredData from "@/components/StructuredData";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Merge PDFs Online | RemovePDFPages",
-  description:
-    "Combine multiple PDF files into one document. Reorder pages and merge in seconds. No signup required.",
-  alternates: {
-    canonical: "https://removepdfpages.net/merge",
-  },
-};
+  description: "Combine multiple PDF files into one document. Reorder pages and merge in seconds. No signup required.",
+  path: "/merge",
+  type: "website",
+});
 
 const schema = {
   "@context": "https://schema.org",

@@ -226,7 +226,7 @@
 || 07 frontend | [DONE] | `app/` 全 20 路由实现；Worker 已部署；所有 20 URL 线上 200；handoff 文档已生成 | 6 个路由标题/H1 与 route-contract 有 copy drift；pre-existing lint errors | v4 前端已部署并验证；详见 `docs/07-frontend-handoff-v4.md` |
 || 08 backend | [DONE] | `docs/data-contract.md` + `/home/ubuntu/projects/removepdfpages-workers/` + `docs/08-backend-handoff.md` | 无 | jishi 返修通过：真实 webhook secret 已配置、产品描述统一为 30 次/月、debug 端点已删除、Google OAuth redirect 已确认 |
 || 09 QA | [GO with residual issues] | `docs/09-qa-acceptance-report-v2.md` 返修后通过 | 新增 P2 见 §11.3 | zhongshu Re-QA 验证：commit 30d6c56、deploy.sh 20/20 通过、关键页面 200、checkout 跳转 Creem 成功、paywall 文案 30/month、success 动态渲染 |
-|| 10 SEO | [READY] | 无 | 待委派给专门 SEO agent 执行 `seo-launch-workflow` | — |
+|| 10 SEO | [BLOCKED] | `docs/10-seo-report.md`, `lib/seo.ts`, `public/_headers`, `app/login/layout.tsx`, `app/robots.ts`, `app/sitemap.ts` | 生产部署与缓存刷新未执行；GSC/Bing/IndexNow 提交需要权限 | 代码修复本地已验证通过，见 `docs/10-seo-report.md` |
 | 11 launch | NOT_STARTED | 无 | — | — |
 | 12 data-review | NOT_STARTED | 无 | — | — |
 
@@ -246,9 +246,35 @@
 
 ---
 
-## 11. 当前阻塞项
+## 11. 10 SEO 阶段阻塞项
 
-**09 QA 结论：GO with residual issues**（详见 `docs/09-qa-acceptance-report-v2.md`）
+10-seo 代码修复已完成并通过本地构建验证，结论为 **[BLOCKED]**（详见 `docs/10-seo-report.md`）。
+
+### 必须完成才能进入 11-launch
+
+1. **生产部署 + Cloudflare 缓存刷新**
+   - Owner：前端维护者
+   - 操作：`git push` / `deploy.sh` 部署；在 Cloudflare Dashboard Purge Everything
+   - 验证：
+     - `curl -I https://removepdfpages.net/` 返回 `Content-Type: text/html; charset=utf-8`
+     - `curl -sL https://removepdfpages.net/login | grep robots` 包含 `noindex, nofollow`
+
+2. **Google Search Console 提交**
+   - Owner：有 GSC 站点所有权的用户/运营
+   - 操作：验证站点 → 提交 `https://removepdfpages.net/sitemap.xml` → 请求索引核心页面
+   - 验证：GSC「站点地图」显示成功
+
+3. **Bing Webmaster Tools 提交**
+   - Owner：有 Microsoft 账号权限的用户（1gw471210@gmail.com）
+   - 操作：验证站点 → 提交 sitemap
+
+4. **IndexNow 配置（建议）**
+   - Owner：前端维护者 + 运营
+   - 操作：生成随机 key，部署 `{key}.txt` 到根目录；调用 IndexNow API 批量提交 18 个 sitemap URL
+
+---
+
+## 12. 09 QA 残留 P2（上线前尽量完成）
 
 ### 返修项已全部通过（commit 30d6c56）
 1. ✅ `/checkout` 按钮完成购买：已改为 Client Component `CheckoutForm.tsx`，POST `/api/creem/checkout` 并跳转 Creem。

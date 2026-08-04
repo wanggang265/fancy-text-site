@@ -1,6 +1,6 @@
+import { buildMetadata } from '@/lib/seo';
 import ConvertToWordTool from "@/components/ConvertToWordTool";
 import StructuredData from "@/components/StructuredData";
-import type { Metadata } from "next";
 
 const schema = {
   "@context": "https://schema.org",
@@ -19,14 +19,12 @@ const schema = {
   },
 };
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Convert PDF to Word Online | RemovePDFPages",
-  description:
-    "Convert PDF to editable Word documents with the RemovePDFPages Full Editor. $19/month Launch Special, $99/year, or $59 one-time license. Files are deleted from our server within 1 hour.",
-  alternates: {
-    canonical: "https://removepdfpages.net/convert-to-word",
-  },
-};
+  description: "Convert PDF to editable Word documents with the RemovePDFPages Full Editor. $19/month Launch Special, $99/year, or $59 one-time license. Files are deleted from our server within 1 hour.",
+  path: "/convert-to-word",
+  type: "website",
+});
 
 export default function Page() {
   return (
@@ -36,7 +34,7 @@ export default function Page() {
       <main id="main">
         <section className="rpp-section rpp-section-hero">
           <div className="rpp-container rpp-text-center">
-            <h1 className="rpp-display">Convert PDF to Word</h1>
+            <h1 className="rpp-display">Convert PDF to Word Online</h1>
             <p
               className="rpp-lead"
               style={{ maxWidth: "640px", margin: "var(--rpp-space-4) auto 0" }}

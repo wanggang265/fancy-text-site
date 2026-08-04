@@ -1,15 +1,13 @@
+import { buildMetadata } from '@/lib/seo';
 import RemovePagesTool from "@/components/RemovePagesTool";
 import StructuredData from "@/components/StructuredData";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Remove PDF Pages Online | RemovePDFPages",
-  description:
-    "Delete pages from any PDF online. Select the pages you want to remove, then download the rest. No upload needed — processed in your browser.",
-  alternates: {
-    canonical: "https://removepdfpages.net/remove-pages",
-  },
-};
+  description: "Delete pages from any PDF online. Select the pages you want to remove, then download the rest. No upload needed \u2014 processed in your browser.",
+  path: "/remove-pages",
+  type: "website",
+});
 
 const schema = {
   "@context": "https://schema.org",

@@ -1,17 +1,13 @@
-import type { Metadata } from 'next';
+import { buildNoIndexMetadata } from '@/lib/seo';
 import { Suspense } from 'react';
 import CheckoutForm from './CheckoutForm';
 
-export const metadata: Metadata = {
-  title: 'Checkout | RemovePDFPages',
-  description: 'Complete your purchase of the RemovePDFPages Full Editor. Choose monthly, yearly, or a one-time license. Secure checkout through Creem.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/checkout',
-  },
-  robots: {
-    index: false,
-  },
-};
+export const metadata = buildNoIndexMetadata({
+  title: "Checkout | RemovePDFPages",
+  description: "Complete your purchase of the RemovePDFPages Full Editor. Choose monthly, yearly, or a one-time license. Secure checkout through Creem.",
+  path: "/checkout",
+  type: "website",
+});
 
 function CheckoutSkeleton() {
   return (

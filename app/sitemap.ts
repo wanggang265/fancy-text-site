@@ -1,34 +1,29 @@
-import { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/siteMeta";
+import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const indexableRoutes: { route: string; priority: number; frequency: "weekly" | "monthly" }[] = [
-  { route: "/", priority: 1.0, frequency: "weekly" },
-  { route: "/remove-pages", priority: 0.9, frequency: "monthly" },
-  { route: "/merge", priority: 0.9, frequency: "monthly" },
-  { route: "/compress", priority: 0.9, frequency: "monthly" },
-  { route: "/sign", priority: 0.9, frequency: "monthly" },
-  { route: "/convert-to-word", priority: 0.8, frequency: "monthly" },
-  { route: "/pricing", priority: 0.8, frequency: "monthly" },
-  { route: "/blog", priority: 0.7, frequency: "monthly" },
-  { route: "/blog/foxit-alternative", priority: 0.8, frequency: "monthly" },
-  { route: "/blog/no-subscription-pdf-editor", priority: 0.8, frequency: "monthly" },
-  { route: "/blog/one-time-payment-pdf-editor", priority: 0.8, frequency: "monthly" },
-  { route: "/blog/replace-image-in-pdf", priority: 0.8, frequency: "monthly" },
-  { route: "/faq", priority: 0.6, frequency: "monthly" },
-  { route: "/contact", priority: 0.5, frequency: "monthly" },
-  { route: "/privacy", priority: 0.5, frequency: "monthly" },
-  { route: "/terms", priority: 0.5, frequency: "monthly" },
-  { route: "/refund", priority: 0.5, frequency: "monthly" },
-  { route: "/cookie-policy", priority: 0.5, frequency: "monthly" },
-];
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  return indexableRoutes.map(({ route, priority, frequency }) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: frequency,
-    priority,
-  }));
+  const base = "https://removepdfpages.net";
+  const lastModified = "2026-08-04";
+
+  return [
+    { url: `${base}/`, lastModified, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${base}/remove-pages`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/merge`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/compress`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/sign`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/convert-to-word`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/pricing`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/faq`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/contact`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/privacy`, lastModified, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${base}/terms`, lastModified, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${base}/refund`, lastModified, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${base}/cookie-policy`, lastModified, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${base}/blog`, lastModified, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${base}/blog/foxit-alternative`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/blog/replace-image-in-pdf`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/blog/one-time-payment-pdf-editor`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/blog/no-subscription-pdf-editor`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+  ];
 }

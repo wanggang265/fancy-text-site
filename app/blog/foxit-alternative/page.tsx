@@ -1,12 +1,11 @@
-import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Foxit Alternatives to Consider in 2026 | RemovePDFPages',
-  description: 'Looking for a Foxit alternative? Compare browser-based PDF tools and subscription-free options before you choose a monthly plan.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/blog/foxit-alternative',
-  },
-};
+export const metadata = buildMetadata({
+  title: "Foxit Alternatives to Consider in 2026 | RemovePDFPages",
+  description: "Looking for a Foxit alternative? Compare browser-based PDF tools and subscription-free options before you choose a monthly plan.",
+  path: "/blog/foxit-alternative",
+  type: "article",
+});
 
 export default function Page() {
   return (

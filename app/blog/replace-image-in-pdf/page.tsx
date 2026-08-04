@@ -1,12 +1,11 @@
-import type { Metadata } from 'next';
+import { buildMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'How to Replace an Image in a PDF Without Adobe Acrobat | RemovePDFPages',
-  description: 'Learn how to replace an image in a PDF without Adobe Acrobat. Compare methods and browser-based tools that let you edit PDFs without a subscription.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/blog/replace-image-in-pdf',
-  },
-};
+export const metadata = buildMetadata({
+  title: "How to Replace an Image in a PDF Without Adobe Acrobat | RemovePDFPages",
+  description: "Learn how to replace an image in a PDF without Adobe Acrobat. Compare methods and browser-based tools that let you edit PDFs without a subscription.",
+  path: "/blog/replace-image-in-pdf",
+  type: "article",
+});
 
 export default function Page() {
   return (

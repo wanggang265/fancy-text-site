@@ -1,5 +1,4 @@
-import { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/siteMeta";
+import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
@@ -8,8 +7,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/checkout", "/success"],
+      disallow: ["/checkout", "/success", "/login"],
     },
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: "https://removepdfpages.net/sitemap.xml",
   };
 }

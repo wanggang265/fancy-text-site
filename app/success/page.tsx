@@ -1,17 +1,13 @@
-import type { Metadata } from 'next';
+import { buildNoIndexMetadata } from '@/lib/seo';
 import { Suspense } from 'react';
 import SuccessContent from './SuccessContent';
 
-export const metadata: Metadata = {
-  title: 'Thank You | RemovePDFPages',
-  description: 'Your RemovePDFPages Full Editor purchase is complete. Your license key and receipts have been sent to your email.',
-  alternates: {
-    canonical: 'https://removepdfpages.net/success',
-  },
-  robots: {
-    index: false,
-  },
-};
+export const metadata = buildNoIndexMetadata({
+  title: "Thank You | RemovePDFPages",
+  description: "Your RemovePDFPages Full Editor purchase is complete. Your license key and receipts have been sent to your email.",
+  path: "/success",
+  type: "website",
+});
 
 function SuccessSkeleton() {
   return (

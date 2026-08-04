@@ -1,15 +1,13 @@
+import { buildMetadata } from '@/lib/seo';
 import SignTool from "@/components/SignTool";
 import StructuredData from "@/components/StructuredData";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Sign PDF Online | RemovePDFPages",
-  description:
-    "Add a visible signature or initials to any PDF online. Fast, free, and private. Not a digital certificate signature.",
-  alternates: {
-    canonical: "https://removepdfpages.net/sign",
-  },
-};
+  description: "Add a visible signature or initials to any PDF online. Fast, free, and private. Not a digital certificate signature.",
+  path: "/sign",
+  type: "website",
+});
 
 const schema = {
   "@context": "https://schema.org",
