@@ -110,6 +110,13 @@ export default function RemovePagesPage() {
                 </div>
               </div>
             </div>
+
+            <div className="rpp-card" style={{ marginTop: "var(--rpp-space-8)" }}>
+              <h2 className="rpp-heading-2">How do I remove pages from a PDF online?</h2>
+              <p className="rpp-body" style={{ marginTop: "var(--rpp-space-4)", color: "var(--rpp-ink-700)" }}>
+                Upload your PDF to the Remove Pages tool and see every page as a thumbnail in the preview grid. Click the pages you want to delete, and the selected thumbnails are highlighted so you can review your choices before confirming. When you are ready, click the download button to save the cleaned PDF directly to your device. Everything happens locally inside your web browser, which means your document is never uploaded to our servers and no watermark is added to the output. Free users can process files up to 50 MB and 200 pages, with a fair-use limit of 10 to 20 tasks per hour from the same IP address. If you need to work with larger files or want extra editing features, the optional Full Editor lets you rearrange, rotate, and remove pages in a more advanced workspace.
+              </p>
+            </div>
           </div>
         </section>
       </main>

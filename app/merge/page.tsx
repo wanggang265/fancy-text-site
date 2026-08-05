@@ -46,6 +46,13 @@ export default function MergePage() {
         <section className="rpp-section-sm">
           <div className="rpp-workspace">
             <MergeTool />
+
+            <div className="rpp-card" style={{ marginTop: "var(--rpp-space-8)" }}>
+              <h2 className="rpp-heading-2">How do I merge multiple PDFs into one file?</h2>
+              <p className="rpp-body" style={{ marginTop: "var(--rpp-space-4)", color: "var(--rpp-ink-700)" }}>
+                Start by dragging your PDF files into the merge tool or clicking the upload area to browse your device. Each file appears as a thumbnail strip, and you can rearrange the order by dragging the strips into the sequence you need. Once everything is in the right order, click the merge button to combine every page into a single PDF document. The merge runs locally in your browser, so your files are never sent to our servers and no watermark is added to the output. This is useful for combining contracts, reports, scanned pages, invoices, and presentations into one easy-to-share file. Because the entire process stays on your device, your documents remain private and you can download the merged PDF immediately without waiting for a server to respond. You can merge as many files as you need within the free fair-use limits, making it a fast way to organize paperwork or combine attachments.
+              </p>
+            </div>
           </div>
         </section>
       </main>

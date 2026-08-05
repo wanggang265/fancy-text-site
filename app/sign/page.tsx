@@ -83,6 +83,13 @@ export default function SignPage() {
                 </div>
               </div>
             </div>
+
+            <div className="rpp-card" style={{ marginTop: "var(--rpp-space-8)" }}>
+              <h2 className="rpp-heading-2">How do I add a signature to a PDF online?</h2>
+              <p className="rpp-body" style={{ marginTop: "var(--rpp-space-4)", color: "var(--rpp-ink-700)" }}>
+                Upload the PDF you want to sign, then create your signature by drawing it with your mouse or touch screen, or upload an existing image of your signature. Place the signature anywhere on the document by dragging it to the exact spot, and resize it so it fits the line or box you are filling. Once you are happy with the placement, download the signed PDF directly to your device. The signing process runs in your browser, which means your contract, form, or agreement is never sent to our servers and no watermark is added to the output. This is ideal for consent forms, internal approvals, or any document that needs a visible mark. Remember that this creates a visual signature, not a digital certificate, so check whether your recipient needs a legally certified electronic signature.
+              </p>
+            </div>
           </div>
         </section>
       </main>

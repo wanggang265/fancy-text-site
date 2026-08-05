@@ -71,6 +71,13 @@ export default function Page() {
                 </div>
               </div>
             </div>
+
+            <div className="rpp-card" style={{ marginTop: "var(--rpp-space-8)" }}>
+              <h2 className="rpp-heading-2">How do I convert PDF to Word online?</h2>
+              <p className="rpp-body" style={{ marginTop: "var(--rpp-space-4)", color: "var(--rpp-ink-700)" }}>
+                The PDF to Word conversion is handled by the RemovePDFPages Full Editor. After starting the tool, upload your PDF and choose DOCX as the output format so you can open the result in Microsoft Word, Google Docs, or any compatible word processor. The conversion uses a secure backend to turn page contents, text, and images into an editable document, and uploaded files are stored for one hour only so you can retry the download before they are permanently deleted. You do not need an email address to run the conversion, but you will need a Full Editor subscription from $19 per month, $99 per year, or a one-time license for $59. Each paid plan includes 30 conversions per month, and no PDFs are kept for training or shared with third parties. This makes it easy to edit contracts, resumes, and reports without retyping everything from the original PDF.
+              </p>
+            </div>
           </div>
         </section>
       </main>

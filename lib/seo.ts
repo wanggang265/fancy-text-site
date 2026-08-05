@@ -19,7 +19,8 @@ export function buildMetadata({
   ogImage = "/og-home.png",
   type = "website",
 }: BuildMetadataOptions): Metadata {
-  const url = `https://removepdfpages.net${path}`;
+  const normalizedPath = path.endsWith("/") ? path : `${path}/`;
+  const url = `https://removepdfpages.net${normalizedPath}`;
   return {
     title,
     description,
